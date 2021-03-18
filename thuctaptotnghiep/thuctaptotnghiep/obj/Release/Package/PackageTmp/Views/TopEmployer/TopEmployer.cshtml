@@ -1,0 +1,34 @@
+﻿@model IList<Model.Framework.CongTy>
+@{
+    ViewBag.Title = "TopEmployer";
+}
+
+
+    <div class="featured-employer">
+        <div class="panel">
+            <div class="panel-header">
+                <h3 class="no-margin no-padding">Nhà Tuyển Dụng Hàng Đầu</h3>
+            </div>
+            <div class="panel-content">
+                <div id="ads_TOP_COMPANIES" style="clear:both;">
+                    @foreach (var item in Model)
+                    {
+                        string website = "";
+                        if (item.Website!=null&& item.Website.Contains("http"))
+                        {
+                            website = item.Website;
+                        }
+                        else{
+                             website="http://"+item.Website;
+                        }
+                        
+                            <a class="cusLogo" target="_blank" href="@website"><img class="salesLogoImage img-responsive" src="~/Employer_upload/@item.Logo" width="88" height="43"></a>
+                        
+                    }
+                <div style="display:none;" class="text-center m-t-md m-b-md"><i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i></div></div>
+                @*<script type="text/javascript" src="~/Content/tuyendung/topcompany.js"></script>*@    
+                    
+
+            </div>
+        </div>
+    </div>

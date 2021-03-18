@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "addcontact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Content/sweetalert2/sweetalert-dev.js"></script>
+<h2>Gửi Thành Công</h2>
+<script>
+    swal({
+        title: "Thư liên hệ của bạn đã được gửi đi!",
+        text: "Chúng tôi sẽ liên hệ bạn sớm nhất , xin cảm ơn!",
+        type: "success",
+        confirmButtonText: "OK"
+    },
+  function (isConfirm) {
+      if (isConfirm) {
+          window.location.href = "/";
+      }
+  });
+</script>
+

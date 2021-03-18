@@ -1,0 +1,220 @@
+﻿@using PagedList.Mvc
+@using Model.Framework
+@model PagedList.IPagedList<Model.Framework.UngVien>
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    ViewBag.Title = "Tìm kiếm ứng viên";
+    Layout = "~/Views/Shared/_LayoutEmployer.cshtml";
+    int workid;
+    
+    bool parsedw = int.TryParse(Request.QueryString["workid"].ToString(), out workid);
+    int cityid;
+    bool parsedc = int.TryParse(Request.QueryString["cityid"].ToString(), out cityid);
+    int level;
+    bool parsedl = int.TryParse(Request.QueryString["level"].ToString(), out level);
+}
+<link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-select.min.js"></script>
+<div class="col-sm-12">
+    <div class="ibox quick-search-panel">
+        <div class="ibox-title">
+            <h3>
+                TÌM ỨNG VIÊN CỦA TRUNG TÂM HỖ TRỢ SINH VIÊN HITU
+            </h3>
+        </div>
+        <div class="ibox-content" style="display: block;">
+            <form name="searchResume" method="get" action="/ManagerJob/ShowSearchMember" novalidate="novalidate">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-fw fa-key"></i></div>
+                                <input value="@Request.QueryString["keywork"]" type="text" id="searchResume_keyword" name="keywork" placeholder="Từ khóa. Ví dụ: PHP Developer" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-fw fa-black-tie"></i></div>
+                                <input value="@Request.QueryString["experience"]" type="number" min="0" id="searchResume_yearExperience" name="experience" placeholder="Năm kinh nghiệm. Ví dụ: 12" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <div class="">
+                            <select class="form-control selectpicker" name="workid">
+                                <option value="null">Chọn nghành nghề</option>
+                                @foreach (var item in db.NghanhNghes.Where(x => x.Tinhtrang != -1 && x.Idnghanhcha != 0))
+                                {
+                                    if (workid == item.Id)
+                                    {
+                                        <option selected value="@item.Id">@item.Tennghanh</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id">@item.Tennghanh</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-group col-sm-6">
+                        
+                            <div class="">
+                                <select class="form-control selectpicker" name="cityid">
+                                    <option value="null">Chọn thành phố</option>
+                                    @foreach (var item in db.cities)
+                                    {
+                                        if (cityid == item.Id)
+                                        {
+                                            <option selected value="@item.Id">@item.City1</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.City1</option>
+                                        }
+
+                                    }
+                                </select>
+
+                            </div>
+                      
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <div class="">
+                            <select class="form-control selectpicker" name="level">
+                                <option value="null">Chọn Cấp bậc</option>
+                                @foreach (var item in db.CBmongmuons)
+                                {
+                                    if (level == item.Id)
+                                    {
+                                        <option selected value="@item.Id">@item.Ten</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id">@item.Ten</option>
+                                    }
+
+                                }
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-bolt" aria-hidden="true"></i></div>
+                            <input value="@Request.QueryString["skill"]" type="text" id="searchResume_keyword" name="skill" placeholder="Kỹ năng. Ví dụ:asp.net,html" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <button style="color:white;" type="submit" id="btnResumeSearch" value="1" class="btn btn-primary form-control">
+                    <i class="fa fa-fw fa-search"></i> Tìm kiếm
+                </button>
+                <!-- More Search Options -->
+                <!--/ Advanced Search -->
+            </form>
+        </div>
+    </div>
+</div>
+<div id="onlineResumeContent">
+    <div id="innerOnlineResumeContent">
+        <div class="ibox float-e-margins search-results">
+            <div id="searchResumeList" class="ibox-content">
+                <h2>
+                    Tìm thấy <strong>@ViewData["CountMember"]</strong> hồ sơ
+                </h2>
+                <p>
+                    <i class="fa fa-fw fa-folder-open"></i> Ngành nghề: <span class="text-blue">@if(workid!=0){<span>@db.NghanhNghes.Where(x=>x.Id==workid).Select(x=>x.Tennghanh).FirstOrDefault()</span>}else{<span>Bất Kỳ</span>}</span>
+                    |
+                    <i class="fa fa-fw fa-map-marker"></i> Nơi làm việc: <span class="text-blue">@if (cityid != 0)
+                    {<span>@db.cities.Where(x => x.Id == cityid).Select(x => x.City1).FirstOrDefault()</span>}
+                    else
+                    {<span>Bất Kỳ</span>}</span>
+                    |
+                    <i class="fa fa-fw fa-suitcase"></i> Cấp bậc: <span class="text-blue">@if (level != 0)
+                    {<span>@db.CBmongmuons.Where(x => x.Id == level).Select(x => x.Ten).FirstOrDefault()</span>}
+                    else
+                    {<span>Bất Kỳ</span>}</span>
+                    |
+                    <i class="fa fa-bolt" aria-hidden="true"></i> Kỹ năng: <span class="text-blue">@Request.QueryString["skill"]</span>
+                    |
+                    <i class="fa fa-fw fa-key"></i> Chức Danh: <span class="text-blue">@Request.QueryString["keywork"]</span>
+                    |
+                    <i class="fa fa-plus" aria-hidden="true"></i> Năm kinh nghiệm: <span class="text-blue">@Request.QueryString["experience"]</span>
+                </p>
+                <div class="hr-line-dashed"></div>
+                @foreach (var item in Model)
+                {
+                    <div id="resumeSearchResultRow-@item.MAUV" class="search-result row">
+                        <div class="col-sm-12 m-b-sm">
+                            <h3>
+                                <a href="/ManagerJob/DetailMemberSearch?mauv=@item.MAUV" class="resume-title" target="_blank">
+                                    @item.Hovatendem @item.Ten (@item.Chucdanh)
+                                </a>
+                            </h3>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-6 text-clip">
+                                    <i data-toggle="tooltip" title="" data-container=".search-results" class="fa fa-fw fa-folder-open" data-original-title="Ngành nghề"></i>@foreach (var i in db.CVmongmuons.Where(x => x.MaUV == item.MAUV))
+                                                                                                                                                                            {
+                                                                                                                                                                                <span>@db.NghanhNghes.Where(x=>x.Id==i.Nghanhnghe1).Select(x=>x.Tennghanh).FirstOrDefault()</span>
+                                        <span>@db.NghanhNghes.Where(x=>x.Id==i.Nghanhnghe2).Select(x=>x.Tennghanh).FirstOrDefault()</span>
+                                        <span>@db.NghanhNghes.Where(x=>x.Id==i.Nghanhnghe3).Select(x=>x.Tennghanh).FirstOrDefault()</span>
+                                                                                                                                                                                break;
+                                                                                                                                                                            }
+                                </div>
+                                <div class="col-sm-6 text-clip">
+                                    <i data-toggle="tooltip" title="" data-container=".search-results" class="fa fa-fw fa-map-marker" data-original-title="Nơi làm việc"></i> @foreach (var i in db.CVmongmuons.Where(x => x.MaUV == item.MAUV))
+                                    {
+                                        <span>@db.cities.Where(x => x.Id == i.Thanhpho1).Select(x => x.City1).FirstOrDefault()</span>
+                                        <span>@db.cities.Where(x => x.Id == i.Thanhpho2).Select(x => x.City1).FirstOrDefault()</span>
+                                        <span>@db.cities.Where(x => x.Id == i.Thanhpho3).Select(x => x.City1).FirstOrDefault()</span>
+                                        break;
+                                    }
+                                </div>
+                                <div class="col-sm-6 text-clip">
+                                    <i data-toggle="tooltip" title="" data-container=".search-results" class="fa fa-fw fa-suitcase" data-original-title="Cấp bậc"></i>@foreach (var i in db.CVmongmuons.Where(x => x.MaUV == item.MAUV))
+                                                                                                                                                                      {
+                                                                                                                                                                          <span>@db.CBmongmuons.Where(x => x.Id == i.MaCB).Select(x => x.Ten).FirstOrDefault()</span>
+                                                                                                                                                                      }
+                                </div>
+                                <div class="col-sm-12 m-t"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 extra-info">
+                            <div data-toggle="tooltip" title="" data-placement="top" data-delay="200" class="div text-center" data-original-title="Year of experience">
+                                @if(item.Namkinhnghiem==null || item.Namkinhnghiem==0){<strong class="year-of-exp text-info">Mới Tốt Nghiệp</strong>}else{<strong class="year-of-exp text-info">@item.Namkinhnghiem</strong><span>&nbsp;
+                                năm</span>}
+                            </div>
+                        </div>
+                        <div class="col-sm-3 profile-info text-center">
+                            <div class="last-modified">
+                              @if (item.Ngaycapnhat != null)
+                              {
+                                  <span>@item.Ngaycapnhat.Value.ToString("dd/MM/yyyy HH:mm")</span>
+                              }
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                  <div class="hr-line-dashed"></div>
+                }
+                <div style="margin:5px auto;width:300px;">@Html.PagedListPager(Model, page => Url.Action("ShowSearchMember", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .btn-default {
+        background: white;
+        color: black;
+        border: 1px solid #00b9f2;
+    }
+</style>

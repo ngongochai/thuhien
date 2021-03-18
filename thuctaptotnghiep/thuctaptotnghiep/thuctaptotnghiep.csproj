@@ -1,0 +1,1016 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ECAE3D8F-D7DE-403D-8408-CD739E85A721}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>thuctaptotnghiep</RootNamespace>
+    <AssemblyName>thuctaptotnghiep</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;s</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-chosen.css" />
+    <Content Include="Content\bootstrap-combined.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\build.css" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\Employer\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Employer\Login\app.css" />
+    <Content Include="Content\Employer\Login\avatar_simple_visitor.png" />
+    <Content Include="Content\Employer\Login\logo.png" />
+    <Content Include="Content\Employer\Login\saved_resource%281%29.html" />
+    <Content Include="Content\Employer\Login\saved_resource.html" />
+    <Content Include="Content\Employer\Login\signin.css" />
+    <Content Include="Content\Employer\Manager\app.css" />
+    <Content Include="Content\Employer\Manager\bootstrap-tokenfield.css" />
+    <Content Include="Content\Employer\Manager\bootstrap-tokenfield.js" />
+    <Content Include="Content\Employer\Manager\dashboard.css" />
+    <Content Include="Content\Employer\Manager\docs.min.js" />
+    <Content Include="Content\Employer\Manager\job-posting.css" />
+    <Content Include="Content\Employer\Manager\jquery-ui.css" />
+    <Content Include="Content\Employer\Manager\jqueryapp.js" />
+    <Content Include="Content\Employer\Manager\master_app.js" />
+    <Content Include="Content\Employer\Manager\my-profile.js" />
+    <Content Include="Content\Employer\Manager\ProProfile.js" />
+    <Content Include="Content\Employer\Manager\scrollspy.js" />
+    <Content Include="Content\Employer\Manager\site.css" />
+    <Content Include="Content\Employer\Manager\tokenfield-typeahead.css" />
+    <Content Include="Content\Employer\Signup\anonymous_master_app.js" />
+    <Content Include="Content\Employer\Signup\app.css" />
+    <Content Include="Content\Employer\Signup\avatar_simple_visitor.png" />
+    <Content Include="Content\Employer\Signup\css.css" />
+    <Content Include="Content\Employer\Signup\dc.js" />
+    <Content Include="Content\Employer\Signup\gtm.js" />
+    <Content Include="Content\Employer\Signup\inpage_linkid.js" />
+    <Content Include="Content\Employer\Signup\jqueryapp.js" />
+    <Content Include="Content\Employer\Signup\logo.png" />
+    <Content Include="Content\Employer\Signup\register.js" />
+    <Content Include="Content\Employer\Signup\saved_resource%281%29.html" />
+    <Content Include="Content\Employer\Signup\saved_resource.html" />
+    <Content Include="Content\Employer\Signup\signup.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\image\banner.png" />
+    <Content Include="Content\image\dn.ico" />
+    <Content Include="Content\image\fac.png" />
+    <Content Include="Content\image\facebook-2.png" />
+    <Content Include="Content\image\g.png" />
+    <Content Include="Content\image\HITC_logo.png" />
+    <Content Include="Content\image\logo.png" />
+    <Content Include="Content\image\m.png" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Profile\blockUI.js" />
+    <Content Include="Content\Profile\bootstrap-combined.min.css" />
+    <Content Include="Content\Profile\bootstrap-datepicker.js" />
+    <Content Include="Content\Profile\bootstrap.3.2.0.min.js" />
+    <Content Include="Content\Profile\bootstrap.css" />
+    <Content Include="Content\Profile\content.min.css" />
+    <Content Include="Content\Profile\conversion.js" />
+    <Content Include="Content\Profile\cookie.min.js" />
+    <Content Include="Content\Profile\dc.js" />
+    <Content Include="Content\Profile\extra-profile.js" />
+    <Content Include="Content\Profile\firebase-app.js" />
+    <Content Include="Content\Profile\firebase-auth.js" />
+    <Content Include="Content\Profile\firebase-database.js" />
+    <Content Include="Content\Profile\firebase-message.js" />
+    <Content Include="Content\Profile\gr_reco4-min.js" />
+    <Content Include="Content\Profile\gtm.js" />
+    <Content Include="Content\Profile\icheck.min.js" />
+    <Content Include="Content\Profile\inpage_linkid.js" />
+    <Content Include="Content\Profile\jquery-1.10.2.min.js" />
+    <Content Include="Content\Profile\jquery.cookie.min.js" />
+    <Content Include="Content\Profile\jquery.dotdotdot.min.js" />
+    <Content Include="Content\Profile\jquery.editableForm.js" />
+    <Content Include="Content\Profile\jquery.fn.sortElements.js" />
+    <Content Include="Content\Profile\jquery.form.min.js" />
+    <Content Include="Content\Profile\jquery.Jcrop.js" />
+    <Content Include="Content\Profile\jquery.mousewheel.min.3.0.6.js" />
+    <Content Include="Content\Profile\jquery.select2.select-all.min.js" />
+    <Content Include="Content\Profile\jquery.simulate.min.js" />
+    <Content Include="Content\Profile\jquery.slidebar.js" />
+    <Content Include="Content\Profile\jquery.tinymce.min.js" />
+    <Content Include="Content\Profile\jquery.touchSwipe.min.js" />
+    <Content Include="Content\Profile\jqueryUiQuickSearchBlock.js" />
+    <Content Include="Content\Profile\json2.js" />
+    <Content Include="Content\Profile\loading.gif" />
+    <Content Include="Content\Profile\logo.png" />
+    <Content Include="Content\Profile\master.js" />
+    <Content Include="Content\Profile\modernizr.js" />
+    <Content Include="Content\Profile\moment.js" />
+    <Content Include="Content\Profile\notification.js" />
+    <Content Include="Content\Profile\placeholders_autoinit.js" />
+    <Content Include="Content\Profile\quickSearchBlock.min.js" />
+    <Content Include="Content\Profile\select2-bootstrap.css" />
+    <Content Include="Content\Profile\select2.css" />
+    <Content Include="Content\Profile\select2.js" />
+    <Content Include="Content\Profile\skin.min.css" />
+    <Content Include="Content\Profile\string.js" />
+    <Content Include="Content\Profile\switchery.js" />
+    <Content Include="Content\Profile\theme.css" />
+    <Content Include="Content\Profile\tinymce.min.js" />
+    <Content Include="Content\Profile\typeahead.bundle.min.js" />
+    <Content Include="Content\Profile\ui.general.js" />
+    <Content Include="Content\Profile\ui.header.min.js" />
+    <Content Include="Content\Profile\ui.job-search-suggestion.min.js" />
+    <Content Include="Content\Profile\ui.one-profile.js" />
+    <Content Include="Content\Profile\ui.plugins.min.js" />
+    <Content Include="Content\Profile\ui.profileSuggestionTooltips.js" />
+    <Content Include="Content\Profile\ui.vip-jobs.js" />
+    <Content Include="Content\Profile\ui_customized.js" />
+    <Content Include="Content\Profile\validate.js" />
+    <Content Include="Content\select.css" />
+    <Content Include="Content\select2-bootstrap.css" />
+    <Content Include="Content\select2.css" />
+    <Content Include="Content\select2.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\sweetalert2\sweetalert-dev.js" />
+    <Content Include="Content\sweetalert2\sweetalert2.css" />
+    <Content Include="Content\sweetalert2\sweetalert2.js" />
+    <Content Include="Content\sweetalert2\sweetalert2.min.css" />
+    <Content Include="Content\sweetalert2\sweetalert2.min.js" />
+    <Content Include="Content\theme.css" />
+    <Content Include="Content\Uploaded\contact_loading.gif" />
+    <Content Include="Content\Uploaded\loading.png" />
+    <Content Include="Content\Uploaded\select2.min.css" />
+    <Content Include="ErrorPage.htm" />
+    <Content Include="FileNotFound.htm" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\Employer\Login\anonymous_master_app.js" />
+    <Content Include="Content\Employer\Login\css.css" />
+    <Content Include="Content\Employer\Login\dc.js" />
+    <Content Include="Content\Employer\Login\gtm.js" />
+    <Content Include="Content\Employer\Login\inpage_linkid.js" />
+    <Content Include="Content\Employer\Login\jqueryapp.js" />
+    <Content Include="Content\Employer\Login\login.js" />
+    <Content Include="Content\Employer\Login\saved_resource.js" />
+    <Content Include="Content\Employer\Signup\saved_resource.js" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\Profile\css" />
+    <Content Include="Content\Profile\dadangky.jpgx" />
+    <Content Include="Content\Employer\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Employer\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Employer\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Employer\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Employer\fonts\FontAwesome.otf" />
+    <Content Include="Content\Employer\Manager\job-posting.js" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="plugin\Camera\css\camera.css" />
+    <Content Include="plugin\Camera\css\_notes\dwsync.xml" />
+    <Content Include="plugin\Camera\images\blank.gif" />
+    <Content Include="plugin\Camera\images\camera-loader.gif" />
+    <Content Include="plugin\Camera\images\camera_skins.png" />
+    <Content Include="plugin\Camera\images\patterns\overlay1.png" />
+    <Content Include="plugin\Camera\images\patterns\overlay10.png" />
+    <Content Include="plugin\Camera\images\patterns\overlay2.png" />
+    <Content Include="plugin\Camera\images\patterns\overlay3.png" />
+    <Content Include="plugin\Camera\images\patterns\overlay4.png" />
+    <Content Include="plugin\Camera\images\patterns\overlay5.png" />
+    <Content Include="plugin\Camera\images\patterns\overlay6.png" />
+    <Content Include="plugin\Camera\images\patterns\overlay7.png" />
+    <Content Include="plugin\Camera\images\patterns\overlay8.png" />
+    <Content Include="plugin\Camera\images\patterns\overlay9.png" />
+    <Content Include="plugin\Camera\images\patterns\_notes\dwsync.xml" />
+    <Content Include="plugin\Camera\images\slides copy\big_bunny_fake.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\bridge.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\leaf.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\road.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\sea.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\shelter.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\thumbs\big_bunny_fake.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\thumbs\bridge.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\thumbs\header_bg.png" />
+    <Content Include="plugin\Camera\images\slides copy\thumbs\leaf.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\thumbs\road.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\thumbs\sea.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\thumbs\shelter.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\thumbs\tree.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\thumbs\_notes\dwsync.xml" />
+    <Content Include="plugin\Camera\images\slides copy\tree.jpg" />
+    <Content Include="plugin\Camera\images\slides copy\_notes\dwsync.xml" />
+    <Content Include="plugin\Camera\images\slides\big_bunny_fake.jpg" />
+    <Content Include="plugin\Camera\images\slides\bridge.jpg" />
+    <Content Include="plugin\Camera\images\slides\leaf.jpg" />
+    <Content Include="plugin\Camera\images\slides\road.jpg" />
+    <Content Include="plugin\Camera\images\slides\sea.jpg" />
+    <Content Include="plugin\Camera\images\slides\shelter.jpg" />
+    <Content Include="plugin\Camera\images\slides\thumbs\big_bunny_fake.jpg" />
+    <Content Include="plugin\Camera\images\slides\thumbs\bridge.jpg" />
+    <Content Include="plugin\Camera\images\slides\thumbs\header_bg.png" />
+    <Content Include="plugin\Camera\images\slides\thumbs\leaf.jpg" />
+    <Content Include="plugin\Camera\images\slides\thumbs\road.jpg" />
+    <Content Include="plugin\Camera\images\slides\thumbs\sea.jpg" />
+    <Content Include="plugin\Camera\images\slides\thumbs\shelter.jpg" />
+    <Content Include="plugin\Camera\images\slides\thumbs\tree.jpg" />
+    <Content Include="plugin\Camera\images\slides\thumbs\_notes\dwsync.xml" />
+    <Content Include="plugin\Camera\images\slides\tree.jpg" />
+    <Content Include="plugin\Camera\images\slides\_notes\dwsync.xml" />
+    <Content Include="plugin\Camera\images\_notes\dwsync.xml" />
+    <Content Include="plugin\Camera\scripts\camera.js" />
+    <Content Include="plugin\Camera\scripts\camera.min.js" />
+    <Content Include="plugin\Camera\scripts\jquery.easing.1.3.js" />
+    <Content Include="plugin\Camera\scripts\jquery.min.js" />
+    <Content Include="plugin\Camera\scripts\jquery.mobile.customized.min.js" />
+    <Content Include="plugin\Camera\scripts\_notes\dwsync.xml" />
+    <Content Include="plugin\fileman\asp_net\main.ashx" />
+    <Content Include="plugin\fileman\conf.json" />
+    <Content Include="plugin\fileman\lang\bg.json" />
+    <Content Include="plugin\fileman\lang\cs.json" />
+    <Content Include="plugin\fileman\lang\cs1.json" />
+    <Content Include="plugin\fileman\lang\de.json" />
+    <Content Include="plugin\fileman\lang\en.json" />
+    <Content Include="plugin\fileman\lang\es.json" />
+    <Content Include="plugin\fileman\lang\fr.json" />
+    <Content Include="plugin\fileman\lang\hu.json" />
+    <Content Include="plugin\fileman\lang\it.json" />
+    <Content Include="plugin\fileman\lang\pl.json" />
+    <Content Include="plugin\fileman\lang\pt.json" />
+    <Content Include="plugin\fileman\web.config" />
+    <Content Include="plugin\tinymce\langs\readme.md" />
+    <Content Include="plugin\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="plugin\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="plugin\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="plugin\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="plugin\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="plugin\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="plugin\fileman\css\images\animated-overlay.gif" />
+    <Content Include="plugin\fileman\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="plugin\fileman\css\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="plugin\fileman\css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="plugin\fileman\css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="plugin\fileman\css\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="plugin\fileman\css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="plugin\fileman\css\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="plugin\fileman\css\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="plugin\fileman\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="plugin\fileman\css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="plugin\fileman\css\images\ui-icons_454545_256x240.png" />
+    <Content Include="plugin\fileman\css\images\ui-icons_888888_256x240.png" />
+    <Content Include="plugin\fileman\css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="plugin\fileman\css\jquery-ui-1.10.4.custom.css" />
+    <Content Include="plugin\fileman\css\jquery-ui-1.10.4.custom.min.css" />
+    <Content Include="plugin\fileman\css\main.css" />
+    <Content Include="plugin\fileman\css\main.min.css" />
+    <Content Include="plugin\fileman\dev.html" />
+    <Content Include="plugin\fileman\images\action-folder-paste.png" />
+    <Content Include="plugin\fileman\images\action-folder-rename.png" />
+    <Content Include="plugin\fileman\images\arrow_down.png" />
+    <Content Include="plugin\fileman\images\arrow_up.png" />
+    <Content Include="plugin\fileman\images\blank.gif" />
+    <Content Include="plugin\fileman\images\copy.png" />
+    <Content Include="plugin\fileman\images\cut.png" />
+    <Content Include="plugin\fileman\images\dir-minus.png" />
+    <Content Include="plugin\fileman\images\dir-plus.png" />
+    <Content Include="plugin\fileman\images\file-add.png" />
+    <Content Include="plugin\fileman\images\file-delete.png" />
+    <Content Include="plugin\fileman\images\file-download.png" />
+    <Content Include="plugin\fileman\images\file-duplicate.png" />
+    <Content Include="plugin\fileman\images\file-upload.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_3gp.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_7z.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_ace.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_ai.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_aif.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_aiff.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_amr.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_asf.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_asx.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_bat.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_bin.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_bmp.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_bup.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_cab.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_cbr.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_cda.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_cdl.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_cdr.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_chm.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_dat.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_divx.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_dll.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_dmg.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_doc.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_dss.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_dvf.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_dwg.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_eml.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_eps.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_exe.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_fla.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_flv.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_gif.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_gz.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_hqx.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_htm.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_html.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_ifo.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_indd.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_iso.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_jar.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_jpeg.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_jpg.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_lnk.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_log.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_m4a.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_m4b.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_m4p.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_m4v.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_mcd.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_mdb.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_mid.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_mov.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_mp2.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_mp3.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_mp4.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_mpeg.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_mpg.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_msi.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_mswmm.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_ogg.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_pdf.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_png.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_pps.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_ps.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_psd.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_pst.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_ptb.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_pub.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_qbb.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_qbw.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_qxd.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_ram.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_rar.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_rm.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_rmvb.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_rtf.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_sea.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_ses.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_sit.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_sitx.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_ss.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_swf.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_tgz.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_thm.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_tif.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_tmp.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_torrent.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_ttf.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_txt.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_vcd.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_vob.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_wav.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_wma.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_wmv.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_wps.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_xls.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_xpi.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\file_extension_zip.png" />
+    <Content Include="plugin\fileman\images\filetypes\big\unknown.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_3gp.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_7z.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_ace.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_ai.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_aif.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_aiff.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_amr.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_asf.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_asx.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_bat.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_bin.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_bmp.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_bup.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_cab.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_cbr.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_cda.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_cdl.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_cdr.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_chm.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_dat.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_divx.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_dll.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_dmg.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_doc.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_dss.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_dvf.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_dwg.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_eml.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_eps.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_exe.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_fla.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_flv.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_gif.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_gz.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_hqx.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_htm.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_html.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_ifo.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_indd.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_iso.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_jar.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_jpeg.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_jpg.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_lnk.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_log.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_m4a.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_m4b.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_m4p.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_m4v.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_mcd.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_mdb.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_mid.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_mov.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_mp2.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_mp3.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_mp4.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_mpeg.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_mpg.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_msi.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_mswmm.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_ogg.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_pdf.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_png.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_pps.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_ps.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_psd.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_pst.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_ptb.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_pub.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_qbb.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_qbw.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_qxd.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_ram.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_rar.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_rm.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_rmvb.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_rtf.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_sea.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_ses.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_sit.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_sitx.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_ss.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_swf.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_tgz.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_thm.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_tif.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_tmp.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_torrent.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_ttf.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_txt.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_vcd.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_vob.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_wav.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_wma.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_wmv.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_wps.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_xls.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_xpi.png" />
+    <Content Include="plugin\fileman\images\filetypes\file_extension_zip.png" />
+    <Content Include="plugin\fileman\images\filetypes\unknown.png" />
+    <Content Include="plugin\fileman\images\find.png" />
+    <Content Include="plugin\fileman\images\folder-add.png" />
+    <Content Include="plugin\fileman\images\folder-delete.png" />
+    <Content Include="plugin\fileman\images\folder-download.png" />
+    <Content Include="plugin\fileman\images\folder-green.png" />
+    <Content Include="plugin\fileman\images\folder-opened.png" />
+    <Content Include="plugin\fileman\images\folder.png" />
+    <Content Include="plugin\fileman\images\loading-dir.gif" />
+    <Content Include="plugin\fileman\images\loading.gif" />
+    <Content Include="plugin\fileman\images\paste.png" />
+    <Content Include="plugin\fileman\images\preview.png" />
+    <Content Include="plugin\fileman\images\remove-upload - Copy.png" />
+    <Content Include="plugin\fileman\images\remove-upload.png" />
+    <Content Include="plugin\fileman\images\rename.png" />
+    <Content Include="plugin\fileman\images\search.png" />
+    <Content Include="plugin\fileman\images\select.png" />
+    <Content Include="plugin\fileman\images\sprite.png" />
+    <Content Include="plugin\fileman\images\stripes-reverse.gif" />
+    <Content Include="plugin\fileman\images\stripes.gif" />
+    <Content Include="plugin\fileman\images\upload-big.png" />
+    <Content Include="plugin\fileman\images\view-list.png" />
+    <Content Include="plugin\fileman\images\view-tile.png" />
+    <Content Include="plugin\fileman\index.html" />
+    <Content Include="plugin\fileman\js\custom.js" />
+    <Content Include="plugin\fileman\js\directory.js" />
+    <Content Include="plugin\fileman\js\file.js" />
+    <Content Include="plugin\fileman\js\filetypes.js" />
+    <Content Include="plugin\fileman\js\jquery-1.10.2.min.js" />
+    <Content Include="plugin\fileman\js\jquery-1.11.1.min.js" />
+    <Content Include="plugin\fileman\js\jquery-2.1.1.min.js" />
+    <Content Include="plugin\fileman\js\jquery-dateFormat.min.js" />
+    <Content Include="plugin\fileman\js\jquery-ui-1.10.4.custom.min.js" />
+    <Content Include="plugin\fileman\js\main.js" />
+    <Content Include="plugin\fileman\js\main.min.js" />
+    <Content Include="plugin\fileman\js\mini-main.js" />
+    <Content Include="plugin\fileman\js\tiny_mce_popup.js" />
+    <Content Include="plugin\fileman\js\utils.js" />
+    <Content Include="plugin\fileman\LICENSE.txt" />
+    <Content Include="plugin\fileman\third-party.txt" />
+    <Content Include="plugin\fileman\Uploads\Images\DSC_2987.jpg" />
+    <Content Include="plugin\fileman\Uploads\Images\DSC_5744.jpg" />
+    <Content Include="plugin\fileman\Uploads\LICENSE.txt" />
+    <Content Include="plugin\fileman\Uploads\roxy-fileman-logo.gif" />
+    <Content Include="plugin\tinymce\jquery.tinymce.min.js" />
+    <Content Include="plugin\tinymce\license.txt" />
+    <Content Include="plugin\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="plugin\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="plugin\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\example\dialog.html" />
+    <Content Include="plugin\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="plugin\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="plugin\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="plugin\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="plugin\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="plugin\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="plugin\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="plugin\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="plugin\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="plugin\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="plugin\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="plugin\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="plugin\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="plugin\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="plugin\tinymce\themes\modern\theme.min.js" />
+    <Content Include="plugin\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\Contact.js" />
+    <Content Include="Scripts\facebookapp.js" />
+    <Content Include="Scripts\header.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.twbsPagination.js" />
+    <Content Include="Scripts\jquery.twbsPagination.min.js" />
+    <Content Include="Scripts\managerjob.js" />
+    <Content Include="Scripts\Profile.js" />
+    <Content Include="Scripts\select2.full.js" />
+    <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\applyjob.js" />
+    <Content Include="Scripts\ui.job-detail.js" />
+    <Content Include="Scripts\validate_job.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\AdminAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\EmployerController.cs" />
+    <Compile Include="Controllers\FooterController.cs" />
+    <Compile Include="Controllers\GoodJobController.cs" />
+    <Compile Include="Controllers\HeaderController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\ManagerJobController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\NotfoundController.cs" />
+    <Compile Include="Controllers\ResetPassWordController.cs" />
+    <Compile Include="Controllers\SearchJobController.cs" />
+    <Compile Include="Controllers\SearchSlideController.cs" />
+    <Compile Include="Controllers\SendSMSController.cs" />
+    <Compile Include="Controllers\SuggestJobController.cs" />
+    <Compile Include="Controllers\TopEmployerController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Benefit.cs" />
+    <Compile Include="Models\CheckSession.cs" />
+    <Compile Include="Models\Employer.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Reload.cs" />
+    <Compile Include="Models\RemoveUnicode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Header\Header.cshtml" />
+    <Content Include="Views\SearchSlide\SearchSlide.cshtml" />
+    <Content Include="Views\GoodJob\GoodJob.cshtml" />
+    <Content Include="Views\SuggestJob\SuggestJob.cshtml" />
+    <Content Include="Views\TopEmployer\TopEmployer.cshtml" />
+    <Content Include="Views\Footer\Footer.cshtml" />
+    <Content Include="Views\Member\Login.cshtml" />
+    <Content Include="Views\Member\Member.cshtml" />
+    <Content Include="Views\Member\Profile.cshtml" />
+    <Content Include="Views\Member\Register.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Member\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutEmployer.cshtml" />
+    <Content Include="Views\Employer\Login.cshtml" />
+    <Content Include="Views\Employer\SignUp.cshtml" />
+    <Content Include="Views\Member\InforGeneral.cshtml" />
+    <Content Include="Views\Member\Skill.cshtml" />
+    <Content Include="Views\Member\Language.cshtml" />
+    <Content Include="Views\Member\ExpWork.cshtml" />
+    <Content Include="Views\Member\Education.cshtml" />
+    <Content Include="Views\Member\InforReference.cshtml" />
+    <Content Include="Views\Member\Benefit.cshtml" />
+    <Content Include="Views\Member\ColRight.cshtml" />
+    <Content Include="Views\Employer\NavBar.cshtml" />
+    <Content Include="Views\Employer\Index.cshtml" />
+    <Content Include="Views\Employer\Profile.cshtml" />
+    <Content Include="Views\Employer\InforAccount.cshtml" />
+    <Content Include="Views\Employer\InforCompany.cshtml" />
+    <Content Include="Views\Employer\LogoCompany.cshtml" />
+    <Content Include="Views\Employer\CreateWork.cshtml" />
+    <Content Include="Views\Employer\Autocomplete.cshtml" />
+    <Content Include="Views\Employer\ListJob.cshtml" />
+    <Content Include="Views\Employer\EditJob.cshtml" />
+    <Content Include="Views\Employer\_PageList.cshtml" />
+    <Content Include="Views\Employer\ActiveJob.cshtml" />
+    <Content Include="Views\Employer\Expired.cshtml" />
+    <Content Include="Views\Employer\Hidejob.cshtml" />
+    <Content Include="Views\Job\ShowJobHomePage.cshtml" />
+    <Content Include="Views\Job\TopJob.cshtml" />
+    <Content Include="Views\Job\_RecommandJob.cshtml" />
+    <Content Include="Views\Job\AllJob.cshtml" />
+    <Content Include="Views\Job\DetailJob.cshtml" />
+    <Content Include="Views\Member\ListApplyJob.cshtml" />
+    <Content Include="Views\ManagerJob\MemberForJob.cshtml" />
+    <Content Include="Views\ManagerJob\DetailMember.cshtml" />
+    <Content Include="Views\ManagerJob\JobForMember.cshtml" />
+    <Content Include="Views\ManagerJob\ApplyUV.cshtml" />
+    <Content Include="Views\ManagerJob\ListAppyJob.cshtml" />
+    <Content Include="Views\ManagerJob\ListSaveMember.cshtml" />
+    <Content Include="Views\Member\ListEmployerSaved.cshtml" />
+    <Content Include="Views\SearchJob\ShowSearch.cshtml" />
+    <Content Include="Views\SearchJob\_Searchpartial.cshtml" />
+    <Content Include="Views\SearchJob\_Category.cshtml" />
+    <Content Include="Views\SearchJob\_Location.cshtml" />
+    <Content Include="Views\SearchJob\_Skill.cshtml" />
+    <Content Include="Views\News\NewsHomePage.cshtml" />
+    <Content Include="Views\News\ListNewsOfCategory.cshtml" />
+    <Content Include="Views\News\DetailsNews.cshtml" />
+    <Content Include="Views\ManagerJob\SearchMember.cshtml" />
+    <Content Include="Views\ManagerJob\ShowSearchMember.cshtml" />
+    <Content Include="Views\ManagerJob\DetailMemberSearch.cshtml" />
+    <Content Include="Views\ResetPassWord\ForGotPassWordMember.cshtml" />
+    <Content Include="Views\ResetPassWord\ChangePassword.cshtml" />
+    <Content Include="Views\ResetPassWord\_MailForgotPassword.cshtml" />
+    <Content Include="Views\ResetPassWord\_MailForgotPasswordEmployer.cshtml" />
+    <Content Include="Views\ResetPassWord\ChangePasswordEmployer.cshtml" />
+    <Content Include="Views\ResetPassWord\ForgotPassWordEmployer.cshtml" />
+    <Content Include="Views\Employer\_ActiveEmployer.cshtml" />
+    <Content Include="Views\ManagerJob\_Sendinterview.cshtml" />
+    <Content Include="Views\ManagerJob\_sendmessage.cshtml" />
+    <Content Include="Views\Job\_SendMailEmployer.cshtml" />
+    <Content Include="Views\Employer\_SendNotice.cshtml" />
+    <Content Include="Views\Shared\_SendActiveJob.cshtml" />
+    <Content Include="Views\Notfound\PageNotFound.cshtml" />
+    <Content Include="Views\Notfound\ServerError.cshtml" />
+    <Content Include="Views\Notfound\UnauthorisedRequest.cshtml" />
+    <Content Include="Views\Member\JobForMember.cshtml" />
+    <Content Include="Views\SendSMS\Send.cshtml" />
+    <Content Include="Views\Job\_SendMailMember.cshtml" />
+    <Content Include="Views\Contact\addcontact.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Employer_upload\" />
+    <Folder Include="plugin\fileman\tmp\" />
+    <Folder Include="plugin\fileman\Uploads\Documents\" />
+    <Folder Include="plugin\fileman\Uploads\FLV\" />
+    <Folder Include="Profile_upload\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{b2071a63-4fa9-4c49-9c73-975da599f8e5}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="Areas\Admin\Admin.csproj">
+      <Project>{3fd2c5f6-1239-4e2e-b51f-2439ec7cb080}</Project>
+      <Name>Admin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\Profile\select.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50932</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50932/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

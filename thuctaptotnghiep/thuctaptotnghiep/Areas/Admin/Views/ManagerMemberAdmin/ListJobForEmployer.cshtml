@@ -1,0 +1,279 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Model.Framework.DangTinViecLam>
+@using Model.Framework
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    ViewBag.Title = "Việc làm của nhà tuyển dụng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+   int mact=0;
+    foreach (var item in Model)
+    {
+        mact = int.Parse(item.MACT.ToString());
+        break;
+    }
+    if (mact == 0)
+    {
+        mact = int.Parse(ViewBag.MACT.ToString());
+    }
+    
+}
+<script src="~/Content/Profile/bootstrap-datepicker.js"></script>
+<script src="~/Areas/Admin/Scripts/moment.js"></script>
+<script>
+    $(function () {
+        $(document).on('mouseenter', '.datepicker', function () {
+            $(this).addClass('hover');
+        }).on('mouseleave', '.datepicker', function () {
+            $(this).removeClass('hover');
+        });
+
+        var $dateOfBirth = $('#date-of-birth');
+        var $datePicker = $('.datepicker');
+        var $dayPicker = $('.day-picker');
+
+        $dateOfBirth.datepicker({ format: 'dd/mm/yyyy', language: 'vi', autoclose: true, toggleActive: false });
+        $dayPicker.datepicker({ format: 'dd/mm/yyyy', language: 'vi', autoclose: true, toggleActive: false, clear: 'Clear' });
+        $datePicker.datepicker({ format: 'mm/yyyy', startDate: '-50y', minViewMode: 'months', language: 'vi', autoclose: true, toggleActive: false });
+
+    });
+</script>
+@section script_table{
+<script src="~/Areas/Admin/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Areas/Admin/Content/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js"></script>
+<script src="~/Areas/Admin/Content/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $("#example2").dataTable({
+                "responsive": true,
+                "processing": true, // control the processing indicator.
+                "serverSide": true, // recommended to use serverSide when data is more than 10000 rows for performance reasons
+                "info": true,   // control table information display field
+                "stateSave": true,  //restore table state on page reload,
+                "lengthMenu": [[10, 20, 50, 100], [10, 20, 50, 100]],    // use the first inner array as the page length values and the second inner array as the displayed options
+                "sAjaxSource": "/Admin/ManagerJobAdmin/Listjobemployerget",
+                "fnServerData": function (sSource, aoData, fnCallback) {
+                    aoData.push({ "name": "minday", "value": $("#startdate").val() });
+                    aoData.push({ "name": "maxday", "value": $("#enndate").val() });
+                    aoData.push({ "name": "mact", "value": @mact+"" });
+                    aoData.push({ "name": "fiterjob", "value": $("#select-fiterjob").val() });
+                    $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback
+                    })
+                },
+                "columns": [
+                    { "data": "ID", "orderable": true },
+                    { "data": "JobName", "orderable": true },
+                    { "data": "Category", "orderable": false },
+                    { "data": "City", "orderable": false },
+                    { "data": "Salary", "orderable": false },
+                    { "data": "Company", "orderable": false },
+                    { "data": "LogoCompany", "orderable": false },
+                    { "data": "Datecreate", "orderable": true },
+                      { "data": "UVDK", "orderable": false },
+                    { "data": "TopJob", "orderable": false },
+                    { "data": "Homepage", "orderable": false },
+                    { "data": "Status", "orderable": false },
+                ],
+                "pagingType": "full_numbers",
+                
+                //"paging": true,
+                //"lengthChange": true,
+                //"searching": true,
+                //"orderSequence": ["desc", "asc"],
+                //"ordering": ["asc", "desc"],
+                //"aaSorting": [[0, 'desc']],
+                //"info": true,
+                //"autoWidth": true
+            });
+            $(document).on("click", "#fiterdate", function () {
+                $("#errordate").html("");
+                var startdate = $("#startdate").val().replace(/\//g, '-');
+                var enddate = $("#enndate").val().replace(/\//g, '-');
+                var da = moment(startdate, "DD-MM-YYYY HH:mm:ss");
+                var trya = da.toDate();
+                var db = moment(enddate, "DD-MM-YYYY HH:mm:ss");
+                var tryb = db.toDate();
+                var kq = true;
+                var today = new Date();
+                if (trya == null || tryb == null) {
+                    $("#errordate").html("ngày không hợp lệ");
+                    kq = false;
+                }
+                if (tryb < trya) {
+                    $("#errordate").html("ngày kết thúc không được nhỏ hơn ngày bắt đầu");
+                    kq = false;
+                }
+                if (trya > today || tryb > today) {
+                    $("#errordate").html("Không được chọn ngày trong tương lai");
+                    kq = false;
+                }
+                if (kq == true) {
+                    table.fnDraw();
+                }
+
+
+            })
+        });
+    </script>
+    <script>
+    $(function () {
+        function getvalue(form,action) {
+            var val = 0;
+            var id = $(form).attr("id");
+            var macv = id.split("_")[1];
+            if (macv == null) {
+                macv = id;
+            }
+            if (form.checked) {
+                val = 1;
+            }
+            if (action == 4 &&val==0) {
+                $("#myModal1").modal("show");
+                $(".modal-title").html("Bạn có muốn hủy kích hoạt việc làm này không");
+                $("#c_macv").val(macv);
+                $("#actionjob").val(4);
+            }
+            if (action == 5 && val == 0) {
+                $("#myModal1").modal("show");
+                $(".modal-title").html("Bạn có muốn ẩn việc làm này không");
+                $("#c_macv").val(macv);
+                $("#actionjob").val(5);
+            }
+            else {
+                $.ajax({
+                    url: "/ManagerJobAdmin/ChangeStatus",
+                    type: "POST",
+                    dataType: "json",
+                    data: { "value": val, "action": action, "macv": macv },
+                    success: function (data) {
+                        if (data.status == 0) {
+                            location.reload();
+                        }
+                    },
+                    error: function () {
+                        location.reload();
+                    }
+                })
+            }
+
+        }
+        $(document).on("click",".topjob",(function () {
+            getvalue(this,1);
+        }))
+        $(document).on("click", ".hotjob", (function () {
+            getvalue(this,2);
+
+        }))
+        $(document).on("click", ".showjob", function () {
+            getvalue(this,3);
+
+        })
+        $(document).on("click", ".activejob", function () {
+            getvalue(this, 4);
+        })
+        $(document).on("click", ".statusjob", function () {
+            getvalue(this, 5);
+        })
+        $("#confirm_hide").click(function () {
+            var macv = $("#c_macv").val();
+            var val = 0;
+            var action = $("#actionjob").val();
+            $.ajax({
+                url: "/ManagerJobAdmin/ChangeStatus",
+                type: "POST",
+                dataType: "json",
+                data: { "value": val, "action": action, "macv": macv },
+                success: function (data) {
+                    if (data.status == 0) {
+                        location.reload();
+                    }
+                    else {
+                        $("#c_macv").val("");
+                        $("#actionjob").val("");
+                        $("#myModal1").modal("hide");
+
+                    }
+                },
+                error: function () {
+                    location.reload();
+                }
+            })
+        })
+        $("#cancle_hide").click(function () {
+            var macv = $("#c_macv").val();
+            var action = $("#actionjob").val();
+            if(action==4)
+                $('#active_' + macv).prop('checked', true);
+            if(action==5)
+                $('#status_' + macv).prop('checked', true);
+        })
+        $('#myModal1').on('hide.bs.modal', function () {
+            var macv = $("#c_macv").val();
+            var action = $("#actionjob").val();
+            if (action == 4)
+                $('#active_' + macv).prop('checked', true);
+            if (action == 5)
+                $('#status_' + macv).prop('checked', true);
+        })
+    })
+    </script>
+}
+<section class="content-header">
+    <h1>
+        Quản lý Việc làm
+        <small>Doanh nghiệp</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Data tables</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            @*@Html.Action("ListJobNotActive", "ManagerJobAdmin")*@
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh sách Việc làm của công ty <span style="font-size:25px;color:blue;"><a href="@Url.Action("EditEmployer", "ManagerMemberAdmin", new { mact=mact})">@ViewData["Name"]</a></span></h3>
+                   
+                    <a href="@Url.Action("AddNewJob", "ManagerMemberAdmin", new { mact = mact })" class="btn btn-success">Thêm việc làm mới cho công ty</a>
+                </div>
+                <!-- /.box-header -->
+                @Html.Partial("_DataTable")
+
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<style>
+
+</style>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+
+            </div>
+            <div class="modal-body tontai">
+                <h4 class="modal-title col-md-10" id="exampleModalLabel">Bạn có muốn hủy kích hoạt việc làm này</h4>
+                <input id="c_macv" value="" hidden />
+                <input id="actionjob" value="" hidden />
+            </div>
+            <div id="footer" class="modal-footer">
+                <button id="cancle_hide" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button id="confirm_hide" class="btn btn-primary">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
+</div>

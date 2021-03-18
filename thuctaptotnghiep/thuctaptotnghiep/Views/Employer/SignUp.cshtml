@@ -1,0 +1,359 @@
+﻿@model thuctaptotnghiep.Models.Employer
+           @using thuctaptotnghiep.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Đăng ký";
+    new Totalallow().today();
+}
+<script src="~/Scripts/jquery.form.js"></script>
+<link href="~/Content/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Content/sweetalert2/sweetalert-dev.js"></script>
+<link href="~/Content/select2-bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/select2.full.js"></script>
+<link href="~/Content/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/Employer/Signup/css.css" rel="stylesheet" type="text/css">
+    <div class="animated fadeInDown">
+        <div class="container m-t-lg"style="background:white">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="text-center m-t-lg m-b-lg">
+                        <a href="/"><img style="width:25%;" src="~/Content/Employer/Login/ct.png" alt="Trung tâm hỗ trợ sinh viên và quan hệ doanh nghiệp Trường cao đẳng công thương TP.HCM" title="Trung tâm hỗ trợ sinh viên và quan hệ doanh nghiệp Trường cao đẳng công thương TP.HCM" class="vnw-logo"></a>
+                    </div>
+                    <div class="ibox">
+                        <div class="ibox-content fadeInRight animated">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <link rel="stylesheet" href="~/Content/Employer/Signup/signup.css">
+                                    <div class="row section-form">
+                                        <div class="col-xs-10 col-xs-offset-1">
+                                            <style>
+                                                .help-block {
+                                                    text-align: left;
+                                                    margin: 5px 0 0;
+                                                }
+
+                                                .checkbox label a {
+                                                    position: relative;
+                                                    z-index: 100;
+                                                }
+                                            </style>
+                                            <div class="text-center m-t-lg m-b-lg">
+                                                <h2>Đăng Ký Để Tìm Ứng Viên Phù Hợp Cho Công Việc Của Bạn Hoàn Toàn Miễn Phí</h2>
+                                            </div>
+                                            @using (Html.BeginForm("SignUp", "Employer", FormMethod.Post, new { @class = "m-t-lg", @id = "formSignUp" }))
+                                            {
+                                                <div class="form-group">
+                                                    <label class="control-label" for="user_email" aria-required="true">Địa Chỉ Email</label>
+                                                    @Html.TextBoxFor(m => m.Emaildangnhap, new { @class = "form-control form-control", @id = "user_email", @type = "email", @required = "required", })
+                                                    @*<input type="email" id="user_email" name="user[email]" required="required" class=" form-control" tabindex="1" aria-required="true">*@
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="user_password_first" aria-required="true">Mật khẩu</label>
+                                                    @Html.PasswordFor(m => m.Matkhau, new { @class = "form-control", @id = "user_password_first", @required = "required" })
+                                                    @*<input type="password" id="user_password_first" name="user[password][first]" required="required" class="form-control form-control" tabindex="2" aria-required="true">*@
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="user_password_second" aria-required="true">Nhập Lại Mật Khẩu</label>
+                                                    @Html.PasswordFor(m => m.Xacnhanmatkhau, new { @class = "form-control", @id = "user_password_second", @required = "required" })
+                                                    @*<input type="password" id="user_password_second" name="user[password][second]" required="required" class="form-control form-control" tabindex="3" aria-required="true">*@
+
+                                                    @*<p class="gray-light m-t-xs">
+                                                        <i class="fa fa-shield" aria-hidden="true"></i> Mật mã tại VietnamWorks luôn được mã hoá và bảo mật tuyệt đối.
+                                                    </p>*@
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="user_company_name" aria-required="true">Tên Công Ty</label>
+                                                    @Html.TextBoxFor(m => m.Tencongty, new { @class = "form-control", @id = "user_company_name", @required = "required" })
+                                                    
+                                                    @*<input type="text" id="user_company_name" name="user[company_name]" required="required" class="form-control form-control" tabindex="4" aria-required="true">*@
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="user_industries" aria-required="true">Ngành Nghề</label> 
+                                                    <div class="select2-container select2-container-multi" id="s2id_user_industries" style="width: 100%;">
+                                                        <select id="user_industries" name="Manghanh" class="form-control select2-multiple select2-hidden-accessible" multiple="" tabindex="-1" aria-hidden="true" >
+                                                            @foreach (var Model in ViewBag.data)
+                                                            {
+                                                                <option value="@Model.Id">@Model.Tennghanh</option>
+                                                            }
+                                                        </select>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="user_cityId" aria-required="true">Địa Chỉ</label>
+                                        
+                                                            <select name="matp" id="user_cityId" class="select2-single form-control error">
+                                                                @foreach (var Model in ViewBag.city)
+                                                                {
+                                                                    <option value="@Model.Id">@Model.City1</option>
+                                                                }
+                                                            </select>
+                                                       
+                                                            <input value="1" id="ma_tp" name="matp" type="hidden" />
+
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="user_phone">Điện Thoại</label>
+                                                    @Html.TextBoxFor(m => m.Dienthoaiban, new { @class = "form-control", @id = "user_phone", @required = "required" })
+                                                    @*<input type="text" id="user_phone" name="user[phone]" class="form-control form-control" tabindex="7">*@
+
+                                                </div>
+                                                 <div class="form-group">
+                                                     <button style="background-color:#006CB6!important" type="submit" id="user_save" name="str" class="form-control btn btn-primary block full-width m-b btn" tabindex="10">Đăng Ký</button>
+                                                </div>
+                                                <p class="text-muted text-center">
+                                                    Bạn đã có tài khoản? <a href="/Employer/Login"><strong> Đăng nhập ngay! </strong></a>
+                                                </p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <!--[if lt IE 9]>
+    <script src="/bundles/naviworksweb/js/jqueryappIE8.js?r133s1d20170316t1"></script><![endif]-->
+    <!--[if gte IE 9]><!-->
+    <script type="text/javascript" async="" src="~/Content/Employer/Signup/inpage_linkid.js" id="undefined"></script>
+    <script src="~/Content/Employer/Signup/anonymous_master_app.js"></script>
+    <!-- End Google Tag Manager -->
+    <script type="text/javascript">
+        $(function () {
+            $('.tip-password').tooltip();
+                $.fn.select2.defaults.set("theme", "bootstrap");
+                $(".select2-single, .select2-multiple").select2({
+                    width: "100%",
+                    placeholder:"Chọn tối đa 3 ngành nghề",
+                    maximumSelectionLength: 3,
+                    containerCssClass: ':all:'
+                });
+                $(".select2-allow-clear").select2({
+                    allowClear: true,
+                    width: null,
+                    containerCssClass: ':all:'
+                });
+
+            //Add rule for check email exist
+            $.validator.addMethod('invalidExistEmail', function (value, element, param) {
+                var result = false;
+                $.ajax({
+                    type: 'POST',
+                    url: '/Employer/CheckMail',
+                    data: { email: value },
+                    success: function (data) {
+                        if (data.status == 1) {
+                            result = true;
+                        } else {
+                            result = false;
+                        }
+                    },
+                    dataType: 'json',
+                    async: false
+                });
+                return result;
+
+            }, "Email này đã được sử dụng.");
+
+            var formSignUpValidator = $("#formSignUp").validate({
+                errorClass: "error",
+                submit: false,
+                focusInvalid: true,
+                ignore: [],
+                errorLabelContainer: "",
+                onfocusout: $.fn.Vnw.Form.injectTrim($.validator.defaults.onfocusout),
+                rules: {
+                    'Tencongty': {
+                        required: true
+                    },
+                    'Emaildangnhap': {
+                        email: true,
+                        required: true,
+                        invalidExistEmail: true
+                    },
+                    'Dienthoaiban': {
+                        digits: true,
+                        rangelength: [3, 15]
+                    },
+                    'Matkhau': {
+                        required: true,
+                        minlength: 4,
+                        maxlength: 30
+                    },
+                    'Xacnhanmatkhau': {
+                        required: true,
+                        equalTo: "#user_password_first"
+                    },
+                    'Manghanh': {
+                        required: true
+                    },
+                    'matp': {
+                        required: true
+                    },
+                    'user[termsAccepted]': {
+                        required: true
+                    },
+                },
+                messages: {
+                    'Tencongty': {
+                        required: "Vui lòng nhập tên công ty"
+                    },
+                    'Emaildangnhap': {
+                        required: "Vui lòng nhập địa chỉ email.",
+                        email: "Địa chỉ email không đúng định dạng.",
+                        invalidExistEmail: "Email này đã được sử dụng."
+                    },
+                    'Dienthoaiban': {
+                        required: "Vui lòng nhập điện thoại",
+                        digits: "Số điện thoại không đúng định dạng.",
+                        rangelength: "Số điện thoại không đúng định dạng."
+                    },
+                    'Matkhau': {
+                        required: "Vui lòng nhập mật khẩu.",
+                        minlength: 'mật khẩu phải chứa 4-20 ký tự',
+                        maxlength: 'mật khẩu phải chưa 4-20 ký tự'
+                    },
+                    'Xacnhanmatkhau': {
+                        required: "Vui lòng nhập lại mật khẩu.",
+                        equalTo: 'Xác nhận lại mật khẩu mới không trùng khớp.'
+                    },
+                    'Manghanh': {
+                        required: "Vui lòng chọn ít nhất một ngành nghề."
+                    },
+                    'matp': {
+                        required: "Vui lòng chọn thành phố."
+                    },
+                    'user[termsAccepted]': {
+                        required: "Vui lòng chọn Tôi đồng ý với Thỏa thuận sử dụng này"
+                    },
+
+                },
+                errorPlacement: function (error, element) {
+                    var insertAfter = $(element).data("show-error-after");
+                    //                        console.log(insertAfter);
+                    //                        console.log(error);
+                    var errorContainer = $(element).data("show-error-container");
+                    if (typeof insertAfter !== 'undefined') {
+                        if (typeof errorContainer !== 'undefined') {
+                            $(element).closest(errorContainer).find(insertAfter).after(error);
+                        } else {
+                            $(element).parent().find(insertAfter).after(error);
+                        }
+                    }
+                    else {
+                        error.insertAfter($(element));
+                    }
+                }
+            });
+
+            $("form").submit(function (e) {
+                var options = {
+                    success: YourResponseFunction,
+                    error:errorpost,
+                    type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+                    dataType: 'json',
+                };
+                e.preventDefault();
+                formSignUpValidator.form();
+                if (formSignUpValidator.valid()) {
+                    swal({
+                        title: "Đang đăng ký...!",
+                        text: "Đang đăng ký tài khoản của bạn vui lòng chờ thông báo...!",
+                        type: "info",
+                        showConfirmButton: true
+                    })
+                    $("#formSignUp").ajaxSubmit(options);
+                  
+                }
+            });
+            function YourResponseFunction(data) {
+                if (data == 2) {
+                    swal({
+                        title: "Lỗi!",
+                        text: "Đã xảy ra lỗi vui lòng truy cập lại!",
+                        type: "error",
+                        confirmButtonText: "OK"
+                    },
+                         function (isConfirm) {
+                             if (isConfirm) {
+                                 window.location.href = "/employer/login";
+                             }
+                         });
+                }
+                else {
+                    swal({
+                        title: "Đăng Ký Thành Công!",
+                        text: "Vui lòng truy cập email để kích hoạt tài khoản!",
+                        type: "success",
+                        confirmButtonText: "OK"
+                    },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                window.location.href = "/employer/login";
+                            }
+                        });
+                }
+            }
+            function errorpost(data) {
+                swal({
+                    title: "Lỗi!",
+                    text: "Đã xảy ra lỗi vui lòng truy cập lại!",
+                    type: "error",
+                    confirmButtonText: "OK"
+                })
+            }
+        });
+       
+    </script>
+
+    <span role="status" aria-live="polite" class="select2-hidden-accessible"></span>
+    <style>
+        .border{
+                border: 1px solid #00b9f2 !important;
+        }
+        /*#s2id_user_cityId{
+            border: 1px solid #00b9f2 !important;
+        }*/
+        .select2-container-multi .select2-choices{
+height: 34px !important;
+    border: 1px solid #00b9f2 !important;
+    border-radius: 5px;
+        min-height:0;
+        }
+        .select2-container .select2-choice{
+            height: 34px !important;
+    border: 1px solid #00b9f2 !important;
+    border-radius: 5px;
+        }
+    .select2-container-multi .select2-choices .select2-search-field input{
+        height:34px;
+        
+    }
+    .select2-container-multi .select2-choices .select2-search-choice{
+        margin-top:3px;
+    }
+    </style>
+    <script>
+    $('#user_industries').on('change', function (evt, params) {
+        // The name of your select
+        // The value
+        var val = $(this).val();
+        $("#user_save").val(val);
+    });
+    $('#user_cityId').on('change', function (evt, params) {
+        // The name of your select
+        // The value
+        var val = $(this).val();
+        $("#ma_tp").val(val);
+    });
+    // you need to specify id of combo to set right combo, if more than one combo
+    </script>

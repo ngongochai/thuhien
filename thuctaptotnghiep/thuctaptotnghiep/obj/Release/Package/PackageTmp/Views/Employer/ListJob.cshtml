@@ -1,0 +1,211 @@
+﻿@model IEnumerable<Model.Framework.DangTinViecLam>
+@{
+    ViewBag.Title = "ListJob";
+    Layout = "~/Views/Shared/_LayoutEmployer.cshtml";
+}
+<script src="~/Scripts/jquery.twbsPagination.js"></script>
+<script src="~/Scripts/jquery.twbsPagination.min.js"></script>
+<div class="wrapper wrapper-content">
+    <div class="row current-online">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <p class="filters m-t-sm">
+                                <a href="/Employer/ActiveJob">
+                                    <span class="btn btn-xs btn-default btn-rounded">
+                                        Đang hiển thị (@ViewBag.Active)
+                                    </span>
+                                </a>
+                                <a href="/Employer/ListJob">
+                                    <span class="btn btn-xs btn-primary btn-rounded">
+                                        Đợi kích hoạt (@ViewBag.InActive)
+                                    </span>
+                                </a>
+                                <a href="/Employer/HideJob">
+                                    <span class="btn btn-xs btn-default btn-rounded">
+                                        Đang ẩn (@ViewBag.HideJob)
+                                    </span>
+                                </a>
+                                <a href="/Employer/Expired">
+                                    <span class="btn btn-xs btn-default btn-rounded">
+                                        Đã Hết hạn
+                                    </span>
+                                </a>
+                            </p>
+                        </div>
+                        @*<div class="col-sm-4 search-my-job">
+                            <form role="form" method="get" name="filters" id="frmFilters">
+                                <div class="input-group m-b">
+                                    <input type="text" tabindex="1" name="filters[keyword]" id="filters_keyword" value="" placeholder="Từ khóa. Ví dụ: PHP Developer" class="form-control">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-white call-dropdown-search" type="button"><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-search pull-right slideDownReverse">
+                                            <div class="form-group">
+                                                <div class="input-group col-sm-12">
+                                                    <h4>Tìm kiếm theo ngành nghề:</h4>
+                                                    <div class="select2-container text-box-border" id="s2id_filters_category" style="width: 100%;"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-1">Vui lòng chọn</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen1" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-1" id="s2id_autogen1" tabindex="2"><div class="select2-drop select2-display-none select2-with-searchbox">   <div class="select2-search">       <label for="s2id_autogen1_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-1" id="s2id_autogen1_search" placeholder="">   </div>   <ul class="select2-results" role="listbox" id="select2-results-1">   </ul></div></div><select tabindex="-1" name="filters[category]" id="filters_category" class="form-control select2-sing" title="" style="display: none;">
+                                                        <option value="">Vui lòng chọn</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group col-sm-12">
+                                                    <h4>Tìm kiếm theo nơi làm việc:</h4>
+                                                    <div class="select2-container text-box-border" id="s2id_filters_location" style="width: 100%;"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-2">Vui lòng chọn</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen2" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-2" id="s2id_autogen2" tabindex="3"><div class="select2-drop select2-display-none select2-with-searchbox">   <div class="select2-search">       <label for="s2id_autogen2_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-2" id="s2id_autogen2_search" placeholder="">   </div>   <ul class="select2-results" role="listbox" id="select2-results-2">   </ul></div></div><select tabindex="-1" name="filters[location]" id="filters_location" class="form-control select2-sing" title="" style="display: none;">
+                                                        <option value="66">Khác</option>
+                                                        <option value="70">Quốc tế</option>
+                                                        <option value="72">Hậu Giang</option>
+                                                        <option value="73">Đắk Nông</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group text-right m-n">
+                                                <button class="btn btn-primary" tabindex="4" id="filters_search_2_btn" type="button"><i class="fa fa-search"></i> Tìm kiếm</button>
+                                            </div>
+                                        </ul>
+                                        <button class="btn btn-primary" tabindex="4" id="filters_search_btn" type="button"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>*@
+                    </div>
+
+                    <div class="row">
+                    </div>                    <div class="row">
+                        <div id="grid-job-list" class="col-sm-12">
+                            <table class="table table-job-list">
+                                <thead>
+                                    <tr>
+                                        <th class="col-job-title">
+                                            Chức danh
+                                            - ID
+                                        </th>
+                                        <th class="col-service">Ngày đăng</th>
+                                        <th class="col-expiry">Ngành nghề</th>
+                                        <th class="col-view text-center">Số lần xem</th>
+                                        <th class="col-application text-center">Hồ sơ ứng tuyển</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var item in Model){
+                                    <tr>
+                                        <td class="job-info">
+                                            <a href="#" class="job-title"><strong>@item.TenCV</strong></a>
+                                            <span class="job-id">@item.MACV</span>
+                                            <div class="job-location">
+                                                Hồ Chí Minh
+                                            </div>
+                                            <div class="actions job-actions">
+                                                <a href="@Url.Action("EditJob", "Employer", new {id=item.MACV })" class="">
+                                                    Sửa
+                                                </a>
+                                                |
+                                                <a href="#" class="btn-confirm action-copy" data-url="@Url.Action("CopyJob", "Employer", new {id=item.MACV })" data-redirect-url="@Url.Action("CopyJob", "Employer", new {id=item.MACV })">
+                                                    Sao chép
+                                                </a>
+                                                |
+                                                <a href="#" class="btn-confirm action-delete" data-url="@Url.Action("DeleteJob", "Employer", new {id=item.MACV })">
+                                                    Xóa
+                                                </a>
+                                            </div>
+
+                                        </td>
+                                        <td class="job-labels"></td>
+                                        <td></td>
+                                        <td class="job-view">
+                                            <span><strong>0</strong></span>
+                                        </td>
+                                        <td class="job-application">
+                                            <a data-toggle="tooltip" title="" href="javascript:void(0);" data-original-title="Không có hồ sơ ứng tuyển mới">
+                                                <strong class="no-unread">0</strong>
+                                                <span>/0</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div>
+                                <div class="text-center">
+                                    <input id="action" hidden value="0"/>
+                                    <input id="total-page" value="@Convert.ToInt32(ViewData["page"])" hidden>
+                                    <div style="width:100%;">
+                                        <ul style="width:50px !important;" id="pagination-demo" class="pagination-sm"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#pagination-demo").css({ "width": "100%" });
+        var action = $("#action").val();
+        var totalpage = $("#total-page").val();
+        if (totalpage != 0) {
+            $('#pagination-demo').twbsPagination({
+                totalPages: totalpage,
+                visiblePages: 7,
+                onPageClick: function (event, page) {
+                    var myParam = location.search.split('page=')[1]
+                    $('html, body').animate({ scrollTop: $('#page-wrapper').offset().top }, 'slow');
+                    $('#page-content').text('Page ' + page);
+                    $.ajax({
+                        url: "/Employer/Pagelist",
+                        type: "POST",
+                        dataType: "JSON",
+                        data: { "page": page, "action": action },
+                        success: function (data) {
+
+                            $("#loading").hide();
+                            $("tbody").html(data);
+                            $(".item-grid").css({ "opacity": "1" });
+                        },
+                        error: function (data) {
+                            location.reload();
+                        }
+                    })
+                }
+            });
+        }
+    })
+</script>  
+<script>
+    $(document).ready(function () {
+        var id = $(".active a").text();
+        var action = $("#action").val();
+        $("#1").addClass("active");
+        $("#t").hide();
+        //$("li").click(function () {
+        //    var id = $(".active a").text();
+        //    $("#loading").show();
+        //    $(".item-grid").css({ "opacity": "0.5" });
+        //    $.ajax({
+        //        url: "/Employer/Pagelist",
+        //        type: "POST",
+        //        dataType: "JSON",
+        //        data: { "page": id,"action":action },
+        //        success: function (data) {
+        //            $("#loading").hide();
+        //            $(".item-grid").html(data);
+        //            $(".item-grid").css({ "opacity": "1" });
+        //        }
+        //    })
+        //})
+    })
+</script>
+<style>
+    #pagination-demo{
+        width:auto !important;
+    }
+</style>

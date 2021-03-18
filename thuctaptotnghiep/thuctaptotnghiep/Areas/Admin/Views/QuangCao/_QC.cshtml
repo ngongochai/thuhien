@@ -1,0 +1,87 @@
+﻿
+<script src="~/plugin/fileman/js/tiny_mce_popup.js"></script>
+<script src="~/plugin/fileman/js/file.js"></script>
+<script src="~/plugin/fileman/js/custom.js"></script>
+<script src="~/plugin/tinymce/jquery.tinymce.min.js"></script>
+<script src="~/plugin/tinymce/tinymce.min.js"></script>
+<script src="~/Areas/Admin/Scripts/customtinimce.js"></script>
+<script>
+    function savaadvert(html, nameadvert) {
+        if (html.length < 0) {
+            swal({
+                title: "Nhập Chính xác thông tin",
+                text: "Vui Lòng Kiểm Tra Lại thông Tin",
+                type: "error",
+                timer: 1000,
+                showConfirmButton: false
+
+            });
+        }
+        else {
+            $.ajax({
+                url: "/Admin/QuangCao/" + nameadvert + "",
+                type: "POST",
+                dataType: "json",
+                data: { "html": html },
+                success: function (data) {
+                    if (data == 0) {
+                        swal({
+                            title: "Đã Xảy ra lỗi",
+                            text: "Vui Lòng Kiểm Tra Lại và làm mới trang",
+                            type: "error",
+                            timer: 1000,
+                            showConfirmButton: false
+
+                        });
+                    }
+                    else {
+                        swal({
+                            title: "Lưu Thành công",
+                            text: "Thay đổi đã được lưu",
+                            type: "success",
+                            timer: 500,
+                            showConfirmButton: false
+
+                        });
+                    }
+
+                },
+                error: function (data) {
+                    swal({
+                        title: "Đã Xảy ra lỗi",
+                        text: "Vui Lòng Kiểm Tra Lại và làm mới trang",
+                        type: "error",
+                        timer: 1000,
+                        showConfirmButton: false
+
+                    });
+                    location.reload();
+                }
+            })
+        }
+    }
+</script>
+<div style="background:white">
+    <div class="post-job m-b-lg">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="tabs-container post-job-tabs">
+                    <div>
+                        <div id="jobPostContainer" class="tab-content">
+                            <div id="job" class="m-b active">
+                                <div class="panel-body">
+                                    <textarea required="required" id="textarea" name="htmlcontent">@ViewBag.Add</textarea>
+                                    <button style="margin-top:20px;float:right;" class="btn-lg btn-primary" type="button" id="save_tinimce">Lưu Thay Đổi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal-->
+    <!-- Modal Crop Photo -->
+</div>
+
+

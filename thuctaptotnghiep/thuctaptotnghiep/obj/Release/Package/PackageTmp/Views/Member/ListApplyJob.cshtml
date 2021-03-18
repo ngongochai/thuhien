@@ -1,0 +1,185 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@using thuctaptotnghiep.Models
+@model PagedList.IPagedList<Model.Framework.UVDangKy>
+@using Model.Framework
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    ViewBag.Title = "Việc Làm Của bạn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 1;
+}
+<link href="~/Content/build.css" rel="stylesheet" />
+<div class="container box">
+    <h2>Danh sách Việc làm của bạn</h2>
+    <button id="deleteuv" class="btn btn-danger">Xóa</button>
+    <table class="table table-striped">
+        <thead class="thead-default">
+            <tr>
+                <td style="width:50px">
+                    <div class="checkbox checkbox-danger">
+                        <input id="checkall" type="checkbox">
+                        <label for="checkbox6">
+                        </label>
+                    </div>
+                </td>
+                <th class="col-md-3">Chức Vụ-ID</th>
+                <th class="col-md-2">Công ty</th>
+                <th class="col-md-2">Ngày Ứng tuyển</th>
+                <th class="col-md-2">Nhà tuyển dụng phản hồi</th>
+                <th class="col-md-1">Tình trạng</th>
+                <th class="col-md-1">Ngày phản hồi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                string namejob = new RemoveUnicode().UnicodeName(item.DangTinViecLam.TenCV);
+                <tr>
+                    <td style="width:1%">
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox6" type="checkbox" value="@item.Id">
+                            <label for="checkbox6">
+                            </label>
+                        </div>
+                    </td>
+                    <td><a href="@Url.Action("DetailJob", "Job", new { TenCV = namejob, id = item.MACV })">@item.DangTinViecLam.TenCV - @item.DangTinViecLam.MACV</a></td>
+                    <td>@item.CongTy.Tencongty</td>                    
+                    <td>@item.Ngaydangky.Value.Date.ToString("dd/MM/yyyy")</td>
+                    @if (item.Trangthai == 2)
+                    {
+                        <td><span>Mời phỏng vấn</span>
+                            <span style="cursor:pointer;color:blue;font-size:20px" id="viewmessage_@item.Id" class="text-center glyphicon glyphicon-comment" aria-hidden="true"><span class="count_number">1</span></span>
+                            <div class="modal fade" id="myModal_@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title col-md-10" id="exampleModalLabel">Nội dung thư</h2>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        
+                                            <input id="madk" name="mauv" value="@item.MAUV" hidden />
+                                            <input id="status" name="status" hidden />
+                                            <div style="overflow:auto;max-height:350px" class="modal-body">
+                                                @{IHtmlString muctieu = new HtmlString(item.Tinnhan);
+                                                var strreq = item.Tinnhan.Replace("<br />", "\n");
+                                                }
+                                                @muctieu
+                                              
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </td>
+                        
+                    }
+                    else if (item.Trangthai == 3)
+                    {
+                        <td>Không đạt</td>
+                    }
+                    else if (item.Trangthai == 4)
+                    {
+                        <td>PV thành công</td>
+                    }
+                    else if(item.Trangthai==1)
+                    {
+                        <td>Đã xem</td>
+                    }
+                    else
+                    {
+                        <td>Chưa xem</td>
+                    }
+                
+                @if (item.Tinhtrang == 1)
+                {
+                    <td>Đã ứng tuyển</td>
+                }
+                else
+                {
+                   
+                    <td><a class="btn btn-default" href="@Url.Action("DetailJob", "Job", new { TenCV = namejob, id = item.MACV })">Ứng tuyển ngay</a></td>
+                }
+                    <td>
+                    @if(item.Ngayphanhoi!=null){
+                        <span>@item.Ngayphanhoi.Value.Date.ToString("dd/MM/yyyy")
+                        </span>}
+                    </td>
+            </tr>
+                                        
+            }
+
+        </tbody>
+    </table>
+    <div style="margin:5px auto;width:300px;">@Html.PagedListPager(Model, page => Url.Action("ListApplyJob", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+</div>
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title col-md-10" id="exampleModalLabel">Bạn có muốn xóa việc làm này không</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" id="confirmdelete" class="btn btn-primary">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+    $(".glyphicon-comment").click(function () {
+        var id = $(this).attr("id");
+        id = id.replace(/\D+/g, '');
+        $('#myModal_' + id).modal('show');
+    })
+    $("#checkall").click(function () {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+    $("#deleteuv").click(function () {
+        $('#myModal2').modal('show');
+    })
+    $("#confirmdelete").click(function () {
+        var val = [];
+        $(':checkbox:checked').each(function (i) {
+            val[i] = $(this).val();
+        })
+        if (val.length != 0) {
+            $.ajax({
+                url: "/Member/DeleteUVDK",
+                type: "POST",
+                dataType: "json",
+                data: { "listdelete": val },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (error) {
+                    location.reload();
+                }
+            })
+        }
+        else {
+            $('#myModal2').modal("hide");
+        }
+    })
+    })
+</script>
+<style>
+    .count_number {
+        color: red;
+        position: absolute;
+        top: -7px;
+        /* font-weight: bold; */
+        border-radius: 21px;
+        font-size: 15px;
+        left: 20px;
+    }
+</style>

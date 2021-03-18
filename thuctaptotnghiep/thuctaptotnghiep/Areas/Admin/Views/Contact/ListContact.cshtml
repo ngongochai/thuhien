@@ -1,0 +1,65 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Model.Framework.LienHe>
+@{
+    ViewBag.Title = "ListContact";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-5">
+                <h4>Danh sách Liên Hệ</h4>
+            </div>
+        </div>
+    </div>
+    <form action="/admin/contact/deletecontact" method="post">
+
+        <div class="panel-body noidung">
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <table class="table table-bordered table-hover">
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th style="text-align: center;">Tên Người liên hệ</th>
+                        <th style="width: 120px; text-align: center;">Số điện thoại</th>
+                        <th style="width: 120px; text-align: center;">Email</th>
+                        <th style="width: 120px; text-align: center;">Tiêu đề</th>
+                        <th style="width: 120px; text-align: center;">Nội Dung</th>
+                        <th style="text-align: center;">Ngày gửi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><input name="selectedIds" type="checkbox" value="@item.Id" /></td>
+                            <td class="text-center">
+                                @item.Name
+                            </td>
+                            <td class="text-center">
+                                @item.Phone
+                            </td>
+                            <td style="text-align: center;">
+                                @item.Email
+                            </td>
+                            <td style="text-align: center;">
+                                @item.Title
+                            </td>
+                            <td style="text-align: center;">@item.Content</td>
+                            <td class="text-center">
+                                @item.DateCreate.Value.ToString("dd/MM/yyyy HH:mm")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class=" text-center">
+                <div style="margin:5px auto;width:300px;">@Html.PagedListPager(Model, page => Url.Action("ListContact", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+            </div>
+        </div>
+    </form>
+</div>
+    
+

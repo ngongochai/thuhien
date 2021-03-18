@@ -1,0 +1,323 @@
+﻿@model IEnumerable<Model.Framework.HinhAnhCT>
+@using Model.Framework
+@{
+        var user = Session["Employer"] as CongTy;
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    string video = db.CongTies.Where(x => x.MACT == user.MACT).Select(x => x.VideoCT).FirstOrDefault();
+
+               string img1;
+               string img2;
+               string img3;
+               int val1=-1;
+               int val2=-1;
+               int val3=-1;
+               foreach (var item in Model)
+               {
+                    img1 = item.AnhCT;
+                    val1 = item.Id;
+                    break;
+               }
+               foreach (var item in Model.Skip(1))
+               {
+                   img2 = item.AnhCT;
+                   val2 = item.Id;
+                   break;
+               }
+               foreach (var item in Model.Skip(2))
+               {
+                    img3 = item.AnhCT;
+                    val3 = item.Id;
+                    break;
+               }
+              
+           }
+<link href="~/Content/Employer/Manager/my-profile.css" rel="stylesheet" />
+<div class="ibox-content m-t">
+    <div class="panel-body row">
+        <div class="col-sm-10">
+            <div class="float-e-margins animated fadeInRight">
+                <div class="content">
+                    <h2>
+                        <span class="circle-wrapper"><i class="fa fa-file-image-o" aria-hidden="true"></i></span>
+                        Logo Công Ty
+                    </h2>
+                    <form name="logo" method="post" action="/Employer/UploadLogo" id="companyLogo" novalidate="novalidate" class="select-remove-width form-horizontal" enctype="multipart/form-data">
+                        <fieldset>
+                            <div class="form-group company-logo-group">
+                                <div class="col-md-offset-3 col-sm-9">
+                                    @if (ViewBag.Logo != null)
+                                    {
+                                    <div class="upload-state" style="display:none">
+                                        <label for="logo_logo_file" class="btn btn-default btn-sm btn-outline btn-upload btn-upload-logo" type="button">
+                                            <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                            <span class="bold">Tải logo</span>
+                                            <input type="file" id="logo_logo_file" name="logo" class="form-control" data-show-error-after=".help-block" data-show-error-container=".col-sm-9" accept=".gif,.png,.jpeg,.jpg" tabindex="16">
+                                        </label>
+                                    </div>
+                                        }
+                                    else
+                                    {
+                                                                            <div class="upload-state">
+                                        <label for="logo_logo_file" class="btn btn-default btn-sm btn-outline btn-upload btn-upload-logo" type="button">
+                                            <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                            <span class="bold">Tải logo</span>
+                                            <input type="file" id="logo_logo_file" name="logo" class="form-control" data-show-error-after=".help-block" data-show-error-container=".col-sm-9" accept=".gif,.png,.jpeg,.jpg" tabindex="16">
+                                        </label>
+                                    </div>
+                                    }
+                                    @if (ViewBag.Logo != null)
+                                    {
+                                    <div class="uploaded-state" style="display:inline-block;">
+                                        <span class="thumbnail thumbnail-logouploaded m-b-none">
+                                            
+                                            <img style="width:192px;" src="~/Employer_upload/@ViewBag.Logo" class="img-responsive">
+                                        </span>
+                                        <div class="photo-manager">
+                                            <button id="logo_logo_update" type="button" title="" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" tabindex="17" data-original-title="Sửa logo">
+                                                <span class="bold"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                            </button>
+                                            <button id="logo_logo_remove" type="button" title="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" tabindex="17" data-original-title="Xóa logo">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                <input type="hidden" id="logo_logo_is_deleted" name="logo[logo][is_deleted]" value="0">
+                                            </button>
+                                            <input type="hidden" id="logo_logo_id" name="logo[logo][id]" value="0">
+                                        </div>
+                                    </div>
+                                    }
+                                    else
+                                    {
+                                      <div class="uploaded-state" style="display:none;">
+                                        <span class="thumbnail thumbnail-logouploaded m-b-none">
+                                            
+                                            <img src="~/Employer_upload/@ViewBag.Logo" class="img-responsive">
+                                        </span>
+                                        <div class="photo-manager">
+                                            <button id="logo_logo_update" type="button" title="" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" tabindex="17" data-original-title="Sửa logo">
+                                                <span class="bold"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                            </button>
+                                            <button id="logo_logo_remove" type="button" title="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" tabindex="17" data-original-title="Xóa logo">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                <input type="hidden" id="logo_logo_is_deleted" name="logo[logo][is_deleted]" value="0">
+                                            </button>
+                                            <input type="hidden" id="logo_logo_id" name="logo[logo][id]" value="0">
+                                        </div>
+                                    </div>
+                                    }
+                                    <span class="help-block">
+                                        <small><em>(Tập tin với phần mở rông .jpg .jped .png .gif và kích thước &lt;1MB)</em></small>
+                                    </span>
+                                    <input type="hidden" id="logo_logo_cropped_image" name="logo[logo][cropped_image]" class="cropped-img-data">
+                                </div>
+                            </div>
+                            <div class="form-group m-b-none company-photo-group">
+                                <label class="col-sm-3 control-label m-t-n-xs" data-optional-text="&lt;br/&gt;&lt;small&gt;(Không bắt buộc)&lt;/small&gt;">Hình Ảnh Công Ty<br><small>(Không bắt buộc)</small></label>
+                                <div class="col-sm-9">
+                                    <div class="row">
+                                        <div id="uploadcompany1" class="col-sm-3 text-center upload-company-photo-item" hidden="">
+                                            <div class="upload-company-photo-item-container">
+                                                <div id="uploadstate1" class="upload-state" hidden="">
+                                                    <label for="logo_photo1_file" class="btn btn-default btn-sm btn-outline btn-upload btn-upload-photo" type="button">
+                                                        <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                                        <span class="bold">Tải hình ảnh</span>
+                                                        <input type="file" id="logo_photo1_file" name="logo1" accept=".gif,.png,.jpeg,.jpg" data-show-error-after=".upload-company-photo-item-container" data-show-error-container=".col-sm-3" class="form-control" tabindex="65">
+                                                    </label>
+                                                </div>
+                                                <div id="uploadedstate1" class="uploaded-state" hidden="">
+                                                    <span class="thumbnail m-b-none">
+                                                        <span id="img-wrapper1" @*class="img-wrapper"*@ style="max-height: 0px;">
+                                                            @foreach (var item in Model)
+                                                            {
+                                                                <img src="~/Employer_upload/@item.AnhCT" class="img-responsive" style="margin-top: 0px;">
+                                                                
+                                                                break;
+                                                            }
+                                                            @if (Model.Count() == 0)
+                                                            {
+                                                                <img class="img-responsive" style="margin-top: 0px;">
+
+                                                            }
+                                                        </span>
+                                                    </span>
+                                                    <div class="photo-manager">
+                                                        <button id="logo_photo1_update" type="button" title="" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" tabindex="66" data-original-title="Sửa hình ảnh">
+                                                            <span class="bold"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                                        </button>
+                                                        <button id="logo_photo1_remove" type="button" title="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" tabindex="66" data-original-title="Xóa hình ảnh">
+                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                            <input type="hidden" id="logo_photo1_is_deleted" name="logodelete1" value="@val1">
+                                                        </button>
+                                                        <input type="hidden" id="logo_photo1_id" value="@val1" name="logoid1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="uploadcompany2" class="col-sm-3 text-center upload-company-photo-item" hidden="">
+                                            <div class="upload-company-photo-item-container">
+                                                <div id="uploadstate2" class="upload-state" hidden="">
+                                                    <label for="logo_photo2_file" class="btn btn-default btn-sm btn-outline btn-upload btn-upload-photo" type="button">
+                                                        <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                                        <span class="bold">Tải hình ảnh</span>
+                                                        <input type="file" id="logo_photo2_file" name="logo2" accept=".gif,.png,.jpeg,.jpg" data-show-error-after=".upload-company-photo-item-container" data-show-error-container=".col-sm-3" class="form-control" tabindex="67">
+                                                    </label>
+                                                </div>
+                                                <div id="uploadedstate2" class="uploaded-state" hidden="">
+                                                    <span class="thumbnail m-b-none">
+                                                        <span @*class="img-wrapper"*@ style="max-height: 0px;">
+                                                            @foreach (var item in Model.Skip(1))
+                                                            {
+                                                                <img src="~/Employer_upload/@item.AnhCT" class="img-responsive" style="margin-top: 0px;">
+                                                                break;
+                                                            }
+                                                            @if (Model.Skip(1).Count() == 0)
+                                                            {
+                                                                <img class="img-responsive" style="margin-top: 0px;">
+
+                                                            }
+                                                        </span>
+                                                    </span>
+                                                    <div class="photo-manager">
+                                                        <button id="logo_photo2_update" type="button" title="" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" tabindex="68" data-original-title="Sửa hình ảnh">
+                                                            <span class="bold"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                                        </button>
+                                                        <button id="logo_photo2_remove" type="button" title="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" tabindex="68" data-original-title="Xóa hình ảnh">
+                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                            <input type="hidden" id="logo_photo2_is_deleted" name="logodelete2" value="@val2">
+                                                        </button>
+                                                        <input type="hidden" value="@val2" id="logo_photo2_id" name="logoid2">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="uploadcompany3" class="col-sm-3 text-center upload-company-photo-item" hidden="">
+                                            <div class="upload-company-photo-item-container">
+                                                <div id="uploadstate3" class="upload-state" hidden="">
+                                                    <label for="logo_photo3_file" class="btn btn-default btn-sm btn-outline btn-upload btn-upload-photo" type="button">
+                                                        <i class="fa fa-upload"></i>&nbsp;&nbsp;
+                                                        <span class="bold">Tải hình ảnh</span>
+                                                        <input type="file" id="logo_photo3_file" name="logo3" accept=".gif,.png,.jpeg,.jpg" data-show-error-after=".upload-company-photo-item-container" data-show-error-container=".col-sm-3" class="form-control" tabindex="69">
+                                                    </label>
+                                                </div>
+                                                <div id="uploadedstate3" class="uploaded-state" hidden="">
+                                                    <span class="thumbnail m-b-none">
+                                                        <span @*class="img-wrapper"*@ style="max-height: 0px;">
+
+                                                            @foreach (var item in Model.Skip(2))
+                                                            {
+                                                                <img src="~/Employer_upload/@item.AnhCT" class="img-responsive" style="margin-top: 0px;">
+                                                                @*<input value="@item.Id" type="hidden" id="logo_photo3_id" name="logoid3">*@
+                                                            }
+                                                            @if (Model.Skip(2).Count() == 0)
+                                                            {
+                                                                <img class="img-responsive" style="margin-top: 0px;">
+
+                                                            }
+                                                        </span>
+                                                    </span>
+                                                    <div class="photo-manager">
+                                                        <button id="logo_photo3_update" type="button" title="" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" tabindex="70" data-original-title="Sửa hình ảnh">
+                                                            <span class="bold"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                                        </button>
+                                                        <button id="logo_photo3_remove" type="button" title="" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" tabindex="70" data-original-title="Xóa hình ảnh">
+                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                            <input type="hidden" id="logo_photo3_is_deleted" name="logodelete3" value="@val3">
+                                                        </button>
+                                                        <input value="@val3" type="hidden" id="logo_photo3_id" name="logoid3">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 upload-company-photo-item">
+                                            <div>
+                                                <div class="upload-state">
+                                                    <label id="logo_photos_add" class="btn btn-default btn-sm btn-outline btn-upload btn-upload-photo" type="button">
+                                                        <i class="fa fa-upload"></i>
+                                                        <span class="bold">Tải hình ảnh</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p class="help-block">Ghi chú: Tất cả tin tuyển dụng đều sử dụng chung những hình ảnh đã upload tại đây.<br><small><em>(Tập tin với phần mở rông .jpg .jped .png .gif và kích thước &lt;1MB)</em></small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group"><label class="m-t-n-xs col-sm-3 control-label" data-optional-text="&lt;br/&gt;&lt;small&gt;(Không bắt buộc)&lt;/small&gt;" for="logo_video">Video Công Ty<br><small>(Không bắt buộc)</small></label>
+                            <div class="col-sm-9"><input value="@video" maxlength="200" type="text" id="logo_video" name="video" placeholder="Sao chép và dán từ liên kết Youtube của bạn vào đây" tabindex="71" class="form-control"></div></div>
+                        </fieldset>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="text-right col-sm-12">
+                                <button class="btn btn-primary" type="button" id="save_logo_change">
+                                    Lưu
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="logo__token" name="logo[_token]" value="dkbj8c5659E-YRysh62zLRHTi5oY_LZu9HdUXhwCNek">
+                    </form>
+                </div>
+                <!-- Modal Crop Photo -->
+            </div>
+            <!-- Modal Crop Photo -->
+
+        </div>
+    </div>
+</div>
+	<div class="modal fade modal-crop-photo" id="logo_logo_cropper">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title">Chỉnh Sửa Hình Ảnh</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p>Xem Trước</p>
+
+                                    <div class="thumbnail">
+                                        <div class="img-preview preview-lg" id="preview"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p>Vui lòng chọn vùng cần xén và nhấn "Xén Hình Ảnh"</p>
+
+                                    <div class="crop-container thumbnail">
+                                        <img class="img-responsive" id="cropbox">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-cancel-crop" data-dismiss="modal" tabindex="19">Hủy</button>
+                            <button type="button" class="btn btn-primary btn-crop-img" tabindex="20">Xén Hình Ảnh</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+@*<script src="~/Content/Employer/Manager/jqueryapp.js"></script>*@
+<script>
+
+    function displayimg(id) {
+        $("#uploadcompany"+id).css('display', 'inline-block');
+        $("#uploadstate" + id).css('display', 'none');
+        $("#uploadedstate" + id).css('display', 'block;');
+        $("#img-wrapper" + id).css('max-height', '195px;');
+    }
+    var val1 = $("#logo_photo1_id").val();
+    if (val1 > 0) {
+        displayimg(1);
+    }
+    var val2 = $("#logo_photo2_id").val();
+    if (val2 > 0) {
+        displayimg(2);
+    }
+    var val3 = $("#logo_photo3_id").val();
+    if (val3 > 0) {
+        displayimg(3);
+    }
+</script>

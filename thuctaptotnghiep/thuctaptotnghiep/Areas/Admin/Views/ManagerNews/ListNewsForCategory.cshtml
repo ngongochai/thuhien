@@ -1,0 +1,102 @@
+﻿@using PagedList.Mvc
+@using Model.Framework
+@model PagedList.IPagedList<Model.Framework.News>
+@{
+    ViewBag.Title = Model.Select(x=>x.categorynew.categoryName).FirstOrDefault();
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    string cateogryname = "";
+    foreach (var item in Model)
+    {
+        cateogryname = item.categorynew.categoryName;
+        break;
+    }
+}
+@section script_table{
+    <script src="~/Areas/Admin/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Content/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script>
+    $(function () {
+        $("#example1").DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            //"orderSequence": ["desc", "asc"],
+            //"ordering": ["asc", "desc"],
+            "aaSorting": [[0, 'desc']],
+            "info": true,
+            "autoWidth": true
+        });
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            //"orderSequence": ["desc", "asc"],
+            //"ordering": ["asc", "desc"],
+            "aaSorting": [[0, 'desc']],
+            "info": true,
+            "autoWidth": true
+        });
+    });
+    </script>
+}
+<section class="content-header">
+    <h1>
+        Quản Lý Tin Tức
+        <small>News</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a href="#">@cateogryname</a></li>
+        <li class="active">Danh sách tin tức</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            @*@Html.Action("ListJobNotActive", "ManagerJobAdmin")*@
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh sách Tất Cả Tin tức</h3>
+                    <a href="@Request.QueryString" class="btn btn-default">Làm Mới</a>
+                    <a href="@Url.Action("CreateNews","ManagerNews")" class="btn btn-success">Thêm Tin mới</a>
+                </div>
+                <button id="checkall" class="btn btn-default">Chọn tất cả</button>
+                <button id="cancelcheck" class="btn btn-default">Bỏ Chọn</button>
+                <button id="removejob" class="btn btn-warning">Xóa</button>
+                <!-- /.box-header -->
+                @Html.Partial("_ListNews", Model.ToList())
+
+                <div style="margin:5px auto;width:300px;">
+                    @Html.PagedListPager(Model, page => Url.Action("ListNews", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<style>
+
+</style>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+
+            </div>
+            <div class="modal-body tontai">
+                <h4 class="modal-title col-md-10" id="exampleModalLabel">Bạn có muốn hủy kích hoạt việc làm này</h4>
+                <input id="c_macv" value="" hidden />
+                <input id="actionjob" value="" hidden />
+            </div>
+            <div id="footer" class="modal-footer">
+                <button id="cancle_hide" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button id="confirm_hide" class="btn btn-primary">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
+</div>

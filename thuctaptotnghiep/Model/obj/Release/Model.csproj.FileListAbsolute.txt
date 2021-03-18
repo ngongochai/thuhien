@@ -1,0 +1,142 @@
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\Model.dll.config
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\Model.dll
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\Model.pdb
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\EntityFramework.dll
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.dll
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\Microsoft.Web.Infrastructure.dll
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.dll
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.dll
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.dll
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.dll
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.dll
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\EntityFramework.xml
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.xml
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.xml
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.xml
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.xml
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.xml
+G:\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.xml
+G:\ASP.NET\thuctaptotnghiep\Model\obj\Release\Model.dll
+G:\ASP.NET\thuctaptotnghiep\Model\obj\Release\Model.pdb
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\Model.dll.config
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\Model.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\Model.pdb
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\EntityFramework.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\Microsoft.Web.Infrastructure.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\EntityFramework.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\obj\Release\Model.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\Model\obj\Release\Model.pdb
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\Model.dll.config
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\Model.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\Model.pdb
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\EntityFramework.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\Microsoft.Web.Infrastructure.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\EntityFramework.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\obj\Release\Model.csprojResolveAssemblyReference.cache
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\obj\Release\Model.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\obj\Release\Model.pdb
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\Model.dll.config
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\Model.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\Model.pdb
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\EntityFramework.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\Microsoft.Web.Infrastructure.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.Extensions.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\EntityFramework.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.Extensions.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\obj\Release\Model.csprojAssemblyReference.cache
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\obj\Release\Model.csproj.CopyComplete
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\obj\Release\Model.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\Model\obj\Release\Model.pdb
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\Model.dll.config
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\Model.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\Model.pdb
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\EntityFramework.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\Microsoft.Web.Infrastructure.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.Extensions.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\EntityFramework.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.Extensions.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\obj\Release\Model.csprojAssemblyReference.cache
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\obj\Release\Model.csproj.CopyComplete
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\obj\Release\Model.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\Model\obj\Release\Model.pdb
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\Model.dll.config
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\Model.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\Model.pdb
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\EntityFramework.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\Microsoft.Web.Infrastructure.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.Extensions.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\EntityFramework.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\EntityFramework.SqlServer.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.Helpers.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.Mvc.Extensions.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.Razor.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Deployment.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\bin\Release\System.Web.WebPages.Razor.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\obj\Release\Model.csprojAssemblyReference.cache
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\obj\Release\Model.csproj.CopyComplete
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\obj\Release\Model.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\Model\obj\Release\Model.pdb

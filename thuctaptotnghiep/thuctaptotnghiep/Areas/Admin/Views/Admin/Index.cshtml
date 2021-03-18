@@ -1,0 +1,223 @@
+﻿@using Model.Framework
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var data = db.DangTinViecLams;
+    int counttoday = 0;
+    int countinactive = 0;
+    int countuvtoday = 0;
+    int countcttoday = 0;
+    foreach (var item in data.Where(x => x.Tinhtrang == 1))
+    {
+        if (item.Ngaydang != null)
+        {
+
+
+            if (item.Ngaydang.Value.Date == DateTime.Now.Date)
+            {
+                counttoday += 1;
+            }
+        }
+    }
+    foreach (var item in data.Where(x => x.Tinhtrang == 0))
+    {
+        if (item.Ngaydang != null)
+        {
+
+
+            if (item.Ngaydang.Value.Date == DateTime.Now.Date)
+            {
+                countinactive += 1;
+            }
+        }
+    }
+    var datauv = db.UngViens.Where(x => x.Tinhtrang != -1 && x.vaitro == 1);
+    foreach (var item in datauv)
+    {
+        if (item.Ngaydangky != null)
+        {
+            if (item.Ngaydangky.Value.Date == DateTime.Now.Date)
+            {
+                countuvtoday += 1;
+            }
+        }
+    }
+    var datact = db.CongTies.Where(x => x.Tinhtrang != -1);
+    foreach (var item in datact)
+    {
+        if (item.Ngaytao != null)
+        {
+            if (item.Ngaytao.Value.Date == DateTime.Now.Date)
+            {
+                countcttoday += 1;
+            }
+        }
+    }
+
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Trang Chủ
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Trang chủ</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>@data.Where(x => x.Tinhtrang == 1).Count()</h3>
+                    <p>Tất Cả Việc Làm</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-file"></i>
+                </div>
+                <a href="@Url.Action("ListAllJob", "ManagerJobAdmin")" class="small-box-footer">Xem thêm <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>@datauv.Count()</h3>
+                    <p>Tất Cả Ứng Viên</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="@Url.Action("ListMemberAdmin", "ManagerMemberAdmin")" class="small-box-footer">Xem thêm <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>@datact.Count()</h3>
+                    <p>Tất Cả Công Ty</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user-circle"></i>
+                </div>
+                <a href="@Url.Action("ListEmployerAdmin", "ManagerMemberAdmin")" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-blue">
+                <div class="inner">
+                    <h3>@db.LuotTruyCaps.Select(x => x.total).FirstOrDefault()</h3>
+                    <p>Tổng Lượt Truy cập</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user"></i>
+                </div>
+                <a href="#" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-blue-active">
+                <div class="inner">
+                    <h3>@counttoday</h3>
+                    <p>Việc Làm Hôm nay</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                </div>
+                <a href="@Url.Action("ListAllJob", "ManagerJobAdmin")" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@countinactive</h3>
+                    <p>Việc Làm Đang Chờ</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </div>
+                <a href="@Url.Action("ListJobNotActive", "ManagerJobAdmin")" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-blue-gradient">
+                <div class="inner">
+                    <h3>@countuvtoday</h3>
+                    <p>Ứng Viên Đăng Ký Hôm nay</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </div>
+                <a href="@Url.Action("ListMemberAdmin", "ManagerMemberAdmin")" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-blue">
+                <div class="inner">
+                    <h3>@db.LuotTruyCaps.Select(x => x.today).FirstOrDefault()</h3>
+                    <p>Lượt Truy cập hôm nay</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user"></i>
+                </div>
+                <a href="#" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-orange-active">
+                <div class="inner">
+                    <h3>@countcttoday</h3>
+                    <p>Doanh nghiệp tham gia hôm nay</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                </div>
+                <a href="@Url.Action("ListEmployerAdmin", "ManagerMemberAdmin")" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green-active">
+                <div class="inner">
+                    <h3>@db.UVDangKies.Where(x => x.Tinhtrang == 4).Count()</h3>
+                    <p>Ứng viên đã phỏng vấn thành công</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                </div>
+                <a href="#" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>@db.UVDangKies.Where(x => x.Tinhtrang == 3).Count()</h3>
+                    <p>Ứng viên đã phỏng vấn không thành công</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                </div>
+                <a href="#" class="small-box-footer">Xem thêm<i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+</section>
+<!-- /.content -->

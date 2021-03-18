@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "GoodJob";
+}
+<div class="col-md-9 col-sm-12">
+    <div class="top-job">
+        <div class="panel jobs-board-listing with-mc no-padding no-border">
+            <ul class="nav nav-tabs no-margin no-border" role="tablist">
+                <li role="presentation" class="text-center no-padding active">
+                    <a href="#topJobs" aria-controls="topJobs" role="tab" data-toggle="tab"><h3 class="no-padding no-margin">Top Jobs</h3></a>
+                </li>
+                <li id="recommendJobTab" role="presentation" class="text-center no-padding">
+                    <a href="#recommendedJobs" aria-controls="recommendedJobs" role="tab" data-toggle="tab"><h3 class="no-padding no-margin">Recommended Jobs</h3></a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane tab-job active" id="topJobs">
+                    <div class="panel-content">
+                        <div class="job-list scrollbar m-t-lg mCustomScrollbar _mCS_1">
+                            <div class="mCustomScrollBox mCS-home-vnw" id="mCSB_1" style="position:relative; height:100%; overflow:hidden; max-width:100%;">
+                                <div class="mCSB_container" style="position: relative; top: 0px;">
+                                    <ul>
+                                        <li class="hot-job">
+                                            <a target="_blank" href="#" title="Job - Quản Lý , Khai Thác, Vận Hành Bất Động Sản – 10 Người Đi Làm Ngay - Eurowindow Holding">
+                                                <span class="score"><span class="label label-danger">HOT</span></span>
+                                                <span class="job-title">
+                                                    <strong class="text-clip">Quản Lý , Khai Thác, Vận Hành Bất Động Sản – 10 Người Đi Làm Ngay</strong>
+                                                    <em class="text-clip">Eurowindow Holding</em>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a target="_blank" href="#" title="Job - Drug Safety Specialist (pharmacovigilance) - Hoffmann-la Roche Ltd., Representative Office In Vietnam">
+                                                <span class="score">&nbsp;</span>
+                                                <span class="job-title">
+                                                    <strong class="text-clip">Drug Safety Specialist (pharmacovigilance)</strong>
+                                                    <em class="text-clip">Hoffmann-la Roche Ltd., Representative Office In Vietnam</em>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div><div class="mCSB_scrollTools" style="position: absolute; display: block;"><a class="mCSB_buttonUp" oncontextmenu="return false;"></a><div class="mCSB_draggerContainer"><div class="mCSB_dragger" style="position: absolute; height: 120px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="position: relative; line-height: 27px;"></div></div><div class="mCSB_draggerRail"></div></div><a class="mCSB_buttonDown" oncontextmenu="return false;"></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane tab-company" id="recommendedJobs">
+                    <div class="panel-content">
+                        <div class="job-list m-t-lg">
+                            <div>
+                                <ul id="recommendedJobList">
+                                    <li class="hot-job">
+                                        <a class="clickable gravity-item-link" data-recommendation-id="j0dp3wqt-7xamd2yd89d-S.MAIN_PAGE.C.c21_a25-0wrxfly" data-item-id="774189" data-item-url="https://www.vietnamworks.com/senior-net-developer-700-1-500-net-3-774189-jd" title="Senior .NET Developer (700-1,500$ Net)">
+                                            <span class="job-title">
+                                                <strong class="text-clip" style="word-wrap: break-word;">Senior .NET Developer (700-1,500$ Net) </strong>
+                                                <em class="text-clip" style="word-wrap: break-word;">Saigon Technology Software </em>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+<script type="text/javascript" src="~/Content/tuyendung/ui.home.min.js"></script>
+<script type="text/javascript" src="~/Content/tuyendung/ui.plugins.min.js"></script>
+<script src="~/Content/tuyendung/jquery.mousewheel.min.3.0.6.js"></script>
+<style>
+    .mCSB_container .mCSB_scrollTools{
+        display:none !important;
+    }
+</style>

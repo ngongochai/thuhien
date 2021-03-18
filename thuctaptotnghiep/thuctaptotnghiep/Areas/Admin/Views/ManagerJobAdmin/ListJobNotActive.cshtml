@@ -1,0 +1,402 @@
+﻿@model IList<Model.Framework.DangTinViecLam>
+@using Model.Framework
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    ViewBag.Title = "Danh sách việc làm chưa được kích hoạt";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var url = Request.Url.ToString();
+}
+
+@section script_table{
+
+
+    <script src="~/Areas/Admin/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Content/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js"></script>
+    <script src="~/Areas/Admin/Content/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script>
+        $('#example1').DataTable({
+            "responsive": true,
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            //"orderSequence": ["desc", "asc"],
+            //"ordering": ["asc", "desc"],
+            "aaSorting": [[0, 'desc']],
+            "info": true,
+            "autoWidth": true
+        })
+    </script>
+}
+<section class="content-header">
+    <h1>
+        Quản lý Việc làm
+        <small>Doanh nghiệp</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
+        <li class="active">Việc làm chưa được kích hoạt</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh sách việc làm chưa được kích hoạt</h3>
+                </div>
+                <button id="checkall" class="btn btn-default">Chọn tất cả</button>
+                <button id="cancelcheck" class="btn btn-default">Bỏ Chọn</button>
+                <button id="removejob" class="btn btn-warning">Xóa</button>
+                <a href="@url" class="btn btn-default">Làm mới</a>
+                @*//box-header*@
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="sorting_desc" style="width:1%">ID</th>
+                                <th>Chức Vụ</th>
+                                <th>Nghành nghề</th>
+                                <th>Địa điểm</th>
+                                <th>Lương</th>
+                                <th>Công ty</th>
+                                <th>Logo CT</th>
+                                <th>Ngày đăng</th>
+                                <th>Top Job</th>
+                                <th>Show Home page</th>
+                                <th>Tình trạng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MACV<br />
+                                        <input type="checkbox" class="checkchild" value="@item.MACV">
+                                    </td>
+                                    <td><a href="@Url.Action("EditJobAdmin", "ManagerJobAdmin", new {id=item.MACV })">@item.TenCV</a></td>
+                                    <td>
+                                        <span>@db.NghanhNghes.Where(x => x.Id == item.Manghanh1).Select(x => x.Tennghanh).FirstOrDefault()</span><br />
+                                        <span>@db.NghanhNghes.Where(x => x.Id == item.Manghanh2).Select(x => x.Tennghanh).FirstOrDefault()</span><br />
+                                        <span>@db.NghanhNghes.Where(x => x.Id == item.Manghanh3).Select(x => x.Tennghanh).FirstOrDefault()</span><br />
+                                    </td>
+                                    <td>
+                                        <span>@db.cities.Where(x => x.Id == item.MaTP1).Select(x => x.City1).FirstOrDefault()</span><br />
+                                        <span>@db.cities.Where(x => x.Id == item.MaTP2).Select(x => x.City1).FirstOrDefault()</span><br />
+                                        <span>@db.cities.Where(x => x.Id == item.MaTP3).Select(x => x.City1).FirstOrDefault()</span><br />
+                                    </td>
+                                    <td>
+                                        @if (item.Luongthoathuan == 1)
+                                        {
+                                            <span>Thỏa Thuận</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@item.Minluong - @item.Maxluong</span>
+                                        }
+                                    </td>
+                                    <td><a href="@Url.Action("EditEmployer", "ManagerMemberAdmin", new { mact=item.MACT})">@item.CongTy.Tencongty</a></td>
+                                    <td style="width:10%;"><a href="@Url.Action("EditEmployer", "ManagerMemberAdmin", new { mact=item.MACT})"><img style="width:100%" class="" src="/Employer_upload/@item.CongTy.Logo" /></a></td>
+                                    <td>
+                                        @if (item.Ngaydang != null)
+                                        {<span>@item.Ngaydang.Value.ToString("dd/MM/yyyy HH:mm")</span> }
+                                    </td>
+                                    <td style="width:5%">
+                                        @if (item.Vieclamtotnhat == 1)
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                Show
+                                                <input hidden type="checkbox" checked value="1" id="@item.MACV" class="topjob custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                Show
+                                                <input id="@item.MACV" hidden type="checkbox" value="1" class="topjob custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                        }
+                                        @if (item.hot == 1)
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                Hot
+                                                <input id="@item.MACV" checked value="1" hidden type="checkbox" class="hotjob custom-control-input">
+                                                <span class="custom-control-indicator-hot"></span>
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                Hot
+                                                <input id="@item.MACV" hidden value="1" type="checkbox" class="hotjob custom-control-input">
+                                                <span class="custom-control-indicator-hot"></span>
+                                            </label>
+                                        }
+
+                                    </td>
+                                    <td>
+                                        @if (item.Vieclamgoiy == 1)
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                Show
+                                                <input id="@item.MACV" value="1" checked hidden type="checkbox" class="showjob custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                Show
+                                                <input id="@item.MACV" value="1" hidden type="checkbox" class="showjob custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.Tinhtrang == 1)
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                Kích hoạt<br />
+                                                <input checked value="1" hidden type="checkbox" id="active_@item.MACV" class="activejob custom-control-input">
+                                                <span class="custom-control-indicator-active"></span>
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                Kích hoạt<br />
+                                                <input id="active_@item.MACV" value="1" hidden type="checkbox" class="activejob custom-control-input">
+                                                <span class="custom-control-indicator-active"></span>
+                                            </label>
+                                        }
+                                        @if (item.Trangthai == 1)
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                <span>Ẩn/ hiện</span><br />
+                                                <input checked value="1" hidden type="checkbox" id="status_@item.MACV" class="statusjob custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                <span>Ẩn/ hiện</span><br />
+                                                <input value="1" hidden type="checkbox" id="status_@item.MACV" class="statusjob custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+        </div>
+    </div>
+</section>
+<script>
+
+    $(document).on("click", "#checkall", function () {
+        var a = $(".checkchild").val();
+        if ($(".checkchild").checked)
+            $(".checkchild").prop("checked", false)
+        else
+            $(".checkchild").prop("checked", true)
+    })
+    $(document).on("click", "#cancelcheck", function () {
+        $(".checkchild").prop("checked", false);
+    })
+    $(document).on("click", "#removejob", function () {
+        var val = [];
+        $('.checkchild:checked').each(function (i) {
+            val[i] = parseInt($(this).val());
+        });
+        if (val.length == 0)
+            return false;
+        swal({
+            title: "Bạn có chắc không!",
+            text: "Bạn có muốn xóa những việc làm này không!",
+            type: "warning",
+            showCancelButton: "Hủy Bỏ",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa!',
+            closeOnConfirm: false
+        },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        swal({
+                            title: "Đang xử lý...!",
+                            text: "Đang xóa việc làm của bạn vui lòng chờ...!",
+                            type: "info",
+                            showConfirmButton: false
+                        })
+                        $.ajax({
+                            url: "/Admin/ManagerJobAdmin/RemoveJobAdmin",
+                            type: "POST",
+                            dataType: "json",
+                            data: { "val": val },
+                            success: function (data) {
+                                location.reload();
+                            },
+                            error: function (data) {
+                                location.reload();
+                            }
+                        })
+                    }
+                })
+    })
+    $(document).on("click", "#backjob", function () {
+        var val = [];
+        $('.checkchild:checked').each(function (i) {
+            val[i] = $(this).val();
+        });
+        if (val.length == 0)
+            return false;
+        swal({
+            title: "Bạn có chắc không!",
+            text: "Bạn có muốn phục hồi những việc làm này không!",
+            type: "warning",
+            showCancelButton: "Hủy Bỏ",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Phục hồi!',
+            closeOnConfirm: false
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: "/Admin/ManagerJobAdmin/RestoreJobAdmin",
+                    type: "POST",
+                    dataType: "json",
+                    data: { "val": val },
+                    success: function (data) {
+                        location.reload();
+                    },
+                    error: function (data) {
+                        location.reload();
+                    }
+                })
+            }
+        })
+    })
+
+
+</script>
+<script>
+    $(function () {
+        function getvalue(form, action) {
+            var val = 0;
+            var id = $(form).attr("id");
+            var macv = id.split("_")[1];
+            if (macv == null) {
+                macv = id;
+            }
+            if (form.checked) {
+                val = 1;
+            }
+            if (action == 4 && val == 0) {
+                $("#myModal1").modal("show");
+                $(".modal-title").html("Bạn có muốn hủy kích hoạt việc làm này không");
+                $("#c_macv").val(macv);
+                $("#actionjob").val(4);
+            }
+            if (action == 5 && val == 0) {
+                $("#myModal1").modal("show");
+                $(".modal-title").html("Bạn có muốn ẩn việc làm này không");
+                $("#c_macv").val(macv);
+                $("#actionjob").val(5);
+            }
+            else {
+                $.ajax({
+                    url: "/ManagerJobAdmin/ChangeStatus",
+                    type: "POST",
+                    dataType: "json",
+                    data: { "value": val, "action": action, "macv": macv },
+                    success: function (data) {
+                        if (data.status == 0) {
+                            swal({
+                                title: "Đã xảy ra lỗi!",
+                                text: "vui lòng kiểm tra lại cấu hình email!",
+                                type: "error",
+                                confirmButtonText: 'OK!',
+                                closeOnConfirm: false
+                            },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                location.reload();
+                            }
+                        })
+                        }
+                    },
+                    error: function () {
+                        location.reload();
+                    }
+                })
+            }
+
+        }
+        $(document).on("click", ".topjob", (function () {
+            getvalue(this, 1);
+        }))
+        $(document).on("click", ".hotjob", (function () {
+            getvalue(this, 2);
+
+        }))
+        $(document).on("click", ".showjob", function () {
+            getvalue(this, 3);
+
+        })
+        $(document).on("click", ".activejob", function () {
+            getvalue(this, 4);
+        })
+        $(document).on("click", ".statusjob", function () {
+            getvalue(this, 5);
+        })
+        $("#confirm_hide").click(function () {
+            var macv = $("#c_macv").val();
+            var val = 0;
+            var action = $("#actionjob").val();
+            $.ajax({
+                url: "/ManagerJobAdmin/ChangeStatus",
+                type: "POST",
+                dataType: "json",
+                data: { "value": val, "action": action, "macv": macv },
+                success: function (data) {
+                    if (data.status == 0) {
+                        location.reload();
+                    }
+                    else {
+                        $("#c_macv").val("");
+                        $("#actionjob").val("");
+                        $("#myModal1").modal("hide");
+
+                    }
+                },
+                error: function () {
+                    location.reload();
+                }
+            })
+        })
+        $("#cancle_hide").click(function () {
+            var macv = $("#c_macv").val();
+            var action = $("#actionjob").val();
+            if (action == 4)
+                $('#active_' + macv).prop('checked', true);
+            if (action == 5)
+                $('#status_' + macv).prop('checked', true);
+        })
+        $('#myModal1').on('hide.bs.modal', function () {
+            var macv = $("#c_macv").val();
+            var action = $("#actionjob").val();
+            if (action == 4)
+                $('#active_' + macv).prop('checked', true);
+            if (action == 5)
+                $('#status_' + macv).prop('checked', true);
+        })
+    })
+</script>

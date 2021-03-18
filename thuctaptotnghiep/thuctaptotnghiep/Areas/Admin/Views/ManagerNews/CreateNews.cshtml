@@ -1,0 +1,258 @@
+﻿@model Model.Framework.News
+@using Model.Framework
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    ViewBag.Title = "Viết tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/Employer/Signup/register.js"></script>
+<link href="~/Content/build.css" rel="stylesheet" />
+<link href="~/plugin/fileman/css/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<link href="~/Content/build.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-select.min.js"></script>
+@section tinymce{
+<script src="~/plugin/fileman/js/tiny_mce_popup.js"></script>
+<script src="~/plugin/fileman/js/file.js"></script>
+    <script src="~/plugin/fileman/js/custom.js"></script>
+    <script src="~/plugin/tinymce/jquery.tinymce.min.js"></script>
+    <script src="~/plugin/tinymce/tinymce.min.js"></script>
+<script src="~/Areas/Admin/Scripts/customtinimce.js"></script>
+
+
+}
+
+
+<style>
+    #description {
+        height: 80px;
+        vertical-align: middle;
+    }
+</style>
+<div style="background:white">
+    <div class="post-job m-b-lg">
+        <div id="errorMessage" class="alert alert-danger" hidden="hidden">
+            Dữ liệu bạn cung cấp chưa hợp lệ. Vui lòng kiểm tra lại các dữ liệu sai.
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="tabs-container post-job-tabs">
+                    <div>
+                        <div id="jobPostContainer" class="tab-content">
+                            <div id="job" class="m-b active">
+                                <div class="panel-body">
+                                    <div class="col-sm-12 col-lg-12">
+                                        <div class="float-e-margins animated fadeInRight">
+                                            <form name="job" id="createnews" method="post" action="~/ManagerNews/CreateNews" class="form-horizontal" enctype="multipart/form-data">
+                                                <!-- The Job-->
+                                                <div class="content">
+                                                    <h2>
+                                                        <span class="circle-wrapper"><i class="fa fa-suitcase"></i></span>
+                                                        Viết Tin Tức Mới
+                                                    </h2>
+                                                    
+                                                    <fieldset aria-hidden="false">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label" for="job_job_title">Tiêu đề bài viết</label>
+                                                            <div class="col-sm-9">
+                                                                <span class="twitter-typeahead" style="position: relative; display: block; direction: ltr;">
+                                                                    <input type="text" id="titlenews" name="titlenews" tabindex="1" class="job-title typeahead form-control tt-input" data-bind="jobTitle" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;">
+                                                                    <label id="titlenews-error" class="error" style="display:none;" for="job_job_title">Vui lòng nhập tiêu đề tin</label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="job_job_description" aria-required="true">Mô Tả</label>
+                                                            <div class="col-sm-9">
+                                                                <textarea id="description" name="description" maxlength="14500" class="job-des form-control" data-counter-target="jobDescription" cols="30" rows="7" placeholder="Nhập mô tả Tin " data-show-error-after=".hint-container" data-show-error-container=".col-sm-9" tabindex="10" data-bind="jobDes" aria-required="true"></textarea>
+                                                                <div class="clearfix hint-container">
+                                                                </div>
+                                                                <label id="description_error" class="error" style="display:none;" for="job_job_title">Vui lòng nhập mô tả bản tin</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="job_preferred_language" aria-required="true">Chọn Danh Mục Tin Tức</label>
+                                                            <div class="col-sm-9">
+                                                                <div style="border:1px solid #c9c9c9" class="textbox">
+                                                                    <select id="job_preferred_language" name="categoryId" class="form-control">
+                                                                        @foreach (var item in db.categorynews.Where(x => x.trash != true).ToList())
+                                                                        {
+                                                                            <option value="@item.categoryId">@item.categoryName</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                                <button type="button" class="btn btn-success" id="addcategoryparent">Thêm danh mục tin tức</button>
+                                                                <div style="display:none;margin:10px;" class="toggleadd">
+                                                                    <div class="col-md-4"><input id="categoryname" placeholder="Nhập tên danh múc tin tức" type="text" class="form-control" /></div>
+                                                                    <div class="col-md-4">
+                                                                        <button type="button" class="btn btn-success" id="confirmadd">Lưu Lại</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group salary-range-group">
+                                                            <label class="col-sm-3 control-label"></label>
+                                                            <div class="col-sm-9">
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="checkbox checkbox-success checkbox-inline">
+
+                                                                            <input type="checkbox" name="active" value="true" class="styled" id="allcheck">
+                                                                            <label for="allcheck">Xuất Bản</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="checkbox checkbox-success checkbox-inline">
+
+                                                                            <input type="checkbox" name="showonhomepage" value="true" class="styled" id="showonhomepage">
+                                                                            <label for="showonhomepage">Hiển thị Trang chủ</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="checkbox checkbox-success checkbox-inline">
+
+                                                                            <input type="checkbox" name="Featured" value="true" class="styled" id="Featured">
+                                                                            <label for="Featured">Bài viết nổi bật</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label" for="job_job_title">Thứ tự hiển thị</label>
+                                                            <div class="col-sm-9">
+                                                                <span class="twitter-typeahead" style="position: relative; display: block; direction: ltr;">
+                                                                    <input type="number" min="0" id="displayorder" name="displayorder" tabindex="1" class="job-title typeahead form-control tt-input" data-bind="jobTitle" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label" for="job_job_title">Ảnh Bìa</label>
+                                                            <div class="col-sm-9">
+                                                                <span class="twitter-typeahead" style="position: relative; display: block; direction: ltr;">
+
+
+                                                                    <input type="text" id="txtSelectedFile" name="titleimages" tabindex="1" class="form-control" data-bind="jobTitle" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;">
+                                                                    <label id="titleimages-error" class="error" style="display:none;" for="job_job_title">Vui lòng chọn ảnh</label>
+                                                                </span>
+                                                                <div class="col-md-3"><button type="button"  class="btn btn-primary" value="Chọn Ảnh" onclick="openCustomRoxy2()">Chọn Ảnh</button><img style="width:100%" src="" id="imagestitle" /></div>
+                                                            </div>
+                                                            <div id="roxyCustomPanel2" style="display: none;">
+                                                                <iframe src="/plugin/fileman/index.html?integration=custom&txtFieldId=txtSelectedFile" style="width:100%;height:100%" frameborder="0"></iframe>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="job_job_description" aria-required="true">Nội dung</label>
+                                                            <div class="col-sm-9">
+                                                                <textarea id="textarea" name="htmlcontent"></textarea>
+                                                                <div class="clearfix hint-container">
+                                                                </div>
+                                                                <label id="htmlcontent_error" class="error" style="display:none;" for="job_job_title">Vui lòng nhập Nội dung bản tin</label>
+                                                            </div>
+                                                        </div>
+                                                        <!-- End Job Application -->
+                                                    </fieldset>
+                                                </div>
+                                                <!-- The Company-->
+                                                <div class="hr-line-dashed"></div>
+                                            </form>
+                                            <button style="float:right" class="btn btn-w-m btn-primary" type="submit" id="btnSaveAllSteps"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu và Tiếp Tục</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal-->
+    <!-- Modal Crop Photo -->
+</div>
+<script>
+    $(document).on("click", "#addcategoryparent", function () {
+        $(".toggleadd").toggle();
+    })
+    $(document).on("click", "#confirmadd", function () {
+        var value = $("#categoryname").val();
+        if (value == "") {
+            alert("vui lòng nhập danh mục tin tức")
+        }
+        else {
+            $.ajax({
+                url: "/Admin/ManagerNews/CreateCategoryNews",
+                type: "POST",
+                dataType: "json",
+                data: { "name": value },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (data) { location.reload(); }
+            })
+        }
+    })
+</script>
+<script>
+    $("#btnSaveAllSteps").click(function(){
+        varFormLanguage = $(this).parents('#createnews');
+        var optionsLanguageForm = {
+            beforeSubmit:validation ,  // pre-submit callback
+            success: responseRemoveLanguageForm,  // post-submit callback
+            error:errorfunction,
+            type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+            dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+            data: { action: 'remove-language-info', resumeId: $('#languageBlockResumeId').val()}
+        };
+        $('#createnews').one('submit', function (e) {
+            e.preventDefault(); // <-- important
+            $(this).ajaxSubmit(optionsLanguageForm);
+            return false;
+        });
+        $('#createnews').submit();
+    })
+    function responseRemoveLanguageForm(data){
+        location.href="/Admin/ManagerNews/ListNews";
+    }
+    function errorfunction(data){
+        location.reload();
+    }
+    function validation(data, form, options)
+    {
+        var error=true;
+        $('#titlenews-error').css("display","none");
+        //$('#description_error').css("display","none");
+        $('#titleimages-error').css("display","none");
+        $('#htmlcontent_error').css("display","none");
+        var html=window.parent.tinymce.get('textarea').getContent();
+        $("#textarea").val(html);
+        if($('#titlenews').val().length<5)
+        {
+            $('#titlenews-error').css("display","block");
+            error=false;
+
+        }
+        if(html.length<5)
+        {
+            $('#htmlcontent_error').css("display","block");
+            error=false;
+
+        }
+        //if($('#description').val().length<5)
+        //{
+        //    $('#description_error').css("display","block");
+        //    error=false;
+
+        //}
+        if($('#txtSelectedFile').val()=="")
+        {
+            $('#titleimages-error').css("display","block");
+            error=false;
+
+        }
+        if(error==false){
+            alert("Vui lòng kiểm tra lại thông tin nhập")
+        }
+        return error;
+    }
+</script>

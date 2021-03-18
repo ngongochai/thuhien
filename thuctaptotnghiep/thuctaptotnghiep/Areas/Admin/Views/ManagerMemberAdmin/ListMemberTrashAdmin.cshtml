@@ -1,0 +1,274 @@
+﻿@using PagedList.Mvc
+@using Model.Framework
+@model PagedList.IPagedList<Model.Framework.UngVien>
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    ViewBag.Title = "Ứng viên đã xóa";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section script_table{
+    <script src="~/Areas/Admin/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Content/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script>
+    $(function () {
+        $("#example1").DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            //"orderSequence": ["desc", "asc"],
+            //"ordering": ["asc", "desc"],
+            "aaSorting": [[0, 'desc']],
+            "info": true,
+            "autoWidth": true
+        });
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            //"orderSequence": ["desc", "asc"],
+            //"ordering": ["asc", "desc"],
+            "aaSorting": [[0, 'desc']],
+            "info": true,
+            "autoWidth": true
+        });
+    });
+    </script>
+    <script>
+    $(function () {
+        function getvalueexcute(form,action) {
+            var val = 0;
+            var id = $(form).attr("id");
+            var mauv = id.split("_")[1];
+            if (mauv == null) {
+                mauv = id;
+            }
+            if (form.checked) {
+                val = 1;
+            }
+            if (action == 3 && val == 1) {
+                $("#myModal1").modal("show");
+                $(".modal-title").html("Phục Hồi Ứng viên này");
+                $("#c_macv").val(mauv);
+                $("#actionjob").val(3);
+            }
+            if (action ==1 && val == 1) {
+                $("#myModal1").modal("show");
+                $(".modal-title").html("Kích hoạt tài khoản Admin");
+                $("#c_macv").val(mauv);
+                $("#actionjob").val(1);
+            }
+            if (action == 2 && val == 0) {
+                $("#myModal1").modal("show");
+                $(".modal-title").html("Bạn có muốn hủy kích hoạt ứng viên này không");
+                $("#c_macv").val(mauv);
+                $("#actionjob").val(2);
+            }
+            else if (action == 2 && val == 1) {
+                $.ajax({
+                    url: "/ManagerMemberAdmin/ChangeStatus",
+                    type: "POST",
+                    dataType: "json",
+                    data: { "val": val, "action": action, "mauv": mauv },
+                    success: function (data) {
+                        if (data.status == 0) {
+                            location.reload();
+                        }
+                    },
+                    error: function () {
+                        location.reload();
+                    }
+                })
+            }
+
+        }
+        $(document).on("click",".roleadmin",(function () {
+            getvalueexcute(this, 1);
+        }))
+        $(document).on("click", ".statusjob", (function () {
+            getvalueexcute(this, 2);
+
+        }))
+        $(document).on("click", ".deletejob", function () {
+            getvalueexcute(this, 3);
+
+        })
+        $("#confirm_hide").click(function () {
+            var mauv = $("#c_macv").val();
+            var val = 1;
+            var action = $("#actionjob").val();
+            if (action == 2)
+                val = 0;
+            if (action == 3)
+                val = 0;
+            $.ajax({
+                url: "/ManagerMemberAdmin/ChangeStatus",
+                type: "POST",
+                dataType: "json",
+                data: { "val": val, "action": action, "mauv": mauv },
+                success: function (data) {
+                    if (data == 0) {
+                        location.reload();
+                    }
+                    else {
+                        $("#c_macv").val("");
+                        $("#actionjob").val("");
+                        $("#myModal1").modal("hide");
+                        if(action!=2)
+                            location.reload();
+                    }
+                },
+                error: function () {
+                    location.reload();
+                }
+            })
+        })
+        $("#cancle_hide").click(function () {
+            var macv = $("#c_macv").val();
+            var action = $("#actionjob").val();
+            if(action==1)
+                $('#roleadmin_' + macv).attr('checked', false);
+            if (action == 3)
+                $('#delete_' + macv).attr('checked', false);
+            if(action==2)
+                $('#status_' + macv).prop('checked', true);
+        })
+        $('#myModal1').on('hide.bs.modal', function () {
+            var macv = $("#c_macv").val();
+            var action = $("#actionjob").val();
+            if (action == 1)
+                $('#roleadmin_' + macv).attr('checked', false);
+            if (action == 3)
+                $('#delete_' + macv).attr('checked', false);
+            if (action == 2)
+                $('#status_' + macv).prop('checked', true);
+        })
+    })
+    </script>
+}
+<section class="content-header">
+    <h1>
+        Quản lý thành viên
+        <small>Ứng Viên</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
+        <li class="active">Danh sách ứng viên đã xóa</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh sách Thành Viên Đã Xóa</h3>
+                </div>
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="sorting_desc" style="width:1%">ID</th>
+                                <th>Họ Và Tên</th>
+                                <th>Địa chỉ</th>
+                                <th>Điện Thoại</th>
+                                <th>Email</th>
+                                <th>Cấp Bậc</th>
+                                <th>Avatar</th>
+                                @*<th>Kinh Nghiệm</th>*@
+                                <th>Ngày Đăng ký</th>
+                                <th>Số Việc Làm</th>
+                                <th>Admin</th>
+                                <th>Tình trạng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MAUV</td>
+                                    <td><a href="@Url.Action("DetailMemberAdmin", "ManagerMemberAdmin", new { mauv = item.MAUV })">@item.Hovatendem @item.Ten</a></td>
+                                    <td>
+                                        <span>@item.Diachihientai</span>
+                                    </td>
+                                    <td>
+                                        <span>@item.Dienthoai1</span>
+                                    </td>
+                                    <td>
+                                        <span>@item.EmailDN</span>
+                                    </td>
+                                    <td>
+                                        <span>@item.Chucdanh</span>
+                                    </td>
+                                    <td style="width:10%;"><img style="width:100%" class="" src="/Profile_upload/@item.Hinhanh" /></td>
+                                    @*<td>
+                                            <span>@item.Namkinhnghiem</span>
+                                        </td>*@
+                                    <td>
+                                        @if (item.Ngaydangky != null)
+                                        {<span>@item.Ngaydangky.Value.ToString("dd/MM/yyyy HH:mm")</span> }
+                                    </td>
+                                    <td style="width:5%">
+                                        <span>@db.UVDangKies.Where(x => x.Tinhtrang == 1 && x.MAUV == item.MAUV && x.Trangthai == 2).Count()</span>/<span>@db.UVDangKies.Where(x => x.Tinhtrang == 1 && x.MAUV == item.MAUV).Count()</span>
+                                    </td>
+                                    <td>
+                                        <label class="custom-control custom-checkbox">
+                                            <input value="1" hidden type="checkbox" id="roleadmin_@item.MAUV" class="roleadmin custom-control-input">
+                                            <span class="custom-control-indicator-hot"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        @if (item.Tinhtrang == 1)
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                <span>Kích Hoạt</span><br />
+                                                <input checked value="0" hidden type="checkbox" id="status_@item.MAUV" class="statusjob custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label class="custom-control custom-checkbox">
+                                                <span>Kích Hoạt</span><br />
+                                                <input value="1" hidden type="checkbox" id="status_@item.MAUV" class="statusjob custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                        }
+                                        @*<label class="custom-control custom-checkbox">
+                                            <span>Phục Hồi</span><br />
+                                            <input value="0" hidden type="checkbox" id="delete_@item.MAUV" class="deletejob custom-control-input">
+                                            <span class="custom-control-indicator"></span>
+                                        </label>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin:5px auto;width:300px;">
+                    @Html.PagedListPager(Model, page => Url.Action("ListAllJob", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</section>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+
+            </div>
+            <div class="modal-body tontai">
+                <h4 class="modal-title col-md-10" id="exampleModalLabel">Bạn có muốn hủy kích hoạt việc làm này</h4>
+                <input id="c_macv" value="" hidden />
+                <input id="actionjob" value="" hidden />
+            </div>
+            <div id="footer" class="modal-footer">
+                <button id="cancle_hide" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button id="confirm_hide" class="btn btn-primary">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
+</div>

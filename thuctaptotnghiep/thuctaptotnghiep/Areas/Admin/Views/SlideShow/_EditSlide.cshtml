@@ -1,0 +1,151 @@
+﻿@model Model.Framework.Slideshow
+@using Model.Framework
+@{
+    var list =new Slideshow();
+    if (Model != null)
+    {
+        list = Model;
+    }
+}
+<link href="~/plugin/fileman/css/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<script src="~/plugin/fileman/js/tiny_mce_popup.js"></script>
+<script src="~/plugin/fileman/js/file.js"></script>
+<script src="~/plugin/fileman/js/custom.js"></script>
+<script src="~/plugin/tinymce/jquery.tinymce.min.js"></script>
+<script src="~/plugin/tinymce/tinymce.min.js"></script>
+<script src="~/Areas/Admin/Scripts/customtinimce.js"></script>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Edit Mode</h3>
+                </div>
+                <div class="box-body">
+                   <div class="col-md-6">
+                       <div class="form-group">
+                           <div class="col-md-12">
+                               @if (list.imgurl == null||list.imgurl=="")
+                               {
+                                   <img onclick="openCustomRoxy2()" style=" width:100%" src="~/Content/image/no_image.png" id="imagestitle" />
+                               }
+                               else
+                               {
+                                <img onclick="openCustomRoxy2()" style="width:100%;" src="@list.imgurl" id="imagestitle" />
+                               } 
+                               <button type="button" class="btn btn-primary" value="Chọn Ảnh" onclick="openCustomRoxy2()">Chọn Ảnh</button>
+                               <span class="twitter-typeahead" style="position: relative; display: block; direction: ltr;">
+                                   <input value="@list.imgurl" type="text" id="txtSelectedFile" name="titleimages" tabindex="1" class="form-control" data-bind="jobTitle" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;">
+                               </span> 
+                           </div>
+                       </div>
+                       <div class="form-group">
+                           <label for="url">Link URL</label>
+                           <input type="text" value="@list.url" class="form-control" id="url">
+                       </div>
+                       <div class="form-group">
+                           <label for="video">Link Video</label>
+                           <input type="text" value="@list.videoembed" class="form-control" id="video">
+                       </div>
+                       <div class="form-group">
+                           <label for="displayorder">Thứ tự hiển thị</label>
+                           <input value="@list.displayorder" type="number" min="0" class="form-control" id="displayorder">
+                       </div>
+                       <div class="form-group">
+                           <label for="status">Hoạt động :</label>
+                           @if (list.status == 1)
+                           {
+                               <input type="checkbox" checked  id="status">
+                           }
+                           else
+                           {
+                               <input type="checkbox" id="status">
+                           }
+                       </div>
+                       <input hidden value="@list.id" id="id_slide"/>
+                       <div class="form-group">
+                           <button type="button" id="save-slide" class="btn-lg btn-success">Lưu Slide</button>
+                       </div>
+                   </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</section>
+<div id="roxyCustomPanel2" style="display: none;">
+    <iframe src="/plugin/fileman/index.html?integration=custom&txtFieldId=txtSelectedFile" style="width:100%;height:100%" frameborder="0"></iframe>
+</div>
+<script>
+    $("#save-slide").click(function(){
+        var imgurl=$("#txtSelectedFile").val();
+        var url=$("#url").val();
+        var video=$("#video").val();
+        var displayorder=$("#displayorder").val();
+        var id=$("#id_slide").val();
+        var status=0;
+        if($("#status").prop('checked')==true){
+            status=1;
+        }
+        else{
+            status=0;
+        }
+        if(imgurl==""||imgurl.indexOf("uploaded")<-1)
+        {
+            swal({
+                title: "Chưa chọn ảnh",
+                text: "Vui Lòng chọn Ảnh",
+                type: "error",
+                timer: 1000,
+                showConfirmButton: false
+
+            });
+        }
+        else
+        {
+            $.ajax({
+                url: "/Admin/SlideShow/SaveSlide",
+                type: "POST",
+                dataType: "json",
+                data: { "imgurl": imgurl,"url":url,"displayorder":displayorder,"status":status,"id":id,"video":video },
+                success: function (data) {
+                    if (data == 0) {
+                        swal({
+                            title: "Đã Xảy ra lỗi",
+                            text: "Vui Lòng Kiểm Tra Lại và làm mới trang",
+                            type: "error",
+                            timer: 1000,
+                            showConfirmButton: false
+
+                        });
+                    }
+                    else {
+                        swal({
+                            title: "Lưu Thành công",
+                            text: "Thay đổi đã được lưu",
+                            type: "success",
+                            timer: 500,
+                            showConfirmButton: false
+
+                        });
+                        window.location.href="/Admin/SlideShow/ListSlideShow";
+                    }
+
+                },
+                error: function (data) {
+                    swal({
+                        title: "Đã Xảy ra lỗi",
+                        text: "Vui Lòng Kiểm Tra Lại và làm mới trang",
+                        type: "error",
+                        timer: 1000,
+                        showConfirmButton: false
+
+                    });
+                    location.reload();
+                }
+            })
+        }
+    })
+</script>

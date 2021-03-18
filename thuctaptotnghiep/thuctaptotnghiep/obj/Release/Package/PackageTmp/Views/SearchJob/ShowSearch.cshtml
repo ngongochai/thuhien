@@ -1,0 +1,587 @@
+﻿@model IList<Model.Framework.DangTinViecLam>
+@using Model.Framework
+@{
+    ViewBag.Title = "Tìm Việc Làm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var data = db.Adverts.FirstOrDefault();
+    IHtmlString serchleft = null;
+    IHtmlString serchcenter = null;
+    if (data != null)
+    {
+        serchleft = new HtmlString(data.advertsearchjobleft);
+        serchcenter = new HtmlString(data.advertsearchjobbottom);
+    }
+    int workid = 0;
+    int cityid = 0;
+    if (ViewData["categoryid"] != null)
+    {
+        workid = Convert.ToInt32(ViewData["categoryid"]);
+    }
+    if (ViewData["locationid"] != null)
+    {
+        cityid = Convert.ToInt32(ViewData["locationid"]);
+    }
+    int count = 1;
+    string html = "";
+    List<string> listhtml = new List<string>();
+    var listlevel = db.CBmongmuons.ToList();
+}
+<link href="~/Content/select2-bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/select2.full.js"></script>
+<link href="~/Content/select2.min.css" rel="stylesheet" />
+<div id="wrapper" class="main-wrapper">
+    <div>
+        <div id="search-widget" class="collapse m-t-lg in">
+            <div class="search-form container">
+                <div class="bg-blue">
+
+                    <div class="row">
+                        <div class="search-widget-area col-sm-12" style="padding:30px;" id="search-box">
+                            @*<form>*@
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            
+                                                <div class="col-sm-4 mobile-maginbottom">
+                                                    <div class="">
+                                                        <input id="key"  type="text" value="@Request.QueryString["key"]" class="form-control" placeholder="Nhập chức danh, vị trí, kỹ năng..." role="textbox"><!-- react-text: 9 --> <!-- /react-text -->
+                                                    </div>
+                                                </div>
+                                           
+                                            <div class="col-sm-4 cate-search mobile-maginbottom">
+                                                <select id="workid" class="select2-single form-control">
+                                                    <option value="tat-ca-nghanh-nghe">Tất cả ngành nghề</option>
+                                                    @foreach (var item in ViewBag.Work)
+                                                    {
+                                                        if (item.Id == workid)
+                                                        {
+                                                            <option selected="selected" value="@item.Id">@item.Tennghanh</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.Id">@item.Tennghanh</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+
+
+                                           
+                                            <div class="col-sm-4 level-search mobile-maginbottom">
+                                                <div class="">
+                                                    <select id="cityid" class="select2-single form-control">
+                                                        <option value="Tat-ca-dia-diem">Tất cả địa điểm</option>
+                                                        @foreach (var item in ViewBag.City)
+                                                        {
+                                                            if (item.Id == cityid)
+                                                            {
+                                                                <option selected="selected" value="@item.Id">@item.City1</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.Id">@item.City1</option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button style="background: #00b9f2!important;
+    color: white;
+    border: none;font-weight:bold;width:100%;" id="btnsearch" class="btn-search btn btn-lg btn-primary" type="button">
+                                            <i class="fa fa-search" aria-hidden="true"></i>Tìm kiếm
+                                        </button>
+
+                                    </div>
+
+                                    <div><i class="listjob_waiting2 fa fa-spinner fa-spin" style="position:absolute;right:33px; top:35px;font-size:25px;color:white;display:none"></i></div>
+                                </div>
+                           
+                            @*</form>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-placeholder text-center container m-t-lg m-b-lg" style="display: none;">
+        <div class="box box-lg">
+            <i style="color:blue" class="fa fa-spinner text-gray fa-pulse fa-3x fa-fw"></i>
+        </div>
+    </div>
+
+    <div id="job-search" class="job-search" hidden="" style="display: block;">
+        <div class="container">
+            <div class="box">
+                <div class="row">
+                    <div id="left-column" class="col-1 col-sm-4 col-md-3">
+
+                        <div id="facets" class="side-column awe-check">
+                            <div class="clearfix visible-xs m-b">
+                                <button class="btn btn-primary btn-sm pull-right m-t-xs m-b-xs btn-close-filter">
+                                    OK
+                                </button>
+                            </div>
+                            <div id="current-refined-values">
+                                <div data-reactroot="" class="ais-root ais-clear-all">
+                                    <div class="ais-body ais-clear-all--body">
+                                        <a class="ais-clear-all--link btn btn-default btn-sm m-b m-t-xs full-width no-border" style="background:#006CB6;color:white;">
+                                            <div>
+                                                <i class="fa fa-close text-gray-light fa-fw"></i>
+                                                <span>Bỏ điều kiện lọc</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="categories" class="facet">
+                                <!--Show categories-->
+                            </div>
+                            <div id="locations" class="facet">
+                                <!--Show location-->
+                            </div>
+                            <div id="skills" class="facet">
+                                <!--Show skill-->
+                            </div>
+                            <div id="jobLeveles" class="facet">
+                                <div data-reactroot="" class="ais-root ais-refinement-list ais-root__collapsible">
+                                    <div class="ais-refinement-list--header facet-title ais-header">
+                                        <h5>CẤP BẬC <i class="fa fa-angle-down pull-right fa-lg"></i></h5>
+                                    </div>
+                                    <div class="ais-body ais-refinement-list--body">
+                                        <div class="ais-refinement-list--list">
+                                            @foreach (var item in listlevel)
+                                            {
+                                                <div class="ais-refinement-list--item facet-value radio">
+                                                    <div>
+                                                        <input type="radio" class="leveljob" value="@item.Id" name="leveljob">
+                                                        <label class="">
+                                                            @item.Ten
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="salaryRange" class="facet">
+                                <div data-reactroot="" class="ais-root ais-refinement-list ais-root__collapsible">
+                                    <div class="ais-refinement-list--header facet-title ais-header">
+                                        <h5>MỨC LƯƠNG <i class="fa fa-angle-down pull-right fa-lg"></i></h5>
+                                    </div>
+                                    <div class="ais-body ais-refinement-list--body">
+                                        <div class="ais-refinement-list--list">
+                                            <div class="ais-refinement-list--item facet-value radio">
+                                                <div>
+                                                    <input type="radio" value="0-500" class="jobSalary" name="jobSalary">
+                                                    <label class="">
+                                                        &lt; 500
+                                                    </label>
+                                                </div>
+                                            </div><div class="ais-refinement-list--item facet-value radio">
+                                                <div>
+                                                    <input type="radio" value="500 - 1000" class="jobSalary" name="jobSalary">
+                                                    <label class="">
+                                                        500 - 1000
+                                                    </label>
+                                                </div>
+                                            </div><div class="ais-refinement-list--item facet-value radio">
+                                                <div>
+                                                    <input type="radio" value="1000 - 1500" class="jobSalary" name="jobSalary">
+                                                    <label class="">
+                                                        1000 - 1500
+                                                    </label>
+                                                </div>
+                                            </div><div class="ais-refinement-list--item facet-value radio">
+                                                <div>
+                                                    <input type="radio" value="1500 - 2000" class="jobSalary" name="jobSalary">
+                                                    <label class="">
+                                                        1500 - 2000
+                                                    </label>
+                                                </div>
+                                            </div><div class="ais-refinement-list--item facet-value radio">
+                                                <div>
+                                                    <input type="radio" value="2000 - 3000" class="jobSalary" name="jobSalary">
+                                                    <label class="">
+                                                        2000 - 3000
+                                                    </label>
+                                                </div>
+                                            </div><div class="ais-refinement-list--item facet-value radio">
+                                                <div>
+                                                    <input type="radio" class="jobSalary" value="3000" name="jobSalary">
+                                                    <label class="">
+                                                        &gt; 3000
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:none" class="clearfix visible-xs m-b">
+                                <button class="btn btn-primary btn-sm btn-block pull-right m-t-xs btn-close-filter">
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="show_search col-2 col-sm-8 col-md-7">
+                        <div class="listjob_waiting" style="display:none;text-align:center;padding-top:200px;"><i class="fa fa-spinner fa-spin" style="font-size:40px;color:blue;"></i></div>
+                        <div style="display:none" class="job-search-body">
+                            <div class="top-nav">
+                                <!-- Filter Bar-->
+                                <div class="row">
+                                    <!--Stats-->
+                                    <div class="col-xs-10 col-sm-10">
+                                        <div class="result-no">
+                                            <div id="stats-container">
+                                                <div data-reactroot="" class="ais-root ais-stats">
+                                                    <div class="ais-body ais-stats--body">
+                                                        <div>
+                                                            <strong>Bạn có</strong>
+                                                            <strong class="text-primary">
+                                                                Đang tìm kiếm công việc cho bạn
+                                                            </strong>công việc đang chờ bạn
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Create Job Alert (Desktop) -->
+                                    </div>
+                                    <!-- Mobile Filter Bar -->
+                                    <div class="col-xs-2 visible-xs text-right">
+                                        <span>
+                                            <a class="icon-block btn-filter"><i class="fa fa-fw fa-filter"></i></a>
+                                        </span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-3 actions-wrapper">
+                                        <div class="row">
+                                            <!--Sorter-->
+                                            @*<div class="col-sm-12 job-sorter-col">
+                                                    <div id="sort-by-selector" class="job-sorter border-text-box">
+                                                        <div class="select2-container ais-sort-by-selector" id="s2id_autogen1132" style="width: 100%;">
+                                                            <a href="javascript:void(0)" class="select2-choice" tabindex="-1">
+                                                                <span class="select2-chosen" id="select2-chosen-1133">Ngày</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span>
+                                                            </a><label for="s2id_autogen1133" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-1133" id="s2id_autogen1133"><div class="select2-drop select2-display-none select2-drop_full-screen select2-drop_ais-sort-by-selector select2-with-searchbox">   <div class="select2-search">       <label for="s2id_autogen1133_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-1133" id="s2id_autogen1133_search" placeholder="">   </div>   <ul class="select2-results" role="listbox" id="select2-results-1133">   </ul></div>
+                                                        </div><select data-reactroot="" class="ais-sort-by-selector" tabindex="-1" title="" style="display: none;"><option class="ais-sort-by-selector--item" value="vnw_job_v2">Ngày</option><option class="ais-sort-by-selector--item" value="vnw_job_v2_rel">Độ chính xác</option><option class="ais-sort-by-selector--item" value="vnw_job_v2_sal">Lương</option></select>
+                                                    </div>
+                                                </div>*@
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="job-list job-list1" id="job-list">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 hidden-sm col-md-2 hidden-xs qc-index">
+
+                        <!-- Advertisement -->
+                        @serchleft
+
+                        <!-- end Advertisement -->
+                        <!-- Selected Jobs -->
+                        <!--/ Selected Jobs -->
+                    </div>
+                </div>
+            </div>
+            <!-- Advertisement -->
+            <div class="banner-horizontal text-center m-b-lg m-t-lg">
+                <!-- Advertisement -->
+                <div id="ads_BOTTOM" style="clear:both;"></div>
+            </div>
+            <!-- end Advertisement -->
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $(".box-placeholder").show();
+        $("#job-search").hide();
+        function getParameterByName(name) {
+            var regexS = "[\\?&]" + name + "=([^&#]*)",
+          regex = new RegExp(regexS),
+          results = regex.exec(window.location.search);
+            if (results == null) {
+                return "";
+            } else {
+                return decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+        }
+
+        // example caller:
+        var key = getParameterByName('key');
+        var workid = getParameterByName('workid');
+        var cityid = getParameterByName('cityid');
+        $.ajax({
+            url: "/SearchJob/BodySearch",
+            type: "POST",
+            dataType: "json",
+            data: { "key": key, "workid": workid, "cityid": cityid },
+            success: function (data) {
+                $(".box-placeholder").hide();
+                $("#job-search").show();
+                $(".job-search-body").show();
+                $('html, body').animate({ scrollTop: $('#job-search').offset().top }, 'slow');
+                $(".text-primary").html(data.total);
+                $("#job-list").html(data.html);
+                if (data.htmlleft != "")
+                    $("#categories").html(data.htmlleft);
+                if (data.htmlcity != "")
+                    $("#locations").html(data.htmlcity);
+                if (data.htmlskill != "")
+                    $("#skills").html(data.htmlskill);
+            },
+            error: function () {
+
+            }
+        })
+        $("#btnsearch").click(function () {
+            $(".listjob_waiting").show();
+            $(".listjob_waiting2").show();
+            $(".job-search-body").hide();
+            var workid = $("#workid").select2("val");
+            var cityid = $("#cityid").select2("val");
+            var key = $("#key").val();
+
+            window.history.pushState(null, null, '/tim-viec-lam?key=' + key.replace(" ", "+") + '&workid=' + workid + '&cityid=' + cityid + '');
+            //window.location.search = '?key=' + key + '&workid=' + workid + '&cityid=' + cityid + '';
+            $.ajax({
+                url: "/SearchJob/BodySearch",
+                type: "POST",
+                dataType: "json",
+                data: { "key": key, "workid": workid, "cityid": cityid },
+                success: function (data) {
+                    $(".listjob_waiting").hide();
+                    $(".listjob_waiting2").hide();
+                    $(".job-search-body").show();
+                    $('html, body').animate({ scrollTop: $('#job-search').offset().top }, 'slow');
+                    $(".text-primary").html(data.total);
+                    $("#job-list").html(data.html);
+                    if (data.htmlleft != "")
+                        $("#categories").html(data.htmlleft);
+                    if (data.htmlcity)
+                        $("#locations").html(data.htmlcity);
+                    if (data.htmlskill != "")
+                        $("#skills").html(data.htmlskill);
+                    $('input:checkbox').prop('check');
+                    //location.reload();
+                },
+                error: function () {
+                    alert("đã xảy ra lỗi");
+                }
+            })
+        })
+    })
+</script>
+<script>
+    $(".select2-single, .select2-multiple").select2({
+        width: "100%",
+        maximumSelectionLength: 3,
+        containerCssClass: ':all:'
+    });
+    $('.select2-remote').select2({ data: [{ id: 'A', text: 'A' }] });
+    $('button[data-select2-open]').click(function () {
+        $('#' + $(this).data('select2-open')).select2('open');
+    });
+</script>
+<script>
+
+    function loadpage(form) {
+        //function getParameterByName(name) {
+        //    var regexS = "[\\?&]" + name + "=([^&#]*)",
+        //  regex = new RegExp(regexS),
+        //  results = regex.exec(window.location.search);
+        //    if (results == null) {
+        //        return "";
+        //    } else {
+        //        return decodeURIComponent(results[1].replace(/\+/g, " "));
+        //    }
+        //}
+        // example caller:
+        var page = $("#pagination-demo").find(".active a").html();
+        excute(page);
+        //var key = getParameterByName('key');
+        //var workid = getParameterByName('workid');
+        //var cityid = getParameterByName('cityid');
+        ////var id = $("#pagination-demo").find("li a").html(2);
+        //var myParam = location.search.split('page=')[1]
+        //$('#page-content').text('Page ' + page);
+        //$.ajax({
+        //    url: "/SearchJob/BodySearch",
+        //    type: "POST",
+        //    dataType: "JSON",
+        //    data: { "page": page, "key": key, "workid": workid, "cityid": cityid },
+        //    success: function (data) {
+
+        //        $('html, body').animate({ scrollTop: $('#job-search').offset().top }, 'slow');
+        //        $(".text-primary").html(data.total);
+        //        $(".job-list1").html(data.html);
+        //    }
+        //})
+    }
+</script>
+<script>
+    $(".show-more-skill").click(function () {
+        var id = $(this).attr("id");
+        var condition = $(this).html();
+        if (condition != "Xem thêm") {
+            $(".option_" + id).toggle("hide");
+            $(this).html("Xem thêm");
+        }
+        else {
+            $(this).html("Thu gọn");
+            $(".option_" + id).toggle("hide");
+        }
+    })
+</script>
+<script>
+    function getParameterByName(name) {
+        var regexS = "[\\?&]" + name + "=([^&#]*)",
+      regex = new RegExp(regexS),
+      results = regex.exec(window.location.search);
+        if (results == null) {
+            return "";
+        } else {
+            return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    }
+    function excute(page) {
+        var key = getParameterByName('key');
+        var workid = getParameterByName('workid');
+        var cityid = getParameterByName('cityid');
+        var jobsalary = $("input[name='jobSalary']:checked").val();
+        var min = null;
+        var max = null;
+        if (jobsalary != null) {
+            var maxmin = jobsalary.split(new RegExp("-"));
+            if (maxmin.length == 1) {
+                max = maxmin[0];
+            }
+            else {
+                for (var i = 0; i < maxmin.length; i++) {
+                    if (min == null) {
+                        min = maxmin[i];
+                    }
+                    else {
+                        max = maxmin[i];
+                    }
+                }
+            }
+        }
+        var joblevel = $("input[name='leveljob']:checked").val();
+        var valcategory = [];
+        var vallocation = [];
+        var skillcheck = [];
+        $("input[name='skillcheck']:checked").each(function (i) {
+            skillcheck[i] = $(this).val();
+        })
+        $("input[name='listcategory']:checked").each(function (i) {
+            valcategory[i] = $(this).val();
+        })
+        $("input[name='locationcheck']:checked").each(function (i) {
+            vallocation[i] = $(this).val();
+        })
+        $.ajax({
+            url: "/SearchJob/BodySearch",
+            type: "POST",
+            dataType: "json",
+            data: { "page": page, "key": key, "workid": workid, "cityid": cityid, "selectlocation": vallocation, "selectcategory": valcategory, "selectkill": skillcheck, "level": joblevel, "minsalary": min, "maxsalary": max },
+            success: function (data) {
+                $('html, body').animate({ scrollTop: $('#job-search').offset().top }, 'slow');
+                $(".listjob_waiting").hide();
+                $(".listjob_waiting2").hide();
+                $(".job-search-body").show();
+                $(".text-primary").html(data.total);
+                $("#job-list").html(data.html);
+                if (data.htmlleft != "")
+                    $("#categories").html(data.htmlleft);
+                if (data.htmlcity)
+                    $("#locations").html(data.htmlcity);
+                if (data.htmlskill != "")
+                    $("#skills").html(data.htmlskill);
+            }
+        })
+    }
+
+    $(".jobSalary").click(function () {
+        $(".listjob_waiting").show();
+        $(".listjob_waiting2").show();
+        $(".job-search-body").hide();
+        excute();
+
+    })
+    $(".leveljob").click(function () {
+        $(".listjob_waiting").show();
+        $(".listjob_waiting2").show();
+        $(".job-search-body").hide();
+        excute();
+    })
+    $("#current-refined-values").click(function () {
+        $(".listjob_waiting").show();
+        $(".listjob_waiting2").show();
+        $(".job-search-body").hide();
+        $("#key").val("");
+        $("#workid").select2("val", "tat-ca-nghanh-nghe");
+        $("#cityid").select2("val", "Tat-ca-dia-diem");
+        window.history.pushState(null, null, "/tim-viec-lam?key=&workid=tất+cả+nghành+nghề&cityid=tất+cả+địa+điểm");
+        $('input:checkbox').prop('check');
+        $('input:radio').prop('checked', false);
+        $.ajax({
+            url: "/SearchJob/BodySearch",
+            type: "POST",
+            dataType: "json",
+            data: { "key": null, "workid": null, "cityid": null },
+            success: function (data) {
+                $('html, body').animate({ scrollTop: $('#job-search').offset().top }, 'slow');
+                $(".listjob_waiting").hide();
+                $(".listjob_waiting2").hide();
+                $(".job-search-body").show();
+                $(".text-primary").html(data.total);
+                $("#job-list").html(data.html);
+                if (data.htmlleft != "")
+                    $("#categories").html(data.htmlleft);
+                if (data.htmlcity)
+                    $("#locations").html(data.htmlcity);
+                if (data.htmlskill != "")
+                    $("#skills").html(data.htmlskill);
+
+                //location.reload();
+            },
+            error: function () {
+                alert("đã xảy ra lỗi");
+            }
+        })
+    })
+</script>
+<script>
+    $(".btn-filter").click(function () {
+        $("#facets").show();
+    })
+    $(".btn-close-filter").click(function () {
+        $("#facets").hide();
+    })
+    $(document).on("click", ".facet-title", function () {
+        $(this).siblings(".ais-body").slideToggle();
+    })
+</script>
+<script type="text/javascript">
+
+    $(document).keypress(function (e) {
+        if (e.which == 13 || e.keyCode == 13) {
+            $("#btnsearch").click();
+        }
+    });
+</script>

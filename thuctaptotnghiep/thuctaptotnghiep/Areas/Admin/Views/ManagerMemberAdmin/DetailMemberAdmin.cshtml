@@ -1,0 +1,484 @@
+﻿@model Model.Framework.UngVien
+@using Model.Framework
+@{
+    ViewBag.Title = "Chi tiết ứng viên";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    IHtmlString muctieu = new HtmlString(Model.Muctieu);
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    //string id = ViewData["MADK"].ToString();
+    //int madk = int.Parse(id);
+    //var uvdk = db.UVDangKies.Where(x => x.MAUV == Model.MAUV && x.Id == madk).FirstOrDefault();
+    //var luuhs = db.LuuHosoes.Where(x => x.MAUV == Model.MAUV).FirstOrDefault();
+}
+<script src="~/Scripts/managerjob.js"></script>
+<link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-select.min.js"></script>
+<section class="content-header">
+    <h1>
+       Hồ Sơ Ứng Viên
+        <small>Ứng viên</small>
+    </h1>
+    @*@if (Model.vaitro == 2)
+    {
+        <button id="roleadmin_@Model.MAUV" value="0" class="roleadmin btn btn-success"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>  </span>Hủy Admin</button>
+    }
+    else
+    {
+        <button id="roleadmin_@Model.MAUV" value="1" class="roleadmin btn btn-success"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>  </span>Admin</button>
+    }*@
+    @if (Model.Tinhtrang != 1)
+    {
+        <button id="status_@Model.MAUV" value="1" class="statusjob btn btn-primary"><i class="fa fa-user" aria-hidden="true"></i><span>  </span>Kích hoạt</button>
+    }
+    else
+    {
+        <button id="status_@Model.MAUV" value="0" class="statusjob btn btn-primary"><i class="fa fa-user" aria-hidden="true"></i><span>  </span>Hủy Kích hoạt</button>
+    }
+    @if (Model.Tinhtrang == -1)
+    {
+        <button id="delete_@Model.MAUV" value="0" class="deletejob btn btn-danger"><i class="fa fa-angle-down" aria-hidden="true"></i><span>  </span>Phục hồi</button>
+    }
+    else
+    {
+        <button id="delete_@Model.MAUV" value="1" class="deletejob btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i><span>  </span>Xóa Ứng viên này</button>
+    }
+    <a id="listjobformember" href="/member/acmember?mauv=7032" class="btn btn-default"><i class="fa fa-list" aria-hidden="true"></i><span>  </span>Việc làm đã ứng tuyển</a>
+    @if (Model.Hosoupload != null)
+    {
+        <a id="download-resume-button" href="/Profile_upload/@Model.Hosoupload" class="btn btn-sm btn-default">
+            <i class="fa fa-download" aria-hidden="true"></i> Tải hồ sơ
+        </a>
+    }
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a href="#">Quản lý ứng viên</a></li>
+        <li class="active">Chi tiết ứng viên</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="box">
+            <div class="col-lg-10 col-lg-offset-1">
+                <div class="col-md-2"></div>
+                
+
+            </div>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <!--Start Resume-->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="ibox">
+                                            <div id="contact-3">
+
+                                                <div class="ibox">
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <div class="m-b-sm m-t-lg text-center">
+                                                                @if (Model.Hinhanh != null)
+                                                                {
+                                                                    <img alt="@Model.Chucdanh" src="~/Profile_upload/@Model.Hinhanh" style="width: 100%">
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="fa fa-3x fa-user"></i>
+                                                                }
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-sm-9 m-t">
+                                                            <h2>@Model.Chucdanh</h2>
+
+                                                            <!--Viewed Contact Information-->
+                                                            <div class="contact-detail gray-light">
+                                                                <p class="m-b">
+                                                                    @Model.Thanhpho
+                                                                </p>
+                                                            </div>
+                                                            <!--Viewed Contact Information-->
+                                                            <p class="m-t small gray-light">
+                                                                <span><i class="fa fa-fw fa-eye"></i> Lượt xem: @Model.Luotxem </span>
+                                                                <span class="m-l"><i class="fa fa-fw fa-calendar"></i> Cập nhật ngày: @if (Model.Ngaycapnhat != null) { <span>@Model.Ngaycapnhat.Value.ToString("dd/MM/yyyy HH:mm")</span> }</span>
+                                                            </p>
+                                                            <!--Not View Contact Detail -->
+                                                            <div class="row contact-default">
+                                                                <h1>Thông Tin Liên Hệ</h1>
+                                                                <div class="col-md-6">
+                                                                    <label>Họ và Tên: </label><span> @Model.Hovatendem @Model.Ten</span><br>
+                                                                    <label>Số điện thoại: </label><span> @Model.Dienthoai1</span><br>
+                                                                    <label>Địa chỉ Email: </label><span> @Model.EmailLH</span><br>
+
+                                                                    <label>Hôn nhân: </label>
+                                                                    @if (Model.Honnhan == 1)
+                                                                    {
+                                                                        <span>Độc thân</span>
+                                                                    }
+                                                                    else
+                                                                    {<span>Đã kết hôn</span>}<br>
+
+                                                                </div>
+                                                                <div class="col-md-6">
+
+                                                                    <label>Ngày sinh :</label>@if (Model.Ngaysinh != null)
+                                                                    { <span>@Model.Ngaysinh.Value.Date.ToString("dd/MM/yyyy")</span>}<br>
+                                                                    <label>Ngày Đăng ký thành viên: </label><span> @Model.Ngaydangky.Value.Date.ToString("dd/MM/yyyy")</span><br>
+                                                                    <label>Địa chỉ hiện tại: </label><span> @Model.Diachihientai</span><br>
+                                                                    <label>Giới tính: </label>
+                                                                    @if (Model.Gioitinh == 1)
+                                                                    {
+                                                                        <span>Nam</span>
+                                                                    }
+                                                                    else
+                                                                    {<span>Nữ</span>}<br>
+                                                                    <!-- Contact Me Popup -->
+                                                                </div>
+                                                                <!-- /.modal -->
+                                                                <!--/ Contact Me Popup -->
+                                                                <h1>Giới thiệu về bản thân</h1>
+                                                                @muctieu
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <!-- General-->
+                                        <div class="ibox">
+                                            <div class="ibox-content">
+                                                <h2><i class="fa fa-fw fa-list"></i> Thông Tin Chung</h2>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table class="table m-b-xs m-t">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="40%">
+                                                                        <strong>Có kỹ năng</strong>
+                                                                    </td>
+                                                                    <td width="60%">
+                                                                        @foreach (var item in db.KyNangUVs.Where(x => x.MAUV == Model.MAUV).ToList())
+                                                                        {
+                                                                            <span>@item.TenKN</span><span>,</span>
+                                                                        }
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td width="40%">
+                                                                        <strong>Bằng cấp cao nhất</strong>
+                                                                    </td>
+                                                                    <td width="60%">
+                                                                        @db.ThongTinDaoTaos.Where(x => x.MaUV == Model.MAUV).Select(x => x.Hocvan).FirstOrDefault()
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <strong>Số năm kinh nghiệm</strong>
+                                                                    </td>
+                                                                    <td>
+                                                                        @Model.Namkinhnghiem
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <strong>Kỹ năng ngôn ngữ</strong>
+                                                                    </td>
+                                                                    <td>
+                                                                        @foreach (var item in db.NgonNguUVs.Where(x => x.MAUV == Model.MAUV).ToList())
+                                                                        {
+                                                                            <span>@item.Ten<span>(@item.Tentrinhdo)</span>,</span>
+                                                                        }
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <strong>Công việc gần đây nhất</strong>
+                                                                    </td>
+                                                                    <td>
+                                                                        @db.ThongTinNgheNghieps.Where(x => x.MaUV == Model.MAUV).Select(x => x.Capbachientai).FirstOrDefault()
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <strong>Công ty gần đây nhất</strong>
+                                                                    </td>
+                                                                    <td>
+                                                                        @db.ThongTinNgheNghieps.Where(x => x.MaUV == Model.MAUV).Select(x => x.Congtylamviecganday).FirstOrDefault()
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <strong>Vị trí mong muốn</strong>
+                                                                    </td>
+                                                                    <td>
+                                                                        @db.CVmongmuons.Where(x => x.MaUV == Model.MAUV).Select(x => x.CBmongmuon.Ten).FirstOrDefault()
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <strong>Nơi làm việc mong muốn</strong>
+                                                                    </td>
+                                                                    <td>
+                                                                        @db.cities.Where(x => x.Id == db.CVmongmuons.Where(y => y.MaUV == Model.MAUV).Select(y => y.Thanhpho1).FirstOrDefault()).Select(x => x.City1).FirstOrDefault()
+                                                                        @db.cities.Where(x => x.Id == db.CVmongmuons.Where(y => y.MaUV == Model.MAUV).Select(y => y.Thanhpho2).FirstOrDefault()).Select(x => x.City1).FirstOrDefault()
+                                                                        @db.cities.Where(x => x.Id == db.CVmongmuons.Where(y => y.MaUV == Model.MAUV).Select(y => y.Thanhpho3).FirstOrDefault()).Select(x => x.City1).FirstOrDefault()
+                                                                    </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <strong>Ngành nghề/Chức năng mong muốn</strong>
+                                                                    </td>
+                                                                    <td>
+                                                                        @db.NghanhNghes.Where(x => x.Id == db.CVmongmuons.Where(y => y.MaUV == Model.MAUV).Select(y => y.Nghanhnghe1).FirstOrDefault()).Select(x => x.Tennghanh).FirstOrDefault()
+                                                                        @db.NghanhNghes.Where(x => x.Id == db.CVmongmuons.Where(y => y.MaUV == Model.MAUV).Select(y => y.Nghanhnghe2).FirstOrDefault()).Select(x => x.Tennghanh).FirstOrDefault()
+                                                                        @db.NghanhNghes.Where(x => x.Id == db.CVmongmuons.Where(y => y.MaUV == Model.MAUV).Select(y => y.Nghanhnghe3).FirstOrDefault()).Select(x => x.Tennghanh).FirstOrDefault()
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <strong>Mức lương mong muốn tối thiểu</strong>
+                                                                    </td>
+                                                                    <td>
+                                                                        @if (@db.CVmongmuons.Where(x => x.MaUV == Model.MAUV).Select(x => x.USD).FirstOrDefault() == 0)
+                                                                        {
+                                                                            <span>Thương lượng</span>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            @db.CVmongmuons.Where(x => x.MaUV == Model.MAUV).Select(x => x.USD).FirstOrDefault()<span>USD</span>
+                                                                        }
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ibox">
+                                            <div class="ibox-content">
+                                                <h2 style="font-weight: bold;color: #006CB6;">
+                                                    Kinh nghiệm làm việc
+                                                </h2>
+                                                <div class="col-md-12">
+                                                    @foreach (var item in Model.ThongTinNgheNghieps)
+                                                    {
+                                                        IHtmlString mota = new HtmlString(item.Mucdoquantam);
+                                                        string fromday = "Chưa chọn ngày";
+                                                        if (item.Fromday != null)
+                                                        {
+                                                            fromday = item.Fromday.Value.Month + "/" + item.Fromday.Value.Year + " - ";
+                                                            if (item.Hiennay != 1)
+                                                            {
+                                                                fromday += item.Today.Value.Month + "/" + item.Today.Value.Year;
+                                                            }
+                                                            else
+                                                            {
+                                                                fromday += "Hiện nay";
+                                                            }
+                                                        }
+                                                        <h3>Chức Vụ: @item.Capbachientai</h3>
+                                                        <h3>Công ty: @item.Congtylamviecganday</h3>
+                                                        <h3 class="nobold">
+                                                            Thời gian: @fromday
+                                                        </h3>
+                                                        <h4 class="nobold">@mota</h4>
+                                                        <hr />
+                                                    }
+                                                </div>
+                                            </div>
+                                            <!-- End ex-->
+                                        </div>
+                                        <div class="ibox">
+                                            <div class="ibox-content">
+                                                <h2 style="font-weight: bold;color: #006CB6;">
+                                                    Học Vấn Bằng Cấp
+                                                </h2>
+                                                <div class="col-md-12">
+                                                    @foreach (var item in Model.ThongTinDaoTaos)
+                                                    {
+                                                        IHtmlString mota = new HtmlString(item.Thanhtuu);
+                                                        string fromday = "Chưa chọn ngày";
+                                                        if (item.Tuthang != null && item.Denthang != null)
+                                                        {
+                                                            fromday = item.Tuthang.Value.Month + "/" + item.Tuthang.Value.Year + " - " + item.Denthang.Value.Month + "/" + item.Denthang.Value.Year;
+                                                        }
+                                                        <h3>Chuyên nghành: @item.Chuyennghanh</h3>
+                                                        <h3>Trường: @item.Tentruong</h3>
+                                                        <h3 class="nobold">
+                                                            Thời gian: @fromday
+                                                        </h3>
+                                                        <h4 class="nobold">@mota</h4>
+                                                        <hr />
+                                                    }
+                                                </div>
+                                            </div>
+                                            <style>
+                                                .nobold{
+                                                    word-break:break-all;
+                                                }
+                                            </style>
+                                            <!-- End ex-->
+                                        </div>
+                                        <!-- End General-->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="page-break"></div>
+                                        <!-- Cover Letter -->
+                                        <!-- End Cover Letter -->
+                                    </div>
+                                </div>
+                                <!--End Resume-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+</section>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+
+            </div>
+            <div class="modal-body tontai">
+                <h4 class="modal-title col-md-10" id="exampleModalLabel">Bạn có muốn hủy kích hoạt việc làm này</h4>
+                <input id="c_macv" value="" hidden />
+                <input id="actionjob" value="" hidden />
+            </div>
+            <div id="footer" class="modal-footer">
+                <button id="cancle_hide" type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button id="confirm_hide" class="btn btn-primary">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        function getvalueexcute(form, action) {
+            var val = $(form).val();
+            var id = $(form).attr("id");
+            var mauv = id.split("_")[1];
+            if (mauv == null) {
+                mauv = id;
+            }
+            if (form.checked) {
+                val = 1;
+            }
+            if (action == 3 && val == 1) {
+                $("#myModal1").modal("show");
+                $(".modal-title").html("Bạn có muốn Xóa Ứng viên này không");
+                $("#c_macv").val(mauv);
+                $("#actionjob").val(3);
+            }
+            if (action == 1 && val == 1) {
+                $("#myModal1").modal("show");
+                $(".modal-title").html("Kích hoạt tài khoản Admin");
+                $("#c_macv").val(mauv);
+                $("#actionjob").val(1);
+            }
+            if (action == 2 && val == 0) {
+                $("#myModal1").modal("show");
+                $(".modal-title").html("Bạn có muốn hủy kích hoạt ứng viên này không");
+                $("#c_macv").val(mauv);
+                $("#actionjob").val(2);
+            }
+            else if (action==2&&val == 1||action==1&&val==0||action==3&&val==0) {
+                $.ajax({
+                    url: "/ManagerMemberAdmin/ChangeStatus",
+                    type: "POST",
+                    dataType: "json",
+                    data: { "val": val, "action": action, "mauv": mauv },
+                    success: function (data) {
+                        if (data.status == 0) {
+                            location.reload();
+                        }
+                        location.reload();
+                            
+
+                    },
+                    error: function () {
+                        location.reload();
+                    }
+                })
+            }
+
+        }
+        $(document).on("click", ".roleadmin", (function () {
+            getvalueexcute(this, 1);
+        }))
+        $(document).on("click", ".statusjob", (function () {
+            getvalueexcute(this, 2);
+
+        }))
+        $(document).on("click", ".deletejob", function () {
+            getvalueexcute(this, 3);
+
+        })
+        $("#confirm_hide").click(function () {
+            var mauv = $("#c_macv").val();
+            var val = 1;
+            var action = $("#actionjob").val();
+            if (action == 2)
+                val = 0;
+            $.ajax({
+                url: "/ManagerMemberAdmin/ChangeStatus",
+                type: "POST",
+                dataType: "json",
+                data: { "val": val, "action": action, "mauv": mauv },
+                success: function (data) {
+                    if (data == 0) {
+                        location.reload();
+                    }
+                    location.reload();
+                },
+                error: function () {
+                    location.reload();
+                }
+            })
+        })
+        //$("#cancle_hide").click(function () {
+        //    var macv = $("#c_macv").val();
+        //    var action = $("#actionjob").val();
+        //    if (action == 1)
+        //        $('#roleadmin_' + macv).attr('checked', false);
+        //    if (action == 3)
+        //        $('#delete_' + macv).attr('checked', false);
+        //    if (action == 2)
+        //        $('#status_' + macv).prop('checked', true);
+        //})
+        //$('#myModal1').on('hide.bs.modal', function () {
+        //    var macv = $("#c_macv").val();
+        //    var action = $("#actionjob").val();
+        //    if (action == 1)
+        //        $('#roleadmin_' + macv).attr('checked', false);
+        //    if (action == 3)
+        //        $('#delete_' + macv).attr('checked', false);
+        //    if (action == 2)
+        //        $('#status_' + macv).prop('checked', true);
+        //})
+    })
+</script>
+<style>
+    .content span{
+        font-size:17px;
+    }
+    .content td{
+        font-size:17px;
+    }
+</style>

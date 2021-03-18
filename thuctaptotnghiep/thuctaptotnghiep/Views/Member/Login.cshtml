@@ -1,0 +1,75 @@
+﻿@model thuctaptotnghiep.Models.Member
+@{
+    ViewBag.Title = "Đăng Nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Uri myUri = new Uri(Request.Url.ToString());
+    string host = myUri.Host; 
+}
+<div id="vnw-log-in" class="container main-content">
+    <div class="col-sm-12">
+        <div class="box box-lg">
+            <div class="alert alert-danger" id="err_top" style="display: none"><strong class="sprite_icon errorIcon"> Sorry, there are errors with the information you provided. Please scroll down to check for errors.</strong></div>
+            <h1 class="text-center">Đăng Nhập</h1>
+            <div class="text-center push-top-xs">Đăng nhập hoặc đăng ký thành viên nhanh bằng tài khoản</div>
+            <div class="social-bar text-center">
+                <a href="/Member/LoginFacebook">
+                    <button class="btn btn-md btn-facebook push-top-xs">
+
+                        <span class="icon-facebook"></span> <span> Facebook</span>
+
+                    </button>
+                </a>
+                <button style="display:none;" class="btn btn-md btn-google push-top-xs">
+
+                            @Html.Partial("_ExternalLoginsListPartial", new demo.Models.ExternalLoginListViewModel { Action = "ExternalLogin", ReturnUrl = Request.Params["ReturnUrl"] })
+                </button>
+            </div>
+            <!-- Begin Content-->
+            @using (Html.BeginForm("Login", "Member",FormMethod.Post, new { @class = "form-horizontal",@id="frmSignUp"}))
+            {
+                
+               <fieldset class="push-top-xs">
+                    <hr>
+                    <p class="text-center">Đăng nhập bằng tài khoản của @host</p><br>
+                    @Html.AntiForgeryToken()
+                   @Html.ValidationSummary(true, null, new { @class="error"})
+                   <h5 style="text-align:center;color:red;" class="error">@ViewBag.Error</h5>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                            @Html.TextBoxFor(model => model.EmailDN, new { @class = "form-control", @placeholder = "Nhập địa chỉ email của bạn", @id = "form_username",@tabindex="1",@required="required" })  
+                            @*<input type="text" id="form_username" name="form[username]" required="required" placeholder="Nhập địa chỉ email của bạn" tabindex="1" class="form-control">*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                            @Html.PasswordFor(model => model.Matkhau, new { @class = "form-control", @placeholder = "Nhập mật khẩu", @id = "form_password", @tabindex = "1",@required="required" })
+                            @*<input type="password" id="form_password" name="form[password]" required="required" placeholder="Nhập mật khẩu" tabindex="2" class="form-control">*@
+                            <span class="pull-right push-top-xs small"><a href="@Url.Action("ForGotPassWordMember", "ResetPassWord")">Quên mật khẩu?</a></span>
+                        </div>
+                    </div>
+                    <!-- Buttons-->
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-6">
+                            <button name="callback" value="@Request.Params["ReturnUrl"]" type="submit" id="form_sign_in" tabindex="3" class="btn btn-primary btn-block">Đăng Nhập</button>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <p class="text-center">
+                        Bạn chưa có tài khoản?
+                        <a class="register" href="@Url.Action("Register","Member")">Đăng kí ngay!</a>
+                    </p>
+                </fieldset>
+            }   
+        </div>
+    </div>
+</div>
+<style>
+    .error ul{
+        list-style:none;
+        text-align:center;
+        color:red;
+        padding-right:35px;
+    }
+</style>
+

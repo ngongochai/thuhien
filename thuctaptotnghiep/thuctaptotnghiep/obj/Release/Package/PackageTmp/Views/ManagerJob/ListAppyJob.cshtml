@@ -1,0 +1,404 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@using Model.Framework
+@model PagedList.PagedList<Model.Framework.UVDangKy>
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    ViewBag.Title = "Danh sách việc làm đã mời phỏng vấn";
+    Layout = "~/Views/Shared/_LayoutEmployer.cshtml";
+    int macv = int.Parse(ViewData["MACV"].ToString());
+    var datacongviec = db.DangTinViecLams.Where(x => x.MACV == macv).FirstOrDefault();
+}
+<link href="~/Content/build.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-select.min.js"></script>
+<div class="wrapper wrapper-content">
+    <div class="row current-online">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row">
+                        <h2 style="text-align:center;">Danh sách Ứng viên đã mời phỏng vấn cho vị trí<span style="color:black;"> @datacongviec.TenCV-@datacongviec.MACV</span></h2>
+                        @*<div class="col-sm-8">
+                                <p class="filters m-t-sm">
+                                    <a href="/Employer/ActiveJob">
+                                        <span class="btn btn-xs btn-primary btn-rounded">
+                                            Đang hiển thị (@ViewBag.Active)
+                                        </span>
+                                    </a>
+                                    <a href="/Employer/ListJob">
+                                        <span class="btn btn-xs btn-default btn-rounded">
+                                            Đợi kích hoạt (@ViewBag.InActive)
+                                        </span>
+                                    </a>
+                                    <a href="/Employer/HideJob">
+                                        <span class="btn btn-xs btn-default btn-rounded">
+                                            Đang ẩn (@ViewBag.HideJob)
+                                        </span>
+                                    </a>
+                                    <a href="/Employer/Expired">
+                                        <span class="btn btn-xs btn-default btn-rounded">
+                                            Đã Hết hạn
+                                        </span>
+                                    </a>
+                                </p>
+                            </div>*@
+                        @*<div class="col-sm-4 search-my-job">
+                                <form role="form" method="get" name="filters" id="frmFilters">
+                                    <div class="input-group m-b">
+                                        <input type="text" tabindex="1" name="filters[keyword]" id="filters_keyword" value="" placeholder="Từ khóa. Ví dụ: PHP Developer" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-white call-dropdown-search" type="button"><span class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-search pull-right slideDownReverse">
+                                                <div class="form-group">
+                                                    <div class="input-group col-sm-12">
+                                                        <h4>Tìm kiếm theo ngành nghề:</h4>
+                                                        <div class="select2-container text-box-border" id="s2id_filters_category" style="width: 100%;"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-1">Vui lòng chọn</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen1" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-1" id="s2id_autogen1" tabindex="2"><div class="select2-drop select2-display-none select2-with-searchbox">   <div class="select2-search">       <label for="s2id_autogen1_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-1" id="s2id_autogen1_search" placeholder="">   </div>   <ul class="select2-results" role="listbox" id="select2-results-1">   </ul></div></div><select tabindex="-1" name="filters[category]" id="filters_category" class="form-control select2-sing" title="" style="display: none;">
+                                                            <option value="">Vui lòng chọn</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group col-sm-12">
+                                                        <h4>Tìm kiếm theo nơi làm việc:</h4>
+                                                        <div class="select2-container text-box-border" id="s2id_filters_location" style="width: 100%;"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-2">Vui lòng chọn</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen2" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-2" id="s2id_autogen2" tabindex="3"><div class="select2-drop select2-display-none select2-with-searchbox">   <div class="select2-search">       <label for="s2id_autogen2_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-2" id="s2id_autogen2_search" placeholder="">   </div>   <ul class="select2-results" role="listbox" id="select2-results-2">   </ul></div></div><select tabindex="-1" name="filters[location]" id="filters_location" class="form-control select2-sing" title="" style="display: none;">
+                                                            <option value="66">Khác</option>
+                                                            <option value="70">Quốc tế</option>
+                                                            <option value="72">Hậu Giang</option>
+                                                            <option value="73">Đắk Nông</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group text-right m-n">
+                                                    <button class="btn btn-primary" tabindex="4" id="filters_search_2_btn" type="button"><i class="fa fa-search"></i> Tìm kiếm</button>
+                                                </div>
+                                            </ul>
+                                            <button class="btn btn-primary" tabindex="4" id="filters_search_btn" type="button"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>*@
+                    </div>
+
+                    <div class="row">
+                        @*<button type="button" class="btn btn-default" id="listblack"><i class="fa fa-fw fa-ban"></i>Vào danh sách đen</button>*@
+                        <button type="button" class="btn btn-danger" id="deletdk"><span style="margin-right: 10px;" class="glyphicon glyphicon-trash" aria-hidden="true"></span>Xóa</button>
+
+                    </div>                    <div class="row">
+                        <div id="grid-job-list" class="col-sm-12">
+                            <table class="table table-job-list">
+                                <thead>
+                                    <tr>
+                                        <th>
+
+                                            <div class="checkbox checkbox-success checkbox-inline">
+                                                <input type="checkbox" name="Luongthoathuan" class="styled" id="allcheck">
+                                                <label for="allcheck"></label>
+                                            </div>
+                                        </th>
+                                        <th class="col-expiry">
+                                            Ứng Viên
+                                            - ID
+                                        </th>
+                                        <th class="col-job-title">Chức Danh-ID</th>
+                                        <th class="col-expiry">Ngày ứng tuyển</th>
+                                        <th class="col-view text-center">Kinh nghiệm</th>
+                                        <th class="col-expiry">Trạng thái</th>
+                                        <th class="col-job-title">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox checkbox-success checkbox-inline">
+                                                    <input type="checkbox" name="delete" class="styled" id="inlineCheckbox2" value="@item.MAUV">
+                                                    <label for="inlineCheckbox2"></label>
+                                                </div>
+                                            </td>
+                                            <td class="job-labels">
+                                                <a href="@Url.Action("DetailMember", "ManagerJob", new { id = item.UngVien.MAUV, madk = item.Id })" class="job-title"><strong>@item.UngVien.Hovatendem @item.UngVien.Ten-@item.UngVien.MAUV</strong></a>
+                                                <div class="job-location">
+                                                    @item.UngVien.Thanhpho
+                                                </div>
+                                                <div class="actions job-actions">
+                                                </div>
+                                            </td>
+                                            <td class="job-info"><a href="/Employer/EditJob?id=@item.DangTinViecLam.MACV">@item.DangTinViecLam.TenCV - @item.DangTinViecLam.MACV</a></td>
+                                            <td class="job-labels">@item.Ngaydangky.Value.Date.ToString("dd/MM/yyyy")</td>
+                                            <td class="job-view">
+                                                <span><strong>@item.UngVien.Namkinhnghiem</strong></span>
+                                            </td>
+                                            <td class="job-labels">
+                                                @if (item.Trangthai == 2)
+                                                {
+                                                <span>Đã mời phỏng vấn</span>
+                                                <span style="cursor:pointer;color:blue" id="viewmessage_@item.Id" class="text-center glyphicon glyphicon-comment" aria-hidden="true"><span class="count_number">1</span></span>
+                                                <div class="modal fade" id="myModal_@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h2 class="modal-title col-md-10" id="exampleModalLabel">Nội dung thư</h2>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form method="post" action="/ManagerJob/ApplyUV">
+                                                                <input id="madk" name="madk" value="@item.Id" hidden />
+                                                                <div class="modal-body">
+                                                                    @{IHtmlString muctieu = new HtmlString(item.Tinnhan);
+                                                                    var strreq = item.Tinnhan.Replace("<br />", "\n");
+                                                                    }
+                                                                    <textarea style="height:300px" class="form-control" name="notes" id="notes">@strreq</textarea>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                                    <button type="submit" id="editmess" class="btn btn-primary">Lưu Lại</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                }
+                                                else if (item.Trangthai == 1)
+                                                {
+                                                    <span>Đã xem</span>
+                                                }
+                                                else if (item.Trangthai == 0)
+                                                {
+                                                    <span>Chưa xem</span>
+                                                }
+                                                else if (item.Trangthai == 3)
+                                                {
+                                                    <span>Không đạt</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Phỏng vấn thành công</span>
+                                                }
+                                            </td>
+                                            <td class="job-labels">
+                                                <input id="mauv_@item.Id" value="@item.MAUV" hidden />
+                                                <select id="action_@item.Id" class="selectpicker">
+                                                    @if (item.Trangthai == 2)
+                                                    {
+                                                        <option value="0">chọn</option>
+                                                        <option value="5">Hủy mời phỏng vấn</option>
+                                                        <option value="4">Phỏng vấn thành công</option>
+                                                        <option value="3">Không đạt</option>
+                                                        <option value="5">Làm mới ứng viên</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="0">chọn</option>
+                                                        <option value="2">mời phỏng vấn</option>
+                                                        <option value="3">Không đạt</option>
+                                                        <option value="5">Làm mới ứng viên</option>
+                                                    }
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                            <div>
+                                <div class="text-center">
+                                    <input id="macv" hidden value="@datacongviec.MACV" />
+                                    <input id="total-page" value="@Convert.ToInt32(ViewData["page"])" hidden>
+                                    <div style="width:100%;">
+                                        <ul style="width:50px !important;" id="pagination-demo" class="pagination-sm"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin:5px auto;width:300px;">@Html.PagedListPager(Model, page => Url.Action("ListAppyJob", new { page = page, curentfiter = ViewBag.curentfiter, macv = datacongviec.MACV }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title col-md-10" id="exampleModalLabel">Thư mời phỏng vấn</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/ManagerJob/ApplyUV" method="post">
+                    <input id="id" name="id" value="" hidden />
+                    <input id="madk" name="madk" value="" hidden />
+                    <div class="form-group">
+                        <label for="recipient-name" class="form-control-label">Nội dung:</label>
+                        <textarea style="height:300px" class="form-control" name="notes" id="notes"></textarea>
+                        <label id="note_error" class="error" style="display:none">Vui lòng nhập thư để gửi cho ứng viên</label>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" id="confirmuv" class="btn btn-primary">Xác Nhận</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title col-md-10" id="exampleModalLabel">Bạn có muốn xóa ứng viên này không</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" id="confirmdelete" class="btn btn-primary">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        $("#allcheck").click(function () {
+            $('input:checkbox').not(this).prop('checked', this.checked);
+        });
+        $('select').on('change', function (e) {
+            var status = $(this).val();
+            var input = $(this).attr("id");
+            var id = input.replace(/\D+/g, '');
+            var mauv = $("#mauv_" + id).val();
+            if (status == 2) {
+                $('#myModal1').modal('show');
+                $("#madk").val(id);
+                $("#id").val(mauv);
+                $('#confirmuv').click(function () {
+                    if ($("#notes").val() == "") {
+                        $("#note_error").css("display", "block");
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                })
+            }
+            else {
+                $.ajax({
+                    url: "/ManagerJob/ChangeStatus",
+                    type: "POST",
+                    dataType: "json",
+                    data: { "status": status, "madk": id },
+                    success: function (data) {
+                        if (data == 1) {
+                             swal({
+                            title: "Đã Gửi Mail!",
+                            text: "Chúng tôi đã gửi một email thông báo đến ứng viên!",
+                            type: "success",
+                            confirmButtonText: "OK"
+                        },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                location.reload();
+                            }
+                        });
+                        }
+                        else if (data == 0) {
+                             swal({
+                            title: "Lỗi!",
+                            text: "Đã xảy ra lỗi!",
+                            type: "error",
+                            confirmButtonText: "OK"
+                        },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                location.reload();
+                            }
+                        });
+                        }
+                        else if (data == 3) {
+                            location.reload();
+                        }
+                    },
+                    error: function (error) {
+                          swal({
+                            title: "Lỗi!",
+                            text: "Đã xảy ra lỗi!",
+                            type: "error",
+                            confirmButtonText: "OK"
+                        },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                location.reload();
+                            }
+                        });
+                    }
+                })
+            }
+
+        });
+        $("#deletdk").click(function () {
+            $('#myModal2').modal('show');
+        })
+        $("#confirmdelete").click(function () {
+            $('#myModal2').modal('show');
+            var val = [];
+            var macv = $("#macv").val();
+            $(':checkbox:checked').each(function (i) {
+                val[i] = $(this).val();
+            })
+            if (val.length != 0) {
+                $.ajax({
+                    url: "/ManagerJob/DeleteUV",
+                    type: "POST",
+                    dataType: "json",
+                    data: { "listdelete": val, "macv": macv },
+                    success: function (data) {
+                        location.reload();
+                    },
+                    error: function (error) {
+                        location.reload();
+                    }
+                })
+            }
+            else {
+                $('#myModal2').modal("hide");
+            }
+        })
+        $(".glyphicon-comment").click(function () {
+            var id = $(this).attr("id");
+             id = id.replace(/\D+/g, '');
+            $('#myModal_'+id).modal('show');
+        })
+        $('#editmess').click(function () {
+            if ($("#notes").val() == "") {
+                $("#note_error").css("display", "block");
+                return false;
+            }
+            else {
+                var mess = $("#notes").val();
+                mess = mess.replace(/\r?\n/g, '<br />');
+                $("#notes").val(mess);
+                return true;
+            }
+        })
+    })
+</script>
+<style>
+    .count_number {
+        color: red;
+        position: absolute;
+        top: -7px;
+        /* font-weight: bold; */
+        border-radius: 21px;
+        font-size: 15px;
+        left: 15px;
+    }
+</style>c

@@ -1,0 +1,214 @@
+﻿@model IList<Model.Framework.categorynew>
+@{
+    ViewBag.Title = "Danh mục tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section script_table{
+    <script src="~/Areas/Admin/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Content/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                //"orderSequence": ["desc", "asc"],
+                //"ordering": ["asc", "desc"],
+                "aaSorting": [[0, 'desc']],
+                "info": true,
+                "autoWidth": true
+            });
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                //"orderSequence": ["desc", "asc"],
+                //"ordering": ["asc", "desc"],
+                "aaSorting": [[0, 'desc']],
+                "info": true,
+                "autoWidth": true
+            });
+        });
+    </script>
+}
+<section class="content-header">
+    <h1>
+        Quản lý Danh Mục Tin Tức
+        <small>Tin Tức</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
+        <li class="active">Danh sách Danh mục tin tức</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            @*@Html.Action("ListJobNotActive", "ManagerJobAdmin")*@
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh mục tin tức</h3>
+                    <a href="@Request.QueryString" class="btn btn-default">Làm Mới</a>
+                    <a href="@Url.Action("CreateNews","ManagerNews")" class="btn btn-success">Thêm Tin mới</a>
+                    <button class="btn btn-success" id="addcategoryparent">Thêm danh mục tin tức</button>
+                    <div style="display:none;margin:10px;" class="toggleadd">
+                        <div class="col-md-4"><input id="categoryname" placeholder="Nhập tên danh múc tin tức" type="text" class="form-control" /></div>
+                        <div class="col-md-4">
+                            <button class="btn btn-success" id="confirmadd">Lưu Lại</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="sorting_desc" style="width:1%">
+                                    ID<br />
+
+                                </th>
+                                <td>Tên Loại tin</td>
+                                <td>Vị trí</td>
+                                <td>Hiển thị trang chủ</td>
+                                <td>Hoạt động</td>
+                                <td>Thứ tự hiển thị</td>
+                                <td>#</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr id="deletecateogry_@item.categoryId">
+                                    <td>@item.categoryId</td>
+                                    <td id="categoryName_@item.categoryId" ondblclick="editcategory('categoryName_@item.categoryId',@item.categoryId,'categoryName')"><a href="@Url.Action("ListNewsForCategory", "ManagerNews", new {categoryid=item.categoryId })">@item.categoryName</a></td>
+                                    <td id="position_@item.categoryId" ondblclick="editcategory('position_@item.categoryId',@item.categoryId,'position')">@item.position</td>
+                                    <td id="show_@item.categoryId">
+                                        @if (@item.showonhomepage == true)
+                                        {<input onclick="check(@item.categoryId,'showonhomepage')" checked id="showonhomepage_@item.categoryId" type="checkbox" /> }
+                                        else
+                                        {
+                                            <input onclick="check(@item.categoryId,'showonhomepage')" id="showonhomepage_@item.categoryId" type="checkbox" />
+                                        }
+                                    </td>
+                                    <td id="ac_@item.categoryId">
+                                        @if (@item.active == true)
+                                        {<input onclick="check(@item.categoryId,'active')" checked id="active_@item.categoryId" type="checkbox" /> }
+                                        else
+                                        {
+                                            <input onclick="check(@item.categoryId,'active')" id="active_@item.categoryId" type="checkbox" />
+                                        }
+                                    </td>
+                                    <td id="displayorder_@item.categoryId" ondblclick="editcategory('displayorder_@item.categoryId',@item.categoryId,'displayorder')">@item.displayorder</td>
+                                    <td class="deletecateogry" onclick="deletecategory(@item.categoryId)">Xóa</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<style>
+    .deletecateogry{
+        cursor:pointer;
+    }
+        .deletecateogry:hover{
+        background-color:red!important;
+        color:white;
+    }
+</style>
+<script>
+    $(document).on("click", "#addcategoryparent", function () {
+        $(".toggleadd").toggle();
+    })
+    $(document).on("click", "#confirmadd", function () {
+        var value = $("#categoryname").val();
+        if (value == "") {
+            alert("vui lòng nhập danh mục tin tức")
+        }
+        else {
+            $.ajax({
+                url: "/Admin/ManagerNews/CreateCategoryNews",
+                type: "POST",
+                dataType: "json",
+                data: { "name": value },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (data) { location.reload(); }
+            })
+        }
+    })
+</script>
+<script>
+    function editcategory(name, categoryid, nameedit) {
+        var id = "success(input_" + name + ")";
+        if (nameedit == "position" || nameedit == "displayorder") {
+            var input = $("<input>", { value: $("#" + name).text(), type: "number", id: "input_" + name, class: "" + nameedit, onblur: id, name: categoryid,min:0 });
+        }
+        else {
+            var input = $("<input>", { value: $("#" + name).text(), type: "text", id: "input_" + name, class: "" + nameedit, onblur: id, name: categoryid });
+        }
+
+        $("#" + name).html(input);
+    }
+    function success(name) {
+        var categoryid = name.name;
+        var id = name.id;
+        var nameedit = name.className;
+        var val = $("#" + id).val();
+        if(val=="")
+        {
+            alert("Không được phép để trống");
+        }
+        $.ajax({
+            url: "/Admin/ManagerNews/EditCategoryNews",
+            type: "POST",
+            dataType: "JSON",
+            data: { "content": val, "name": nameedit, "categoryid": categoryid },
+            success: function () {
+                $("#" + id).parent().html(val);
+            }
+        })
+    }
+    function check(categoryid, name) {
+        var id = name + "_" + categoryid;
+        var val;
+        if (document.getElementById('' + id).checked) {
+            val = 1;
+        }
+        else {
+            val = 0;
+        }
+        $.ajax({
+            url: "/Admin/ManagerNews/EditCategoryNews",
+            type: "POST",
+            dataType: "JSON",
+            data: { "content": val, "name": name, "categoryid": categoryid },
+            success: function () { }
+        })
+    }
+    function deletecategory(categoryid) {
+        var r = confirm("Bạn có chắc xóa không,Nếu xóa sẽ xóa hết tin tức nằm trong loại tin này")
+        if (r == true) {
+            $.ajax({
+                url: "/Admin/ManagerNews/RemoveCategoryNews",
+                type: "POST",
+                dataType: "JSON",
+                data: { "categoryid": categoryid },
+                success: function (data) {
+                    $("#deletecateogry_" + categoryid).html("");
+                }
+            })
+        }
+    }
+</script>
+
+

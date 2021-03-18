@@ -1,0 +1,231 @@
+﻿@model IEnumerable<Model.Framework.KyNangUV>
+<script src="~/Scripts/ui.job-search-suggestion.min.js"></script>
+<script src="~/Scripts/typeahead.bundle.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<div class="section-detail section-skills skill-section">
+    <input type="hidden" name="skillBlockresumeId" id="skillBlockresumeId" value="4387814">
+    <div class="box border-danger">
+        <fieldset class="form-view">
+            <!--<legend class="box-md text-gray-light" data-toggle="tooltip" title="Add skills to your profile to help employers understand your areas of knowledge and strenghts" data-placement='top'>-->
+            <legend class="box-md">
+                <i class="fa fa-fw fa-flash"></i> Kỹ năng
+            </legend>
+            <div class="box-md skill-section form-wrapper relative" id="skill">
+                <div class="skill-section">
+                    <span class="form-btn-edit" id="open-edit-skill">
+                        <button type="button" class="btn btn-sm btn-default">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                    </span>
+                    <div class="placeholder-section" hidden="">
+                        <span class="placeholder">Thêm kỹ năng nghề nghiệp đề nhận được những đề nghị công việc phù hợp hơn</span>
+                    </div>
+                    <div class="view-mode" id="skill-view-mode" style="display: block;">
+                        @foreach (var item in Model)
+                        {
+                         <span class="tag-xs" title="@item.TenKN">
+                            <span class="tag-name">@item.TenKN</span>
+
+                            <input class="input-tag-name" type="hidden" name="skills[]" value="@item.MAKN" data-tag-name="@item.TenKN">
+                        </span>
+                        }
+                    </div>
+                    <form class="form-horizontal" id="updateSkillFrm" action="/Member/Profile">
+                        <div class="edit-mode content-section relative" id="skill-edit-mode" hidden="">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="relative">
+                                        <div id="tags-edit">
+                                            @foreach (var item in Model)
+                                            {
+                                            <span class="tag-xs" title="@item.TenKN">
+                                                <span class="tag-name">@item.TenKN</span>
+                                                <a class="ic-close" href="~/Content/Profile/ho-so"><i class="fa fa-fw fa-remove"></i></a>
+                                                <input class="input-tag-name" type="hidden" name="skills[]" value="@item.MAKN" data-tag-name="@item.TenKN">
+                                            </span>
+                                            }
+                                        </div>
+                                        <div hidden="" id="key-skill-limit-error"><em class="text-orange">Số lượng kĩ năng bạn tạo đã đạt mức tối đa. Vui lòng bỏ bớt để tạo thêm.</em></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row edit-row" id="key-skill-input-wrapper">
+                                <div class="col-xs-9 col-sm-5">
+                                    <span class="twitter-typeahead" style="position: relative; display: block; direction: ltr;">
+                                    <input type="text" class="form-control edit-control input-sm typeahead tt-hint" maxlength="50" autofocus="" readonly="" autocomplete="off" spellcheck="false" tabindex="-1" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);">
+                                    <input type="text" id="key-skills" class="form-control edit-control input-sm typeahead tt-input" maxlength="50" autofocus="" placeholder="Hãy điền thông tin về lĩnh vực chuyên môn của bạn." autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Roboto, Helvetica, Verdana, Arial, sans-serif; font-size: 11px; font-style: italic; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none; right: auto;"><div class="tt-dataset-0"></div></span></span>
+                                    <div class="error-message" hidden="" id="key-skill-error">Vui lòng nhập Kỹ Năng.</div>
+                                    <div class="error-message" hidden="" id="key-skill-empty-error">Vui lòng nhập lĩnh vực chuyên môn.</div>
+                                </div>
+                                <div class="col-xs-3 col-sm-3">
+                                    <button type="button" class="btn btn-sm btn-default" id="btn-add-tag">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Save/Cancel Edit Skills -->
+                        <div class="clearfix push-top-sm">
+                            <div class="pull-right" id="edit-skill-actions" hidden="hidden">
+                                <button id="updateSkillProcessBtn" type="button" style="display: none;" class="btn-sending btn btn-default process-expected-skill">
+                                    <img src="~/Content/Profile/loading.gif" alt="">
+                                    Đang lưu
+                                </button>
+                                <button id="saveSkillInfoBtn" type="button" class="btn btn-primary pull-right save-expected-skill">Lưu</button>
+                                <button id="cancelSkillInfoBtn" type="button" class="btn btn-default pull-right cancel-expected-skill" onclick="mdlKeySkill.cancelSaveSkill()">Hủy</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!--/ Save/Cancel Edit Skills -->
+                </div>
+                <!--/ Skill Section -->
+            </div>
+            <button type="button" data-type="edit-only" class="btn hidden btn-default btn-block no-border add-one-more-section" style="display: inline-block;">
+                <strong>&nbsp;</strong>
+            </button>
+        </fieldset>
+    </div>
+</div>
+<script type="text/javascript">
+    var NoLimitSkill = '50';
+    var buttonCancelLabel = 'Hủy<';
+    var buttonSaveLabel = 'Lưu';
+    function addSkillForJobseeker(skillName) {
+        $('#key-skill-empty-error').attr('hidden', 'hidden');
+        $('#key-skills').parent('span').removeClass('has-error');
+        if (trim(skillName) == '') {
+            $('#btn-add-tag').find('i').removeClass('fa-spinner fa-pulse').addClass('fa-plus');
+            $('#key-skill-empty-error').removeAttr('hidden');
+            $('#key-skills').parent('span').addClass('has-error');
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/Member/UpdateSkill",
+                data: { action: 'add-skill', skillName: skillName },
+                dataType: "json",
+                success: function (data) {
+                    $('#btn-add-tag').find('i').removeClass('fa-spinner fa-pulse').addClass('fa-plus');
+                    if (data.status == 'SUCCESS') {
+                        $('#key-skill-limit-error').attr('hidden', 'hidden');
+                        var skillTagExist = false;
+                        $("#tags-edit input.input-tag-name[name='skills[]']").each(function () {
+                            if ($(this).val() == data.data.skillId) {
+                                skillTagExist = true;
+                                if (typeof ($(this).attr('disabled')) != 'undefined') {
+                                    $(this).removeAttr('disabled');
+                                    $(this).parent('span.tag-xs').css('display', '');
+                                }
+                            }
+                        });
+                        if (skillTagExist) {
+                            mdlKeySkill.highLightTag(data.data.skillId);
+                        } else {
+                            mdlKeySkill.addTag(data.data.skillId, data.data.skillName);
+                        }
+                        //addTag(data.data.skillId, data.data.skillName);
+                    } else if (data.status == 'ERROR') {
+                        if (data.statusCode == '404') {
+                            $('#key-skill-limit-error').removeAttr('hidden');
+                        } else {
+                            $('#errorMessage').slideDown();
+                            setTimeout(function () {
+                                $('#errorMessage').slideUp();
+                            }, 5000);
+                        }
+                    }
+                },
+                error: function (data) {
+                    $('#btn-add-tag').find('i').removeClass('fa-spinner fa-pulse').addClass('fa-plus');
+                }
+            });
+        }
+    }
+    $('#btn-add-tag').click(function () {
+        $(this).find('i').removeClass('fa-plus').addClass('fa-spinner fa-pulse');
+        addSkillForJobseeker($('#key-skills').val());
+    });
+    function showResponseSkillForm(data) {
+        $('#updateSkillProcessBtn').css('display', 'none');
+        $('#cancelSkillInfoBtn').css('display', '');
+        $('#saveSkillInfoBtn').css('display', '');
+        if (data.status == 'REDIRECT') {
+            window.location.href = data.redirectUrl;
+        } else if (data.status == 'VALIDATION_ERROR' || data.status == 'ERROR') {
+            $('#errorMessage').slideDown();
+            setTimeout(function () {
+                $('#errorMessage').slideUp();
+            }, 5000);
+        } else if (data.status == 'SUCCESS') {
+            mdlKeySkill.saveSkill();
+            //reloadProfileLevel();
+        }
+    }
+    var options = {
+        beforeSubmit: showRequestSkillForm,  // pre-submit callback
+        success: showResponseSkillForm,  // post-submit callback
+        type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+        dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+        data: { action: 'add-skill-jobseeker', resumeId: $('#skillBlockresumeId').val() }
+    };
+    function showRequestSkillForm(formData, jqForm, options) {
+        $('#key-skill-error').attr('hidden', 'hidden');
+        $('#key-skill-limit-error').attr('hidden', 'hidden');
+        if ($("#tags-edit input.input-tag-name[name='skills[]']").length > 0) {
+            var countSkill = 0;
+            $("#tags-edit input.input-tag-name[name='skills[]']").each(function () {
+                if ($(this).val() != "" && $(this).val() > 0) {
+                    if (typeof ($(this).attr('disabled')) == 'undefined') {
+                        countSkill = countSkill + 1;
+                    }
+                }
+            });
+            if (countSkill > 0) {
+                $('#saveSkillInfoBtn').css('display', 'none');
+                $('#cancelSkillInfoBtn').css('display', 'none');
+                $('#updateSkillProcessBtn').css('display', '');
+                return true;
+            } else if (countSkill > NoLimitSkill) {
+                $('#key-skill-limit-error').removeAttr('hidden');
+                return false;
+            } else {
+                $('#key-skill-error').removeAttr('hidden');
+                return false;
+            }
+        } else {
+            $('#key-skill-error').removeAttr('hidden');
+            return false;
+        }
+    }
+    $('#saveSkillInfoBtn').click(function (e) {
+        e.preventDefault(); // <-- important
+        $('#updateSkillFrm').ajaxSubmit(options);
+        return false;
+    });
+    //TypeAHead
+    $('#key-skills').autocomplete({
+        highlight: true,
+        minLength: 1,
+        maxLength: 10
+    },
+    {
+        source: function (q, cb) {
+            $('#btn-add-tag').find('i').removeClass('fa-plus').addClass('fa-spinner fa-pulse');
+            $.ajax({
+                url: '/Member/SkillCompelete',
+                type: 'POST',
+                dataType: 'JSON',
+                data: { str: q.term },
+                success: function (data) {
+                    var suggests = [];
+                    $.each(data, function (idx, elem) {
+                        if (idx < 10) {
+                            suggests.push({ value: elem });
+                        }
+                    });
+                    cb(suggests);
+                    $('#btn-add-tag').find('i').removeClass('fa-spinner fa-pulse').addClass('fa-plus');
+                }
+            });
+        }
+    });
+</script>

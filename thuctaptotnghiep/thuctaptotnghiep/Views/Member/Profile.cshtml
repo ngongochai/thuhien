@@ -1,0 +1,1021 @@
+﻿@model Model.Framework.UngVien
+@using Model.Framework;
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var city = db.cities;
+
+}
+
+
+<link href="~/Content/select2-bootstrap.css" rel="stylesheet" />
+<link href="~/Content/select2-bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/select2.js"></script>
+
+<!-- end google analytics -->
+
+<script type="text/javascript">
+    jQuery.curCSS = jQuery.css;
+</script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/js/html5shiv.3.7.0.js"></script>
+<script type="text/javascript" src="/js/respond.1.3.0.min.js"></script>
+<![endif]-->
+<style type="text/css">
+    .fancybox-margin {
+        margin-right: 17px;
+    }
+</style>
+<link rel="stylesheet" href="~/Content/Profile/skin.min.css">
+
+<!-- Modal Menu -->
+<!-- Notification Popover Content -->
+<!--/ Notification Popover Content -->
+<script>
+    $('.menu-toggler').click(function () {
+        $('#modal-menu').modal('show')
+    });
+</script>
+
+<script type="text/javascript" src="~/Content/Profile/cookie.min.js"></script>
+<script type="text/javascript" src="~/Content/Profile/modernizr.js"></script>
+
+<section class="main-content container my-profile">
+
+    <!--Inactive-->
+    <div class="row " id="profile-full">
+
+        <div class="col-xs-12 col-sm-8 col-md-9 box">
+            <div class="section-detail section-resume-header m-b">
+                <div class="box">
+                    <!-- Dialog Delete Resume-->
+                    <div class="modal fade" id="dialog-delete-resume" tabindex="-1" role="dialog" aria-labelledby="delete-confirmation" aria-hidden="true">
+                        <form id="deleteResumeConfirmForm" action="">
+                            <input type="hidden" name="resume_id" value="4387814">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button btn-sm" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true" tabindex="8">×</span>
+                                            <span class="sr-only">Đóng</span>
+                                        </button>
+                                        <strong class="modal-title" id="myModalLabel">Xác Nhận Xóa Hồ Sơ</strong>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Bạn có chắc chắn muốn xóa hồ sơ này?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" tabindex="9">Hủy</button>
+                                        <button type="button" class="btn btn-primary btn-sm" tabindex="10" onclick="deleteResume()">Vâng, xóa hồ sơ này</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Dialog Remove Avatar-->
+                    <div class="modal fade" id="dialog-remove-avatar" tabindex="-1" role="dialog" aria-labelledby="delete-confirmation" aria-hidden="true">
+                        <form id="removeAvatarForm" action="/Member/Uploadimage">
+                            <input type="hidden" name="resume_id" value="4387814">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button btn-sm" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true" tabindex="8">×</span>
+                                            <span class="sr-only">Đóng</span>
+                                        </button>
+                                        <strong class="modal-title" id="myModalLabel">Xác Nhận Xóa Hình Ảnh</strong>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Bạn có chắc chắn muốn xóa ảnh này?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" tabindex="9">Hủy</button>
+                                        <button type="button" class="btn btn-primary btn-sm remove-avatar-btn" tabindex="10" onclick="removeAvatarResume()">Vâng, xóa ảnh này</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Change Avatar Dialog -->
+                    <div class="modal fade" id="change-photo-modal">
+                        <form id="cropAvatarForm" method="post" action="/Member/Uploadimage">
+                            <input type="hidden" name="resume_id" value="4387814"> <input type="hidden" name="hash" id="cropAvatarHash">
+                            <div class="modal-dialog" style="width: 600px">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" onclick="cancelCrop()">
+                                            <span aria-hidden="true">×</span>
+                                            <span class="sr-only">Đóng</span>
+                                        </button>
+                                        <h4 class="modal-title">Thay đổi hình ảnh</h4>
+                                    </div>
+                                    <div class="modal-body push-top-xs">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p>Preview Image</p>
+                                                <div id="preview-pane">
+                                                    <div class="preview-container">
+                                                        <img id="crop-preview" src="~/Content/Profile/ho-so" class="jcrop-preview">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p>Vui lòng chọn vùng ảnh muốn giữ và ấn "Căt Ảnh".</p>
+                                                <div class="img-container">
+                                                    <img id="target" src="~/Content/Profile/ho-so" class="img-responsive">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cancelCrop()">Hủy</button>
+                                        <button type="button" class="btn btn-primary" onclick="cropAvatar()">Cắt Ảnh</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="user-info border-primary" id="user-info">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-3 center-block">
+                                <div class="form-wrapper relative no-edit-mode">
+                                    <div class="user-pic ">
+                                        <form id="uploadAvatarForm" method="post" action="/Member/Uploadimage">
+                                            <input type="hidden" name="resume_id" value="4387814">
+                                            <span class="form-btn-edit hidden-xs">
+                                                <button type="button" class="btn btn-sm btn-default">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                </button>
+                                            </span>
+                                            <div class="dropdown">
+                                                <a class="pic dropdown-toggle" data-toggle="dropdown" aria-expanded="true" id="pic-dropdown">
+                                                    <div id="img-user-pic" class="avatar img-circle">
+                                                        @if (Model.Hinhanh == null || Model.Hinhanh == "")
+                                                        {
+                                                            <div class="avatar-sample"><i class="fa fa-3x fa-user"></i></div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/Profile_upload/@Model.Hinhanh" class="img-responsive img-circle">
+                                                        }
+                                                    </div>
+                                                </a>
+                                                <span class="error-message block p-xs m-t-n-md text-center" id="errUploadAvatar" hidden="hidden">Định dạng file chỉ có thể là .jpg, .png và .gif, files phải nhỏ hơn 1MB.</span>
+                                                <span class="error-message block p-xs m-t-n-md text-center" id="errRequiredAvatar" hidden="hidden"><strong>Oops! </strong> Có lỗi đã xảy ra, vui lòng thử lại.</span>
+                                                <ul class="dropdown-menu hidden-xs" role="menu" aria-labelledby="pic-dropdown">
+                                                    <li role="presentation">
+                                                        <a role="menuitem" tabindex="-1" id="change-photo" class="relative block">
+                                                            <i class="fa fa-pencil fa-fw"></i>
+                                                            Tải hình ảnh
+                                                            <input id="avatar-upload" name="avatar" type="file" class="absolute-left transparent">
+                                                        </a>
+                                                    </li>
+                                                    <li role="presentation" hidden="" class="divider"></li>
+                                                    @if (Model.Hinhanh == null || Model.Hinhanh == "")
+                                                    {
+                                                        <li role="presentation" hidden="">
+                                                            <a role="menuitem" tabindex="-1" class="dropdown-remove-avatar-btn">
+                                                                <i class="fa fa-trash-o fa-fw"></i> Xóa ảnh này
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li role="presentation">
+                                                            <a role="menuitem" tabindex="-1" class="dropdown-remove-avatar-btn">
+                                                                <i class="fa fa-trash-o fa-fw"></i> Xóa ảnh này
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section-header hidden-section col-xs-8 col-sm-9">
+                                <form class="form-view form-wrapper" id="registrationInfoForm" name="registrationInfoForm" method="post" action="/Member/Profile">
+                                    <input type="hidden" name="resume_id" value="4387814">
+                                    <div class="relative box-md">
+                                        <span class="form-btn-edit">
+                                            <button type="button" class="btn btn-sm btn-default">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </button>
+                                        </span>
+                                        <div class="profile-info">
+                                            <div class="clearfix">
+                                                <div class="name pull-left">
+                                                    <div class="view-field">
+
+                                                        <h3 class="profile-name view-control text-orange">@Model.Hovatendem</h3>
+                                                    </div>
+                                                    <div class="edit-field m-b">
+                                                        <label><strong class="text-red">*</strong> Họ</label>
+                                                        <input maxlength="100" placeholder="Họ" type="text" id="lastName" name="Hovatendem" class="form-control edit-control input-sm" autofocus="" value="@Model.Hovatendem">
+                                                        <span class="error-message" id="errLastName" hidden="hidden">Thông tin này bắt buộc</span>
+                                                        <span class="error-message" id="errEmailInLastName" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</span>
+                                                    </div>
+                                                </div>
+                                                <div class="last-name pull-left m-l-xs">
+                                                    <div class="view-field">
+                                                        <h3 class="profile-name view-control text-orange">@Model.Ten</h3>
+                                                    </div>
+                                                    <div class="edit-field m-b">
+                                                        <label><strong class="text-red">*</strong> Tên</label>
+                                                        <input maxlength="100" placeholder="Tên" type="text" id="firstName" name="Ten" class="form-control edit-control input-sm" autofocus="" value="@Model.Ten">
+                                                        <span class="error-message" id="errFirstName" hidden="hidden">Thông tin này bắt buộc</span>
+                                                        <span class="error-message" id="errEmailInFirstName" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="profile-expected-position">
+                                                <div class="view-field">
+                                                    <span class="view-control" data-update-tip="">@Model.Chucdanh</span>
+                                                </div>
+                                                <div class="edit-field form-group m-t-n-xs">
+                                                    <label><strong class="text-red">*</strong> Chức Danh</label>
+                                                    <input maxlength="100" placeholder="Vị trí hiện tại. Ví dụ: Developer" type="text" id="expected-position" name="Chucdanh" class="form-control edit-control input-sm" value="@Model.Chucdanh">
+                                                    <span class="error-message" id="errExpectedPosition" hidden="hidden">Thông tin này bắt buộc</span>
+                                                    <span class="error-message" id="errEmailInExpectedPosition" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</span>
+                                                </div>
+                                            </div>
+                                            @if (Model.Namkinhnghiem >= 1)
+                                            {
+                                                <div>
+                                                    <div class="view-field" style="display:block">
+                                                        <span class="year-of-ex-view-field">
+                                                            Số năm kinh nghiệm: <span class="view-control">@Model.Namkinhnghiem</span> năm
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="edit-field form-group m-t-n-xs">
+                                                        <label class="lbl-year-ex" style="display: block;"><strong class="text-red">*</strong> Số năm kinh nghiệm</label>
+                                                        <input placeholder="Ví dụ: 7" type="text" name="Namkinhnghiem" id="year-of-experience" disabled="disabled" maxlength="2" class="form-control edit-control year-of-ex-input input-sm" value="@Model.Namkinhnghiem">
+                                                        <span class="error-message" hidden="hidden" id="errYearOfExperience">Thông tin này bắt buộc</span>
+                                                    </div>
+                                                </div>
+                                                <div class="new-graduate">
+                                                    <div class="view-field" hidden="" style="display: none;">
+                                                        <span class="view-control" data-type="radio">Tôi mới tốt nghiệp/chưa có kinh nghiệm làm việc</span>
+                                                    </div>
+                                                    <div class="edit-field form-group m-t-n-xs">
+                                                        <label>
+                                                            <input type="checkbox" class="edit-control new-graduate-checkbox" id="no-experience-check-box" name="Namkinhnghiem" value="0" data-text-value="Tôi mới tốt nghiệp/chưa có kinh nghiệm làm việc">
+                                                            Tôi mới tốt nghiệp/chưa có kinh nghiệm làm việc
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div>
+                                                    <div class="view-field">
+                                                        <span class="year-of-ex-view-field hide">
+                                                            Số năm kinh nghiệm: <span class="view-control">@Model.Namkinhnghiem</span> năm
+                                                        </span>
+                                                    </div>
+                                                    <div class="edit-field form-group m-t-n-xs">
+                                                        <label class="lbl-year-ex" disabled="disabled" style="display: none;"><strong class="text-red">*</strong> Số năm kinh nghiệm</label>
+                                                        <input placeholder="Ví dụ: 7" type="text" name="Namkinhnghiem" id="year-of-experience" disabled="disabled" maxlength="2" class="form-control edit-control year-of-ex-input input-sm" value="@Model.Namkinhnghiem" style="display: none;">
+                                                        <span class="error-message" hidden="hidden" id="errYearOfExperience">Thông tin này bắt buộc</span>
+                                                    </div>
+                                                </div>
+                                                <div class="new-graduate">
+                                                    <div class="view-field" hidden="" style="display: block;">
+                                                        <span class="view-control" data-type="radio">Tôi mới tốt nghiệp/chưa có kinh nghiệm làm việc</span>
+                                                    </div>
+                                                    <div class="edit-field form-group m-t-n-xs">
+                                                        <label>
+                                                            <input type="checkbox" class="edit-control new-graduate-checkbox" checked="checked" id="no-experience-check-box" name="Namkinhnghiem" value="0" data-text-value="Tôi mới tốt nghiệp/chưa có kinh nghiệm làm việc">
+                                                            Tôi mới tốt nghiệp/chưa có kinh nghiệm làm việc
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            }
+
+                                            <div class="view-field hidden-xs">
+                                                <p>
+                                                    <span class="text-gray-light">Công ty gần đây nhất:</span>
+                                                    <a class="current-company clickable">Thêm Kinh Nghiệm Làm Việc</a>
+                                                    <br>
+                                                    <span class="text-gray-light">Bằng cấp cao nhất:</span>
+                                                    <a class="current-highest-education clickable">Thêm Học Vấn Bằng Cấp</a>
+                                                </p>
+                                            </div>
+                                            <div class="row edit-field">
+                                                <div class="col-sm-6"></div>
+                                                <div class="col-sm-6 text-right">
+                                                    <button type="button" class="btn-cancel btn btn-sm btn-default" id="cancelHeaderInforBtn">Hủy</button>
+                                                    <button type="button" class="btn-save btn btn-sm btn-primary" id="saveHeaderInforBtn">Lưu</button>
+                                                    <button type="button" id="updateHeaderProcessBtn" style="display: none;" class="btn btn-default" disabled="">
+                                                        <img src="~/Content/Profile/loading.gif" alt="">Đang lưu
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="view-field m-b download-resume">
+                                                @if (Model.Hosoupload != null)
+                                                {
+                                                    <a id="download-resume-button" href="~/Profile_upload/@Model.Hosoupload" class="btn btn-sm btn-default btn-outline">
+                                                        <i class="fa fa-download" aria-hidden="true"></i> Tải hồ sơ
+                                                    </a>
+                                                    <input type="file" name="resume" style="float:left" id="upload-resume-button" class="btn btn-sm btn-default btn-outline">
+                                                }
+                                                else
+                                                {
+                                                    <input type="file" name="resume" style="float:left" id="upload-resume-button" class="btn btn-sm btn-default btn-outline">
+                                                }
+
+                                                <script>
+                                                    $(document).ready(function(){
+                                                        $("#upload-resume-button").change(function(){
+                                                            swal({
+                                                                title: "Đang xử lý...!",
+                                                                text: "File có kích thước tối đa 2040kb và định dạng file .docx, .doc, .pdf, .xlsx, .xls, .txt ",
+                                                                type: "info",
+                                                                showConfirmButton: false
+                                                            })
+                                                            var resume=document.getElementById('upload-resume-button');
+                                                            if(resume.files[0].size>2200000){
+                                                                swal({
+                                                                    title: "Lỗi...!",
+                                                                    text: "File có kích thước tối đa 2040kb vui lòng chọn file khác",
+                                                                    type: "error",
+                                                                    showConfirmButton: true
+                                                                })
+                                                                return false;
+                                                            }
+                                                            var formdata = new FormData(); 
+                                                            formdata.append(resume.files[0].name, resume.files[0]);
+                                                            $.ajax({
+                                                                url:"/Member/UploadResume",
+                                                                type:"POST",
+                                                                data: formdata,
+                                                                cache: false,
+                                                                contentType: false,
+                                                                processData: false,
+                                                                success:function(data){
+                                                                    if(data==1){
+                                                                        swal("Đã lưu","Đã lưu hồ sơ của bạn","success")
+                                                                        setTimeout(function () {
+                                                                            window.location.reload();
+                                                                        }, 3000); // in milliseconds
+                                                                    }
+                                                                    else if(data==0){
+                                                                        swal("Lỗi","file có định dạng là .pdf, .dox, .docx, .xlsx, .xls, .txt","error")
+                                                                    }else{
+                                                                        swal("Lỗi","Không tải file có kích thước quá 2040kb hoặc thử lại sau","error")
+                                                                    }
+                                                                },
+                                                                error:function(data){
+                                                                    swal("Lỗi","File có kích thước lớn nhất là 2040kb hoặc đã xảy ra lỗi vui lòng thử lại sau","error")
+                                                                }
+                                                                
+                                                            })
+                                                        })
+                                                    })
+                                                </script>
+                                                @*<i class="fa fa-upload" aria-hidden="true"></i> Upload hồ sơ*@
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="absolute-right m-t-n-lg m-r-xs visible-xs">
+                                    <a href="#" class="btn btn-block btn-sm btn-primary no-border box-gray-lighter contact-information-toggler">
+                                        <i class="fa fa-fw fa-suitcase"></i>
+                                        <span class="hidden-xs">Thông Tin Cá Nhân</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row hidden-xs">
+                            <div class="col-sm-12">
+                                <div class="bg-gray text-right">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4 pull-right">
+                                            <a href="#" class="btn btn-block btn-sm btn-primary no-border box-gray-lighter contact-information-toggler">
+                                                <i class="fa fa-fw fa-suitcase"></i>
+                                                <span>Thông Tin Cá Nhân</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--scrip heder-->
+                <script src="~/Scripts/header.js"></script>
+                <div class="section-contact hidden-section" hidden="">
+                    <form class="form-horizontal" id="form-contact" name="frm_ct" action="/Member/Profile" method="post">
+                        <input type="hidden" name="resumeId" value="4387814">
+                        <div class="box border-info">
+                            <fieldset>
+                                <div id="section-contact-edit" class="form-wrapper form-view relative box-md">
+                                    <span class="form-btn-edit">
+                                        <button type="button" class="btn btn-sm btn-default">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </button>
+                                    </span>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="address">Email</label>
+                                                <div class="view-field">
+                                                    @if (Model.EmailDN.Contains("@"))
+                                                    {
+                                                        <p class="form-control-static view-control"></p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="form-control-static view-control"></p>
+                                                    }
+
+                                                </div>
+                                                <div class="edit-field">
+                                                    @if (Model.EmailDN.Contains("@"))
+                                                    {
+                                                        <input maxlength="100" type="email" autofocus="" class="form-control edit-control" id="emailaddress" disabled="" placeholder="e.g. john.doe@navigosgroup.com" value="@Model.EmailDN">
+                                                    }
+                                                    else
+                                                    {
+                                                        <input maxlength="100" value="@Model.EmailLH" type="email" name="EmailLH" autofocus="" class="form-control edit-control" id="emailaddress" placeholder="Chưa nhập email liên lạc">
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="cell-number">
+                                                    <strong class="text-red">*</strong>
+                                                    Điện Thoại
+                                                </label>
+                                                <div class="view-field clearfix">
+                                                    @if (Model.Dienthoai1 != null && Model.Dienthoai2 != null)
+                                                    {
+                                                        <p class="form-control-static view-control pull-left">@Model.Dienthoai1</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="form-control-static view-control pull-left">Chưa nhập số điện thoại</p>
+                                                    }
+
+                                                    @*<p id="visible-to-employer-view-control" class="pull-left form-control-static text-gray-light">
+                                                            <em>
+                                                                <i class="fa fa-eye"></i>
+                                                                <span id="invisible-to-employer-static" data-invisible="Ẩn thông tin này với nhà tuyển dụng" data-visible="Hiện thông tin này với nhà tuyển dụng">Hiện thông tin này với nhà tuyển dụng</span>
+                                                            </em>
+                                                        </p>*@
+                                                </div>
+                                                <div class="edit-field">
+                                                    <input maxlength="20" type="tel" class="form-control edit-control" name="Dienthoai1" id="cell-number" placeholder="Chưa nhập số điện thoại" value="@Model.Dienthoai1">
+                                                    <span class="error-message" id="err_cellphone" hidden="hidden">Thông tin này bắt buộc</span>
+                                                    <span class="error-message" id="err_valid_cellphone" hidden="hidden">Thông tin không hợp lệ</span>
+                                                    @*<div>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input name="confidential" value="1" type="checkbox" data-control="visible-to-employer" class="edit-control" id="visible-to-employer">
+                                                                    <em>Ẩn thông tin này với nhà tuyển dụng</em>
+                                                                </label>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="date-of-birth">
+                                                    <strong class="text-red">*</strong>
+                                                    Ngày sinh
+                                                </label>
+                                                <div class="edit-field">
+                                                    @if (@Model.Ngaysinh != null)
+                                                    {
+                                                        @*@Html.TextBoxFor(x => x.Ngaysinh, new { @class = "form-control edit-control", @id = "date-of-birth",@type="date" })*@
+                                                        <input class="form-control edit-control" id="date-of-birth" name="Ngaysinh" type="datetime" value="@Model.Ngaysinh.Value.Date.ToString("dd/MM/yyyy")">
+                                                    }
+                                                    else
+                                                    {
+                                                        @*@Html.TextBoxFor(x => x.Ngaysinh, new { @class = "form-control edit-control", @id = "date-of-birth" })*@
+                                                        <input class="form-control edit-control" id="date-of-birth" type="datetime" name="Ngaysinh" placeholder="Chưa nhập ngày sinh">
+                                                    }
+                                                </div>
+                                                <div class="view-field">
+                                                    @if (Model.Ngaysinh == null)
+                                                    {
+                                                        <p class="form-control-static view-control">Chưa chọn ngày sinh</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="form-control-static view-control">@Model.Ngaysinh.Value.Date.ToString("dd/MM/yyyy")</p>
+                                                    }
+
+                                                </div>
+                                                <span class="error-message" id="err_birthday" hidden="hidden">Thông tin này bắt buộc</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label><strong class="text-red">*</strong> Giới tính</label>
+                                                <div class="edit-field">
+                                                    @if (Model.Gioitinh == 1)
+                                                    {
+                                                        <label class="radio-inline" for="gender-male">
+                                                            <input class="edit-control" type="radio" name="Gioitinh" id="gender-nam" value="1" checked="checked" data-text-value="Nam">
+                                                            Nam
+                                                        </label>
+                                                        <label class="radio-inline" for="gender-male">
+                                                            <input class="edit-control" type="radio" name="Gioitinh" id="gender-nữ" value="0" data-text-value="Nữ">
+                                                            Nữ
+                                                        </label>
+                                                    }
+                                                    else
+                                                    {
+                                                        <label class="radio-inline" for="gender-male">
+                                                            <input class="edit-control" type="radio" name="Gioitinh" id="gender-nam" value="1" data-text-value="Nam">
+                                                            Nam
+                                                        </label>
+                                                        <label class="radio-inline" for="gender-male">
+                                                            <input class="edit-control" type="radio" name="Gioitinh" id="gender-nữ" value="0" checked="checked" data-text-value="Nữ">
+                                                            Nữ
+                                                        </label>
+                                                    }
+                                                </div>
+                                                <div class="view-field">
+                                                    @if (Model.Gioitinh != null)
+                                                    {
+                                                        if (Model.Gioitinh == 1)
+                                                        {
+                                                            <p class="form-control-static view-control" data-type="radio">Nam</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p class="form-control-static view-control" data-type="radio">Nữ</p>
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="form-control-static view-control" data-type="radio">Chưa chọn giới tính</p>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Tình Trạng Hôn Nhân</label>
+                                                <div class="edit-field">
+                                                    @if (Model.Gioitinh == 1)
+                                                    {
+                                                        <label class="radio-inline" for="marital-độc thân">
+                                                            <input type="radio" class="edit-control" name="Honnhan" id="marital-độc thân" value="1" checked="checked" data-text-value="Độc thân">
+                                                            Độc thân
+                                                        </label>
+                                                        <label class="radio-inline" for="marital-đã kết hôn">
+                                                            <input type="radio" class="edit-control" name="Honnhan" id="marital-đã kết hôn" value="2" data-text-value="Đã kết hôn">
+                                                            Đã kết hôn
+                                                        </label>
+                                                    }
+                                                    else
+                                                    {
+                                                        <label class="radio-inline" for="marital-độc thân">
+                                                            <input type="radio" class="edit-control" name="Honnhan" id="marital-độc thân" value="1" data-text-value="Độc thân">
+                                                            Độc thân
+                                                        </label>
+                                                        <label class="radio-inline" for="marital-đã kết hôn">
+                                                            <input type="radio" class="edit-control" name="Honnhan" id="marital-đã kết hôn" value="2" checked="checked" data-text-value="Đã kết hôn">
+                                                            Đã kết hôn
+                                                        </label>
+                                                    }
+                                                </div>
+                                                <div class="view-field">
+                                                    @if (@Model.Honnhan == 1)
+                                                    {
+                                                        <p class="form-control-static view-control" data-type="radio">Độc thân</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="form-control-static view-control" data-type="radio">Đã Kết Hôn</p>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="m-t-xs">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="country">
+                                                    <strong class="text-red">*</strong>
+                                                    Quốc Gia
+                                                </label>
+                                                <div class="view-field">
+                                                    @if (Model.Quocgia == 1)
+                                                    {
+                                                        <p class="form-control-static view-control placeholder" id="country-view-control">Việt Nam</p>
+                                                    }
+                                                    else if (Model.Quocgia == 1)
+                                                    {
+                                                        <p class="form-control-static view-control placeholder" id="country-view-control">Nước khác</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="form-control-static view-control placeholder" id="country-view-control">Chưa chọn quốc gia</p>
+                                                    }
+                                                </div>
+                                                <div class="edit-field">
+                                                    <div class="">
+                                                        <div class="select2-container controls" id="s2id_country" style="width: 100%;">
+                                                            <select class="select2 input-default" id="country" name="Quocgia" data-placeholder="e.g. Vietnam" tabindex="-1" title="*Quốc Gia">
+                                                                <option value="0">Vui lòng chọn...</option>
+                                                                <option value="1">Việt Nam</option>
+                                                                <option value="2">Nước khác</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <span class="error-message" id="err_country" hidden="hidden">Thông tin này bắt buộc</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="city">
+                                                    <strong class="text-red">*</strong>
+                                                    Tỉnh/Thành Phố
+                                                </label>
+                                                <div class="view-field">
+                                                    <p class="form-control-static view-control" id="city-view-control">@Model.Thanhpho</p>
+                                                </div>
+                                                <div class="edit-field">
+                                                    <div class="">
+                                                        <div class="select2-container controls" id="s2id_city" style="width: 100%;">
+                                                            <select class="select2 input-default" onchange="loadDistrict();" name="MaTP1" id="city" data-placeholder="e.g. Ho Chi Minh" tabindex="-1" title="*Tỉnh/Thành Phố">
+                                                                <option value="0">Vui lòng chọn...</option>
+                                                                @foreach (var item in city)
+                                                                {
+                                                                    <option value="@item.Id">@item.City1</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <span class="error-message" id="err_city" hidden="hidden">Thông tin này bắt buộc</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="district">Quận/Huyện</label>
+                                                <div class="view-field">
+                                                    <p class="form-control-static view-control placeholder" id="district-view-control">@Model.Quanhuyen</p>
+                                                </div>
+                                                <div class="edit-field">
+                                                    <div class="">
+                                                        <div class="select2-container select2 input-default" id="s2id_district" style="width: 100%;">
+                                                            <select id="district" name="MaQH" class="edit-control" data-placeholder="Ví dụ: Quận 3" tabindex="-1" title="Quận/Huyện" style="display: none;">
+                                                                <option value="0">Vui lòng chọn...</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">
+                                                <strong class="text-red">*</strong>
+                                                Địa Chỉ
+                                            </label>
+                                            <div class="view-field">
+                                                <p class="form-control-static view-control placeholder"></p>
+                                            </div>
+                                            <div class="edit-field">
+                                                <input maxlength="200" type="text" class="form-control edit-control" id="address" name="Diachihientai" placeholder="Chưa nhập địa chỉ" value="@Model.Diachihientai">
+                                                <span class="error-message" id="err_address" hidden="hidden">Thông tin này bắt buộc</span>
+                                            </div>
+                                        </div>
+                                        <!-- Buttons-->
+                                        <div class="form-group push-top-md edit-field">
+                                            <div class="col-sm-6">
+                                                (<strong class="text-red">*</strong>) Thông tin bắt buộc
+                                            </div>
+                                            <div class="col-sm-6 text-right">
+                                                <button type="button" class="btn btn-default btn-cancel" id="cancelContactInforBtn">Hủy</button>
+                                                <button type="button" class="btn btn-primary btn-save" id="saveContactInforBtn">Lưu</button>
+                                                <button type="button" id="updateContactProcessBtn" style="display: none;" class="btn btn-default" disabled="">
+                                                    <img src="~/Content/Profile/loading.gif" alt=""> Đang lưu
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
+                <!--Scrip contact-->
+                <script>
+                    var frm_ct = document.frm_ct;
+                    $('#country').select2().select2('val', @Model.Quocgia);
+                    if ($('#country').val() != '1' && $('#country').val() != '') {
+                        $('#city').select2('val', 1);
+                        $('#city').attr('disabled', 'disabled');
+                        $('#district').select2('val', '0');
+                        $('#district').attr('disabled', 'disabled');
+                    } else {
+                        $('#country').select2().select2('val', '@Model.Quocgia');
+                        $('#city').select2().select2('val', '@Model.MaTP1');
+
+                    }
+                </script>
+                <script src="~/Scripts/Contact.js"></script>
+            </div>
+            <!--Who viewed Me - Desktop-->
+            <!--thong tin chung-->
+            @Html.Partial("InforGeneral")
+            <script type="text/javascript">
+                function validateProfile(data, form, options) {
+                    var has_error = false;
+                    $(form).find('span.error-message').attr('hidden', 'hidden');
+                    $(form).find('.has-error').removeClass('has-error');
+                    $.each(data, function (index, item) {
+                        switch (item.name) {
+                            case 'Muctieu':
+                                if ($.trim(item.value) == '') {
+                                    has_error = true;
+                                    $(form).find('span.msg-profile-required').removeAttr('hidden').parent().addClass('has-error');
+                                } else {
+                                    elementTiny = tinyMCE.get(form.find('textarea')[0].id);
+                                    var profile = $(elementTiny.getContent()).text().replace(/(<([^>]+)>)/ig, '');
+                                    profile = profile.replace('&nbsp;', '');
+                                    if (profile.length > 5000) {
+                                        has_error = true;
+                                        $(form).find('span.msg-profile-limit-max').removeAttr('hidden').parent().addClass('has-error');
+                                    } else if (emailExistsInString(profile) || phoneExistsInStringSpecialChar(profile)) {
+                                        has_error = true;
+                                        $(form).find('span.msg-profile-valid').removeAttr('hidden').parent().addClass('has-error');
+                                    }
+                                }
+                                break;
+                        }
+                    });
+
+                    if (!has_error) {
+                        $(form).find("button.btn-remove-this-section").css('display', 'none');
+                        $(form).find("button.btn-cancel").css('display', 'none');
+                        $(form).find("button.btn-save").css('display', 'none');
+                        $(form).find("button.btn-sending").css('display', '');
+                    }
+                    return !has_error;
+                };
+                $('#saveprofile').click(function () {
+                    $('#profileForm').submit();
+                });
+                var optionprofileform = {
+                    beforeSubmit: validateProfile, // pre-submit callback
+                    success: postSaveProfileAjaxSubmit,  // post-submit callback
+                    type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+                    dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+                    data: { action: 'save-profile' } // extra data
+                };
+                $('#profileForm').on('submit', function (e) {
+                    e.preventDefault(); // <-- important
+                    $(this).ajaxSubmit(optionprofileform);
+                    return false;
+                });
+                function postSaveProfileAjaxSubmit(data, status, xhr, form)
+                {
+                    $(form).find("button.btn-remove-this-section").css('display', '');
+                    $(form).find("button.btn-cancel").css('display', '');
+                    $(form).find("button.btn-save").css('display', '');
+                    $(form).find("button.btn-sending").css('display', 'none');
+                    if (data.status == 'REDIRECT') {
+                        window.location.href = data.redirectUrl;
+                    } else if (data.status == 'VALIDATION_ERROR' || data.status == 'ERROR') {
+                        $('#error-message-update-profile').slideDown();
+                        setTimeout(function () {
+                            $('#error-message-update-profile').slideUp();
+                        }, 5000);
+                    } else {
+                        mdlLiveEdit.saveContent(form);
+                        //reloadProfileLevel();
+                        $('#card-profile').fadeOut();
+                    }
+                }
+                function postDeleteProfileAjaxSubmit(data, status, xhr, form)
+                {
+                    $(form).find("button.btn-remove-this-section").css('display', '');
+                    $(form).find("button.btn-cancel").css('display', '');
+                    $(form).find("button.btn-save").css('display', '');
+                    $(form).find("button.btn-sending").css('display', 'none');
+                    if (data.status == 'REDIRECT') {
+                        window.location.href = data.redirectUrl;
+                    } else if (data.status == 'VALIDATION_ERROR' || data.status == 'ERROR') {
+                        $(form).find('#error-message-update-profile').slideDown();
+                        setTimeout(function () {
+                            $(form).find('#error-message-update-profile').slideUp();
+                        }, 5000);
+                    } else {
+                        $('#profile-objective').data('current_data', '').val('');
+                        $('#profile-objective').parents('.edit-field').siblings('.view-field').find('.view-control').html('');
+                        $('.section-profile').slideUp();
+                        $('#card-profile').fadeIn();
+                    }
+                }
+                function deleteProfileConfirmed() {
+                    var confirm_dialog = $('#dialog-delete-section');
+                    var form = confirm_dialog.data('target-form');
+                    confirm_dialog.off('click', 'button.btn-primary', deleteProfileConfirmed);
+                    confirm_dialog.modal('hide');
+                    var options = {
+                        beforeSubmit: function() {
+                            var form = $('#profileForm');
+                            $(form).find('span.error-message').attr('hidden','hidden');
+                            $(form).find('.has-error').removeClass('has-error');
+                            $(form).find("button.btn-remove-this-section").css('display', 'none');
+                            $(form).find("button.btn-cancel").css('display', 'none');
+                            $(form).find("button.btn-save").css('display', 'none');
+                            $(form).find("button.btn-sending").css('display', '');
+                        },
+                        success: postDeleteProfileAjaxSubmit,  // post-submit callback
+                        type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+                        dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+                        data : { action: 'delete-profile'} // extra data
+                    };
+                    $(form).ajaxSubmit(options);
+                }
+                function deleteProfile(form) {
+                    var confirm_dialog = $('#dialog-delete-section');
+                    confirm_dialog.data('target-form', form);
+                    confirm_dialog.on('click', 'button.btn-primary', deleteProfileConfirmed);
+                    confirm_dialog.modal('show');
+                }
+                function showUploadPhotoDialog(){
+                    $('#avatar-upload').trigger('click');
+                }
+            </script>
+            <!--ky nang-->
+            @Html.Action("Skill", "Member")
+            <script type="text/javascript" src="~/Content/Profile/typeahead.bundle.min.js"></script>
+
+            <!--ngon ngu-->
+            @Html.Action("Language", "Member")
+
+            <!--kinh nghiem lam viec-->
+            @Html.Action("ExpWork", "Member")
+            <script type="text/javascript" src="~/Content/Profile/jquery.fn.sortElements.js"></script>
+
+            <!--giao duc-->
+            @Html.Action("Education", "Member")
+
+            <!--Thong tin thao khao-->
+            @*@Html.Action("InforReference", "Member")*@
+
+            <!--Loi ich-->
+            @Html.Action("Benefit", "Member")
+
+            <!-- Dialog Delete Section -->
+            <div class="modal fade" id="dialog-delete-section" tabindex="-1" role="dialog" aria-labelledby="delete-confirmation" aria-hidden="true">
+                <form action="">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close btn-sm" data-dismiss="modal">
+                                    <span aria-hidden="true" tabindex="8">×</span>
+                                    <span class="sr-only">Đóng</span>
+                                </button>
+                                <strong class="modal-title">Xác nhận</strong>
+                            </div>
+                            <div class="modal-body">
+                                <p>Bạn có chắc là bạn muốn xóa không?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" tabindex="9">Hủy</button>
+                                <button type="button" class="btn btn-primary btn-sm" tabindex="10">Đồng ý xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--End Create Resume-->
+        </div>
+        <!--cot phai-->
+        @Html.Action("ColRight", "Member")
+    </div>
+</section>
+
+<script>
+    var FIREBASE_REFRESH_TOKEN_URL = "/quan-ly-nghe-nghiep/phan-hoi-cua-nha-tuyen-dung/?action=renewFirebaseJWT";
+    var FRIEND_LINK_FETCH_URL = "/quan-ly-nghe-nghiep/phan-hoi-cua-nha-tuyen-dung/?action=fetchEmployerLink&employerIds=";
+    var firebaseApiKey = "AIzaSyAJLgT_Xo5Jg_YyPaWYOrk5sFnAtEcOIfU";
+    var firebaseAuthDomain = "vietnamworks-message.firebaseapp.com";
+    var firebaseDatabaseURL = "//vietnamworks-message.firebaseio.com";
+</script>
+
+
+
+<script type="text/javascript" src="~/Content/Profile/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="~/Content/Profile/jquery.simulate.min.js"></script>
+<script type="text/javascript">
+
+    // Toggle the new profile notification
+    $(function () {
+        "use strict";
+        setTimeout(function(){
+            $('.profile-is-available p').addClass('fadeInRight').show()
+        },200);
+
+        $('.js-top-banner').click(function(){
+            $(this).find('a').simulate('click');
+        });
+
+        // Close other dropdowns whenever a dropdown opens
+        var $notificationPopover = $('.alert-notifications');
+        var $userAccountMenuDropdown = $('.dropdown.user-account');
+        $notificationPopover.on('shown.bs.popover',function(){
+            $userAccountMenuDropdown.removeClass('open');
+        });
+        $userAccountMenuDropdown.on('shown.bs.dropdown', function(){
+            $notificationPopover.popover('hide');
+        })
+
+    })
+</script>
+<!-- insert Gravity -->
+<!-- Google Tag Manager -->
+<!-- End Google Tag Manager -->
+<!-- End Gravity -->
+
+<script type="text/javascript">
+    // Select 2
+    $('#locationMainSearch,#cateListMainSearch').each(function () {
+        $(this).select2({width: '100%'}).Select2SelectAll();
+    });
+    $('#search-widget select.job-level').select2({width: '100%', minimumResultsForSearch: 20});
+
+    $('select#page-size').change(function(event) {
+        if (page_size_urls[$(this).val()]) {
+            window.location = page_size_urls[$(this).val()];
+        }
+    });
+
+    $('.job-post .view-more').click(function() {
+        window.open($(this).data('joburl'), '_blank');
+    });
+
+    var keywordCondition = '';
+    var industryCondition = '-1';
+    var locationCondition = '-1';
+    var jobLevelCondition = '';
+    var salaryCondition = '';
+
+    var totalJobAlert = 0;
+
+    var token = 'd08f715a86a05eea16fd47a4d144d1ea';
+
+</script>
+
+<script type="text/javascript">
+    var system_version = 'r133s1d20170316t1';
+    var APP_WEBROOT_JOBSEEKER = '//localhost:50932/',
+            language = 1,
+            languageID = 1,
+            base_url = '//localhost:50932/';
+    var isIndexPage = 'false';
+    var isInnerShowTooltipPage = false;
+
+    function switchLanguage(changeToLanguage) {
+        setCookie('ChangeLanguageTo', changeToLanguage);
+        window.location = '//localhost:50932/my-profile';
+    }
+</script>
+<script type="text/javascript" src="~/Content/Profile/string.js"></script>
+<script type="text/javascript" src="~/Content/Profile/cookie.min.js"></script>
+<script type="text/javascript" src="~/Content/Profile/jquery.form.min.js"></script>
+<script type="text/javascript" src="~/Content/Profile/ui.header.min.js"></script>
+<script type="text/javascript" src="~/Content/Profile/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="~/Content/Profile/jquery.editableForm.js"></script>
+<script type="text/javascript" src="~/Content/Profile/jquery.Jcrop.js"></script>
+<script type="text/javascript" src="~/Content/Profile/tinymce.min.js"></script>
+<script type="text/javascript" src="~/Content/Profile/jquery.tinymce.min.js"></script>
+<script type="text/javascript" src="~/Content/Profile/ui.one-profile.js"></script>
+<script type="text/javascript" src="~/Content/Profile/ui.profileSuggestionTooltips.js"></script>
+<link href="~/Content/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Content/sweetalert2/sweetalert-dev.js"></script>
+<script type="text/javascript">
+    $('#search-widget select.job-level').select2({width: '100%', minimumResultsForSearch: 20});
+</script>
+
+<!-- Google Ads  -->
+<!-- end google Ads -->
+
+<span role="status" aria-live="polite" class="select2-hidden-accessible"></span>
+
+

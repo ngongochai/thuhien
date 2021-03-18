@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Send";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form action="/sendsms/send" method="post">
+    <input placeholder="số điện thoại" name="phonenumber" />
+    <input placeholder="nhập tin nhắn" name="mess" />
+    <button type="submit">GUI</button>
+</form>
+

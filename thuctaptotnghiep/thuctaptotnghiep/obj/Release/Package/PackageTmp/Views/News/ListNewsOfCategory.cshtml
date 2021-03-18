@@ -1,0 +1,182 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<Model.Framework.News>
+@using thuctaptotnghiep.Models;
+@using Model.Framework;
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var data = db.Adverts.FirstOrDefault();
+    IHtmlString listright = null;
+    if (data != null)
+    {
+        listright=new HtmlString(data.advertlistnews);
+    }
+    ViewBag.Title =Model.Select(x=>x.categorynew.categoryName).FirstOrDefault();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    //foreach (var item in Model)
+    //{
+    //    ViewBag.Title = @item.categorynew.categoryName + " - Dạy nhập hàng trung";
+    //    break;
+    //}
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    var count = 0;
+    int category = 0;
+    var newsid = 0;
+    string categoryname="";
+}
+<style>
+    .titel-category {
+        color: black !important;
+        padding-left: 0;
+        font-size: 25px !important;
+        text-transform: uppercase;
+        border-bottom: 3px solid #006CB6 !important;
+        margin-top: 10px !important;
+        margin-top:20px;
+        width: 100% !important;
+    }
+
+    .background {
+        background: #eee;
+    }
+
+    .big-news {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .title-ca {
+        margin-top: 0;
+
+    }
+
+    .decription {
+        color: black;
+        font-size: 15px;
+        font-weight: normal;
+    }
+
+    .news-top {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-left: 0;
+        background: #eee;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .news-sm {
+        margin-bottom: 20px;
+        padding-left: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .img-notpadding {
+        padding-left: 0;
+    }
+
+    .none-hover:hover {
+        text-decoration: none;
+    }
+</style>
+
+    <div class="page-content" style="margin:20px">
+        <div class="container">
+            <div class="col-md-8">
+                @foreach (var i in Model)
+                {
+                     categoryname = new RemoveUnicode().UnicodeName(i.categorynew.categoryName);
+                    category = i.categorynew.categoryId;
+                    <div class="col-md-12 popular titel-category"><h2 style="text-align:center">@i.categorynew.categoryName</h2></div>
+                    break;
+                }
+                @foreach (var item in Model.Where(x=>x.Featured==true).OrderBy(x => x.displayorder))
+                {
+                    string newsname = new RemoveUnicode().UnicodeName(item.titlenews);
+                    string des=item.description;
+                    if (item.description != null)
+                    {
+                        if (item.description.Count(char.IsWhiteSpace) >= 45)
+                        {
+                            des = item.description.Split(' ').Take(45).Aggregate((a, b) => a + " " + b) + "...";
+                        }
+                    }
+                    newsid = item.newsid;
+                    //var url = "/" + item.categorynew.metatitle.Replace(" ", "-") + "/" + item.metatitle.Replace(" ", "-") + "-" + item.newsid;
+                    <div class="col-md-12 col-xs-12 news-top">
+                        <div class="col-md-12" style="padding:20px">
+                            <a class="none-hover" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = item.newsid })"><div class="big-news1"><img class="img-responsive" src="@item.titleimages" /></div></a>
+                        </div>
+                        <div class="col-md-12 big-news" style="padding-left:20px">
+                            <a class="none-hover" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = item.newsid })">
+                                <h4 class="title-ca">@item.titlenews</h4>
+                            </a>
+                            
+                            <p class="decription">@des</p>
+                        </div>
+                        <a href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = item.newsid })" style="text-transform:capitalize;float:right;margin-top:25px"><i class="fa fa-hand-o-right" aria-hidden="true"></i><i>Đọc thêm</i></a>
+                    </div>
+                    break;
+                }
+                @foreach (var item in Model.Where(x => x.newsid != newsid).OrderByDescending(x => x.datepost))
+                {
+                    string newsname = new RemoveUnicode().UnicodeName(item.titlenews);
+                    string des = item.description;
+                    if (item.description != null)
+                    {
+                        if (item.description.Count(char.IsWhiteSpace) >= 45)
+                        {
+                            des = item.description.Split(' ').Take(45).Aggregate((a, b) => a + " " + b) + "...";
+                        }
+                    }
+                    //var url = "/" + item.categorynew.metatitle.Replace(" ", "-") + "/" + item.metatitle.Replace(" ", "-") + "-" + item.newsid;
+                    count++;
+                    if (count % 2 != 0)
+                    {
+                        <div class="col-md-12 col-xs-12 news-sm">
+                            <div class="col-md-4 col-xs-4">
+                                <a class="none-hover" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = item.newsid })"><div class="padding-15"><img class="img-responsive" src="@item.titleimages" /></div></a>
+                            </div>
+                            <div class="col-md-8 col-xs-8">
+                                <a class="none-hover" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = item.newsid })">
+                                    <h5 class="title-ca">@item.titlenews</h5>
+                                </a>
+                                <p>.............................</p>
+                                <p class="decription">@des</p>
+                            </div>
+                            <a href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = item.newsid })" style="text-transform:capitalize;float:right;margin-top:25px"><i class="fa fa-hand-o-right" aria-hidden="true"></i><i>Đọc thêm</i></a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-12 col-xs-12 news-sm background" id="@count">
+                            <div class="col-md-4 col-xs-4">
+                                <a class="none-hover" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = item.newsid })">
+                                    <div class="padding-15"><img class="img-responsive" src="@item.titleimages" /></div>
+                                </a>
+                                </div>
+                            <div class="col-md-8 col-xs-8">
+                                <a class="none-hover" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = item.newsid })">
+                                    <h5 class="title-ca">@item.titlenews</h5>
+                                </a>
+                                <p>.............................</p>
+                                <p class="decription">@des</p>
+                            </div>
+                            <a href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = item.newsid })" style="text-transform:capitalize;float:right;margin-top:25px"><i class="fa fa-hand-o-right" aria-hidden="true"></i><i>Đọc thêm</i></a>
+
+                            </div>
+                    }
+                }
+                <div class="row"><div style="margin:5px auto;width:300px;">@Html.PagedListPager(Model, page => Url.Action("ListNewsOfCategory", new { page = page, categoryid = category }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div></div>
+            </div>
+            <div class="col-md-4 qc-index" style="margin-top:55px">
+                @listright
+                @*@Html.Action("NewsPopular", "DetailNews")
+            @Html.Action("CategoryNews", "DetailNews")*@
+            </div>
+            
+        </div>
+</div>

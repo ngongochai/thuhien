@@ -1,0 +1,495 @@
+﻿@using thuctaptotnghiep.Models;
+@using Model.Framework;
+@{
+    ViewBag.Title = "Header";
+}
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var logo = db.FooterLogoes.FirstOrDefault();
+    if (logo == null)
+    {
+        logo = new FooterLogo();
+    }
+    //new Totalallow().today();
+    var user = Session["Member"] as Member;
+    var admin = Session["Admin"] as UngVien;
+    var url = Request.Url.AbsoluteUri.ToString();
+    var Route = HttpContext.Current.Request.RequestContext.RouteData;
+    var controllerName = Route.Values["controller"].ToString();
+    var actionName = Route.Values["action"].ToString();
+    var isHomePage = false;
+    if (controllerName == "Home" && actionName == "Index")
+    {
+        isHomePage = true;
+    }
+    var checkishave = false;
+}
+@if (isHomePage == false)
+{
+    <div class="row catgory-news" style="display:none;">
+        <div class="col-md-8" style="width:100%">
+            <ul class="caegory-more" style="margin-left:-40px;">
+                @foreach (var item in db.categorynews.Where(x => x.position != 1 && x.position != 2 && x.position != 3 && x.position != 4 && x.position != 5&&x.position!=6 && x.active == true && x.trash != true).OrderBy(x => x.displayorder))
+                {
+                    checkishave = true;
+                    string categoryname = new RemoveUnicode().UnicodeName(item.categoryName);
+                    string titlenews = item.News.Select(x => x.titlenews).First();
+                    titlenews = new RemoveUnicode().UnicodeName(titlenews);
+                    if (categoryname.Trim() == "lien-he")
+                    {
+                        <li>
+                            <a target="_blank" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = titlenews, newsid = item.News.Select(x => x.newsid).First() })"><i style="padding-right:5px;color:orange;" class="fa fa-list-ul" aria-hidden="true"></i>@item.categoryName</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a target="_blank" href="@Url.Action("ListNewsOfCategory", "News", new { categoryName=categoryname, categoryid = item.categoryId })"><i style="padding-right:5px;color:orange;" class="fa fa-list-ul" aria-hidden="true"></i>@item.categoryName</a>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </div>
+    </div>
+}
+else
+{
+  
+    <div class="row catgory-news" style="display:none;">
+        <div class="col-md-8" style="width:100%">
+            <ul class="caegory-more" style="margin-left:-40px;">
+                @foreach (var item in db.categorynews.Where(x => x.position != 1 && x.position != 2 && x.position != 3 && x.position != 4 &&x.position!=5&& x.active == true && x.trash != true).OrderBy(x => x.displayorder))
+                {
+                    checkishave = true;
+                    string categoryname = new RemoveUnicode().UnicodeName(item.categoryName);
+                    string titlenews = item.News.Select(x => x.titlenews).First();
+                    titlenews = new RemoveUnicode().UnicodeName(titlenews);
+                    if (categoryname.Trim() == "lien-he")
+                    {
+                        <li>
+                            <a target="_blank" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = titlenews, newsid = item.News.Select(x => x.newsid).First() })"><i style="padding-right:5px;color:orange;" class="fa fa-list-ul" aria-hidden="true"></i>@item.categoryName</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a target="_blank" href="@Url.Action("ListNewsOfCategory", "News", new { categoryName=categoryname, categoryid = item.categoryId })"><i style="padding-right:5px;color:orange;" class="fa fa-list-ul" aria-hidden="true"></i>@item.categoryName</a>
+                        </li>
+                    }
+
+                }
+
+            </ul>
+        </div>
+    </div>
+
+}
+<div class="">
+    <div class="row">
+        <nav class="navbar horizontal-navbar navbar-default">
+            <div class="container-fluid">
+                <div style="margin-right:0px;" class="navbar-header">
+                    <a class="navbar-brand hidden-xs" href="/">
+                        <img style="margin:6px;" class="" src="@logo.logoimg" alt="Trung tâm hỗ trợ sinh viên và quan hệ doanh nghiệp" title="Trung tâm hỗ trợ sinh viên và quan hệ doanh nghiệp" height="45px">
+                    </a>
+                </div>
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="hidden-xs">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            @*@Html.RouteLink("Tất Cả Việc Làm", "Search", new { key = "", workid = "Tat-ca-nghanh-nghe", cityid = "Tat-ca-dia-diem" }, new { @style = "background: #006CB6;padding: 1px 13px;margin: 13px;color: white!important" })*@
+                            @*<a href="@Url.RouteUrl("Search")">click here</a>*@
+                            <a style="background: #006CB6;
+    padding: 1px 13px;
+    margin: 13px;
+    color: white!important;" href="@Url.RouteUrl("Search", new { key = "", workid = "tat-ca-nghanh-nghe", cityid = "tat-ca-dia-diem" })">Tất Cả Việc Làm</a>
+                        </li>
+                        @*lấy ra các danh mục được đánh dấu trong trang quan tri bằng setting vi tri cho no*@
+                        @foreach (var item in db.categorynews.Where(x => x.trash != true && x.active == true))
+                        {
+                            if (item.position == 1)
+                            {
+                                string categoryname = new RemoveUnicode().UnicodeName(item.categoryName);
+                                string titlenews=item.News.Select(x => x.titlenews).First();
+                                titlenews=new RemoveUnicode().UnicodeName(titlenews);
+                                if (categoryname.Trim() == "lien-he")
+                                {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = titlenews, newsid = item.News.Select(x => x.newsid).First() })">@item.categoryName</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("ListNewsOfCategory", "News", new { categoryName=categoryname, categoryid = item.categoryId })">@item.categoryName</a>
+                                    </li>
+                                }
+                                break;
+                            }
+                        }
+                        @foreach (var item in db.categorynews.Where(x => x.trash != true && x.active == true))
+                        {
+                            if (item.position == 2)
+                            {
+                                string categoryname = new RemoveUnicode().UnicodeName(item.categoryName);
+                                      string titlenews=item.News.Select(x => x.titlenews).First();
+                                titlenews=new RemoveUnicode().UnicodeName(titlenews);
+                                if (categoryname.Trim() == "lien-he")
+                                {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = titlenews, newsid = item.News.Select(x => x.newsid).First() })">@item.categoryName</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("ListNewsOfCategory", "News", new { categoryName=categoryname, categoryid = item.categoryId })">@item.categoryName</a>
+                                    </li>
+                                }
+                                break;
+                            }
+                        }
+                        @foreach (var item in db.categorynews.Where(x => x.trash != true && x.active == true))
+                        {
+                            if (item.position == 3)
+                            {
+                                string categoryname = new RemoveUnicode().UnicodeName(item.categoryName);
+                                   string titlenews=item.News.Select(x => x.titlenews).First();
+                                titlenews=new RemoveUnicode().UnicodeName(titlenews);
+                                if (categoryname.Trim() == "lien-he")
+                                {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = titlenews, newsid = item.News.Select(x => x.newsid).First() })">@item.categoryName</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("ListNewsOfCategory", "News", new { categoryName=categoryname, categoryid = item.categoryId })">@item.categoryName</a>
+                                    </li>
+                                }
+                                break;
+                            }
+                        }
+                        @foreach (var item in db.categorynews.Where(x => x.trash != true && x.active == true))
+                        {
+                            if (item.position == 4)
+                            {
+                                string categoryname = new RemoveUnicode().UnicodeName(item.categoryName);
+                                string titlenews=item.News.Select(x => x.titlenews).First();
+                                titlenews=new RemoveUnicode().UnicodeName(titlenews);
+                                if (categoryname.Trim() == "lien-he")
+                                {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = titlenews, newsid = item.News.Select(x => x.newsid).First() })">@item.categoryName</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("ListNewsOfCategory", "News", new { categoryName=categoryname, categoryid = item.categoryId })">@item.categoryName</a>
+                                    </li>
+                                }
+                                break;
+                            }
+                        }
+                        @foreach (var item in db.categorynews.Where(x => x.trash != true && x.active == true))
+                        {
+                            if (item.position == 5)
+                            {
+                                string categoryname = new RemoveUnicode().UnicodeName(item.categoryName);
+                                string titlenews=item.News.Select(x => x.titlenews).First();
+                                titlenews=new RemoveUnicode().UnicodeName(titlenews);
+                                if (categoryname.Trim() == "lien-he")
+                                {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = titlenews, newsid = item.News.Select(x => x.newsid).First() })">@item.categoryName</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("ListNewsOfCategory", "News", new { categoryName=categoryname, categoryid = item.categoryId })">@item.categoryName</a>
+                                    </li>
+                                }
+                                break;
+                            }
+                        }
+                        @if (isHomePage == false)
+                        {
+                            foreach (var item in db.categorynews.Where(x => x.trash != true && x.active == true))
+                            {
+                                if (item.position == 6)
+                                {
+                                    string categoryname = new RemoveUnicode().UnicodeName(item.categoryName);
+                                string titlenews=item.News.Select(x => x.titlenews).First();
+                                titlenews=new RemoveUnicode().UnicodeName(titlenews);
+                                if (categoryname.Trim() == "lien-he")
+                                {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = titlenews, newsid = item.News.Select(x => x.newsid).First() })">@item.categoryName</a>
+                                    </li>
+                                }
+                                    else
+                                    {
+                                    <li>
+                                        <a target="_blank" href="@Url.Action("ListNewsOfCategory", "News", new { categoryName=categoryname, categoryid = item.categoryId })">@item.categoryName</a>
+                                    </li>
+                                    }
+                                    break;
+                                }
+                            }
+                            }
+
+                            @if(checkishave==true)
+                            {
+                                <li class="toggle-category" style="position:relative;">
+                                    <a href="#" class="dot_more"></a>
+
+                                </li>
+                            }
+
+                </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                @*khung search*@
+                                @*<li>
+                                        <a class="box-search-job clickable" href="@Url.RouteUrl("Search", new { key = "", workid = "tat-ca-nghanh-nghe", cityid = "tat-ca-dia-diem" })" title="Tìm Việc Làm"><i class="glyphicon glyphicon-search"></i></a>
+                                    </li>*@
+                                @if (user == null && admin == null)
+                        {
+                                    <li>
+                                        <a href="@Url.Action("Login","Member")"><i class="fa fa-fw fa-lg fa-sign-in"></i>Đăng Nhập</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Register","Member")">Đăng Ký</a>
+                                    </li>
+                        }
+                        else if (user != null)
+                        {
+                            <li class="dropdown dropdown-popover-theme user-account dropdown-with-icon">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <!--                                    <img class="img-responsive profile-image"-->
+                                    <!--                                         src="https://s-media-cache-ak0.pinimg.com/736x/4a/31/98/4a3198c4e2e80b1becf604955ae7de06.jpg" alt="">-->
+                                    <span class="fa-stack fa-lg m-t-n-xs">
+                                        <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    @user.Ten                                     <div data-userid="4561539" id="gravity_userId" hidden=""></div>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="">
+
+                                        <br>
+                                        <a href="@Url.Action("Profile","Member")" class="btn btn-primary" style="width:100%;margin-left:0px;margin-bottom:0px;">
+                                            @user.Hovatendem @user.Ten
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Profile","Member")"><i class="fa fa-fw fa-lg fa-user"></i>Trang Cá Nhân</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("ListApplyJob","Member")"><i class="fa fa-fw fa-lg fa-heart"></i>Việc Làm</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("ListEmployerSaved","Member")">
+                                            <i class="fa fa-fw fa-lg fa-eye"></i>Nhà Tuyển
+                                            Dụng Xem Hồ
+                                            Sơ
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Member/Logout"><i class="fa fa-fw fa-lg fa-sign-out"></i>Thoát</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else if (admin != null)
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Admin")"><i class="fa fa-lg fa-dashboard fa-fw"></i>Administrator</a>
+                            </li>
+                                    <li>
+                                        <a href="@Url.Action("Logout", "Admin", new {area="Admin" })">Thoát</a>
+                                    </li>
+                        }
+                                @if (isHomePage == true)
+                        {
+                                    <li class="horizontal-navbar__employer-site">
+                                        <a target="_blank" href="/Employer/Login">
+                                            <strong class="text-white hidden-xs">
+                                                NHÀ TUYỂN
+                                                DỤNG
+                                            </strong><br>
+                                            <span class="text-white">Đăng Tin Miễn Phí</span>
+                                        </a>
+                                    </li>
+                        }
+
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                            <div class="visible-xs mobile-nav">
+                                <ul>
+                                    <li class="pull-left mobile-logo">
+                                        <a href="/">
+                                            <img class="visible-xs-inline" src="@logo.logoimg" alt="Trung tâm hỗ trợ sinh viên và quan hệ doanh nghiệp">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="menu-toggler"><i class="fa fa-lg fa-bars"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div><!-- /.container-fluid -->
+
+
+                    </nav>
+                </div>
+            </div>
+            <div class="modal fade modal-menu" id="modal-menu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="close absolute" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <ul>
+                                <li class="menu-header">&nbsp;</li>
+                                <li>
+                                    <a class="box-search-job clickable" href="@Url.RouteUrl("Search", new { key = "", workid = "Tat-ca-nghanh-nghe", cityid = "Tat-ca-dia-diem" })" title="Tìm Việc Làm"><i class="glyphicon glyphicon-search"></i>Tìm việc làm</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.RouteUrl("Search", new { key = "", workid = "tat-ca-nghanh-nghe", cityid = "tat-ca-dia-diem" })" class="language-switcher clickable">
+                                        <i class="fa fa-fw fa-lg fa-globe"></i>
+                                        <span class="chosen-language">Tất Cả Việc Làm</span>
+                                    </a>
+                                </li>
+                                <li class="all-category">
+
+                                    <i class="fa fa-lg fa-fw fa-info-circle"></i>
+                                    <span>Danh Mục Tin Tức</span>
+
+                                    <ul class="toggle-mobile" style="display:none;">
+                                        @foreach (var ca in db.categorynews.Where(x => x.trash != true && x.active == true).OrderBy(x => x.displayorder))
+                            {
+                                string categoryname = new RemoveUnicode().UnicodeName(ca.categoryName);
+                                            <li><a href="@Url.Action("ListNewsOfCategory", "News", new { categoryName=categoryname, categoryid = ca.categoryId })">@ca.categoryName</a></li>
+                            }
+                                    </ul>
+                                </li>
+                                @if (user == null && admin == null)
+                    {
+                                    <li>
+                                        <a href="@Url.Action("Login","Member")">
+                                            <i class="fa fa-lg fa-sign-in fa-fw "></i>
+                                            <span>Đăng Nhập</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Register","Member")">
+                                            <i class="fa fa-lg fa-user-plus fa-fw "></i>
+                                            <span>Đăng Ký</span>
+                                        </a>
+                                    </li>
+                    }
+                    else if (user != null)
+                    {
+                        <li>
+                            <a href="@Url.Action("Profile","Member")">
+                                <i class="fa fa-lg fa-user fa-fw "></i>
+                                <span>@user.Hovatendem @user.Ten</span>
+                            </a>
+                        </li>
+                                    <li>
+                                        <a href="@Url.Action("Logout","Member")">
+                                            <i class="fa fa-lg fa-sign-out "></i>
+                                            <span>Đăng Xuất</span>
+                                        </a>
+                                    </li>
+                    }
+                    else if (admin != null)
+                    {
+                        <li>
+                            <a href="/Admin">
+                                <i class="fa fa-lg fa-user fa-fw "></i>
+                                <span>Administrator</span>
+                            </a>
+                        </li>
+                                    <li>
+                                        <a href="/Admin/Admin/Logout">
+                                            <i class="fa fa-lg fa-sign-out "></i>
+                                            <span>Đăng Xuất</span>
+                                        </a>
+                                    </li>
+                    }
+                                <li class="horizontal-navbar__employer-site">
+                                    <a target="_blank" href="@Url.Action("Login","Employer")">
+                                        <strong class="text-white">Doanh Nghiệp</strong><br>
+                                        <span class="text-white">Đăng Việc Làm &amp; Tìm ứng viên</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .icon-dn {
+                    background: url("/Content/image/dn.ico");
+                    background-size: 16px;
+                    background-repeat: no-repeat;
+                    vertical-align: middle;
+                    min-width: 18px !important;
+                    height: 18px;
+                    display: inline-block;
+                }
+
+                .icon-m {
+                    background: url("/Content/image/m.png");
+                    background-size: 24px;
+                    background-repeat: no-repeat;
+                    vertical-align: middle;
+                    min-width: 25px !important;
+                    height: 21px;
+                    display: inline-block;
+                }
+
+                .dot_more {
+                    background: url("/Content/image/3dot.png");
+                    background-repeat: no-repeat;
+                    background-size: 20px;
+                    background-position-y: 25px;
+                    padding: 20px !important;
+                }
+
+                .catgory-news {
+                    position: absolute;
+                    background: white;
+                    z-index: 999;
+                    width: 650px;
+                    top: 60px;
+                    left: 280px;
+                }
+
+                .caegory-more li {
+                    display: inline-block;
+                    list-style-type: none;
+                    padding: 10px;
+                    margin-bottom: -10px;
+                }
+
+                    .caegory-more li a {
+                        color: #006CB6;
+                        font-weight: bold;
+                    }
+            </style>
+            <script>
+                $(".toggle-category").click(function () {
+                    $(".catgory-news").slideToggle();
+                })
+                $(".all-category").click(function () {
+                    $(".toggle-mobile").slideToggle();
+                })
+            </script>

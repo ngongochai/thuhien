@@ -1,0 +1,250 @@
+﻿@model IList<Model.Framework.DangTinViecLam>
+@using thuctaptotnghiep.Models
+@using Model.Framework
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+}
+@foreach (var item in Model)
+{
+    string namejob = new RemoveUnicode().UnicodeName(item.TenCV);
+    <tr>
+        <td class="job-info">
+            <a href="@Url.Action("JobForMember", "ManagerJob", new { macv = item.MACV })" class="job-title"><strong>@item.TenCV</strong></a>
+            <span class="job-id">@item.MACV</span>
+            <div class="job-location">
+                @db.cities.Where(x => x.Id == item.MaTP1).Select(x => x.City1).FirstOrDefault()
+                @db.cities.Where(x => x.Id == item.MaTP2).Select(x => x.City1).FirstOrDefault()
+                @db.cities.Where(x => x.Id == item.MaTP3).Select(x => x.City1).FirstOrDefault()
+            </div>
+            <div class="actions job-actions">
+                <a href="@Url.Action("EditJob", "Employer", new {id=item.MACV })" class="btn btn-default" style="color:white">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>  Sửa
+                </a>
+                |
+                <a style="color:white" href="#" class="btn-confirm btn btn-default action-copy" data-url="@Url.Action("CopyJob", "Employer", new {id=item.MACV })" data-redirect-url="@Url.Action("CopyJob", "Employer", new {id=item.MACV })">
+                    <i class="fa fa-files-o" aria-hidden="true"></i> Sao chép
+                </a>
+                @if (item.Tinhtrang == 1 && item.Trangthai == 1)
+                {
+                    <span>|</span>
+                    <a href="#" style="color:white" class="btn-confirm action-hidejob btn btn-default" data-url="@Url.Action("ActiveHidejob", "Employer", new { id = item.MACV })">
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i> Ẩn
+                    </a>
+                    <span>|</span>
+                    <a style="color:white" href="#" class="btn-confirm action-expried btn btn-default" data-url="@Url.Action("ActiveExpiredjob", "Employer", new { id = item.MACV })">
+                        <i class="fa fa-stop-circle" aria-hidden="true"></i>  Hết Hạn
+                    </a>
+                    <br />
+                    <a target="_blank" href="@Url.Action("DetailJob", "Job", new { TenCV=namejob,id = item.MACV })" class="job-title"><strong>Xem chi tiết..</strong></a>
+                }
+                @if (item.Tinhtrang == 1 && item.Trangthai == 0)
+                {
+                    <span>|</span>
+                    <a href="#" style="color:white" class="btn-confirm action-activejob btn btn-default" data-url="@Url.Action("ActiveActivejob", "Employer", new { id = item.MACV })">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i> Hiển thị
+                    </a>
+                    <span>|</span>
+                    <a style="color:white" href="#" class="btn-confirm action-expried btn btn-default" data-url="@Url.Action("ActiveExpiredjob", "Employer", new { id = item.MACV })">
+                        <i class="fa fa-stop-circle" aria-hidden="true"></i>Hết Hạn
+                    </a>
+                }
+                @if (item.Tinhtrang == 0)
+                {
+                    <span>|</span>
+                    <a style="color:white" href="#" class="btn-confirm action-delete btn btn-default" data-url="@Url.Action("DeleteJob", "Employer", new { id = item.MACV })">
+                    
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>Xóa
+                    </a>
+                }
+            </div>
+
+        </td>
+        @if (item.Ngaydang == null)
+        {
+            <td class="job-labels"></td>
+        }
+        else
+        {
+            <td class="job-labels">@item.Ngaydang.Value.Date.ToString("dd/MM/yyyy")</td>
+        }
+
+        <td>
+            @db.NghanhNghes.Where(x => x.Id == item.Manghanh1).Select(x => x.Tennghanh).FirstOrDefault()
+            @db.NghanhNghes.Where(x => x.Id == item.Manghanh2).Select(x => x.Tennghanh).FirstOrDefault()
+            @db.NghanhNghes.Where(x => x.Id == item.Manghanh3).Select(x => x.Tennghanh).FirstOrDefault()
+        </td>
+        <td class="job-view">
+            <span><strong>0</strong></span>
+        </td>
+        <td class="job-application">
+            <a data-toggle="tooltip" title="" href="javascript:void(0);" data-original-title="Không có hồ sơ ứng tuyển mới">
+                <strong class="no-unread">@db.UVDangKies.Where(x => x.MACV == item.MACV && x.Tinhtrang == 1).ToList().Count()</strong>
+            </a>
+        </td>
+    </tr>
+}
+<script>
+    $('.btn-confirm.action-copy').click(function (e) {
+        e.preventDefault();
+        //get jobid
+        var url = $(this).data("url");
+        var redirectUrl = $(this).data("redirect-url");
+        swal({
+            title: "Sao chép việc làm",
+            text: "Bạn có muốn sao chép việc làm này?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sao chép ngay",
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true
+        }, function () {
+            $.post(url, function (data) {
+                if (data.status == 'SUCCESS') {
+                    swal({
+                        title: "Đã sao chép!",
+                        text: "Việc làm của bạn đã được sao chép thành công",
+                        type: "success",
+                        timer: 1500,
+                        showConfirmButton: false
+                    }, function () {
+                        if (data.editUrl != '') {
+                            location.replace(data.editUrl);
+                        }
+                    });
+                } else {
+                    swal('Lỗi', 'Xin lỗi, có sự cố đã xảy ra.', "error");
+                }
+            }, "json");
+        });
+    });
+    $(document).ready(function () {
+        $('.btn-confirm.action-delete').click(function (e) {
+            //get jobid
+            e.preventDefault();
+            var url = $(this).data("url");
+            swal({
+                title: "Xóa việc làm",
+                text: "Bạn có muốn xóa việc làm này?",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "Bỏ qua",
+                confirmButtonText: "Xóa",
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true
+            }, function () {
+                $.post(url, function (data) {
+                    if (data.status == 'SUCCESS') {
+                        swal({
+                            title: "Đã xóa!",
+                            text: "Việc làm của bạn đã xóa thành công",
+                            type: "success",
+                            timer: 1500,
+                            showConfirmButton: false
+                        }, function () {
+                            location.reload();
+                        });
+                    } else {
+                        swal('Lỗi', 'Xin lỗi, có sự cố đã xảy ra.', "error");
+                        location.reload();
+                    }
+                }, "json");
+            });
+        });
+        $('.btn-confirm.action-hidejob').click(function (e) {
+            //get jobid
+            e.preventDefault();
+            var url = $(this).data("url");
+            swal({
+                title: "Ẩn Việc làm này",
+                text: "Bạn có muốn Ẩn việc làm này?",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "Bỏ qua",
+                confirmButtonText: "Ẩn",
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true
+            }, function () {
+                $.post(url, function (data) {
+                    if (data.status == 'SUCCESS') {
+                        swal({
+                            title: "Đã Ẩn!",
+                            text: "Việc làm của bạn đã Ẩn thành công",
+                            type: "success",
+                            timer: 1500,
+                            showConfirmButton: false
+                        }, function () {
+                            location.reload();
+                        });
+                    } else {
+                        swal('Lỗi', 'Xin lỗi, có sự cố đã xảy ra.', "error");
+                        location.reload();
+                    }
+                }, "json");
+            });
+        });
+        $('.btn-confirm.action-expried').click(function (e) {
+            //get jobid
+            e.preventDefault();
+            var url = $(this).data("url");
+            swal({
+                title: "Kết thúc việc làm này",
+                text: "Bạn có muốn Kết thúc việc làm này?",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "Bỏ qua",
+                confirmButtonText: "Kết Thúc",
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true
+            }, function () {
+                $.post(url, function (data) {
+                    if (data.status == 'SUCCESS') {
+                        swal({
+                            title: "Việc làm đã hết hạn!",
+                            text: "Việc làm của bạn đã hết hạn",
+                            type: "success",
+                            timer: 1500,
+                            showConfirmButton: false
+                        }, function () {
+                            location.reload();
+                        });
+                    } else {
+                        swal('Lỗi', 'Xin lỗi, có sự cố đã xảy ra.', "error");
+                        location.reload();
+                    }
+                }, "json");
+            });
+        });
+        $('.btn-confirm.action-activejob').click(function (e) {
+            //get jobid
+            e.preventDefault();
+            var url = $(this).data("url");
+            swal({
+                title: "Hiển thị việc làm này",
+                text: "Bạn có muốn Hiển thị việc làm này?",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "Bỏ qua",
+                confirmButtonText: "Hiển thị",
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true
+            }, function () {
+                $.post(url, function (data) {
+                    if (data.status == 'SUCCESS') {
+                        swal({
+                            title: "Việc làm đã Hiển thị!",
+                            text: "Việc làm của bạn đã Hiển thị",
+                            type: "success",
+                            timer: 1500,
+                            showConfirmButton: false
+                        }, function () {
+                            location.reload();
+                        });
+                    } else {
+                        swal('Lỗi', 'Xin lỗi, có sự cố đã xảy ra.', "error");
+                        location.reload();
+                    }
+                }, "json");
+            });
+        });
+    })
+</script>

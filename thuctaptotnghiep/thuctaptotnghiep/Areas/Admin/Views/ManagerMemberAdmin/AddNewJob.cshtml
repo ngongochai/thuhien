@@ -1,0 +1,526 @@
+﻿@model Model.Framework.CongTy
+@using Model.Framework;
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    ViewBag.Title = "Tạo việc làm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/Employer/Signup/register.js"></script>
+@*<script src="~/Scripts/jquery-ui.min.js"></script>*@
+<script src="~/Content/Employer/Manager/bootstrap-tokenfield.js"></script>
+<script src="~/Content/Employer/Manager/docs.min.js"></script>
+<script src="~/Content/Employer/Manager/scrollspy.js"></script>
+<link href="~/Content/Employer/Manager/bootstrap-tokenfield.css" rel="stylesheet" />
+<link href="~/Content/Employer/Manager/tokenfield-typeahead.css" rel="stylesheet" />
+<link href="~/Content/Employer/Manager/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/build.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Areas/Admin/Content/plugins/datepicker/datepicker3.css">
+<link rel="stylesheet" href="~/Areas/Admin/Content/plugins/daterangepicker/daterangepicker.css">
+<script src="~/Content/Profile/bootstrap-datepicker.js"></script>
+<script src="~/Areas/Admin/Scripts/moment.js"></script>
+<script>
+    $(function () {
+        $(document).on('mouseenter', '.datepicker', function () {
+            $(this).addClass('hover');
+        }).on('mouseleave', '.datepicker', function () {
+            $(this).removeClass('hover');
+        });
+
+        var $dateOfBirth = $('#date-of-birth');
+        var $datePicker = $('.datepicker');
+        var $dayPicker = $('.day-picker');
+
+        $dateOfBirth.datepicker({ format: 'dd/mm/yyyy', language: 'vi', autoclose: true, toggleActive: false });
+        $dayPicker.datepicker({ format: 'dd/mm/yyyy', language: 'vi', autoclose: true, toggleActive: false, clear: 'Clear' });
+        $datePicker.datepicker({ format: 'mm/yyyy', startDate: '-50y', minViewMode: 'months', language: 'vi', autoclose: true, toggleActive: false });
+
+    });
+</script>
+<div style="background:white">
+    <div class="post-job m-b-lg">
+        <div id="errorMessage" class="alert alert-danger" hidden="hidden">
+            Dữ liệu bạn cung cấp chưa hợp lệ. Vui lòng kiểm tra lại các dữ liệu sai.
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="tabs-container post-job-tabs">
+                    <div>
+                        <div id="jobPostContainer" class="tab-content">
+                            <div id="job" class="m-b active">
+                                <div class="panel-body">
+                                    <div class="col-sm-12 col-lg-12">
+                                        <div class="float-e-margins animated fadeInRight">
+                                            <form name="job" id="createjobpost" method="post" action="~/ManagerMemberAdmin/AddNewJob" novalidate="novalidate" class="form-horizontal" enctype="multipart/form-data">
+                                                <!-- The Job-->
+                                                <div class="content">
+                                                    <h2>
+                                                        <span class="circle-wrapper"><i class="fa fa-suitcase"></i></span>
+                                                        Mô tả công việc
+                                                    </h2>
+                                                    <fieldset aria-hidden="false">
+                                                        <input type="hidden" id="job_save_as_draft" name="job[save_as_draft]" value="0">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label" for="job_job_title">Chức Danh</label>
+                                                            <div class="col-sm-9">
+                                                                <span class="twitter-typeahead" style="position: relative; display: block; direction: ltr;">
+                                                                    <input type="text" id="job_job_title" name="TenCV" placeholder="Eg. Senior UX Designer" tabindex="1" class="job-title typeahead form-control tt-input" data-bind="jobTitle" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;">
+                                                                    <label id="job_job_title-error" class="error" style="display:none;" for="job_job_title">Vui lòng nhập chức danh</label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="job_job_level" aria-required="true">Cấp Bậc</label>
+                                                            <div class="col-sm-9">
+                                                                <div style="border:1px solid #c9c9c9" class="textbox">
+
+                                                                    <select id="job_job_level" name="macb" class="select2-single form-control">
+                                                                        <option value="0" selected="selected">Vui lòng chọn</option>
+                                                                        @foreach (var item in ViewBag.CB)
+                                                                        {
+                                                                            <option value="@item.Id">@item.Ten</option>
+                                                                        }
+                                                                    </select>
+
+
+                                                                </div>
+                                                                <label id="job_level" class="error" style="display:none;" for="job_job_title">Vui lòng chọn 1 cấp bậc</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Ngành Nghề <br> <small>(Tối đa 3 ngành )</small></label>
+                                                            <div class="col-sm-9">
+                                                                <select id="job_job_categories" name="categories" required="required" data-placeholder="Vui lòng chọn" class="select2-mul form-control" data-show-error-after=".help-block" data-show-error-container=".col-sm-9" data-too-big-mes="Bạn chỉ được chọn tối đa 3 ngành nghề" tabindex="-1" data-dropdowncssclass="multi-column-select three-column-select" data-bind="jobCategory" multiple="multiple" aria-required="true">
+                                                                    @foreach (var item in ViewBag.ListNghanh)
+                                                                    {
+                                                                        <option value="@item.Id">@item.Tennghanh</option>
+                                                                    }
+                                                                </select>
+
+                                                                <label id="job_category" class="error" style="display:none;" for="job_job_title">Vui lòng chọn 1 nghành nghề</label>
+                                                            </div>
+                                                            <input type="hidden" id="job_job_category_order" name="job[job_category_order]">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Nơi Làm Việc <br> <small>(Tối đa 3 địa điểm)</small></label>
+                                                            <div class="col-sm-9">
+
+                                                                <select id="job_job_locations" name="city" required="required" data-placeholder="Vui lòng chọn" class="select2-mul form-control" data-show-error-after=".help-block" data-too-big-mes="Bạn chỉ được chọn tối đa 3 địa điểm" tabindex="-1" data-dropdowncssclass="multi-column-select three-column-select" data-bind="jobLocation" multiple="multiple" aria-required="true">
+                                                                    @foreach (var item in ViewBag.City)
+                                                                    {
+                                                                        <option value="@item.Id">@item.City1</option>
+                                                                    }
+
+                                                                </select>
+                                                            </div>
+                                                            <label id="job_city" class="error" style="display:none;" for="job_job_title">Vui lòng chọn thành phố</label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Ngày hết hạn <br> <small>(Ngày lớn hơn ngày hiện tại)</small></label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control edit-control day-picker" id="endate" type="datetime" name="Dateex" placeholder="Ngày hết hạn">
+                                                            </div>
+                                                            <label id="job_dateex" class="error" style="display:none;" for="job_job_title">Vui lòng chọn ngày hết hạn</label>
+                                                        </div>
+                                                        <div class="form-group salary-range-group">
+                                                            <label class="col-sm-3 control-label">Mức Lương <br> <small>(USD, VNĐ)</small></label>
+                                                            <div class="col-sm-9">
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="relative">
+                                                                            <div class="input-group">
+                                                                                <input type="number" id="job_minimum_salary" name="minluong" class="job-salary form-control" maxlength="5" placeholder="Nhập mức lương tối thiểu" data-toggle="dropdown" tabindex="6" data-show-error-after=".input-group" data-show-error-container=".relative" data-bind="salMin">
+                                                                                <div class="input-group-addon"><span class="caret"></span></div>
+
+                                                                            </div>
+                                                                            <label id="job_minsalary" class="error" style="display:none;" for="job_job_title">Vui lòng nhập mức lương tối thiểu</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="relative">
+                                                                            <div class="input-group">
+                                                                                <input type="number" id="job_maximum_salary" name="maxluong" class="job-salary form-control" maxlength="5" placeholder="Nhập mức lương tối đa" data-toggle="dropdown" tabindex="7" data-show-error-after=".input-group" data-show-error-container=".relative" data-bind="salMax">
+                                                                                <div class="input-group-addon"><span class="caret"></span></div>
+                                                                            </div>
+                                                                            <label id="job_maxsalary" class="error" style="display:none;" for="job_job_title">Vui lòng nhập mức lương tối đa chính xác</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+
+                                                                        <div class="checkbox checkbox-success checkbox-inline">
+                                                                            <input type="checkbox" name="Luongthoathuan" class="styled" id="inlineCheckbox2" value="1">
+                                                                            <label for="inlineCheckbox2">Thương Lượng</label>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--  Job Description -->
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="job_job_description" aria-required="true">Mô Tả</label>
+                                                            <div class="col-sm-9">
+                                                                <textarea id="job_job_description" name="MotaCV" required="required" maxlength="14500" class="job-des form-control" data-counter-target="jobDescription" cols="30" rows="7" placeholder="Nhập mô tả công việc" data-show-error-after=".hint-container" data-show-error-container=".col-sm-9" tabindex="10" data-bind="jobDes" aria-required="true"></textarea>
+                                                                <div class="clearfix hint-container">
+
+                                                                    <em class="char-counter small gray-light m-t-xs" data-counter-name="jobDescription" data-max-lengh="14500">
+                                                                        (Bạn còn có thể nhập <span class="num">14500</span> ký tự)
+                                                                    </em>
+                                                                </div>
+                                                                <label id="job_descr" class="error" style="display:none;" for="job_job_title">Vui lòng nhập mô tả công việc</label>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Requirements -->
+                                                        <div class="form-group">
+                                                            <div><label class="col-sm-3 control-label required" for="job_job_requirements" aria-required="true">Yêu Cầu Công Việc</label></div>
+                                                            <div class="col-sm-9">
+                                                                <textarea id="job_job_requirements" name="YeucauCV" required="required" maxlength="14500" class="job-req form-control" data-counter-target="jobRequirements" cols="30" rows="7" placeholder="Nhập yêu cầu công việc" data-show-error-after=".hint-container" data-show-error-container=".col-sm-9" tabindex="17" data-bind="jobReq" aria-required="true"></textarea>
+                                                                <div class="clearfix hint-container">
+
+                                                                    <em class="char-counter small gray-light m-t-xs" data-counter-name="jobRequirements" data-max-lengh="14500">
+                                                                        (Bạn còn có thể nhập <span class="num">14500</span> ký tự)
+                                                                    </em>
+                                                                </div>
+                                                                <label id="job_requi" class="error" style="display:none;" for="job_job_title">Vui lòng nhập yêu cầu công việc</label>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Skill Tags -->
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Thẻ Từ Khóa <br> <small>(Tối đa 3 thẻ, Nhập từ khóa rồi Nhấn Enter để tạo thẻ)</small></label>
+                                                            <div class="col-sm-9">
+                                                                @*<select name="skill" id="skill_tag" class="select2-mul form-control" data-placeholder="Ví dụ: Kế Toán" multiple="" tabindex="-1" style="display: block;">
+
+                                                                    </select>*@
+                                                                <input type="text" class="form-control" name="skill[]" id="tokenfield-1" value="" placeholder="Ví dụ: Giao Tiếp, Anh Văn...">
+                                                                <span class="help-block m-b-none"></span>
+                                                                <label id="job_skill_tag" class="error" style="display:none;" for="job_skill_tag">Vui lòng nhập Từ Khóa cho công việc sau đó Nhấn Enter để tạo thẻ</label>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Job Application -->
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="job_preferred_language" aria-required="true">Nhận Hồ Sơ Bằng Ngôn Ngữ</label>
+                                                            <div class="col-sm-9">
+                                                                <div style="border:1px solid #c9c9c9" class="textbox">
+                                                                    <select id="job_preferred_language" name="NgonnguHS" class="select2-mul edit-control form-control" title="Nhận Hồ Sơ Bằng Ngôn Ngữ">
+                                                                        <option value="Bất kỳ" selected="selected">Bất kỳ</option>
+                                                                        <option value="Tiếng Anh">Tiếng Anh</option>
+                                                                        <option value="Tiếng Việt">Tiếng Việt</option>
+                                                                        <option value="Tiếng Nhật">Tiếng Nhật</option>
+                                                                        <option value="Tiếng Trung Quốc">Tiếng Trung Quốc</option>
+                                                                        <option value="Tiếng Hàn Quốc">Tiếng Hàn Quốc</option>
+                                                                        <option value="Tiếng Pháp">Tiếng Pháp</option>
+                                                                        <option value="Tiếng Tây Ban Nha">Tiếng Tây Ban Nha</option>
+                                                                        <option value="Tiếng Ý">Tiếng Ý</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="job_contact_name" aria-required="true">Người Liên Hệ</label>
+                                                            <div class="col-sm-9">
+                                                                <input value="@Model.Nguoilienhe" type="text" id="job_contact_name" name="NguoiLH" required="required" tabindex="30" placeholder="Ví dụ: Nguyễn Văn A" class="form-control" data-bind="contactPerson" aria-required="true">
+                                                                <label id="job_contact_name_error" class="error" style="display:none;" for="job_contact_name">Vui lòng nhập tên người liên hệ</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="phone_company" aria-required="true">Điện thoại liên hệ</label>
+                                                            <div class="col-sm-9">
+                                                                <input value="@Model.Dienthoaiban" maxlength="20" type="text" id="phone_company" name="DienthoaiLH" required="required" tabindex="30" placeholder="Ví dụ: 0989.987.789" class="form-control" data-bind="contactPerson" aria-required="true">
+                                                                <label id="phone_company_error" class="error" style="display:none;" for="job_contact_name">Vui lòng nhập Số điện thoại</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="job_email_for_application" aria-required="true">Địa Chỉ Email Nhận Hồ Sơ</label>
+                                                            <div class="col-sm-9">
+                                                                <input value="@Model.Emaildangnhap" maxlength="200" type="email" id="job_email_for_application" name="email" required="required" placeholder="Ví dụ: hr@hitu.edu.vn, contact@hitu.edu.vn" data-show-error-after=".help-block" data-show-error-container=".col-sm-9" tabindex="32" class="form-control" aria-required="true">
+                                                                <span class="help-block m-b-none">
+                                                                    <small>
+                                                                        <em>(Nhập địa chỉ email để ứng viên có thể nộp hồ sơ phỏng vấn)</em>
+                                                                    </small>
+                                                                </span>
+                                                                <label style="display:none;" id="job_email_for_application-error" class="error" for="job_email_for_application">Vui lòng nhập địa chỉ email</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="job_email_for_application" aria-required="true">Địa Chỉ Nhận Hồ Sơ</label>
+                                                            <div class="col-sm-9">
+                                                                <input value="@Model.Diachi" maxlength="500" type="text" id="job_address" name="DiachiHS" required="required" placeholder="Nhập địa chỉ nộp hồ sơ" data-show-error-after=".help-block" data-show-error-container=".col-sm-9" tabindex="32" class="form-control" aria-required="true">
+                                                                <label style="display:none;" id="job_address_error" class="error" for="job_email_for_application">Vui lòng nhập địa chỉ nhận hồ sơ</label>
+                                                            </div>
+                                                        </div>
+                                                        <!-- End Job Application -->
+                                                    </fieldset>
+                                                </div>
+
+                                                <!-- The Company-->
+                                                <div class="content">
+                                                    <h2>
+                                                        <span class="circle-wrapper"><i class="fa fa-suitcase"></i></span>
+                                                        Thông Tin Công Ty
+                                                    </h2>
+                                                    <fieldset aria-hidden="false">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="name_company" aria-required="true">Tên Công TY</label>
+                                                            <div class="col-sm-9">
+                                                                <input readonly value="@Model.Tencongty" type="text" id="name_company" name="AdminTencongty" required="required" tabindex="30" placeholder="Ví dụ: Trường Cao đẳng công thương TPHCM" class="form-control" data-bind="contactPerson" aria-required="true">
+                                                                <label id="name_company_error" class="error" style="display:none;" for="job_contact_name">Vui lòng nhập tên Công ty</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="job_email_for_application" aria-required="true">Địa Chỉ Email đăng ký</label>
+                                                            <div class="col-sm-9">
+                                                                <input readonly value="@Model.Emaildangnhap" type="email" id="job_email_register" name="AdminEmail" required="required" placeholder="Ví dụ: hr@hitu.edu.vn, contact@hitu.edu.vn" data-show-error-after=".help-block" data-show-error-container=".col-sm-9" tabindex="32" class="form-control" aria-required="true">
+                                                                <span class="help-block m-b-none">
+                                                                    <small>
+                                                                        <em>(Nhập địa chỉ email là tài khoản đăng ký của công ty)</em>
+                                                                    </small>
+                                                                </span>
+                                                                <label style="display:none;" id="job_email_register_error" class="error" for="job_email_for_application">Vui lòng nhập địa chỉ email</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="job_email_for_application" aria-required="true">Địa Chỉ Công Ty</label>
+                                                            <div class="col-sm-9">
+                                                                <input readonly value="@Model.Diachi" type="text" id="job_address" name="AdminDiachi" required="required" placeholder="Nhập địa chỉ nộp hồ sơ" data-show-error-after=".help-block" data-show-error-container=".col-sm-9" tabindex="32" class="form-control" aria-required="true">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label required" for="phone_company" aria-required="true">Điện thoại của công ty</label>
+                                                            <div class="col-sm-9">
+                                                                <input readonly value="@Model.Dienthoaiban" type="text" id="AdminDienthoai" name="AdminDienthoai" required="required" tabindex="30" placeholder="Ví dụ: 0989.987.789" class="form-control" data-bind="contactPerson" aria-required="true">
+                                                            </div>
+                                                        </div>
+                                                        <input value="@Model.MACT" name="mact" hidden />
+                                                    </fieldset>
+                                                </div>
+                                                <div class="hr-line-dashed"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="fixed-bar">
+                                <div class="col-sm-12 text-center">
+                                    <div class="nav-control-job">
+                                        <a id="btnPreview" href="https://employer.vietnamworks.com/v2/job-posting/preview" target="blank" class="btn btn-w-m btn-preview-job btn-default" style="display: none;">
+                                            Xem trước <i class="fa fa-external-link"></i>
+                                        </a>
+                                        <button class="btn btn-w-m btn-primary" type="submit" id="btnSaveAllSteps"> Lưu và Tiếp Tục</button>
+                                        <button tabindex="99" class="btn btn-w-m btn-default" type="submit" id="btnEdit" style="display: none;">Sửa Thông Tin</button>
+                                        <button tabindex="100" class="btn btn-w-m btn-primary" type="submit" id="btnFixedPublishJob" style="display: none;">
+                                            Đăng tuyển
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal-->
+    <!-- Modal Crop Photo -->
+</div>
+<div class="select2-drop select2-drop-multi select2-display-none select2-drop-active" style="left: 391.75px; width: 863px; top: 875px; bottom: auto; display: none;" id="select2-drop">
+    <ul class="select2-results">
+        <li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation">
+            <div class="select2-result-label" id="select2-result-label-20" role="option">
+                <span class="select2-match">as</span>
+            </div>
+        </li>
+        <li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation">
+            <div class="select2-result-label" id="select2-result-label-21" role="option">
+                <span class="select2-match">AS</span>P .NET MVC
+            </div>
+        </li>
+        <li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation"><div class="select2-result-label" id="select2-result-label-22" role="option"><span class="select2-match">AS</span>P.NET MVC</div></li>
+        <li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation"><div class="select2-result-label" id="select2-result-label-23" role="option"><span class="select2-match">As</span>p.net, MVC</div></li>
+        <li class="select2-results-dept-0 select2-result select2-result-selectable select2-highlighted" role="presentation"><div class="select2-result-label" id="select2-result-label-24" role="option">-<span class="select2-match">as</span>sistant</div></li>
+        <li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation"><div class="select2-result-label" id="select2-result-label-25" role="option"><span class="select2-match">As</span>p.net Mvc4</div></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('.select2-single').each(function () {
+            $(this).select2({
+                width: '100%',
+                adaptContainerCssClass: function () {
+                    return null;
+                },
+                minimumResultsForSearch: 7
+            });
+        });
+
+        $('.select2-mul').each(function () {
+            var tooBigMes = $(this).data('too-big-mes'),
+                    thisDropDownCssClass = $(this).data('dropdowncssclass');
+            $(this).VnwSelect2({
+                maximumSelectionSize: 3,
+                formatSelectionTooBig: tooBigMes,
+                dropdownCssClass: thisDropDownCssClass
+            });
+
+            $(this).on('select2-loaded', function (e) {
+                var numberOfItems = e.items.results.length;
+                if (numberOfItems < 5) {
+                    $('.select2-results').find('li').outerWidth(100 / numberOfItems + "%");
+                }
+            });
+        });
+
+        var _gaq = _gaq || [];
+        var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+        _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+        _gaq.push(['_setAccount', 'UA-103236-1']);
+        //_gaq.push(['_setDomainName', 'vietnamworks.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+        function customEvent(uniqueName, action, label, value) {
+            if (_gaq) {
+                _gaq.push(['_trackEvent', uniqueName, action, label], value || 1); // 'Videos', 'Play', 'First Birthday'
+            }
+        }
+
+        function getParams(query) {
+            query = query.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var expr = "[\\?&]" + query + "=([^&#]*)";
+            var regex = new RegExp(expr);
+            var results = regex.exec(window.location.href);
+
+            if (results !== null) {
+                return results[1];
+            } else {
+                return false;
+            }
+        }
+
+        function displayMobildeChatbox(param) {
+            var value = getParams(param);
+            return (value != false && value == 'resume');
+        }
+
+        // Pagination button click handler
+        $('#page-wrapper').on('click', '.pagination .btn', function (e) {
+            var url = $(this).data('url');
+            if (typeof url !== typeof undefined && url !== false) {
+                window.location = url;
+            }
+        });
+
+        $(function () {
+            $('.menu-toggler').click(function () {
+                $('#modal-menu').modal('show')
+            });
+
+            $('.toolbox-toggler').click(function () {
+                $('#modal-toolbox').modal('show');
+            });
+
+            $('.secondary-level-menu-toggler').click(function () {
+                $(this).siblings('.secondary-level-menu').slideToggle(100);
+            });
+        });
+
+        // Declare Firebase connection
+        var firebaseApiKey = "AIzaSyAJLgT_Xo5Jg_YyPaWYOrk5sFnAtEcOIfU";
+        var firebaseAuthDomain = "vietnamworks-message.firebaseapp.com";
+        var firebaseDatabaseURL = "https://vietnamworks-message.firebaseio.com";
+        var FIREBASE_REFRESH_TOKEN_URL = "/v2/mailbox/renew-jwt";
+        var FRIEND_LINK_FETCH_URL = "/v2/mailbox/fetch-jobseeker-link?jobseekerIds=";})
+</script>
+<style>
+    .ui-autocomplete {
+        overflow: auto;
+        max-height: 220px;
+    }
+</style>
+<script>
+    $(function(){
+        $("#inlineCheckbox2").click(function(){
+            if(document.getElementById('inlineCheckbox2').checked){
+                var check=$("#inlineCheckbox2").val();
+                document.getElementById('job_minimum_salary').disabled = true;
+                document.getElementById('job_maximum_salary').disabled = true;
+            }
+            else
+            {
+                document.getElementById('job_minimum_salary').disabled = false;
+                document.getElementById('job_maximum_salary').disabled = false;
+            }
+
+        })
+
+
+
+        $("#btnSaveAllSteps").click(function(){
+            varFormLanguage = $(this).parents('#createjobpost');
+            var optionsLanguageForm = {
+                beforeSubmit:validation ,  // pre-submit callback
+                success: responseRemoveLanguageForm,  // post-submit callback
+                error:errorfunction,
+                type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+                dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+                data: { action: 'remove-language-info', resumeId: $('#languageBlockResumeId').val()}
+            };
+            $('#createjobpost').one('submit', function (e) {
+                e.preventDefault(); // <-- important
+                $(this).ajaxSubmit(optionsLanguageForm);
+                return false;
+            });
+            $('#createjobpost').submit();
+        })
+        function responseRemoveLanguageForm(data){
+            swal({
+                title: "Tạo việc làm thành công",
+                text: "Truy cập danh sách để thay đổi tùy chọn",
+                type: "success",
+                timer: 1500,
+                showConfirmButton: false
+
+            });
+            location.href="/Admin/ManagerMemberAdmin/ListJobForEmployer/"+data;
+        }
+        function errorfunction(data){
+            location.reload();
+        }
+
+
+
+        $("#s2id_autogen4").keyup(function(){
+            var val= $("#s2id_autogen4").val();
+            $.ajax({
+                url:"/Employer/AutocompleteSkill",
+                type:"POST",
+                data:{key:val},
+                datatype:"JSON",
+                success:function(data){
+                    var none=data.trim();
+                    if(none=="<option></option>"){
+                        $("#skill_tag").html("<option value='"+val+"'>"+val+"</option>");
+                    }
+                    else{
+                        $("#skill_tag").html(data);
+                    }
+
+                }
+            })
+        })
+    })
+</script>
+<script src="~/Areas/Admin/Scripts/validate_jobadmin.js"></script>
+<style>
+    .select2-results-dept-0 {
+        width: 100% !important;
+    }
+</style>

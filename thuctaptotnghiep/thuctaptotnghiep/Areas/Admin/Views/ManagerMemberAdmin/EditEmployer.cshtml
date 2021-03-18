@@ -1,0 +1,134 @@
+﻿@model Model.Framework.CongTy
+@{
+    ViewBag.Title = "Chi tiết Nhà tuyển dụng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <h1>
+       THÔNG TIN CÔNG TY
+        <small>Member</small>
+    </h1>
+    <a href="@Url.Action("AddNewJob", "ManagerMemberAdmin", new { mact = Model.MACT })" class="btn btn-success">Thêm việc làm mới cho công ty</a>
+    <a class="btn btn-primary" href="ACEmployer?mact=@Model.MACT">Xem Chi Tiết Công Ty</a>
+    <a class="btn btn-default" href="@Url.Action("ListJobForEmployer", "ManagerMemberAdmin", new {id=Model.MACT })">Việc Làm Của Công Ty</a>
+    @if (Model.Tinhtrang == 1)
+    {
+        <button value="@Model.MACT" id="inactiveemployer" class="btn btn-default">Hủy Kích hoạt</button>
+    }
+    else
+    {
+        <button value="@Model.MACT" id="activeemployer" class="btn btn-danger">Kích Hoạt</button>
+    }
+    @if (Model.Tinhtrang == -1)
+    {
+        <button value="@Model.MACT" id="restore" class="btn btn-default">Phục hồi</button>
+    }
+    else
+    {
+        <button value="@Model.MACT" id="removeemployer" class="btn btn-danger">Xóa</button>
+    }
+    @if (Model.Toptuyendung == true)
+    {
+        <button value="@Model.MACT" id="removetop" class="btn btn-default">Xóa Top</button>
+    }
+    else
+    {
+        <button value="@Model.MACT" id="activetop" class="btn btn-success">Top</button>
+    }
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Data tables</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="box">
+            <div class="wrapper-content">
+                <div class="my-account m-b-lg">
+                    <div class="alert alert-danger" hidden="hidden">
+                        Some errors in the page. Please check again.
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Account Information-->
+                            @Html.Action("InforAccount", "ManagerMemberAdmin", new { mact = Model.MACT })
+                            <!-- My Company Profile-->
+                            @Html.Action("InforCompany", "ManagerMemberAdmin", new { mact = Model.MACT })
+                            @Html.Action("LogoCompany", "ManagerMemberAdmin", new { mact = Model.MACT })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<script src="~/Content/Employer/Manager/jqueryapp.js"></script>*@
+<!--[if lte IE 9]>
+    <script src="/bundles/naviworksweb/js/appIE8.js?r135s1d20170331t2"></script>
+<![endif]-->
+<!--[if gt IE 9]><!-->
+<!-- Google Tag Manager -->
+<!-- End Google Tag Manager -->
+<script src="~/Content/Employer/Manager/my-profile.js"></script>
+<script src="~/Content/Employer/Manager/ProProfile.js"></script>
+<script>
+    function excuteeditemployer(mact,action,val) {
+        $.ajax({
+            url: "/Admin/ManagerMemberAdmin/ChangeStatusEmployer",
+            type: "POST",
+            dataType: "JSON",
+            data: { "mact": mact, "val": val, "action": action },
+            success: function (data) {
+                location.reload();
+            },
+            error: function (data) {
+                location.reload();
+            }
+        })
+    }
+    $("#inactiveemployer").click(function () {
+        var mact = $(this).val();
+        var action = 1;
+        var val = 0;
+        excuteeditemployer(mact, action, val);
+        
+    })
+    $("#activeemployer").click(function () {
+        var mact = $(this).val();
+        var action = 1;
+        var val = 1;
+        excuteeditemployer(mact, action, val);
+     
+    })
+    $("#restore").click(function () {
+        var mact = $(this).val();
+        var action = 2;
+        var val = 0;
+        excuteeditemployer(mact, action, val);
+
+    })
+    $("#removeemployer").click(function () {
+        var mact = $(this).val();
+        var action = 2;
+        var val = 1;
+        excuteeditemployer(mact, action, val);
+
+    })
+    $("#removetop").click(function () {
+        var mact = $(this).val();
+        var action = 3;
+        var val = 0;
+        excuteeditemployer(mact, action, val);
+
+    })
+    $("#activetop").click(function () {
+        var mact = $(this).val();
+        var action = 3;
+        var val = 1;
+        excuteeditemployer(mact, action, val);
+
+    })
+</script>

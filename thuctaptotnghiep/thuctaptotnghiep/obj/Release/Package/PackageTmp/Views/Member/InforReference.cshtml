@@ -1,0 +1,247 @@
+﻿<div class="section-detail section-reference">
+    <div id="form-reference">
+        <div class="box border-gray">
+            <fieldset>
+                <legend class="box-md">
+                    <i class="fa fa-fw fa-book"></i> Thông Tin Tham Khảo
+                </legend>
+                <div class="placeholder-section box-md" hidden="" style="display: block;">
+                    <span class="placeholder">
+                        Cung cấp thông tin tham khảo về công ty bạn đã làm việc trước đây để nổi bật giữa đám đông
+                    </span>
+                </div>
+                <!-- Sample -->
+                <div class="sortable content-section">
+                    <form hidden="" class="form-view sample form-wrapper box-md relative" method="post" action="">
+                        <input type="hidden" name="resume_id" value="4387814">
+                        <input type="hidden" name="entry_id" value="">
+                        <div class="error-message-update-reference row" hidden="hidden">
+                            <div>
+                                <div class="error-message"><strong>Oops! </strong> Có lỗi đã xảy ra, vui lòng thử lại.</div>
+                                <br>
+                            </div>
+                        </div>
+                        <span class="form-btn-edit">
+                            <button type="button" class="btn btn-sm btn-default">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </button>
+                        </span>
+                        <div>
+                            <div class="view-field">
+                                <h4 class="view-control placeholder" data-control="ref-fullname">Ví dụ: Trần Thái Sơn</h4>
+                                <span class="view-control placeholder" data-control="ref-position">Ví dụ: Quản lý Dự Án</span><br>
+                            </div>
+                            <div class="edit-field">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label><strong class="text-red">* </strong> Họ Tên</label>
+                                            <input type="text" name="name" class="form-control edit-control" placeholder="Ví dụ: Trần Thái Sơn" value="" maxlength="150" data-control="ref-fullname" autofocus="">
+                                            <span class="msg-name-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                            <span class="msg-name-invalid error-message" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label><strong class="text-red">*</strong> Chức Danh</label>
+                                            <input type="text" name="position" class="form-control edit-control" placeholder="Ví dụ: Quản lý Dự Án" value="" maxlength="150" data-control="ref-position">
+                                            <span class="msg-position-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                            <span class="msg-position-invalid error-message" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="view-field">
+                                <span class="view-control placeholder">Ví dụ: Navigos Group Việt Nam</span><br>
+                            </div>
+                            <div class="edit-field">
+                                <div class="form-group">
+                                    <label><strong class="text-red">*</strong> Công Ty</label>
+                                    <input type="text" name="company" class="form-control edit-control" placeholder="Ví dụ: Navigos Group Việt Nam" value="" maxlength="150">
+                                    <span class="msg-company-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                    <span class="msg-company-invalid error-message" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="view-field">
+                                <span class="view-control placeholder" data-control="ref-email">Ví dụ: reference@navigosgroup.com</span>
+                                -
+                                <span class="view-control placeholder" data-control="ref-phone">Ví dụ: 0903035333</span>
+                            </div>
+                            <div class="edit-field">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>
+                                                <strong class="text-red">*</strong>
+                                                Email
+                                            </label>
+                                            <input type="email" name="email" class="form-control edit-control" placeholder="Ví dụ: reference@navigosgroup.com" value="" maxlength="150" data-control="ref-email">
+                                            <span class="msg-email-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                            <span class="msg-email-invalid error-message" hidden="hidden">Địa chỉ email không hợp lệ</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Số điện thoại</label>
+                                            <input type="text" name="phone" class="form-control edit-control" placeholder="Ví dụ: 0903035333" value="" maxlength="150" data-control="ref-phone">
+                                            <span class="msg-phone-invalid error-message" hidden="hidden">Số điện thoại không hợp lệ</span>
+                                            <p class="msg-description-suggestion text-info" hidden="hidden">Thêm thông tin để nâng mức độ hoàn thành hồ sơ của bạn</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group push-top-md edit-field">
+                            <div class="col-sm-6">( <strong class="text-red">*</strong> ) Thông tin bắt buộc</div>
+                            <div class="col-sm-6 text-right">
+                                <button type="button" class="btn-remove-this-section btn btn-link" onclick="deleteReference($(this).parents(&#39;form&#39;))"><i class="glyphicon glyphicon-trash"></i></button>
+                                <button type="button" class="btn-cancel btn btn-default">Hủy</button>
+                                <button type="button" class="btn-save btn btn-primary" onclick="saveReference($(this).parents(&#39;form&#39;))">Lưu</button>
+                                <button type="button" name="sending" style="display: none;" class="btn-sending btn btn-default" disabled=""><img src="~/Content/Profile/loading.gif" alt="">Đang lưu</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <button type="button" class="btn btn-default btn-block  no-border add-one-more-section" id="btn-add-reference">
+                    <strong>Bổ sung</strong>
+                </button>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function validateReference(data, form, options)
+    {
+        var has_error = false;
+        $(form).find('span.error-message').attr('hidden','hidden');
+        $(form).find('.has-error').removeClass('has-error');
+
+        $.each(data, function( index, item ) {
+            switch (item.name) {
+                case 'name':
+                    if ($.trim(item.value) == '') {
+                        has_error = true;
+                        $(form).find('span.msg-name-required').removeAttr('hidden').parent().addClass('has-error');
+                    } else if (emailExistsInString(item.value) || phoneExistsInString(item.value)) {
+                        has_error = true;
+                        $(form).find('span.msg-name-invalid').removeAttr('hidden').parent().addClass('has-error');
+                    }
+                    break;
+                case 'position':
+                    if ($.trim(item.value) == '') {
+                        has_error = true;
+                        $(form).find('span.msg-position-required').removeAttr('hidden').parent().addClass('has-error');
+                    } else if (emailExistsInString(item.value) || phoneExistsInString(item.value)) {
+                        has_error = true;
+                        $(form).find('span.msg-position-invalid').removeAttr('hidden').parent().addClass('has-error');
+                    }
+                    break;
+                case 'company':
+                    if ($.trim(item.value) == '') {
+                        has_error = true;
+                        $(form).find('span.msg-company-required').removeAttr('hidden').parent().addClass('has-error');
+                    } else if (emailExistsInString(item.value) || phoneExistsInString(item.value)) {
+                        has_error = true;
+                        $(form).find('span.msg-company-invalid').removeAttr('hidden').parent().addClass('has-error');
+                    }
+                    break;
+                case 'email':
+                    if ($.trim(item.value) == '') {
+                        has_error = true;
+                        $(form).find('span.msg-email-required').removeAttr('hidden').parent().addClass('has-error');
+                    } else if (!_checkEmail(item.value)) {
+                        has_error = true;
+                        $(form).find('span.msg-email-invalid').removeAttr('hidden').parent().addClass('has-error');
+                    }
+                    break;
+                case 'phone':
+                    if ($.trim(item.value) != '' && !_checkPhone(item.value)) {
+                        has_error = true;
+                        $(form).find('span.msg-phone-invalid').removeAttr('hidden').parent().addClass('has-error');
+                    }
+                    break;
+            }
+        });
+
+        if (!has_error) {
+            $(form).find("button.btn-remove-this-section").css('display', 'none');
+            $(form).find("button.btn-cancel").css('display', 'none');
+            $(form).find("button.btn-save").css('display', 'none');
+            $(form).find("button.btn-sending").css('display', '');
+        }
+        return !has_error;
+    }
+    function postSaveReferenceAjaxSubmit(data, status, xhr, form)
+    {
+        $(form).find("button.btn-remove-this-section").css('display', '');
+        $(form).find("button.btn-cancel").css('display', '');
+        $(form).find("button.btn-save").css('display', '');
+        $(form).find("button.btn-sending").css('display', 'none');
+        if (data.status == 'REDIRECT') {
+            window.location.href = data.redirectUrl;
+        } else if (data.status == 'VALIDATION_ERROR' || data.status == 'ERROR') {
+            $(form).find('.error-message-update-reference').slideDown();
+            setTimeout(function () {
+                $(form).find('.error-message-update-reference').slideUp();
+            }, 5000);
+        } else {
+            mdlLiveEdit.saveContent(form);
+            //reloadProfileLevel();
+            mdlLiveEdit.checkContentSection(form.closest('fieldset'));
+            if (data.hasOwnProperty('data') && data.data.hasOwnProperty('entry_id')) {
+                $(form).find("input[name='entry_id']").val(data.data.entry_id);
+            }
+        }
+    }
+    function saveReference(form) {
+        var options = {
+            beforeSubmit: validateReference, // pre-submit callback
+            success: postSaveReferenceAjaxSubmit,  // post-submit callback
+            type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+            dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+            data : { action: 'save-reference'} // extra data
+        };
+        $(form).ajaxSubmit(options);
+    }
+    function postDeleteReferenceAjaxSubmit(data, status, xhr, form)
+    {
+        $(form).find("button.btn-remove-this-section").css('display', '');
+        $(form).find("button.btn-cancel").css('display', '');
+        $(form).find("button.btn-save").css('display', '');
+        $(form).find("button.btn-sending").css('display', 'none');
+        if (data.status == 'REDIRECT') {
+            window.location.href = data.redirectUrl;
+        } else if (data.status == 'VALIDATION_ERROR' || data.status == 'ERROR') {
+            $(form).find('.error-message-update-reference').slideDown();
+            setTimeout(function () {
+                $(form).find('.error-message-update-reference').slideUp();
+            }, 5000);
+        } else {
+            mdlLiveEdit.removeAddedForm(form);
+            //reloadProfileLevel();
+        }
+    }
+    function deleteReferenceConfirmed() {
+        var confirm_dialog = $('#dialog-delete-section');
+        var form = confirm_dialog.data('target-form');
+        confirm_dialog.off('click', 'button.btn-primary', deleteReferenceConfirmed);
+        confirm_dialog.modal('hide');
+        var options = {
+            success: postDeleteReferenceAjaxSubmit,  // post-submit callback
+            type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+            dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+            data : { action: 'delete-reference'} // extra data
+        };
+        $(form).ajaxSubmit(options);
+    }
+    function deleteReference(form) {
+        var confirm_dialog = $('#dialog-delete-section');
+        confirm_dialog.data('target-form', form);
+        confirm_dialog.on('click', 'button.btn-primary', deleteReferenceConfirmed);
+        confirm_dialog.modal('show');
+    }
+</script>

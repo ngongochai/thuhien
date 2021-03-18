@@ -1,0 +1,664 @@
+﻿@model Model.Framework.DangTinViecLam
+@using Model.Framework
+@using thuctaptotnghiep.Models
+@{
+    var user = Session["Member"] as Member;
+
+    ViewBag.Title = Model.TenCV;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var datauser=new UngVien();
+    if(user!=null)
+    {
+        datauser = db.UngViens.Where(x => x.EmailDN == user.EmailDN).First();
+    }
+    var data = db.Adverts.FirstOrDefault();
+    IHtmlString adjobleft = null;
+    IHtmlString adjobright = null;
+    if (data != null)
+    {
+        adjobleft = new HtmlString(data.advertdetailjobleft);
+        adjobright = new HtmlString(data.advertdetailjobright);
+    }
+    string strig = "";
+    string strred = "";
+    string strreq = "";
+    if (Model.CongTy.Thongtin != null)
+    {
+        strig = Model.CongTy.Thongtin.Replace("\n", "<br>");
+    }
+    if (Model.MotaCV != null)
+    {
+        strred = Model.MotaCV.Replace("\n", "<br>");
+    }
+    if (Model.YeucauCV != null)
+    {
+        strreq = Model.YeucauCV.Replace("\n", "<br>");
+    }
+
+    var myHtmlString = new HtmlString(strig);
+    var red = new HtmlString(strred);
+    var req = new HtmlString(strreq);
+    var imgjob = db.HinhAnhCTs.Where(x => x.MACT == Model.MACT).ToList();
+    string returnurl = Request.RawUrl.ToString();
+}
+<section class="main-content container" id="content">
+    <!-- Apply Form-->
+    <!--End -->
+    <!-- Job Detail-->
+    <div id="section-job-detail" itemscope="" itemtype="#">
+        <!-- Alert Messages -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" hidden="hidden" id="alert-refer-to-friend-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <p class="text-lg">
+                        Công việc <strong>"Nhân Viên Kinh Doanh Tại Hà Nội (Sales Representatives – Thu Nhập Cao)"</strong> đã được giới thiệu thành công đến "<strong id="friendNameJR"></strong>"
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--Blocked User-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger fade hide" id="errorAlertPopup">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <p class="text-lg">
+                        <strong>Oops! </strong> Có lỗi đã xảy ra, vui lòng thử lại.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <!--/ Alert Messages -->
+        <!-- Job Header-->
+        <div class="job-header relative ">
+            <div class="box box-md">
+                <div class="absolute-right popover-icon premium-click" data-original-title="" title=""></div>
+                <div class="row">
+                    <div class="col-md-2 employer-logo">
+                        <!-- Display when has logo-->
+                        <span class="center-block text-center box-limit">
+                            <a href="@Model.CongTy.Website">
+                                @if (Model.CongTy.Logo != null)
+                                {
+                                    <img src="~/Employer_upload/@Model.CongTy.Logo" class="logo img-responsive">
+                                }
+                                else
+                                {
+                                    <img src="~/Content/Uploaded/noimgcongty/logocongty.png" class="logo img-responsive">
+                                }
+
+                            </a>
+                        </span>
+                    </div>
+                    <div class="col2 col-md-9">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="job-header-info">
+                                        <h1 itemprop="title" class="job-title">@Model.TenCV</h1>
+                                        <span class="company-name text-lg block">
+                                            <strong>@Model.CongTy.Tencongty</strong>
+                                        </span>
+                                        <span class="company-address block">@Model.CongTy.Diachi</span>
+
+                                        <p class="work-location">
+                                            Nơi làm việc:
+                                            <span itemprop="address" itemscope="" itemtype="#"><a itemprop="addressLocality" href="#" title="Việc làm tại Hà Nội">@Model.Thanhpho1 @Model.Thanhpho2 @Model.Thanhpho3</a></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Hide this in mobile-->
+                            <div class="col-md-4 hidden-xs hidden-sm">
+                                <div class="push-top-sm"></div>
+                                <div class="action-apply center-block">
+                                    @if (user != null)
+                                    {
+                                        var checkvl = db.UVDangKies.Where(x => x.MACV == Model.MACV && x.MAUV == user.MAUV).FirstOrDefault();
+                                        if (checkvl != null && checkvl.Tinhtrang == 1)
+                                        {
+                                            <a href="@Url.Action("ListApplyJob","Member")" type="button" class="btn btn-primary btn-xlg col-sm-12">
+                                                Đã Ứng Tuyển
+                                            </a>
+                                        }
+                                        else if (checkvl != null && checkvl.Tinhtrang == 0)
+                                        {
+                                            <button data-bind="@returnurl" data-url="@Url.Action("Login", "Member")" type="button" id="applyjob" class="btn btn-primary btn-xlg col-sm-12 applyjob">
+                                                Nộp Đơn
+                                            </button>
+                                            <a href="@Url.Action("ListApplyJob", "Member")" type="button" id="savejob" class="col-sm-12 btn btn-success btn-xlg savejob" style="margin-top:10px">Đã Lưu</a>
+                                        }
+                                        else if (checkvl == null)
+                                        {
+                                            <button data-bind="@returnurl" data-url="@Url.Action("Login", "Member")" type="button" id="applyjob" class="btn btn-primary btn-xlg col-sm-12 applyjob">
+                                                Nộp Đơn
+                                            </button>
+                                            <a href="@Url.Action("SaveJob", "Job", new {macv=Model.MACV })" type="button" id="savejob" class="col-sm-12 btn btn-success btn-xlg savejob" style="margin-top:10px">Lưu Công Việc</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <button data-bind="@returnurl" data-url="@Url.Action("Login", "Member")" type="button" id="applyjob" class="btn btn-primary btn-xlg col-sm-12 applyjob">
+                                            Nộp Đơn
+                                        </button>
+
+                                        <a href="/dang-nhap-thanh-vien?ReturnUrl=@returnurl" type="button" id="savejob" class="col-sm-12 btn btn-success btn-xlg savejob" style="margin-top:10px">Lưu Công Việc</a>
+                                    }
+
+
+                                </div>
+                            </div>
+                            <!--/-->
+                        </div>
+
+                        <!-- Salary-->
+                        <div class="row">
+                            <div class="pull-left">
+                                <div class="salary border pull-left padding-15 box-gray-light-ex rounded text-center bold-500">
+                                    Mức lương:
+                                    <span class="link-list">
+                                        @if (Model.Luongthoathuan == 1)
+                                        {
+                                            <a href="#">Lương thỏa thuận</a>
+
+                                        }
+                                        else if (Model.Maxluong < 100000)
+                                        {
+                                            <a href="#">@Model.Minluong - @Model.Maxluong $</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#">@Model.Minluong.Value.ToString("00,00") - @Model.Maxluong.Value.ToString("00,00") VNĐ</a>
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                            <input type="text" hidden id="jobid" value="@Model.MACV" />
+                            <br class="push-top-lg visible-xs">
+                            <!--Show in Mobile-->
+                            <div class="visible-xs visible-sm push-top-lg">
+                                @if (user != null)
+                                {
+                                    var checkvl = db.UVDangKies.Where(x => x.MACV == Model.MACV && x.MAUV == user.MAUV).FirstOrDefault();
+                                    if (checkvl != null && checkvl.Tinhtrang == 1)
+                                    {
+                                        <a href="@Url.Action("ListApplyJob","Member")" type="button" class="form-control btn btn-primary btn-xlg col-sm-12">
+                                            Đã Ứng Tuyển
+                                        </a>
+                                    }
+                                    else if (checkvl != null && checkvl.Tinhtrang == 0)
+                                    {
+                                        <button data-bind="@returnurl" data-url="@Url.Action("Login", "Member")" type="button" id="applyjob" class="form-control btn btn-primary btn-xlg col-sm-12 applyjob">
+                                            Nộp Đơn
+                                        </button>
+                                        <a href="@Url.Action("ListApplyJob", "Member")" type="button" id="savejob" class="form-control col-sm-12 btn btn-success btn-xlg savejob" style="margin-top:10px">Đã Lưu</a>
+                                    }
+                                    else if (checkvl == null)
+                                    {
+                                        <button data-bind="@returnurl" data-url="@Url.Action("Login", "Member")" type="button" id="applyjob" class="form-control btn btn-primary btn-xlg col-sm-12 applyjob">
+                                            Nộp Đơn
+                                        </button>
+                                        <a href="@Url.Action("SaveJob", "Job", new {macv=Model.MACV })" type="button" id="savejob" class="form-control col-sm-12 btn btn-success btn-xlg savejob" style="margin-top:10px">Lưu Công Việc</a>
+                                    }
+                                }
+                                else
+                                {
+                                    <button data-bind="@returnurl" data-url="@Url.Action("Login", "Member")" type="button" id="applyjob" class="form-control btn btn-primary btn-xlg col-sm-12 applyjob">
+                                        Nộp Đơn
+                                    </button>
+
+                                    <a href="/dang-nhap-thanh-vien?ReturnUrl=@returnurl" type="button" id="savejob" class="form-control col-sm-12 btn btn-success btn-xlg savejob" style="margin-top:10px">Lưu Công Việc</a>
+                                }
+                            </div>
+                            <!--/-->
+                            <div class="pull-right push-md-4 text-gray-light job-detail-date-info text-center">
+                                <div class="pull-left small padding-15">@Model.Luotxem Lượt Xem</div>
+                                <div class="pull-left small padding-15">
+                                    @if (Model.Ngaydang != null)
+                                    {<span>@Model.Ngaydang.Value.ToString("dd/MM/yyyy HH:mm")</span>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-8 col-lg-8 pull-left">
+                    @if (db.HinhAnhCTs.Where(x => x.MACT == Model.CongTy.MACT).Count() != 0 || Model.CongTy.VideoCT != null)
+                    {
+                        if (db.HinhAnhCTs.Where(x => x.MACT == Model.CongTy.MACT).Count() != 0 || Model.CongTy.VideoCT.Contains("http"))
+                        {
+                            <div id="what-we-offer">
+                                <div class="">
+                                    <h2 class="pull-left">
+                                        Hình Ảnh Hoạt động
+                                    </h2>
+                                    <div class="clearfix"></div>
+                                    <!--Benefits-->
+                                    @*<div class="icon-group expected-company-benefit-list push-top-xs">
+                                            <div class="border-primary">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="benefit-icon"><i class="fa fa-fw fa-lg fa-dollar"></i></div>
+                                                        <div class="benefit-name">Attractive Bonus</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="benefit-icon"><i class="fa fa-fw fa-lg fa-graduation-cap"></i></div>
+                                                        <div class="benefit-name">Professional Training</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="benefit-icon"><i class="fa fa-fw fa-lg fa-glass"></i></div>
+                                                        <div class="benefit-name">Travelling Trip</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>*@
+                                    <!-- Photo & Videos -->
+                                    <div class="clearfix">
+                                        <div class="row fade-in-on-page-loaded in">
+                                            <div class="col-lg-12">
+                                                @foreach (var item in imgjob)
+                                                {
+                                                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                                                        <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-image="/Employer_upload/@item.AnhCT" data-target="#image-gallery">
+                                                            <img class="img-responsive" src="/Employer_upload/@item.AnhCT" alt="Short alt text">
+                                                        </a>
+                                                    </div>
+                                                }
+                                                @if (Model.CongTy.VideoCT != null && Model.CongTy.VideoCT.Contains("http"))
+                                                {
+                                                    string embeb = Model.CongTy.VideoCT.Replace("watch?v=", "embed/");
+                                                    <iframe width="100%" height="300px" src="@embeb" frameborder="0" allowfullscreen></iframe>
+                                                }
+
+                                            </div>
+
+                                            <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div style="width:80%;margin:0 auto;" class="modal-content">
+                                                        <div style="padding:0;" class="modal-header">
+                                                            <button style="padding:6px;" type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <img id="image-gallery-image" class="img-responsive" src="">
+                                                        </div>
+                                                        <div style="margin:0;padding:0;" class="modal-footer">
+                                                            <div class="col-md-6">
+                                                                <button type="button" class="btn btn-primary" id="show-previous-image">Previous</button>
+                                                            </div>
+
+                                                            <div class="col-md-2">
+                                                                <button type="button" id="show-next-image" class="btn btn-default">Next</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.photos -->
+                                        </div>
+                                        <!-- /.photos -->
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    <!-- Job Detail-->
+                    <div id="job-detail" class="job-info">
+                        <div class="">
+                            <h2>Kỹ Năng Công Việc</h2>
+                            <div class="push-top-sm job-tag-add-skill1">
+
+                                @if (Model.Tags1 != null)
+                                {
+                                    <span class="tag-xs  addable " title="@Model.Tags1">
+                                        <span class="tag-name">@Model.Tags1</span>
+                                    </span>
+                                    <br class="visible-xs visible-sm">
+                                }
+
+
+                                @if (Model.Tags2 != null)
+                                {
+                                    <span class="tag-xs  addable " title="Marketing">
+                                        <span class="tag-name">@Model.Tags2</span>
+                                    </span>
+                                    <br class="visible-xs visible-sm">
+                                }
+                                @if (Model.Tags3 != null)
+                                {
+                                    <span class="tag-xs  addable " title="Bán Hàng - Chăm Sóc Khách Hàng">
+                                        <span class="tag-name">@Model.Tags3</span>
+                                    </span> <br class="visible-xs visible-sm">
+                                }
+
+                            </div>
+                        </div>
+                        <div class="">
+                            <!-- Job Description-->
+                            <h2>Mô Tả Công Việc</h2>
+                            <div id="job-description" class="push-top-sm" itemprop="description">
+                                @red
+                            </div>
+                        </div>
+                        <div class="">
+                            <!--Job Requirement-->
+                            <h2>Yêu Cầu Của Công Việc</h2>
+                            <div id="job-requirement" itemprop="experienceRequirements ">
+                                <div class="job-requirement-must-have push-top-sm">
+                                    <div class="">
+                                        @req
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="link-list">
+                                <h2>Tổng Quan Công Việc</h2>
+
+                                <div class="push-top-xs"></div>
+                                <div class="list-group">
+                                    <h5>Cấp Bậc</h5>
+                                    <a href="#" title="Nhân viên jobs">@db.CBmongmuons.Where(x => x.Id == Model.MACB).Select(x => x.Ten).FirstOrDefault()</a>
+                                </div>
+
+                                <div class="list-group">
+                                    <h5>Ngành Nghề</h5>
+                                    <a href="#" title="">@db.NghanhNghes.Where(x => x.Id == Model.Manghanh1).Select(x => x.Tennghanh).FirstOrDefault()</a>
+
+                                    <a href="#" title="">@db.NghanhNghes.Where(x => x.Id == Model.Manghanh2).Select(x => x.Tennghanh).FirstOrDefault()</a>
+
+                                    <a href="#" title="">@db.NghanhNghes.Where(x => x.Id == Model.Manghanh3).Select(x => x.Tennghanh).FirstOrDefault()</a>
+
+                                </div>
+
+                                <div class="list-group">
+                                    <h5>Ngôn Ngữ Trình Bày Hồ Sơ</h5>
+
+                                    <p>@Model.NgonnguHS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Company Info-->
+                    <div class="company-info" itemprop="hiringOrganization" itemscope="" itemtype="#">
+                        <div class="">
+                            <h2>
+                                Thông Tin Công Ty
+                            </h2>
+                            <div class="company-info">
+                                <span itemprop="name" class="link-list company-name text-lg push-top-xs block">
+                                    <strong>
+                                        @if (Model.CongTy.Website != null)
+                                        {<a href="@Model.CongTy.Website">@Model.CongTy.Tencongty</a>}
+                                        else
+                                        {<a href="#">@Model.CongTy.Tencongty</a>}
+                                    </strong>
+                                </span>
+                                <span class="company-address block">@Model.CongTy.Diachi</span>
+                                <p>
+                                    Tên người liên hệ: <strong>@Model.NguoiLH</strong><br>
+                                    Email Liên Hệ:<strong>@Model.Email</strong><br />
+                                    Điện thoại: <strong>@Model.DienthoaiLH</strong><br>
+                                    Địa chỉ nhận hồ sơ: <strong>@Model.DiachiHS</strong><br>
+                                    Qui mô công ty: <strong>@db.QuyMoCTs.Where(x => x.Id == Model.CongTy.Quymocongty).Select(x => x.Ten).FirstOrDefault()</strong>
+                                </p>
+                                <p>
+                                    <span id="companyprofile">
+                                        @myHtmlString
+                                    </span>
+                                </p>
+                                <p class="push-top">
+                                    <a href="@Url.Action("ShowSearch", "SearchJob", new {key=Model.Tags1,workid=Model.Manghanh1,cityid=Model.MaTP1 })"><i class="fa fa-arrow-right"></i>Xem thêm việc làm</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fb-comments" data-href="@Request.Url" data-numposts="10"></div>
+
+                    <!-- End Company Info-->
+                    <div class="col-md-12 qc-index">
+                        @adjobleft
+                    </div>
+                </div>
+                <!--Actions-->
+                <!-- Other Job Details-->
+                <div class="col-xs-12 col-md-4 col-lg-4 pull-right">
+                    <p>Chia Sẻ Công việc này</p>
+                    <div class="fb-like" data-href="@Request.Url" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                    <!--/ Summary Box -->
+                </div>
+                <!-- Similar Jobs-->
+                <!--/ Similar Box -->
+
+                <div class="col-xs-12 col-md-4 col-lg-4 pull-right" id="grv_similar_jobs">
+                    <div class="box box-md">
+                        <div class="list-group">
+                            <h2>Công việc tương tự</h2>
+                            <div class="push-top-xs"></div>
+                            <ul class="list-group">
+                                @foreach (var item in db.DangTinViecLams.Where(x => (x.Tinhtrang == 1 && x.Trangthai == 1 && x.MACV != Model.MACV) && (x.Manghanh1 == Model.Manghanh1 || x.Manghanh2 == Model.Manghanh1 || x.Manghanh3 == Model.Manghanh1 || x.Manghanh1 == x.Manghanh2 || x.Manghanh2 == Model.Manghanh2 || x.Manghanh3 == Model.Manghanh2 || x.Manghanh1 == Model.Manghanh3 || x.Manghanh2 == Model.Manghanh3 || x.Manghanh3 == Model.Manghanh3 || x.Tags1 == Model.Tags1 || x.Tags2 == Model.Tags1 || x.Tags3 == Model.Tags1 || x.Tags1 == Model.Tags2 || x.Tags2 == Model.Tags2 || x.Tags3 == Model.Tags2 || x.Tags1 == Model.Tags3 || x.Tags2 == Model.Tags3 || x.Tags3 == Model.Tags3)).OrderByDescending(x => x.Ngaydang).Take(10))
+                                {
+                                    string namejob = new RemoveUnicode().UnicodeName(item.TenCV);
+                                    <li class="list-group-item">
+                                        <a class="text-dot clickable gravity_item_link" href="@Url.Action("DetailJob", "Job", new { TenCV=namejob,id = item.MACV })" title="@item.TenCV- @item.CongTy.Tencongty">
+                                            <strong>@item.TenCV</strong>
+                                        </a>
+                                        <br>
+                                        <span class="gray-light">@item.CongTy.Tencongty</span>
+                                    </li>
+                                }
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        @adjobright
+                    </div>
+                </div>
+                <!--/ Course Info-->
+            </div>
+
+        </div>
+    </div>
+    <!-- /.Job Header -->
+    <div class="row">
+        <!-- What We Can Offer-->
+
+    </div>
+    <!--End Job Detail -->
+    <div class="float-table-wrapper">
+        <div class="link-list pull-right go-top" style="display: none;">
+            <span class="fa-stack fa-lg">
+                <a href="#top">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-arrow-up fa-stack-1x fa-inverse"></i>
+                </a>
+            </span>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function () {
+
+        loadGallery(true, 'a.thumbnail');
+
+        //This function disables buttons when needed
+        function disableButtons(counter_max, counter_current) {
+            $('#show-previous-image, #show-next-image').show();
+            if (counter_max == counter_current) {
+                $('#show-next-image').hide();
+            } else if (counter_current == 1) {
+                $('#show-previous-image').hide();
+            }
+        }
+        function loadGallery(setIDs, setClickAttr) {
+            var current_image,
+                selector,
+                counter = 0;
+
+            $('#show-next-image, #show-previous-image').click(function () {
+                if ($(this).attr('id') == 'show-previous-image') {
+                    current_image--;
+                } else {
+                    current_image++;
+                }
+
+                selector = $('[data-image-id="' + current_image + '"]');
+                updateGallery(selector);
+            });
+
+            function updateGallery(selector) {
+                var $sel = selector;
+                current_image = $sel.data('image-id');
+                $('#image-gallery-caption').text($sel.data('caption'));
+                $('#image-gallery-title').text($sel.data('title'));
+                $('#image-gallery-image').attr('src', $sel.data('image'));
+                disableButtons(counter, $sel.data('image-id'));
+            }
+
+            if (setIDs == true) {
+                $('[data-image-id]').each(function () {
+                    counter++;
+                    $(this).attr('data-image-id', counter);
+                });
+            }
+            $(setClickAttr).on('click', function () {
+                updateGallery($(this));
+            });
+        }
+    });
+</script>
+<script src="~/Scripts/applyjob.js"></script>
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title col-md-10" id="exampleModalLabel">Bạn đang ứng tuyển cho vị trí <span style="color:blue">@Model.TenCV</span></h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body tontai">
+                <form id="applyjob" method="post" action="/Job/ApplyJob">
+                    <input value="@Model.MACV" hidden name="id" />
+                    <div class="form-group">
+                        <label for="recipient-name" class="form-control-label">Email:</label>
+                        <input type="email" class="form-control" name="email" id="email">
+                        <label id="email_error" class="error" style="display:none">Vui lòng nhập Email chính xác</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="form-control-label">Điện thoại:</label>
+                        <input type="text" class="form-control" name="phone" id="phone">
+                        <label id="phone_error" class="error" style="display:none">Vui lòng nhập số điện thoại chính xác</label>
+                    </div>
+                    <div class="form-group">
+                        @if (datauser.Hosoupload == null)
+                        {
+                            <label for="message-text" id="newhs" class="form-control-label">Sử dụng file đính kèm</label>
+                            <input type="file"  class="form-control" name="phone" id="upload-resume-button">
+                        }
+                        else
+                        {
+                            <label for="message-text" id="newhs" class="form-control-label">@datauser.Hosoupload</label>
+                            <input type="file" class="form-control" name="phone" id="upload-resume-button">
+                        }
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="submit" id="confirmjob" class="btn btn-primary">Xác Nhận</button>
+                    </div>
+                </form>
+            </div>
+            <div style="display:none" id="footer" class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button id="listapplyjob" class="btn btn-primary">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Content/sweetalert2/sweetalert-dev.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#upload-resume-button").change(function () {
+
+            var resume=document.getElementById('upload-resume-button');
+            if(resume.files[0].size>2200000){
+                swal({
+                    title: "Lỗi...!",
+                    text: "File có kích thước tối đa 2040kb vui lòng chọn file khác",
+                    type: "error",
+                    showConfirmButton: true
+                })
+                return false;
+            }
+            var formdata = new FormData();
+            formdata.append(resume.files[0].name, resume.files[0]);
+            if(resume.files[0].name!=null){
+                swal({
+                    title: "Đang xử lý...!",
+                    text: "File có kích thước tối đa 2040kb và định dạng file .docx, .doc, .pdf, .xlsx, .xls, .txt ",
+                    type: "info",
+                    showConfirmButton: false
+                })
+            }
+            $.ajax({
+                url: "/Member/UploadResume",
+                type: "POST",
+                data: formdata,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data == 1) {
+                        swal("Đã lưu", "Đã lưu hồ sơ của bạn", "success")
+                        $("#newhs").html(resume.files[0].name);
+
+                    }
+                    else if (data == 0) {
+                        swal("Lỗi", "file có định dạng là .pdf, .dox, .docx, .xlsx, .xls, .txt", "error")
+                    } else {
+                        swal("Lỗi", "Không tải file có kích thước quá 2040kb hoặc thử lại sau", "error")
+                    }
+                },
+                error: function (data) {
+                    swal("Lỗi", "File có kích thước lớn nhất là 2040kb hoặc đã xảy ra lỗi vui lòng thử lại sau", "error")
+                }
+
+            })
+        })
+    })
+</script>
+
+<style>
+    h2 {
+        color: #006CB6;
+        font-weight: bold;
+    }
+
+    .tag-xs {
+        height: 24px;
+    }
+
+    .uiGrid _51mz {
+        width: 100%;
+    }
+</style>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=874693849337057";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>

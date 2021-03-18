@@ -1,0 +1,183 @@
+﻿@model IEnumerable<Model.Framework.DangTinViecLam>
+@using Model.Framework
+@using thuctaptotnghiep.Models
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var data = db.Adverts.FirstOrDefault();
+    IHtmlString serchcenter = null;
+    if (data != null)
+    {
+        serchcenter = new HtmlString(data.advertsearchjobbottom);
+    }
+    //int manghanh = 0;
+    //if (ViewData["workid"] != null)
+    //{
+    //    manghanh = int.Parse(ViewData["workid"].ToString());
+    //}
+    //List<int?> listnghe = new List<int?>();
+
+}
+<script src="~/Scripts/jquery.twbsPagination.js"></script>
+<script src="~/Scripts/jquery.twbsPagination.min.js"></script>
+<div data-reactroot="" class="ais-hits">
+    <div class="job-list" id="job-list">
+        <div class="box-top-level clearfix">
+            @foreach (var item in Model.Where(x => x.Vieclamgoiy == 1 || x.Vieclamtotnhat == 1))
+            {
+                string namejob = new RemoveUnicode().UnicodeName(item.TenCV);
+                <div class="job-item">
+                    <div class="relative ">
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-4 col-md-3">
+                                <div class="logo">
+                                    <a href="@Url.Action("DetailJob", "Job", new { TenCV=namejob,id = item.MACV })" target="_blank">
+                                        @if (item.CongTy.Logo != null)
+                                        {<img title="@item.CongTy.Tencongty" class="img-responsive" src="~/Employer_upload/@item.CongTy.Logo">}
+                                        else
+                                        {<img title="@item.CongTy.Tencongty" class="img-responsive" src="~/Content/Uploaded/noimgcongty/logocongty.png">}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-9 col-sm-7 col-md-8">
+                            <div class="job-item-info relative">
+                                <!-- Job Title -->
+                                <h3>
+                                    <a href="@Url.Action("DetailJob", "Job", new { TenCV=namejob,id = item.MACV })" class="job-title" target="_blank">@item.TenCV</a>
+                                    <span class="new-tag"><img src="~/Content/image/hot1.gif" /></span>
+                                </h3>
+                                <div class="company">@item.CongTy.Tencongty</div>
+                                <div class="extra-info location text-clip">
+                                    <span class="circle-xs border"><i class="fa fa-fw fa-1x fa-map-marker"></i></span>@item.Thanhpho1 @item.Thanhpho2 @item.Thanhpho3
+                                </div>
+                                <div class="extra-info salary">
+                                    <span class="circle-xs border"><i class="fa fa-fw fa-dollar"></i> </span>@if (item.Luongthoathuan == 1)
+                                    {<span>Thương lượng</span>}
+                                    else if (item.Maxluong < 100000)
+                                    {
+                                        <span>@item.Minluong - @item.Maxluong $</span>
+                                    }
+                                    else if(item.Minluong!=null &&item.Maxluong!=null)
+                                    {<span>@item.Minluong.Value.ToString("00,00") - @item.Maxluong.Value.ToString("00,00") VNĐ</span>}
+                                </div>
+                                <div class="posted">
+                                    @if (item.Ngaydang != null)
+                                    {
+                                        <h3 style="color: #337ab7;
+    font-weight: bold;" class="btn-default btn">
+                                            @item.Ngaydang.Value.ToString("dd/MM/yyyy HH:mm")
+                                        </h3>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+        </div>
+        <div class="job-normal clearfix">
+            @foreach (var item in Model.Where(x => x.Vieclamgoiy != 1 && x.Vieclamtotnhat != 1))
+            {
+                string namejob = new RemoveUnicode().UnicodeName(item.TenCV);
+                <div class="job-item">
+                    <div class="relative ">
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-4 col-md-3">
+                                <div class="logo">
+                                    <a href="@Url.Action("DetailJob", "Job", new { TenCV=namejob,id = item.MACV })" target="_blank">
+                                        @if (item.CongTy.Logo != null)
+                                        {<img title="@item.CongTy.Tencongty" class="img-responsive" src="~/Employer_upload/@item.CongTy.Logo">}
+                                        else
+                                        {<img title="@item.CongTy.Tencongty" class="img-responsive" src="~/Content/Uploaded/noimgcongty/logocongty.png">}
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-9 col-sm-7 col-md-8">
+                                <div class="job-item-info relative">
+                                    <!-- Job Title -->
+                                    <h3>
+                                        <a href="@Url.Action("DetailJob", "Job", new { TenCV=namejob,id = item.MACV })" class="job-title" target="_blank">@item.TenCV</a>
+                                        @if (item.Ngaydang != null)
+                                        {
+                                            TimeSpan date = DateTime.Now.Date - item.Ngaydang.Value.Date;
+                                            if (date.TotalDays == 0)
+                                            {
+                                                <span class="new-tag"><img width="25px" src="~/Content/image/new.gif"></span>
+                                            }
+                                        }
+                                    </h3>
+                                    <div class="company">@item.CongTy.Tencongty</div>
+                                    <div class="extra-info location text-clip">
+                                        <span class="circle-xs border"><i class="fa fa-fw fa-1x fa-map-marker"></i></span>@item.Thanhpho1 @item.Thanhpho2 @item.Thanhpho3
+                                    </div>
+                                    <div class="extra-info salary">
+                                        <span class="circle-xs border"><i class="fa fa-fw fa-dollar"></i> </span>@if (item.Luongthoathuan == 1)
+                                        {<span>Thương lượng</span>}
+                                        else
+                                        {<span>@item.Minluong - @item.Maxluong</span>}
+                                    </div>
+                                    <div class="posted">
+                                        @if (item.Ngaydang != null)
+                                        {
+                                            <h3 style="color: #337ab7;
+    font-weight: bold;" class="btn-default btn">
+                                                @item.Ngaydang.Value.ToString("dd/MM/yyyy HH:mm")
+                                            </h3>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Pagination -->
+<div class="text-center">
+    <input id="action" hidden value="1" />
+    @if (Convert.ToInt32(ViewData["page"]) == 0)
+    {
+        <input id="total-page" value="1" hidden>
+    }
+    else
+    {
+        <input id="total-page" value="@Convert.ToInt32(ViewData["page"])" hidden>
+    }
+    <input id="total-page" value="@Convert.ToInt32(ViewData["page"])" hidden>
+    <input type="number" id="curentpage" value="@Convert.ToInt32(ViewData["curentpage"])" hidden>
+    <div style="width:100%;">
+        <ul onclick="loadpage()" style="width:50px !important;" id="pagination-demo" class="pagination-sm"></ul>
+    </div>
+</div>
+<div class="qc-search-center">@serchcenter</div>
+<!--/ Pagination -->
+<!-- Course Info-->
+<!-- Messsage-->
+<div class="alert alert-success" id="cmb-success-message" hidden="hidden"><strong>Cám ơn bạn. Chúng tôi sẽ liên lạc với bạn sớm.</strong></div>
+<div class="alert error-message" id="cmb-error-message" hidden="hidden"><strong>Oops! </strong> Có lỗi đã xảy ra, vui lòng thử lại.</div>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#pagination-demo").css({ "width": "100%" });
+        var action = $("#action").val();
+        var totalpage = $("#total-page").val();
+        var pagecurent = parseInt($("#curentpage").val());
+
+        $('#pagination-demo').twbsPagination({
+            totalPages: totalpage,
+            visiblePages: 7,
+            startPage: pagecurent
+        });
+
+    })
+</script>
+
+
+

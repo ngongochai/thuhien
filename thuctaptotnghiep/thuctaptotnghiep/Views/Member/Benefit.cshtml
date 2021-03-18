@@ -1,0 +1,756 @@
+﻿@model Model.Framework.CVmongmuon
+<link href="~/Content/select.css" rel="stylesheet" />
+<div class="section-detail section-working-preferences benefit-section">
+    @if (Model == null)
+    {
+            <form class="form-horizontal form-view" id="form-summary" name="frm_summary" action="/Member/Profile" method="post">
+        <input type="hidden" name="resumeId" value="">
+        <div class="box border-primary">
+            <fieldset>
+                <legend class="box-md">
+                    <i class="fa fa-fw fa-list"></i> Công Việc Mong Muốn
+                </legend>
+                <div id="section-summary-edit" class="box-md form-wrapper form-working-preference relative">
+                    <span class="form-btn-edit">
+                        <button type="button" class="btn btn-sm btn-default">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                    </span>
+                    <div class="row" id="error-message-update-summary" hidden="hidden">
+                        <div>
+                            <div class="error-message"><strong>Oops! </strong> Có lỗi đã xảy ra, vui lòng thử lại.</div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="expected-location">
+                                    <strong class="text-red edit-field">*</strong>
+                                    Nơi làm việc
+                                </label>
+                                <div class="clearfix">
+                                    <div class="pull-left expected-location-wrapper">
+                                        <div class="edit-field">
+                                            <select multiple="" class="edit-control" name="expectedLocation[]" id="expected-location" data-placeholder="Ví dụ: Hồ Chí Minh" tabindex="-1" style="display: none;">
+                                                <option value="0">Vui Lòng Chọn</option>
+                                                @foreach (var item in ViewBag.Address)
+                                                {
+
+                                                
+                                                        <option value="@item.Id">@item.City1</option>
+                                                    
+
+                                                }
+                                            </select>
+                                            <span class="error-message" id="errExpectedLocation" hidden="hidden">Thông tin này bắt buộc</span>
+                                            <br>
+                                            <small class="legend">(Tối đa 3 địa điểm mong muốn)</small>
+                                        </div>
+                                        <div class="view-field">
+                                            <p class="form-control-static view-control placeholder" data-type="multiple-select">Ví dụ: Hồ Chí Minh</p>
+                                        </div>
+                                    </div>
+                                    @*<div class="pull-left m-l-xs">
+                                    <div class="view-field">
+                                        <p class="form-control-static">
+                                            <em class="view-control" data-type="radio"></em>
+                                        </p>
+                                    </div>
+                                    <div class="edit-field m-t-sm">
+                                        <label>
+                                            <input type="checkbox" class="edit-control" name="willingToRelocate" data-text-value="(Có thể thay đổi nơi làm việc)" value="1">
+                                            <em>Có thể thay đổi nơi làm việc</em>
+                                        </label>
+                                    </div>
+                                </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="expected-job-category">
+                                    <strong class="text-red edit-field">*</strong>
+                                    Ngành nghề
+                                </label>
+                                <div class="edit-field">
+                                    <select name="expectedJobCategory[]" id="expected-job-category" class="edit-control" data-placeholder="Ví dụ: Kế Toán" multiple="" tabindex="-1" style="display: none;">
+                                        <option value="0">Vui Lòng Chọn</option>
+                                        @foreach (var item in ViewBag.Career)
+                                        {
+                         
+                                                <option value="@item.Id">@item.Tennghanh</option>
+                                        }
+                                    </select>
+                                    <span class="error-message" id="errExpectedJobCategory" hidden="hidden">Thông tin này bắt buộc</span>
+                                    <br>
+                                    <small class="legend">(Tối đa 3 ngành nghề mong muốn)</small>
+                                </div>
+                                <div class="view-field">
+                                    <p class="form-control-static view-control" data-type="multiple-select">IT - Phần mềm</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="expected-job-level">
+                                    <strong class="text-red edit-field">*</strong>
+                                    Cấp bậc mong muốn
+                                </label>
+                                <div class="edit-field">
+                                    <div class="edit-field">
+                                        <select name="expectedJobLevel" id="expected-job-level" class="edit-control" data-placeholder="Ví dụ: Trưởng nhóm/Giám sát" tabindex="-1" title="
+                                    *
+                                    Cấp bậc mong muốn
+                                " style="display: none;">
+                                            <option value="0">Vui lòng chọn...</option>
+                                            @foreach (var item in ViewBag.Position)
+                                            {
+                                                    <option value="@item.Id">@item.Ten</option>
+                                                
+                                            }
+                                        </select>
+                                    </div>
+                                    <span class="error-message" id="errExpectedJobLevel" hidden="hidden">Thông tin này bắt buộc</span>
+                                </div>
+                                <div class="view-field">
+                                    <p class="form-control-static view-control" data-type="select">Mới Tốt Nghiệp</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="expected-location">
+                            <strong class="text-red edit-field">*</strong>
+                            Mức lương mong muốn
+                            <small>(USD / tháng)</small>
+                        </label>
+                        <div class="edit-field">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control edit-control" placeholder="Ví dụ: 5000" name="expectedSalaryRange" id="specific-salary-input" value="">
+                                    <span class="error-message" id="errExpectedSalaryRange" hidden="hidden">Thông tin này bắt buộc</span>
+                                    <span class="error-message" id="errNotValidExpectedSalaryRange" hidden="hidden">Mức lương mong muốn không hợp lệ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view-field">
+                            <p class="form-control-static view-control placeholder" id="static-specific-salary">Ví dụ: 5000</p>
+                        </div>
+                    </div>
+                    <!-- Buttons-->
+                    <div class="form-group push-top-sm edit-field">
+                        <div class="row">
+                            <div class="col-sm-6">(<strong class="text-red">*</strong>) Thông tin bắt buộc</div>
+                            <div class="col-sm-6 text-right">
+                                <button type="button" class="btn btn-default btn-cancel" id="cancelSummaryInforBtn" onclick="mdlBenefit.cancelSaveBenefit()">Hủy</button>
+                                <button type="button" class="btn btn-primary btn-save" id="saveSummaryInforBtn">Lưu</button>
+                                <button type="button" id="updateSummaryProcessBtn" style="display: none;" class="btn btn-default" disabled=""><img src="~/Content/Profile/loading.gif" alt="">Đang lưu</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" data-type="edit-only" class="btn hidden btn-default btn-block no-border add-one-more-section hide" style="display: inline-block;">
+                    <strong>Add Working Preferences</strong>
+                </button>
+            </fieldset>
+        </div>
+    </form>
+    }
+    else{
+    <form class="form-horizontal form-view" id="form-summary" name="frm_summary" action="/Member/Profile" method="post">
+        <input type="hidden" name="resumeId" value="@Model.Id">
+        <div class="box border-primary">
+            <fieldset>
+                <legend class="box-md">
+                    <i class="fa fa-fw fa-list"></i> Công Việc Mong Muốn
+                </legend>
+                <div id="section-summary-edit" class="box-md form-wrapper form-working-preference relative">
+                    <span class="form-btn-edit">
+                        <button type="button" class="btn btn-sm btn-default">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                    </span>
+                    <div class="row" id="error-message-update-summary" hidden="hidden">
+                        <div>
+                            <div class="error-message"><strong>Oops! </strong> Có lỗi đã xảy ra, vui lòng thử lại.</div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="expected-location">
+                                    <strong class="text-red edit-field">*</strong>
+                                    Nơi làm việc
+                                </label>
+                                <div class="clearfix">
+                                    <div class="pull-left expected-location-wrapper">
+                                        <div class="edit-field">
+                                            <select multiple="" class="edit-control" name="expectedLocation[]" id="expected-location" data-placeholder="Ví dụ: Hồ Chí Minh" tabindex="-1" style="display: none;">
+                                                <option value="">Vui Lòng Chọn</option>
+                                                @foreach (var item in ViewBag.Address)
+                                                {
+                                                    if (Model.Thanhpho1 == item.Id)
+                                                    {
+                                                        <option selected="selected" value="@item.Id">@item.City1</option>
+                                                    }
+                                                    else if (Model.Thanhpho2 == item.Id)
+                                                    {
+                                                        <option selected="selected" value="@item.Id">@item.City1</option>
+                                                    }
+                                                    else if (Model.Thanhpho3 == item.Id)
+                                                    {
+                                                        <option selected="selected" value="@item.Id">@item.City1</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Id">@item.City1</option>
+                                                    }
+
+                                                }
+                                            </select>
+                                            <span class="error-message" id="errExpectedLocation" hidden="hidden">Thông tin này bắt buộc</span>
+                                            <br>
+                                            <small class="legend">(Tối đa 3 địa điểm mong muốn)</small>
+                                        </div>
+                                        <div class="view-field">
+                                            <p class="form-control-static view-control placeholder" data-type="multiple-select">Ví dụ: Hồ Chí Minh</p>
+                                        </div>
+                                    </div>
+                                    @*<div class="pull-left m-l-xs">
+                                    <div class="view-field">
+                                        <p class="form-control-static">
+                                            <em class="view-control" data-type="radio"></em>
+                                        </p>
+                                    </div>
+                                    <div class="edit-field m-t-sm">
+                                        <label>
+                                            <input type="checkbox" class="edit-control" name="willingToRelocate" data-text-value="(Có thể thay đổi nơi làm việc)" value="1">
+                                            <em>Có thể thay đổi nơi làm việc</em>
+                                        </label>
+                                    </div>
+                                </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="expected-job-category">
+                                    <strong class="text-red edit-field">*</strong>
+                                    Ngành nghề
+                                </label>
+                                <div class="edit-field">
+                                    <select name="expectedJobCategory[]" id="expected-job-category" class="edit-control" data-placeholder="Ví dụ: Kế Toán" multiple="" tabindex="-1" style="display: none;">
+                                        <option value="">Vui Lòng Chọn</option>
+                                        @foreach (var item in ViewBag.Career)
+                                        {
+                                            if (Model.Nghanhnghe1 == item.Id)
+                                            {
+                                                <option selected="selected" value="@item.Id">@item.Tennghanh</option>
+                                            }
+                                            else if (Model.Nghanhnghe2 == item.Id)
+                                            {
+                                                <option selected="selected" value="@item.Id">@item.Tennghanh</option>
+                                            }
+                                            else if (Model.Nghanhnghe3 == item.Id)
+                                            {
+                                                <option selected="selected" value="@item.Id">@item.Tennghanh</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id">@item.Tennghanh</option>
+                                            }
+
+                                        }
+
+                                    </select>
+                                    <span class="error-message" id="errExpectedJobCategory" hidden="hidden">Thông tin này bắt buộc</span>
+                                    <br>
+                                    <small class="legend">(Tối đa 3 ngành nghề mong muốn)</small>
+                                </div>
+                                <div class="view-field">
+                                    <p class="form-control-static view-control" data-type="multiple-select">IT - Phần mềm</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="expected-job-level">
+                                    <strong class="text-red edit-field">*</strong>
+                                    Cấp bậc mong muốn
+                                </label>
+                                <div class="edit-field">
+                                    <div class="edit-field">
+                                        <select name="expectedJobLevel" id="expected-job-level" class="edit-control" data-placeholder="Ví dụ: Trưởng nhóm/Giám sát" tabindex="-1" title="
+                                    *
+                                    Cấp bậc mong muốn
+                                " style="display: none;">
+                                            <option value="">Vui lòng chọn...</option>
+                                            @foreach (var item in ViewBag.Position)
+                                            {
+                                                if (Model.MaCB == item.Id)
+                                                {
+                                                    <option selected="selected" value="@item.Id">@item.Ten</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.Id">@item.Ten</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                    <span class="error-message" id="errExpectedJobLevel" hidden="hidden">Thông tin này bắt buộc</span>
+                                </div>
+                                <div class="view-field">
+                                    <p class="form-control-static view-control" data-type="select">Mới Tốt Nghiệp</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="expected-location">
+                            <strong class="text-red edit-field">*</strong>
+                            Mức lương mong muốn
+                            <small>(USD / tháng)</small>
+                        </label>
+                        <div class="edit-field">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control edit-control" placeholder="Ví dụ: 5000" name="expectedSalaryRange" id="specific-salary-input" value="@Model.USD">
+                                    <span class="error-message" id="errExpectedSalaryRange" hidden="hidden">Thông tin này bắt buộc</span>
+                                    <span class="error-message" id="errNotValidExpectedSalaryRange" hidden="hidden">Mức lương mong muốn không hợp lệ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view-field">
+                            <p class="form-control-static view-control placeholder" id="static-specific-salary">Ví dụ: 5000</p>
+                        </div>
+                    </div>
+                    @*<div class="form-group expected-company-benefit">
+                <label>
+                    <strong class="text-red edit-field">*</strong>
+                    Top 5 Phúc Lợi Tôi Mong Muốn Nhất
+                </label>
+                <div class="icon-group expected-company-benefit-list push-top-sm view-mode" id="benefit-view-mode">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+
+                                    <span title="Giải thưởng">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-trophy"></i></a>
+                                        <span class="benefit-name">Giải thưởng</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+
+                                    <span title="Tiền thưởng">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-dollar"></i></a>
+                                        <span class="benefit-name">Tiền thưởng</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+
+                                    <span title="Căn tin">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-coffee"></i></a>
+                                        <span class="benefit-name">Căn tin</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+
+                                    <span title="Chăm sóc sức khỏe">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-user-md"></i></a>
+                                        <span class="benefit-name">Chăm sóc sức khỏe</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+
+                                    <span title="Nhà trẻ">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-child"></i></a>
+                                        <span class="benefit-name">Nhà trẻ</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+
+                                    <span title="Máy tính xách tay">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-laptop"></i></a>
+                                        <span class="benefit-name">Máy tính xách tay</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+
+                                    <span title="Thư viện">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-book"></i></a>
+                                        <span class="benefit-name">Thư viện</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+
+                                    <span title="Điện thoại">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-mobile"></i></a>
+                                        <span class="benefit-name">Điện thoại</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+
+                                    <span title="Nghỉ phép có lương">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-file-image-o"></i></a>
+                                        <span class="benefit-name">Nghỉ phép có lương</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+
+                                    <span title="Hoạt động nhóm">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-glass"></i></a>
+                                        <span class="benefit-name">Hoạt động nhóm</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+
+                                    <span title="Đào tạo">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-graduation-cap"></i></a>
+                                        <span class="benefit-name">Đào tạo</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+
+                                    <span title="Xe đưa đón">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-cab"></i></a>
+                                        <span class="benefit-name">Xe đưa đón</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+
+                                    <span title="Cơ hội du lịch">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-plane"></i></a>
+                                        <span class="benefit-name">Cơ hội du lịch</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+
+                                    <span title="Phiếu quà tặng">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-gift"></i></a>
+                                        <span class="benefit-name">Phiếu quà tặng</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <p class="text-danger min-number-of-benefits" hidden="hidden" style="overflow: hidden; display: block; height: 1px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;"><em>Vui lòng chọn ít nhất 1 phúc lợi công ty.</em></p>
+                        </div>
+                    </div>
+                    <!--/ Benefit Edit Mode-->
+                </div>
+                <!-- Benefit View Mode -->
+                <div class="box-md icon-group expected-company-benefit-list well dash" id="benefit-edit-mode" hidden="hidden">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="5">
+                                    <span title="Giải thưởng">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-trophy"></i></a>
+                                        <span class="benefit-name">Giải thưởng</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="1">
+                                    <span title="Tiền thưởng">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-dollar"></i></a>
+                                        <span class="benefit-name">Tiền thưởng</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="12">
+                                    <span title="Căn tin">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-coffee"></i></a>
+                                        <span class="benefit-name">Căn tin</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="2">
+                                    <span title="Chăm sóc sức khỏe">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-user-md"></i></a>
+                                        <span class="benefit-name">Chăm sóc sức khỏe</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="14">
+                                    <span title="Nhà trẻ">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-child"></i></a>
+                                        <span class="benefit-name">Nhà trẻ</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="7">
+                                    <span title="Máy tính xách tay">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-laptop"></i></a>
+                                        <span class="benefit-name">Máy tính xách tay</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="6">
+                                    <span title="Thư viện">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-book"></i></a>
+                                        <span class="benefit-name">Thư viện</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="8">
+                                    <span title="Điện thoại">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-mobile"></i></a>
+                                        <span class="benefit-name">Điện thoại</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="3">
+                                    <span title="Nghỉ phép có lương">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-file-image-o"></i></a>
+                                        <span class="benefit-name">Nghỉ phép có lương</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="10">
+                                    <span title="Hoạt động nhóm">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-glass"></i></a>
+                                        <span class="benefit-name">Hoạt động nhóm</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="4">
+                                    <span title="Đào tạo">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-graduation-cap"></i></a>
+                                        <span class="benefit-name">Đào tạo</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="11">
+                                    <span title="Xe đưa đón">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-cab"></i></a>
+                                        <span class="benefit-name">Xe đưa đón</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="9">
+                                    <span title="Cơ hội du lịch">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-plane"></i></a>
+                                        <span class="benefit-name">Cơ hội du lịch</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="benefits[]" hidden="hidden" value="13">
+                                    <span title="Phiếu quà tặng">
+                                        <a class="benefit-icon"><i class="fa fa-fw fa-gift"></i></a>
+                                        <span class="benefit-name">Phiếu quà tặng</span>
+                                        <span class="ic-check"><i class="fa fa-fw "></i></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="text-orange max-number-of-benefits" hidden="hidden" style=""><em>Bạn đã chọn số lượng phúc lợi công ty quá hạn mức. Vui lòng bỏ bớt để có thể tạo thêm phúc lợi khác.</em></p>
+                            <p class="text-danger min-number-of-benefits" hidden="hidden" style="display: block;"><em>Vui lòng chọn ít nhất 1 phúc lợi công ty.</em></p>
+                        </div>
+                    </div>
+                    <!--/ Benefit Edit Mode-->
+                </div>*@
+                    <!-- Buttons-->
+                    <div class="form-group push-top-sm edit-field">
+                        <div class="row">
+                            <div class="col-sm-6">(<strong class="text-red">*</strong>) Thông tin bắt buộc</div>
+                            <div class="col-sm-6 text-right">
+                                <button type="button" class="btn btn-default btn-cancel" id="cancelSummaryInforBtn" onclick="mdlBenefit.cancelSaveBenefit()">Hủy</button>
+                                <button type="button" class="btn btn-primary btn-save" id="saveSummaryInforBtn">Lưu</button>
+                                <button type="button" id="updateSummaryProcessBtn" style="display: none;" class="btn btn-default" disabled=""><img src="~/Content/Profile/loading.gif" alt="">Đang lưu</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" data-type="edit-only" class="btn hidden btn-default btn-block no-border add-one-more-section hide" style="display: inline-block;">
+                    <strong>Add Working Preferences</strong>
+                </button>
+            </fieldset>
+        </div>
+    </form>
+    }
+</div>
+<script type="text/javascript">
+
+    $('#saveSummaryInforBtn').click(function () {
+        $('#form-summary').submit();
+    });
+    var optionsSummaryForm = {
+        beforeSubmit: checkValidFormSummary,  // pre-submit callback
+        success: showResponseSummaryForm,  // post-submit callback
+        type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+        dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+        data: { action: 'save-summary-info' }
+    };
+    $('#form-summary').on('submit', function (e) {
+        e.preventDefault(); // <-- important
+        $(this).ajaxSubmit(optionsSummaryForm);
+        return false;
+    });
+    function showResponseSummaryForm(data) {
+        if (data.status == 'REDIRECT') {
+            window.location.href = data.redirectUrl;
+        } else if (data.status == 'VALIDATION_ERROR' || data.status == 'ERROR') {
+            $('#error-message-update-summary').slideDown();
+            setTimeout(function () {
+                $('#error-message-update-summary').slideUp();
+            }, 5000);
+        } else if (data.status == 'SUCCESS') {
+            var $thisFormWrapper = $('#saveSummaryInforBtn').parents('.form-wrapper');
+            mdlLiveEdit.saveContent($thisFormWrapper);
+            mdlBenefit.saveExpectedBenefit();
+            //reloadProfileLevel();
+            //updateCompletedStatus();
+        }
+        $('#saveSummaryInforBtn').css('display', '');
+        $('#cancelSummaryInforBtn').css('display', '');
+        $('#updateSummaryProcessBtn').css('display', 'none');
+    }
+    function checkValidFormSummary(data, form, options) {
+        var has_error = false;
+        $('#form-summary').find("span.error-message").attr('hidden', 'hidden');
+        $('#form-summary').find('.has-error').removeClass('has-error');
+        var hasLocation = hasIndustry = hasBenefit = false;
+        $.each(data, function (index, item) {
+            switch (item.name) {
+                case 'expectedJobLevel':
+                    if ($.trim(item.value) == '0') {
+                        has_error = true;
+                        $('#errExpectedJobLevel').show().removeAttr('hidden').parent().addClass('has-error');
+                    }
+                    break;
+                case 'expectedLocation[]':
+                    hasLocation = true;
+                    break;
+                    //case 'benefits[]':
+                    //    hasBenefit = true;
+                    //    break;
+                case 'expectedJobCategory[]':
+                    hasIndustry = true;
+                    break;
+                case 'expectedSalaryRange':
+                    if (isNaN(item.value)) {
+                        has_error = true;
+                        $('#errNotValidExpectedSalaryRange').show().removeAttr('hidden').parent().addClass('has-error');
+                    } else if (item.value <= 0 || $.trim(item.value) == '') {
+                        has_error = true;
+                        $('#errExpectedSalaryRange').show().removeAttr('hidden').parent().addClass('has-error');
+                    } else {
+                        $('#specific-salary-input').val(parseInt($('#specific-salary-input').val()));
+                    }
+                    break;
+            }
+        });
+        if (!hasLocation) {
+            has_error = true;
+            $('#errExpectedLocation').show().removeAttr('hidden').parent().addClass('has-error');
+        }
+        if (!hasIndustry) {
+            has_error = true;
+            $('#errExpectedJobCategory').show().removeAttr('hidden').parent().addClass('has-error');
+        }
+        if (!has_error) {
+            $('#saveSummaryInforBtn').css('display', 'none');
+            $('#cancelSummaryInforBtn').css('display', 'none');
+            $('#updateSummaryProcessBtn').css('display', '');
+        }
+        return !has_error;
+    }
+</script>

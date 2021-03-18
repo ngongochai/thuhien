@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "GoodJob";
+}
+
+    <div class="top-job">
+        <div class="panel jobs-board-listing with-mc no-padding no-border">
+            <ul class="nav nav-tabs no-margin no-border" role="tablist" style="height:33px">
+                <li role="presentation" class="text-center no-padding active">
+                    <a href="#topJobs" class="titile-showjob" aria-controls="topJobs" role="tab" data-toggle="tab"><h3 class="no-padding no-margin">Việc Làm Tốt Nhất</h3></a>
+                </li>
+                <li onclick="loadrecommand()" id="recommendJobTab" role="presentation" class="text-center no-padding">
+                    <a href="#recommendedJobs" class="titile-showjob" aria-controls="recommendedJobs" role="tab" data-toggle="tab"><h3 class="no-padding no-margin">Việc làm cho bạn</h3></a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane tab-job active" id="topJobs">
+                    <div class="panel-content">
+                        <div class="job-list m-t-lg">
+                           
+                                <div >
+                                    <ul>
+                                        @Html.Action("TopJob", "Job")
+                                    </ul>
+                                </div>
+                                @*<div class="mCSB_scrollTools" style="position: absolute; display: block;">
+                                    <a class="mCSB_buttonUp" oncontextmenu="return false;"></a>
+                                    <div class="mCSB_draggerContainer">
+                                        <div class="mCSB_dragger" style="position: absolute; height: 120px; top: 0px;" oncontextmenu="return false;">
+                                            <div class="mCSB_dragger_bar" style="position: relative; line-height: 27px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                    <a class="mCSB_buttonDown" oncontextmenu="return false;"></a>
+                                </div>*@
+                            </div>
+                        
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane tab-company" id="recommendedJobs">
+                    <div class="panel-content">
+                        <div class="job-list m-t-lg">
+                            <div>
+                                <ul id="recommendedJobList">
+                                    <div style="display:none;" id="waitingrecommand" class="text-center m-t-md m-b-md"><i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i></div>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="~/Content/tuyendung/ui.home.min.js"></script>
+<script type="text/javascript" src="~/Content/tuyendung/ui.plugins.min.js"></script>
+<script src="~/Content/tuyendung/jquery.mousewheel.min.3.0.6.js"></script>
+<style>
+    .mCSB_container .mCSB_scrollTools {
+        display: none !important;
+    }
+</style>
+<script>
+    function loadrecommand() {
+        $("#waitingrecommand").css("display", "block");
+        $.ajax({
+            url: "/Job/RecommandJob",
+            type: "POST",
+            datatype: "JSON",
+            success: function (data) {
+                $("#recommendedJobList").html(data);
+            }
+        })
+    }
+</script>

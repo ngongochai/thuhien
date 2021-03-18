@@ -1,0 +1,19 @@
+﻿@model IList<Model.Framework.DangTinViecLam>
+@using Model.Framework
+@using thuctaptotnghiep.Models
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+}
+@foreach (var item in Model)
+{
+    string namejob = new RemoveUnicode().UnicodeName(item.TenCV);
+    <li class="hot-job">
+        <a class="clickable gravity-item-link" href="@Url.Action("DetailJob", "Job", new { TenCV=namejob,id=item.MACV })"  title="@item.TenCV - @item.CongTy.Tencongty">
+            <span class="job-title">
+                <strong class="text-clip" style="word-wrap: break-word;">@item.TenCV</strong>
+                <em class="text-clip" style="word-wrap: break-word;">@db.CongTies.Where(x => x.MACT == item.MACT).Select(x => x.Tencongty).FirstOrDefault()</em>
+            </span>
+        </a>
+    </li>
+}
+

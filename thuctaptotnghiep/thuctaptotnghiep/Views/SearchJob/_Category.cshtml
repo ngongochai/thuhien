@@ -1,0 +1,215 @@
+﻿@model IList<Model.Framework.DangTinViecLam>
+@using Model.Framework
+@using thuctaptotnghiep.Models
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    int count=1;
+    int check = 0;
+    string html="";
+    List<string> listhtml = new List<string>();
+    List<JobCategory>listchecked = Session["Listcategory"] as List<JobCategory>;
+}
+<div data-reactroot="" class="ais-root ais-refinement-list ais-root__collapsible">
+    <div class="ais-refinement-list--header facet-title ais-header"><h5>NGÀNH NGHỀ <i class="fa fa-angle-down pull-right fa-lg"></i></h5></div><div class="ais-body ais-refinement-list--body">
+        <div class="ais-refinement-list--list">
+            @foreach (var item in ViewBag.WorkId)
+            {
+                int id = item.Id;
+                var string12 = db.NghanhNghes.Where(x => x.Id == id).FirstOrDefault();
+                if (count <= 10)
+                {
+                    if (listchecked != null)
+                    {
+                        foreach (var i in listchecked)
+                        {
+                            if (item.Id == i.Id)
+                            {
+                                check = 1;
+                                <div class="ais-refinement-list--item facet-value checkbox clearfix">
+                                    <div>
+                                        <input name="listcategory" checked="checked" type="checkbox" class="categorycheck ais-refinement-list--checkbox" value="@string12.Id">
+                                        <label class="">
+                                            <span class="text-clip" title="@string12.Tennghanh">@string12.Tennghanh</span>
+                                        </label>
+                                        <span class="ais-refinement-list--count facet-count pull-right">@Model.Where(x => x.Manghanh1 == item.Id || x.Manghanh2 == item.Id || x.Manghanh3 == item.Id).Count()</span>
+                                    </div>
+                                </div>
+                                break;
+                            }
+                        }
+                        if (check != 1)
+                        {
+                            <div class="ais-refinement-list--item facet-value checkbox clearfix">
+                                    <div>
+                                        <input name="listcategory" type="checkbox" class="categorycheck ais-refinement-list--checkbox" value="@string12.Id">
+                                        <label class="">
+                                            <span class="text-clip" title="@string12.Tennghanh">@string12.Tennghanh</span>
+                                        </label>
+                                        <span class="ais-refinement-list--count facet-count pull-right">@Model.Where(x => x.Manghanh1 == item.Id || x.Manghanh2 == item.Id || x.Manghanh3 == item.Id).Count()</span>
+                                    </div>
+                                </div>
+                            check = 0;
+                        }
+                    }
+                    else
+                    {
+                        <div class="ais-refinement-list--item facet-value checkbox clearfix">
+                            <div>
+                                <input name="listcategory" type="checkbox" class="categorycheck ais-refinement-list--checkbox" value="@string12.Id">
+                                <label class="">
+                                    <span class="text-clip" title="@string12.Tennghanh">@string12.Tennghanh</span>
+                                </label>
+                                <span class="ais-refinement-list--count facet-count pull-right">@Model.Where(x => x.Manghanh1 == item.Id || x.Manghanh2 == item.Id || x.Manghanh3 == item.Id).Count()</span>
+                            </div>
+                        </div>
+                    }
+                }
+                if (count > 10 && count <= 25)
+                {
+                    if (listchecked != null)
+                    {
+                        foreach (var i in listchecked)
+                        {
+                            if (item.Id == i.Id)
+                            {
+                                check = 1;
+                                html = "<div class='ais-refinement-list--item facet-value checkbox clearfix'>";
+                                html += "<div>";
+                                html += "<input checked='checked' name='listcategory' type='checkbox' class='categorycheck ais-refinement-list--checkbox' value='" + string12.Id + "'>";
+                                html += "<label class=''>";
+                                html += "<span class='text-clip' title='" + string12.Tennghanh + "'>" + string12.Tennghanh + "</span>";
+                                html += "</label>";
+                                html += "<span class='ais-refinement-list--count facet-count pull-right'>" + Model.Where(x => x.Manghanh1 == item.Id || x.Manghanh2 == item.Id || x.Manghanh3 == item.Id).Count() + "</span>";
+                                html += "</div>";
+                                html += "</div>";
+                                listhtml.Add(html);
+                                break;
+                            }
+                        }
+                        if (check != 1)
+                        {
+                            html = "<div class='ais-refinement-list--item facet-value checkbox clearfix'>";
+                            html += "<div>";
+                            html += "<input name='listcategory' type='checkbox' class='categorycheck ais-refinement-list--checkbox' value='" + string12.Id + "'>";
+                            html += "<label class=''>";
+                            html += "<span class='text-clip' title='" + string12.Tennghanh + "'>" + string12.Tennghanh + "</span>";
+                            html += "</label>";
+                            html += "<span class='ais-refinement-list--count facet-count pull-right'>" + Model.Where(x => x.Manghanh1 == item.Id || x.Manghanh2 == item.Id || x.Manghanh3 == item.Id).Count() + "</span>";
+                            html += "</div>";
+                            html += "</div>";
+                            listhtml.Add(html);
+                            check = 0;
+                        }
+                    }
+                    else
+                    {
+                        html = "<div class='ais-refinement-list--item facet-value checkbox clearfix'>";
+                        html += "<div>";
+                        html += "<input name='listcategory' type='checkbox' class='categorycheck ais-refinement-list--checkbox' value='" + string12.Id + "'>";
+                        html += "<label class=''>";
+                        html += "<span class='text-clip' title='" + string12.Tennghanh + "'>" + string12.Tennghanh + "</span>";
+                        html += "</label>";
+                        html += "<span class='ais-refinement-list--count facet-count pull-right'>" + Model.Where(x => x.Manghanh1 == item.Id || x.Manghanh2 == item.Id || x.Manghanh3 == item.Id).Count() + "</span>";
+                        html += "</div>";
+                        html += "</div>";
+                        listhtml.Add(html);
+                    }
+                }
+
+                count = count + 1;
+                check = 0;
+
+            }
+            <div class="option_1" style="display:none">
+                @foreach (string item in listhtml)
+                {
+                    IHtmlString html1 = new HtmlString(item);
+                    @html1
+                }
+            </div>
+            
+        </div>
+        <div><a id="1" class="btn btn-link facet-link show-more">Xem thêm</a></div>
+    </div>
+</div>
+<script>
+    $(".show-more").click(function () {
+       var id= $(this).attr("id");
+        var condition = $(this).html();
+        if (condition != "Xem thêm")
+        {
+            $(".option_"+id).toggle("hide");
+            $(this).html("Xem thêm");
+        }
+        else
+        {
+            $(this).html("Thu gọn");
+            $(".option_"+id).toggle("hide");
+        }
+    })
+</script>
+<script>
+    function getParameterByName(name) {
+        var regexS = "[\\?&]" + name + "=([^&#]*)",
+      regex = new RegExp(regexS),
+      results = regex.exec(window.location.search);
+        if (results == null) {
+            return "";
+        } else {
+            return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    }
+    $(".categorycheck").click(function () {
+        $(".listjob_waiting").show();
+        $(".job-search-body").hide();
+        var key = getParameterByName('key');
+        var workid = getParameterByName('workid');
+        var cityid = getParameterByName('cityid');
+        var jobsalary = $("input[name='jobSalary']:checked").val();
+        var min = null;
+        var max = null;
+        if (jobsalary != null) {
+            var maxmin = jobsalary.split(new RegExp("-"));
+            for (var i = 0; i < maxmin.length; i++) {
+                if (min == null) {
+                    min = maxmin[i];
+                }
+                else {
+                    max = maxmin[i];
+                }
+            }
+        }
+        var joblevel = $("input[name='leveljob']:checked").val();
+        var valcategory = [];
+        var vallocation = [];
+        var skillcheck = [];
+        $("input[name='skillcheck']:checked").each(function (i) {
+            skillcheck[i] = $(this).val();
+        })
+        $("input[name='listcategory']:checked").each(function (i) {
+            valcategory[i] = $(this).val();
+        })
+        $("input[name='locationcheck']:checked").each(function (i) {
+            vallocation[i] = $(this).val();
+        })
+            $.ajax({
+                url: "/SearchJob/BodySearch",
+                type: "POST",
+                dataType: "json",
+                data: { "key": key, "workid": workid, "cityid": cityid, "selectcategory": valcategory, "selectlocation": vallocation, "selectkill": skillcheck, "level": joblevel, "minsalary": min, "maxsalary": max },
+                success: function (data) {
+                    $('html, body').animate({ scrollTop: $('#job-search').offset().top }, 'slow');
+                    $(".listjob_waiting").hide();
+                    $(".job-search-body").show();
+                    $(".text-primary").html(data.total);
+                    $("#job-list").html(data.html);
+                    if (data.htmlleft != "")
+                        $("#categories").html(data.htmlleft);
+                    if (data.htmlcity)
+                        $("#locations").html(data.htmlcity);
+                    if (data.htmlskill != "")
+                        $("#skills").html(data.htmlskill);
+                }
+            })
+        })  
+</script>

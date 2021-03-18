@@ -1,0 +1,212 @@
+﻿@model IList<Model.Framework.DangTinViecLam>
+@using Model.Framework
+@using thuctaptotnghiep.Models
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    int count = 1;
+    int check = 0;
+    string html = "";
+    List<string> listhtml = new List<string>();
+    List<JobSkill> listchecked = Session["Listskill"] as List<JobSkill>;
+
+    }
+<div data-reactroot="" class="ais-root ais-refinement-list ais-root__collapsible">
+    <div class="ais-refinement-list--header facet-title ais-header"><h5>KỸ NĂNG <i class="fa fa-angle-down pull-right fa-lg"></i></h5></div><div class="ais-body ais-refinement-list--body">
+        <div class="ais-refinement-list--list">
+            @foreach (var item in ViewBag.ListSkill)
+            {
+                if (count <= 10)
+                {
+                    if (listchecked != null)
+                    {
+                        foreach (var i in listchecked)
+                        {
+                            if (item.Name == i.Name)
+                            {
+                                check = 1;
+                                <div class="ais-refinement-list--item facet-value checkbox clearfix">
+                                    <div>
+                                        <input name="skillcheck" checked type="checkbox" class="skillcheck ais-refinement-list--checkbox" value="@item.Name">
+                                        <label class="">
+                                            <span class="text-clip" title="@item.Name">@item.Name</span>
+                                        </label>
+                                        <span class="ais-refinement-list--count facet-count pull-right">@item.Count</span>
+                                    </div>
+                                </div>
+                                break;
+                            }
+                        }
+                        if (check != 1)
+                        {
+                            check = 0;
+                            <div class="ais-refinement-list--item facet-value checkbox clearfix">
+                                <div>
+                                    <input name="skillcheck" type="checkbox" class="skillcheck ais-refinement-list--checkbox" value="@item.Name">
+                                    <label class="">
+                                        <span class="text-clip" title="@item.Name">@item.Name</span>
+                                    </label>
+                                    <span class="ais-refinement-list--count facet-count pull-right">@item.Count</span>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="ais-refinement-list--item facet-value checkbox clearfix">
+                            <div>
+                                <input name="skillcheck" type="checkbox" class="skillcheck ais-refinement-list--checkbox" value="@item.Name">
+                                <label class="">
+                                    <span class="text-clip" title="@item.Name">@item.Name</span>
+                                </label>
+                                <span class="ais-refinement-list--count facet-count pull-right">@item.Count</span>
+                            </div>
+                        </div>
+                    }
+                }
+                if (count > 10 && count <= 25)
+                {
+                    if (listchecked != null)
+                    {
+                        foreach (var i in listchecked)
+                        {
+                            if (item.Nam == i.Name)
+                            {
+                                check = 1;
+                                html = "<div class='ais-refinement-list--item facet-value checkbox clearfix'>";
+                                html += "<div>";
+                                html += "<input name='skillcheck' checked type='checkbox' class='skillcheck ais-refinement-list--checkbox' value='" + item.Name + "'>";
+                                html += "<label class=''>";
+                                html += "<span class='text-clip' title='" + item.Name + "'>" + item.Name + "</span>";
+                                html += "</label>";
+                                html += "<span class='ais-refinement-list--count facet-count pull-right'>" + item.Count + "</span>";
+                                html += "</div>";
+                                html += "</div>";
+                                listhtml.Add(html);
+                                break;
+                            }
+                        }
+                        if (check != 1)
+                        {
+                            html = "<div class='ais-refinement-list--item facet-value checkbox clearfix'>";
+                            html += "<div>";
+                            html += "<input name='skillcheck' type='checkbox' class='skillcheck ais-refinement-list--checkbox' value='" + item.Name + "'>";
+                            html += "<label class=''>";
+                            html += "<span class='text-clip' title='" + item.Name + "'>" + item.Name + "</span>";
+                            html += "</label>";
+                            html += "<span class='ais-refinement-list--count facet-count pull-right'>" + item.Count + "</span>";
+                            html += "</div>";
+                            html += "</div>";
+                            check = 0;
+                            listhtml.Add(html);
+                        }
+                    }
+                    else
+                    {
+                        html = "<div class='ais-refinement-list--item facet-value checkbox clearfix'>";
+                        html += "<div>";
+                        html += "<input name='skillcheck' type='checkbox' class='skillcheck ais-refinement-list--checkbox' value='" + item.Name + "'>";
+                        html += "<label class=''>";
+                        html += "<span class='text-clip' title='" + item.Name + "'>" + item.Name + "</span>";
+                        html += "</label>";
+                        html += "<span class='ais-refinement-list--count facet-count pull-right'>" + item.Count + "</span>";
+                        html += "</div>";
+                        html += "</div>";
+                        listhtml.Add(html);
+                    }
+                    
+                }
+                count = count + 1;
+                check = 0;
+            }
+            <div class="option_3" style="display:none">
+                @foreach (string item in listhtml)
+                {
+                    IHtmlString html1 = new HtmlString(item);
+                    @html1
+                }
+            </div>
+            <div><a id="3" style="color:#00b9f2" class="btn btn-link facet-link show-more-skill">Xem thêm</a></div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".show-more-skill").click(function () {
+       var id= $(this).attr("id");
+        var condition = $(this).html();
+        if (condition != "Xem thêm")
+        {
+            $(".option_"+id).toggle("hide");
+            $(this).html("Xem thêm");
+        }
+        else
+        {
+            $(this).html("Thu gọn");
+            $(".option_"+id).toggle("hide");
+        }
+    })
+    function getParameterByName(name) {
+        var regexS = "[\\?&]" + name + "=([^&#]*)",
+      regex = new RegExp(regexS),
+      results = regex.exec(window.location.search);
+        if (results == null) {
+            return "";
+        } else {
+            return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    }
+    $(".skillcheck").click(function () {
+        $(".listjob_waiting").show();
+        $(".job-search-body").hide();
+        var key = getParameterByName('key');
+        var workid = getParameterByName('workid');
+        var cityid = getParameterByName('cityid');
+        var jobsalary = $("input[name='jobSalary']:checked").val();
+        var min = null;
+        var max = null;
+        if (jobsalary != null) {
+            var maxmin = jobsalary.split(new RegExp("-"));
+            for (var i = 0; i < maxmin.length; i++) {
+                if (min == null) {
+                    min = maxmin[i];
+                }
+                else {
+                    max = maxmin[i];
+                }
+            }
+        }
+        var joblevel = $("input[name='leveljob']:checked").val();
+        var valcategory = [];
+        var vallocation = [];
+        var skillcheck = [];
+        $("input[name='skillcheck']:checked").each(function (i) {
+            skillcheck[i] = $(this).val();
+        })
+        $("input[name='listcategory']:checked").each(function (i) {
+            valcategory[i] = $(this).val();
+        })
+        $("input[name='locationcheck']:checked").each(function (i) {
+            vallocation[i] = $(this).val();
+        })
+        $.ajax({
+            url: "/SearchJob/BodySearch",
+            type: "POST",
+            dataType: "json",
+            data: { "key": key, "workid": workid, "cityid": cityid, "selectlocation": vallocation, "selectcategory": valcategory, "selectkill": skillcheck, "level": joblevel, "minsalary": min, "maxsalary": max },
+            success: function (data) {
+                $('html, body').animate({ scrollTop: $('#job-search').offset().top }, 'slow');
+                $(".listjob_waiting").hide();
+                $(".job-search-body").show();
+                $(".text-primary").html(data.total);
+                $("#job-list").html(data.html);
+                if (data.htmlleft != "")
+                    $("#categories").html(data.htmlleft);
+                if (data.htmlcity)
+                    $("#locations").html(data.htmlcity);
+                if (data.htmlskill != "")
+                    $("#skills").html(data.htmlskill);
+            }
+        })
+    })
+</script>
+
+

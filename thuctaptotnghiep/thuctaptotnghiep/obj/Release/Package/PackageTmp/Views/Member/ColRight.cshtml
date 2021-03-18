@@ -1,0 +1,115 @@
+﻿<div class="col-xs-12 col-sm-4 col-md-3">
+
+    <!--Profile Strength -->
+    <div id="profileLevel" class="panel panel-default section-sidebar section-profile-level">
+
+        <div class="panel-heading">
+            Tùy chọn
+            <span id="loading-profile-level" class="pull-right" hidden=""><i class="fa fa-spinner fa-pulse"></i></span>
+        </div>
+        <div class="panel-content box-sm"> 
+            <div>
+                <p>
+                    <a href="@Url.Action("ListApplyJob","Member")"><i style="margin-right:8px;" class="fa fa-handshake-o" aria-hidden="true"></i>Danh sách việc làm của tôi</a>
+                </p>
+                <p>
+                    <a href="@Url.Action("ListEmployerSaved","Member")"><i style="margin-right:8px;" class="fa fa-handshake-o" aria-hidden="true"></i>Doanh nghiệp lưu hồ sơ của bạn</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--Profile Settings-->
+    <div id="profileSettings" class="panel panel-default section-sidebar section-profile-level">
+        <div class="panel-heading">
+            Thay đổi mật khẩu
+        </div>
+        <div class="panel-content box-sm">
+                <button class="btn btn-default change-password">Thay đổi mật khẩu</button>
+            <div class="reset-password" style="display:none;">
+                <form action="/Member/ChangePassword" method="post">
+                    <label style="display:none;color:red;" id="password-nosame">Vui lòng xác nhận mật khẩu trùng khớp</label>
+                    <input type="password" class="form-control first-pasword-reset" name="password" required maxlength="255" minlength="6" placeholder="Vui lòng nhập mật khẩu mới" />
+                    <input minlength="6" type="password" class="form-control second-pasword-reset" required maxlength="255" placeholder="Xác nhận mật khẩu mới" />
+                    <button type="submit" class="btn btn-success save-password">Xác nhận</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    @Html.Action("JobForMember","Member")
+
+    <!-- Who view my Jobs -->
+    <!--Who viewed Me - Desktop-->
+    @*<div class="panel panel-default section-sidebar section-who-viewed-profile hidden-xs">
+        <div class="panel-heading">
+            Ai xem hồ sơ của bạn
+        </div>
+        <div class="panel-content box-sm">
+            <div class="row">
+                <div class="col-xs-1 col-sm-4 col-md-2">
+                    <span class="total-view">0</span>
+                </div>
+                <div class="col-xs-11 col-sm-8 col-md-10">
+                    <span class="link-list">
+                        <a href="https://www.vietnamworks.com/quan-ly-nghe-nghiep/nha-tuyen-dung-nao-xem-ho-so-cua-ban">
+                            Nhà tuyển dụng đã xem hồ sơ của bạn trong 7 ngày
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    @*<div id="appliedJobStatisticDesktop" class="panel panel-default section-sidebar section-profile-jobs hidden-xs">
+        <div class="panel-heading">
+            Việc Làm Đã Ứng Tuyển
+            <span class="loading-applied-job pull-right" hidden="" style="display: none;"><i class="fa fa-spinner fa-pulse"></i></span>
+        </div>
+        <div class="panel-content box-sm">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="number open label label-success pull-right">0</span>
+                    <a href="https://www.vietnamworks.com/quan-ly-nghe-nghiep/viec-lam-cua-toi" class="clickable" data-toggle="tooltip" title="" data-original-title="Hồ sơ ứng tuyển đang chờ nhà tuyển dụng xử lý">
+                        Đang xử lý
+                    </a>
+                </li>
+                <li class="list-group-item text-info">
+                    <span class="number review label label-primary pull-right">0</span>
+                    <a href="https://www.vietnamworks.com/quan-ly-nghe-nghiep/viec-lam-cua-toi" class="clickable" data-toggle="tooltip" title="" data-original-title="Nhà tuyển dụng đã mở xem hồ sơ ứng tuyển của bạn">Đã xem</a>
+                </li>
+                <li class="list-group-item text-danger">
+                    <span class="number closed label label-danger pull-right">0</span>
+                    <a href="https://www.vietnamworks.com/quan-ly-nghe-nghiep/viec-lam-cua-toi" class="clickable" data-toggle="tooltip" title="" data-original-title="Các vị trí nay đã ngừng nhận hồ sơ, tuy nhiên nhà tuyển dụng vẫn có thể tiếp tục liên hệ với bạn">Đã đóng</a>
+                </li>
+            </ul>
+        </div>
+    </div>*@        <!-- Recommended Jobs -->
+</div>
+<script>
+    $(".change-password").click(function () {
+        $(".reset-password").slideToggle();
+    })
+    $(".save-password").click(function () {
+        var first = $(".first-pasword-reset").val();
+        var second = $(".second-pasword-reset").val();
+        if (first == "") {
+            $("#password-nosame").show().html("Vui lòng nhập mật khẩu");
+            return false;
+        }
+        if(second=="") {
+            $("#password-nosame").show().html("Vui lòng nhập mật khẩu");
+            return false;
+        }
+        if (first.length < 6) {
+            $("#password-nosame").show().html("Độ dài mật khẩu tối thiểu 6 ký tự");
+            return false;
+        }
+        if (first == second) {
+            alert("Thay đổi mật khẩu thành công")
+            return true;
+        }
+        else {
+            $("#password-nosame").show();
+            return false;
+
+        }
+    })
+</script>

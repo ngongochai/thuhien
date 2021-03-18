@@ -1,0 +1,402 @@
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csprojResolveAssemblyReference.cache
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll.config
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.pdb
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Web.Infrastructure.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Model.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Owin.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Model.pdb
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.pdb
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.pdb
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csprojResolveAssemblyReference.cache
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll.config
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.pdb
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Model.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Owin.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Model.pdb
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.pdb
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.xml
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.pdb
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll.config
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.pdb
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Web.Infrastructure.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Model.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Owin.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Model.pdb
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.pdb
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.xml
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csprojResolveAssemblyReference.cache
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.pdb
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll.config
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.pdb
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Web.Infrastructure.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Model.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Owin.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Model.pdb
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Model.dll.config
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.pdb
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.xml
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csprojAssemblyReference.cache
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csproj.CoreCompileInputs.cache
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csproj.CopyComplete
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.pdb
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll.config
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll.config
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.pdb
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Web.Infrastructure.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Model.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Owin.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Model.pdb
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Model.dll.config
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll.config
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.pdb
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.xml
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csprojAssemblyReference.cache
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csproj.CoreCompileInputs.cache
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csproj.CopyComplete
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.pdb
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll.config
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\thuctaptotnghiep.pdb
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Web.Infrastructure.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Model.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Owin.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Model.pdb
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Model.dll.config
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll.config
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Antlr3.Runtime.pdb
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\EntityFramework.SqlServer.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Facebook.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Core.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.AspNet.Identity.Owin.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Cookies.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Facebook.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.Google.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Microsoft.Owin.Security.OAuth.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Newtonsoft.Json.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\PagedList.Mvc.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Net.Http.Formatting.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Helpers.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Http.Owin.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Mvc.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Optimization.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.Razor.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Deployment.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\System.Web.WebPages.Razor.xml
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csprojAssemblyReference.cache
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csproj.CoreCompileInputs.cache
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.csproj.CopyComplete
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\obj\Release\thuctaptotnghiep.pdb

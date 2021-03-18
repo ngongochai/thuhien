@@ -1,0 +1,88 @@
+﻿@using Model.Framework
+@using thuctaptotnghiep.Models
+@model Model.Framework.LuuHoso
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var contact = db.ConfigMails.Where(x => x.smtpType == 4).FirstOrDefault();
+    var logo = db.FooterLogoes.FirstOrDefault();
+    if (logo == null)
+    {
+        logo = new FooterLogo();
+    }
+    Uri myUri = new Uri(Request.Url.ToString());
+    string host = myUri.Host;  // host is "www.contoso.com"
+    IHtmlString content = new HtmlString(Model.Ghichu);
+}
+<div class="main-content" style="background-color: #3085d6; padding: 20px;">
+    <div class="content" style="background: white; padding: 20px;">
+
+        <div class="img" style="width: 70%;margin:0 auto">
+            @*<img src="@logo.logoimg" style="width:100%" />*@
+            <img src="@host/@logo.logoimg" style="width:100%" />
+        </div>
+        <h3 style="color:#006CB6;text-align:center">Trung Tâm Hỗ Trợ Sinh Viên & Quan Hệ Doanh Nghiệp Trường Cao Đẳng Công Thương TP.HCM</h3>
+        <h5>@DateTime.Now.ToString("dd/MM/yyyy HH:mm")</h5>
+        <div class="mail-content" style="width: 100%;">
+            @*<div style="width:50%">
+                <img src="@host/employer_upload/@Model.CongTy.Logo" />
+            </div>*@
+            @if (Model.Trangthai == 2)
+            {
+                <h3>Công TY: @Model.CongTy.Tencongty Mời Bạn đến phỏng vấn</h3>
+                <span style="font-size:20px;">Chúc mừng bạn <span style="font-size:20px;color:red">@Model.UngVien.Hovatendem @Model.UngVien.Ten</span> đã được mời phỏng vấn,công việc sẽ trao đổi khi phỏng vấn </span>
+                <p></p>
+                <p></p>
+                <div style="border:1px solid #00b9f2;margin:10px;padding:50px">
+                    <h5>Nội Dung:</h5>
+                    <hr />
+                    <p>@content</p>
+                </div>
+            }
+            else if (Model.Trangthai == 3)
+            {
+                <h3>Công TY @Model.CongTy.Tencongty : Cảm ơn bạn đã đến buổi phỏng vấn, chúng tối rất tiếc bạn chưa phù hợp với công việc của chúng tôi, chúc bạn sớm tìm công việc tốt hơn</h3>
+                <p></p>
+                <p></p>
+                <div style="border:1px solid #00b9f2;margin:10px;padding:50px">
+                    <h5>Nội Dung:</h5>
+                    <hr />
+                    <p>@content</p>
+                </div>
+            }
+            else if (Model.Trangthai == 4)
+            {
+                <h3>Công TY @Model.CongTy.Tencongty : Chúc mừng bạn đã trúng tuyển vào công ty chúng tôi, vui lòng chờ email hướng dẫn hồ sơ việc làm và chi tiết công việc</h3>
+                <p></p>
+                <p></p>
+                <div style="border:1px solid #00b9f2;margin:10px;padding:50px">
+                    <h5>Nội Dung:</h5>
+                    <hr />
+                    <p>@content</p>
+                </div>
+            }
+
+            <p> Nếu bạn có bất kỳ thắc mắc nào liên quan đến tài khoản, hãy tham khảo trang Trợ giúp hoặc gửi email đến chúng tôi qua @contact.smtUserName</p>
+        </div>
+    </div>
+</div>
+@*<style>
+        .main-content {
+            background-color: #3085d6;
+            padding: 20px;
+        }
+
+        .content {
+            background: white;
+            padding: 20px;
+        }
+
+        .img {
+            width: 30%;
+        }
+
+        .mail-content {
+            width: 100%;
+        }
+    </style>*@
+
+

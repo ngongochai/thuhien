@@ -1,0 +1,61 @@
+var VipLogo = {
+    exec_request : function () {
+        var requestURL = 'vclick/index.php?group=common&zone=2';
+        var wrapper = jQuery('#ads_TOP_COMPANIES_HORISONTAL');
+        VipLogo.display_animation(wrapper, true);
+
+        jQuery.ajax({
+            url: requestURL,
+            success: function(result)
+            {
+                VipLogo.display_animation(wrapper, false);
+
+                if(result.code != 200) {
+                    console.log(result.message);
+                    return;
+                }
+
+                VipLogo.render_ads(wrapper, result.data.result);
+            }
+        });
+    },
+
+    
+    display_animation : function (wrapper, flag) {
+        if(!flag) {
+            wrapper.empty();
+            return;
+        }
+
+        var subwrapper = '<div class="text-center m-t-md m-b-md"><i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i></div>';
+        wrapper.html(subwrapper);
+    },
+
+    render_ads : function(wrapper, data) {
+        var length = data.length;
+
+        if(length <= 0) {
+            return;
+        }
+
+        var adswrapper = '<div id="adc_TOP_COMPANIES_HORISONTAL">';
+
+        for(var index = 0; index < length; index++) {
+            var ads = data[index];
+            var logowrapper = '<div class="col-md-2 col-sm-2 col-xs-4">';
+
+            logowrapper += '<a class="single-ad" target="_blank" href="' + ads['destinationURL'] + '">';
+            logowrapper += '<img class="salesLogoImage" src="' +  ads['imageURL'] + '" width="88" height="43">';
+
+            logowrapper += '<span class="ad-slogan">' + ads['slogan'] + '</span></a></div>';
+            adswrapper += logowrapper;
+        }
+
+        adswrapper += '</div>';
+        wrapper.html(adswrapper);
+    }
+};
+
+jQuery(function() {
+    VipLogo.exec_request();
+});

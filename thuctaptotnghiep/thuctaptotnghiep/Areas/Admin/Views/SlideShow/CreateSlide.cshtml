@@ -1,0 +1,12 @@
+﻿@model Model.Framework.Slideshow
+@{
+    ViewBag.Title = "Tạo mới Banner";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <h1>
+        Thêm mới slide
+        <small>Slideshow (1440 x 450)</small>
+    </h1>
+</section>
+@Html.Partial("_EditSlide",Model)

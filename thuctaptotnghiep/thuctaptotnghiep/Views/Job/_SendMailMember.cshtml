@@ -1,0 +1,75 @@
+﻿@using Model.Framework
+@using thuctaptotnghiep.Models
+@model Model.Framework.UVDangKy
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var logo = db.FooterLogoes.FirstOrDefault();
+    if (logo == null)
+    {
+        logo = new FooterLogo();
+    }
+    Uri myUri = new Uri(Request.Url.ToString());
+    string host = myUri.Host;  // host is "www.contoso.com"
+    IHtmlString content = new HtmlString(Model.Tinnhan);
+    string namejob = new RemoveUnicode().UnicodeName(Model.DangTinViecLam.TenCV);
+}
+<div class="main-content" style="background-color: #3085d6; padding: 20px;">
+    <div class="content" style="background: white; padding: 20px;">
+
+        <div class="img" style="width: 70%;margin:0 auto">
+            @*<img src="@logo.logoimg" style="width:100%" />*@
+            <img src="@host/@logo.logoimg" style="width:100%" />
+        </div>
+        <h3 style="color:#006CB6;text-align:center">Trung Tâm Hỗ Trợ Sinh Viên & Quan Hệ Doanh Nghiệp Trường Cao Đẳng Công Thương TP.HCM</h3>
+        <h5>@DateTime.Now.ToString("dd/MM/yyyy HH:mm")</h5>
+        <div class="mail-content" style="width: 100%;">
+            @*<div style="width:50%">
+                <img src="@host/employer_upload/@Model.CongTy.Logo" />
+            </div>*@
+            <h3>Chào @Model.UngVien.Hovatendem @Model.UngVien.Ten !</h3>
+            <h4 style="font-size:20px;">Bạn vừa ứng tuyển vào vị trí @Model.DangTinViecLam.TenCV !</h4>
+            <p></p>
+            <p></p>
+            <div style="border:1px solid #00b9f2;margin:10px;padding:50px">
+                <h3 style="color:#006CB6"><a href="@host/viec-lam-@namejob-@Model.DangTinViecLam.MACV">@Model.DangTinViecLam.TenCV</a></h3>
+                <h5>Công TY:@Model.CongTy.Tencongty</h5>
+                @if (Model.DangTinViecLam.Luongthoathuan == 1)
+                {<h5>Mức Lương:lương thỏa thuận</h5> }
+                else
+                {
+                    <h5 style="color:red">Mức Lương:@Model.DangTinViecLam.Minluong-@Model.DangTinViecLam.Maxluong</h5>
+                }
+                <hr />
+                <h2>Thông Tin Liên Hệ với nhà tuyển dụng:</h2>
+                <p>Tên công ty: @Model.CongTy.Tencongty</p>
+                <p>Số điện thoại: @Model.CongTy.Dienthoaiban</p>
+                <p>Email liên hệ : @Model.CongTy.Emaildangnhap</p>
+                
+            </div>
+            <p> Nếu bạn có bất kỳ thắc mắc nào liên quan đến tài khoản, hãy tham khảo trang Trợ giúp hoặc gửi email đến chúng tôi qua contact@htsv.hitu.edu.vn</p>
+        </div>
+    </div>
+</div>
+@*<style>
+        .main-content {
+            background-color: #3085d6;
+            padding: 20px;
+        }
+
+        .content {
+            background: white;
+            padding: 20px;
+        }
+
+        .img {
+            width: 30%;
+        }
+
+        .mail-content {
+            width: 100%;
+        }
+    </style>*@
+
+
+
+

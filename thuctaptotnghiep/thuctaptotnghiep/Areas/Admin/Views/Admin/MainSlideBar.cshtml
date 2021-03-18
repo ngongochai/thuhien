@@ -1,0 +1,354 @@
+﻿@using Model.Framework
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var user = Session["Admin"] as UngVien;
+    var admin = db.UngViens.Where(x => x.MAUV == user.MAUV).FirstOrDefault();
+}
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="~/Profile_upload/@admin.Hinhanh" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>@admin.Hovatendem @admin.Ten</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="active treeview">
+                <a href="/Admin">
+                    <i class="fa fa-dashboard"></i> <span>Trang Chủ</span>
+                    @*<span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>*@
+                </a>
+                @*<ul class="treeview-menu">
+                        <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                        <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                    </ul>*@
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>Trang Cá Nhân</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">4</span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("ProfileAdmin", "ManagerAccountAdmin", new {mauv=user.MAUV })"><i class="fa fa-circle-o"></i>Profile</a></li>
+                    <li><a href="@Url.Action("CreateJob", "ManagerAccountAdmin")"><i class="fa fa-circle-o"></i>Tạo Việc Làm</a></li>
+                    <li><a href="@Url.Action("ListJobOfAdmin", "ManagerAccountAdmin")"><i class="fa fa-circle-o"></i> Danh Sách Việc Làm</a></li>
+                    <li><a href="@Url.Action("ListAccountAdmin", "ManagerAccountAdmin")"><i class="fa fa-circle-o"></i> Danh Sách Tài khoản Admin</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span>Quản Lý Việc làm</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">3</span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("ListJobNotActive", "ManagerJobAdmin")"><i class="fa fa-ban"></i> <span>Việc làm chưa kích hoạt</span></a></li>
+                    <li><a href="@Url.Action("ListAllJob","ManagerJobAdmin")"><i class="fa fa-circle-o"></i> <span>Việc làm của doanh nghiệp</span></a></li>
+                    <li><a href="@Url.Action("ListJobTrashAdmin","ManagerJobAdmin")"><i class="fa fa-circle-o"></i> <span>Việc Làm hết hạn, Đã xóa</span></a></li>
+                </ul>
+            </li>
+            
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>Quản Lý Ứng Viên</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">2</span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/Admin/ManagerMemberAdmin/ListMemberAdmin"><i class="fa fa-circle-o"></i>Danh sách Ứng Viên</a></li>
+                    <li><a href="/Admin/ManagerMemberAdmin/ListMemberTrashAdmin"><i class="fa fa-circle-o"></i> Danh Sách Ứng viên đã xóa</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>Quản Lý Công ty</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">2</span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/Admin/ManagerMemberAdmin/ListEmployerAdmin"><i class="fa fa-circle-o"></i>Danh sách Công ty</a></li>
+                    <li><a href="/Admin/ManagerMemberAdmin/ListEmployerTrashAdmin"><i class="fa fa-circle-o"></i> Danh Sách công ty đã xóa</a></li>
+                </ul>
+            </li>
+            <li><a href="@Url.Action("Category","ManagerConfig")"><i class="fa fa-laptop"></i> <span>Quản Lý Nghành Nghề</span></a></li>
+            @*<li><a href="@Url.Action("Category","ManagerConfig")"><i class="fa fa-laptop"></i> <span>Quản Lý Thành Phố</span></a></li>*@
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>Quản Lý Tin tức</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">3</span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("ListCategoryNews","ManagerNews")"><i class="fa fa-circle-o"></i>Quản Lý danh mục tin tức</a></li>
+                    <li><a href="@Url.Action("ListNews","ManagerNews")"><i class="fa fa-circle-o"></i>Danh sách Tin tức</a></li>
+                    <li><a href="@Url.Action("CreateNews","ManagerNews")"><i class="fa fa-circle-o"></i>Viết Tin tức</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>Quảng Cáo</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">11</span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("QCLayoutLeft", "QuangCao")"><i class="fa fa-circle-o"></i>Layout Trái</a></li>
+                    <li><a href="@Url.Action("QCLayoutRight", "QuangCao")"><i class="fa fa-circle-o"></i>Layout Phải</a></li>
+                    <li><a href="@Url.Action("QCIndexLeft", "QuangCao")"><i class="fa fa-circle-o"></i>Trang chủ Trái</a></li>
+                    <li><a href="@Url.Action("QCIndexRight", "QuangCao")"><i class="fa fa-circle-o"></i>Trang chủ Phải</a></li>
+                    <li><a href="@Url.Action("QCIndexTop", "QuangCao")"><i class="fa fa-circle-o"></i>trang chủ Top</a></li>
+                    <li><a href="@Url.Action("QCSearchLeft", "QuangCao")"><i class="fa fa-circle-o"></i>TimVecLam Phải</a></li>
+                    <li><a href="@Url.Action("QCSearchBottom", "QuangCao")"><i class="fa fa-circle-o"></i>TimVecLam Giữa</a></li>
+                    <li><a href="@Url.Action("QCListNews", "QuangCao")"><i class="fa fa-circle-o"></i>DS TINTUC</a></li>
+                    <li><a href="@Url.Action("QCDetailNews", "QuangCao")"><i class="fa fa-circle-o"></i>ChiTiet TINTUC</a></li>
+                    <li><a href="@Url.Action("QCDetailJobLeft", "QuangCao")"><i class="fa fa-circle-o"></i>ChiTiet Job Trái</a></li>
+                    <li><a href="@Url.Action("QCDetailJobRight", "QuangCao")"><i class="fa fa-circle-o"></i>ChiTiet Job Phải</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i>
+                    <span>SlideShow</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">2</span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("ListSlideShow", "SlideShow")"><i class="fa fa-circle-o"></i>Danh sách</a></li>
+                    <li><a href="@Url.Action("CreateSlide", "Slideshow")"><i class="fa fa-circle-o"></i>Thêm mới</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>Cấu Hình Gửi Mail</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">2</span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("ListMail", "ConfigEmail")"><i class="fa fa-circle-o"></i>Danh sách Mail</a></li>
+                    <li><a href="@Url.Action("AddNew", "ConfigEmail")"><i class="fa fa-circle-o"></i>Thêm mới</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>Footer Và Logo</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">3</span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("footerlayout", "Footer")"><i class="fa fa-circle-o"></i>Footer WebSite</a></li>
+                    <li><a href="@Url.Action("FooterEmployer", "Footer")"><i class="fa fa-circle-o"></i> Footer tuyển dụng</a></li>
+                    <li><a href="@Url.Action("UpdateLogo", "Footer")"><i class="fa fa-circle-o"></i>Thay đổi logo</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="/admin/contact/ListContact">
+                    <i class="fa fa-life-ring"></i>
+                    <span>Thư Liên Hệ</span>
+                </a>
+            </li>
+            @*<li class="treeview">
+                <a href="#">
+                    <i class="fa fa-life-ring"></i>
+                    <span>Trợ Giúp Kỹ Thuật</span>
+                </a>
+            </li>*@
+            @*<li class="treeview">
+                <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>Layout Options</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">4</span>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+                    <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
+                    <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
+                    <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="pages/widgets.html">
+                    <i class="fa fa-th"></i> <span>Widgets</span>
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-green">new</small>
+                    </span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Charts</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>UI Elements</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
+                    <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
+                    <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
+                    <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
+                    <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
+                    <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-edit"></i> <span>Forms</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
+                    <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
+                    <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-table"></i> <span>Tables</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
+                    <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="pages/calendar.html">
+                    <i class="fa fa-calendar"></i> <span>Calendar</span>
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-red">3</small>
+                        <small class="label pull-right bg-blue">17</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="pages/mailbox/mailbox.html">
+                    <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-yellow">12</small>
+                        <small class="label pull-right bg-green">16</small>
+                        <small class="label pull-right bg-red">5</small>
+                    </span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>Examples</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
+                    <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
+                    <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
+                    <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
+                    <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+                    <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+                    <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+                    <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+                    <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-share"></i> <span>Multilevel</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-circle-o"></i> Level One
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i> Level Two
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                </ul>
+            </li>
+            
+            <li class="header">LABELS</li>
+            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>*@
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

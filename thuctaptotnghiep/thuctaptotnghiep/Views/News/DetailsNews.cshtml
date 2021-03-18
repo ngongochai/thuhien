@@ -1,0 +1,233 @@
+﻿@using System.Web;
+@using Model.Framework;
+@model Model.Framework.News
+@using thuctaptotnghiep.Models
+@{
+    thuctaptotnghiepDbContext db=new thuctaptotnghiepDbContext();
+    var data = db.Adverts.FirstOrDefault();
+    IHtmlString adnews = null;
+    if (data != null)
+    {
+        adnews = new HtmlString(data.advertdetailnews);
+    }
+    ViewBag.Title = Model.titlenews;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    IHtmlString item = new HtmlString(Model.htmlcontent);
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    string d = "";
+    if (Model.datepost != null)
+    {
+        d= Model.datepost.Value.ToString("dd/M/yyyy HH:mm:ss");
+    }
+   var datanews= db.News.Where(x => x.categoryId == Model.categoryId && x.active == true && x.trash != true).OrderByDescending(x=>x.newsid).ToList();
+    //var url2 = "/" + Model.categorynew.metatitle.Replace(" ", "-") + "-" + Model.categoryId;
+   List<News> recent = new List<News>();
+}
+<style>
+    .title {
+        font-family: NotoSerifBold;
+        padding: 3px;
+        margin-bottom: -10px;
+    }
+
+    .meta {
+        font-family: NotoSerifBold;
+        color: black;
+        font-size: 16px !important;
+        text-align: justify;
+        /*text-align:center;*/
+    }
+
+    .titel-featured {
+        font-family: NotoSerifBold;
+        color: black !important;
+        padding-left: 0;
+        font-size: 16px !important;
+        text-transform: uppercase;
+        border-bottom: 3px solid orange !important;
+        margin-top: 10px !important;
+        width: 100% !important;
+    }
+
+    .none-hover:hover {
+        text-decoration: none;
+    }
+</style>
+@{
+    int count = 0;
+    int? countid = null;
+    int countrow = datanews.Count() - 1;
+    int? right = 0;
+    int? left = 0;
+    int? numl = 0;
+    int? numr = 0;
+}
+@if (countrow <= 6)
+{
+    if (datanews.Count == 1)
+    {
+        recent = db.News.Where(x => x.active == true && x.trash != true&&x.newsid!=Model.newsid).Take(6).OrderByDescending(x => x.ViewBest).ToList();
+    }
+    else
+    {
+        foreach (var id in datanews)
+        {
+            if (id.newsid != Model.newsid)
+            {
+                recent.Add(id);
+            }
+        }
+    }
+}
+else
+{
+    foreach (var i in datanews)
+    {
+        if (i.newsid == Model.newsid)
+        {
+            countid = count;
+        }
+        count++;
+    }
+
+    if (countrow > countid)
+    {
+        if (countrow - countid < 3)
+        {
+            left = 3 - (countrow - countid);
+            numr = countrow - countid;
+        }
+        else
+        {
+            numr = numr + 3;
+        }
+    }
+    else
+    {
+        numl = numl + 3;
+    }
+    if (countid - 3 >= 0)
+    {
+        if (numl != null)
+        {
+            numl = numl + 3 + left;
+        }
+        else
+        {
+            numl = 3 + right;
+        }
+    }
+    else
+    {
+        right = right + (-(countid - 3));
+        numr = numr + right;
+        numl = numl + countid;
+    }
+    for (int i = 0; i < numl; i++)
+    {
+        if (i != countid)
+        {
+            recent.Add(datanews[i]);
+        }
+    }
+    if (countid + numr == 6 || countid + numr == 6)
+    {
+        if (datanews.Count >= 7)
+        {
+            for (int i = int.Parse(countid.ToString()); i <= countid + numr; i++)
+            {
+                if (i != countid)
+                {
+                    recent.Add(datanews[i]);
+                }
+            }
+        }
+        else
+        {
+            for (int i = int.Parse(countid.ToString()); i < countid + numr; i++)
+            {
+                if (i != countid)
+                {
+                    recent.Add(datanews[i]);
+                }
+            }
+        }
+
+    }
+    else
+    {
+        for (int i = int.Parse(countid.ToString()); i <= countid + numr; i++)
+        {
+            if (i != countid)
+            {
+                recent.Add(datanews[i]);
+            }
+        }
+    }
+}
+
+@*@Html.Action("MenuNews","News")*@
+@*<h4 style="font-family:chu-dam;color:black"><a href="/tin-tuc">Trang chủ</a><a class="none-hover" href="@url2"> >> @Model.categorynew.categoryName</h4></a>*@
+<div class="page-content" style="margin:20px">
+    <div class="container">
+        <div class="col-md-8" style="margin-top:20px">
+            <h1 class="title">@Model.titlenews</h1>
+             @if (Model.datepost != null)
+             {
+                <h5 style="font-family:NotoSerifBold;">
+                    @Model.datepost.Value.DayOfWeek,@d
+                    <span style="padding-right:20px;font-size:20px;padding-left:10px"><i style="padding-right:5px;font-size:18px;" class="fa fa-eye" aria-hidden="true"></i>@Model.ViewBest</span>
+                </h5>
+                 
+             }
+            <div class="fb-like" data-href="@url" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            <p class="meta">@Model.description</p>
+            @*<div class="col-md-12 col-xs-12">
+                <img src="@Model.titleimages" style="max-width:100%"/>
+            </div>*@
+            <div class="col-md-12">@item</div>
+            <div class="col-md-12 col-xs-12" style="margin:20px;">
+                <h3 style="margin:10px;color:black">Bài Liên Quan</h3>
+                @foreach (var i in recent)
+                {
+                    string categoryname = new RemoveUnicode().UnicodeName(i.categorynew.categoryName);
+                    string newsname = new RemoveUnicode().UnicodeName(i.titlenews);
+                    <a href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = i.newsid })"><p class=""><i style="padding-right:10px;color:blue" class="fa fa-newspaper-o" aria-hidden="true"></i>@i.titlenews</p></a>
+                }
+            </div>
+            <div class="fb-comments" data-href="@Request.Url" data-numposts="10"></div>
+            @*<div class="fb-comments" data-href="@url" data-numposts="10"></div>*@
+
+        </div>
+        <div class="col-md-4 qc-index" style="margin-top:35px">
+            @adnews
+        </div>
+    </div>
+    @*<div class="col-md-3">
+        @Html.Action("NewsPopular","DetailNews")
+            @Html.Action("VideoDetail","DetailNews")
+            @Html.Action("Newsviewbest", "DetailNews")
+            @Html.Action("CategoryNews","DetailNews")
+        </div>*@
+</div>
+@*@Html.Action("NewsBest", "News")*@
+@*<div class="container">
+        <div style="margin:10px;" class="col-md-12 popular titel-featured">Tin Cùng chuyên mục</div>
+        @foreach (var i in ViewBag.data)
+        {
+            var url1 = "/" + i.categorynew.metatitle.Replace(" ", "-") + "/" + i.metatitle.Replace(" ", "-") + "-" + i.newsid;
+            <a class="none-hover" href="@url1"><div class="col-md-3" style="text-align:center"><img style="width:100%;" src="@i.titleimages" /><label>@i.titlenews</label></div></a>
+        }
+    </div>*@
+@*@Html.Action("MenuNews", "News")*@
+
+<div id="fb-root"></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=874693849337057";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>

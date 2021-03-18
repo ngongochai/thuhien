@@ -1,0 +1,58 @@
+﻿@using Model.Framework
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var data = db.Adverts.FirstOrDefault();
+    IHtmlString indexleft = null ;
+    IHtmlString indexright = null;
+    IHtmlString indextop = null;
+    IHtmlString layoutleft = null;
+    IHtmlString layoutright = null;
+    if (data != null)
+    {
+        indexleft = new HtmlString(data.advertindexleft);
+        indexright = new HtmlString(data.advertindexright);
+        indextop = new HtmlString(data.advertindextop);
+        layoutleft = new HtmlString(data.advertlayoutleft);
+        layoutright = new HtmlString(data.advertlayoutright);
+    }
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Action("SearchSlide","SearchSlide")
+<div id="vnw-home">
+    <div class="feature container">
+        <div class="row">
+            @Html.Action("NewsHomePage", "News")
+        </div>
+        <div class="row">
+            <div class="col-md-12 qc-index">
+                @indextop
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 col-sm-12">
+                @Html.Action("ShowJobHomePage", "Job")
+                <div class="col-md-12 qc-index">
+                    @indexleft
+                </div>
+                @Html.Action("AllJob", "Job")
+            </div>
+            <div class="col-md-3 col-sm-12">
+                @Html.Action("TopEmployer", "TopEmployer")
+                <div class="col-md-12 qc-index">
+                    @indexright
+                </div>
+            </div>
+            </div>
+        <div class="row">
+            
+        </div>
+    </div>
+    <div class="ban_scroll qc-index-l" id="ban_left" style="width: 110px; display: block; overflow: hidden; position: absolute; top: 10px; left: 15px;">
+        @layoutleft
+    </div>
+    <div class="ban_scroll qc-index-l" id="ban_right" style="width: 125px; display: block; overflow: hidden; position: absolute; top: 10px; right: 0px;">
+        @layoutright
+    </div>
+</div>
+

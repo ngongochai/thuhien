@@ -1,0 +1,6 @@
+﻿@model Model.Framework.FooterLogo
+@{
+    ViewBag.Title = "Footer";
+    IHtmlString item = new HtmlString(Model == null ? "" : Model.footermember);
+}
+@item

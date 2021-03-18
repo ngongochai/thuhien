@@ -1,0 +1,56 @@
+﻿@using Model.Framework
+@model Model.Framework.CongTy
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var contact = db.ConfigMails.Where(x => x.smtpType == 4).FirstOrDefault();
+    var logo = db.FooterLogoes.FirstOrDefault();
+    if (logo == null)
+    {
+        logo = new FooterLogo();
+    }
+    Uri myUri = new Uri(Request.Url.ToString());
+    string host = myUri.Host;  // host is "www.contoso.com"
+}
+<div class="main-content" style="background-color: #3085d6; padding: 20px;">
+    <div class="content" style="background: white; padding: 20px;">
+
+        <div class="img" style="width: 70%;margin:0 auto">
+            @*<img src="@logo.logoimg" style="width:100%" />*@
+            <img src="@host/@logo.logoimg" style="width:100%" />
+        </div>
+        <h3 style="color:#006CB6;text-align:center">Trung Tâm Hỗ Trợ Sinh Viên & Quan Hệ Doanh Nghiệp Trường Cao Đẳng Công Thương TP.HCM</h3>
+        <h5>@DateTime.Now.ToString("dd/MM/yyyy HH:mm")</h5>
+        <div class="mail-content" style="width: 100%;">
+            <h3>Chào mừng bạn đến với trang tuyển dụng của trường cao đẳng công thương. Đăng tin tuyển dụng và tìm ứng viên phù hợp nhanh nhất và hoàn toàn miễn phí !</h3>
+            <h4>Chào @Model.Tencongty !</h4>
+            <p></p>
+            <p></p>
+            <h4>
+                Đây là email giúp bạn kích hoạt tài khoản doanh nghiệp trên @host .Vui lòng click vào đường dẫn hoặc copy để kích hoạt tài khoản của bạn
+                <a href="@host/Employer/ActiveEmployer/@Model.matkhaureset/">@host/Employer/ActiveEmployer/@Model.matkhaureset/</a>
+            </h4>
+            <p> Nếu bạn có bất kỳ thắc mắc nào liên quan đến tài khoản, hãy tham khảo trang Trợ giúp hoặc gửi email đến chúng tôi qua @contact.smtUserName</p>
+        </div>
+    </div>
+</div>
+@*<style>
+        .main-content {
+            background-color: #3085d6;
+            padding: 20px;
+        }
+
+        .content {
+            background: white;
+            padding: 20px;
+        }
+
+        .img {
+            width: 30%;
+        }
+
+        .mail-content {
+            width: 100%;
+        }
+    </style>*@
+
+

@@ -1,0 +1,127 @@
+﻿@model Model.Framework.FooterLogo
+@{
+    string nameurl = "";
+    ViewBag.Title = "Cập nhật logo";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    if (Model != null)
+    {
+         nameurl = Model.logoimg;
+    }
+        
+}
+<link href="~/plugin/fileman/css/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<script src="~/plugin/fileman/js/tiny_mce_popup.js"></script>
+<script src="~/plugin/fileman/js/file.js"></script>
+<script src="~/plugin/fileman/js/custom.js"></script>
+<script src="~/plugin/tinymce/jquery.tinymce.min.js"></script>
+<script src="~/plugin/tinymce/tinymce.min.js"></script>
+<script src="~/Areas/Admin/Scripts/customtinimce.js"></script>
+<section class="content-header">
+    <h1>
+        Cập Nhật Logo
+        <small>Logo WebSite (252 x 45 pixel)</small>
+    </h1>
+</section>
+<div style="background:white">
+    <div class="post-job m-b-lg">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="tabs-container post-job-tabs">
+                    <div>
+                        <div id="jobPostContainer" class="tab-content">
+                            <div id="job" class="m-b active">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                       
+                                        <div class="col-sm-6">
+                                            @if (nameurl == "")
+                                            {
+                                                <img onclick="openCustomRoxy2()" style=" width:100%" src="~/Content/image/no_image.png" id="imagestitle" />
+                                            }
+                                            else
+                                            {
+                                                <img onclick="openCustomRoxy2()" style="width:252px;height:45px" src="@nameurl" id="imagestitle" />
+                                            }
+                                            <span class="twitter-typeahead" style="position: relative; display: block; direction: ltr;">
+
+
+                                                <input value="@nameurl" type="text" id="txtSelectedFile" name="titleimages" tabindex="1" class="form-control" data-bind="jobTitle" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;">
+                                                <label id="titleimages-error" class="error" style="display:none;" for="job_job_title">Vui lòng chọn ảnh</label>
+                                            </span>
+                                            <button type="button" class="btn btn-primary" value="Chọn Ảnh" onclick="openCustomRoxy2()">Chọn Ảnh</button>
+                                            <button id="save-logo" class="btn-lg btn-success">Cập Nhật</button>
+                                        </div>
+                                        <div id="roxyCustomPanel2" style="display: none;">
+                                            <iframe src="/plugin/fileman/index.html?integration=custom&txtFieldId=txtSelectedFile" style="width:100%;height:100%" frameborder="0"></iframe>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal-->
+    <!-- Modal Crop Photo -->
+</div>
+<script>
+    $("#save-logo").click(function(){
+        var imgurl=$("#txtSelectedFile").val();
+        if(imgurl==""||imgurl.indexOf("uploaded")<-1){
+            swal({
+                title: "Chưa chọn ảnh",
+                text: "Vui Lòng chọn logo",
+                type: "error",
+                timer: 1000,
+                showConfirmButton: false
+
+            });
+        }
+        else
+        {
+            $.ajax({
+                url: "/Admin/Footer/UpdateLogo",
+                type: "POST",
+                dataType: "json",
+                data: { "logourl": imgurl },
+                success: function (data) {
+                    if (data == 0) {
+                        swal({
+                            title: "Đã Xảy ra lỗi",
+                            text: "Vui Lòng Kiểm Tra Lại và làm mới trang",
+                            type: "error",
+                            timer: 1000,
+                            showConfirmButton: false
+
+                        });
+                    }
+                    else {
+                        swal({
+                            title: "Lưu Thành công",
+                            text: "Thay đổi đã được lưu",
+                            type: "success",
+                            timer: 500,
+                            showConfirmButton: false
+
+                        });
+                    }
+
+                },
+                error: function (data) {
+                    swal({
+                        title: "Đã Xảy ra lỗi",
+                        text: "Vui Lòng Kiểm Tra Lại và làm mới trang",
+                        type: "error",
+                        timer: 1000,
+                        showConfirmButton: false
+
+                    });
+                    location.reload();
+                }
+            })
+        }
+    })
+</script>

@@ -1,0 +1,129 @@
+﻿@model thuctaptotnghiep.Models.Member
+@{
+    ViewBag.Title = "Đăng Ký thành viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="vnw-sign-up" class="container main-content vnw-sign-up">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="box box-md">
+                <div class="col-sm-8 col-sm-push-2">
+                    <div class=" center-block">
+                        <div class="alert alert-danger" id="err_top" style="display: none">
+                            <strong class="sprite_icon errorIcon">
+                                Rất tiếc, thông tin bạn cung cấp bị lỗi. Vui lòng kiểm tra lại thông tin.
+                            </strong>
+                        </div>
+                        <h1 class="text-center">Đăng ký thành viên</h1>
+                        <div class="social-bar text-center">
+
+                            <a href="/Member/LoginFacebook">
+                                <button class="btn btn-md btn-facebook push-top-xs">
+                                    <span class="icon-facebook"></span>
+                                    <span>Dùng tài khoản Facebook</span>
+                                </button>
+                            </a>
+
+                            <button style="display:none;">
+                                @Html.Partial("_ExternalLoginsListPartial", new demo.Models.ExternalLoginListViewModel { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
+                            </button>
+                        </div>
+                        <!-- Begin Content-->
+                        @using (Html.BeginForm("Register", "Member", FormMethod.Post, new { @class = "form-horizontal", @id = "frmSignUp" }))
+                        {
+                            <fieldset class="push-top-xs">
+                                <hr>
+                                <p class="text-center m-b-none vnw-sign-up__use-email">Đăng ký bằng email</p>
+                                <br>
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, null, new { @class = "error" })
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Hovatendem, new { @class = "form-control", @id = "txtLastname", @placeholder = "Họ", @tabindex = "1", @required = "required" })
+                                        @*<label id="hovatendem" class="error" style="display:none">Vui lòng nhập vào họ của bạn</label>*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Ten, new { @class = "form-control", @id = "txtFirstname", @placeholder = "Tên", @tabindex = "2", @required = "required" })
+                                        @*<label id="ten" class="error" style="display:none">Vui lòng nhập vào tên của bạn</label>*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.EmailDN, new { @type = "email", @class = "form-control", @id = "txtEmailDN", @placeholder = "Email", @tabindex = "3", @required = "required" })
+                                        <input type="hidden" name="chkEmail" value="0">
+                                        @*<label id="ten" class="error" style="display:none">Vui lòng nhập vào tên của bạn</label>*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @Html.PasswordFor(x => x.Matkhau, new { @class = "form-control", @id = "txtPassword", @placeholder = "Mật Khẩu", @tabindex = "4", @maxlength = "255", @required = "required" })
+                                        @*<label id="ten" class="error" style="display:none">Vui lòng nhập vào tên của bạn</label>*@
+                                    </div>
+                                </div>
+                                @*<div class="form-group awe-check">
+                                <div class="col-md-12">
+                                    <div class="checkbox">
+                                        <input name="chkIsNewLetter" id="chkIsNewLetter" type="checkbox" value="1" checked="checked" tabindex="5">
+                                        <label for="chkIsNewLetter">Tôi muốn nhận Bản tin VietnamWorks <br class="hidden-xs"> hàng tuần và hàng tháng</label>
+                                    </div>
+                                </div>
+                            </div>*@
+                                <!-- Buttons-->
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <button type="submit" name="Submit" value="I agree" class="btn btn-primary btn-block" tabindex="6">
+                                            <span>Đăng ký</span>
+                                        </button>
+                                        <span class="processing" style="display: none; height:30px;"></span>
+                                    </div>
+                                </div>
+                                <!--<div class="form-group">
+                            <div class="col-md-12">
+                                <span>Nhấp chọn "Đăng ký", tôi đã đọc và đồng ý với các
+                                    <strong><a href="quy-dinh-bao-mat" title="Qui định bảo mật">Quy định bảo mật</a></strong>
+                                    và
+                                    <strong><a href="thoa-thuan-su-dung" title="Thỏa thuận sử dụng">Thỏa thuận sử dụng</a></strong>
+                                </span>
+                            </div>
+                        </div>
+                        <hr/>-->
+                                <div class="form-group vnw-sign-up__terms">
+                                    <div class="col-md-12 text-center">
+                                        <span class="gray-light small link-list">
+                                            Nhấp chọn "Đăng ký", tôi đã đọc và đồng ý với các <br>
+                                            <a href="#" title="Qui định bảo mật">
+                                                Quy định bảo mật
+                                            </a>
+                                            và
+                                            <a href="#" title="Thỏa thuận sử dụng">
+                                                Thỏa thuận sử
+                                                dụng
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p class="text-center">
+                                    Bạn đã có tài khoản thành viên?
+                                    <a href="@Url.Action("Login","Member")">
+                                        <strong>Đăng nhập</strong>
+                                    </a>
+                                </p>
+                            </fieldset>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .error ul {
+        list-style: none;
+        text-align: center;
+        color: red;
+        padding-right: 35px;
+    }
+</style>

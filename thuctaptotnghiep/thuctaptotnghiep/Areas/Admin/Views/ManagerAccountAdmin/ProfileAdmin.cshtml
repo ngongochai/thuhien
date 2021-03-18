@@ -1,0 +1,107 @@
+﻿@model Model.Framework.UngVien
+@{
+    ViewBag.Title = "Trang cá nhân admin";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <h1>
+        THÔNG TIN TÀI KHOẢN
+        <small>Member</small>
+    </h1>
+    @*<a class="btn btn-default" href="@Url.Action("ListJobForEmployer", "ManagerMemberAdmin", new {id=Model.MACT })">Việc Làm Của Công Ty</a>*@
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li class="active"><a href="#">Thông tin tài khoản</a></li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="box">
+            <div class="wrapper-content">
+                <div class="my-account m-b-lg">
+                    <div class="alert alert-danger" hidden="hidden">
+                        Some errors in the page. Please check again.
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Account Information-->
+                            @Html.Action("InforAccountAdmin", "ManagerAccountAdmin", new {mauv=Model.MAUV })
+                            <!-- My Company Profile-->
+                            @Html.Action("InforAdmin", "ManagerAccountAdmin", new { mauv = Model.MAUV })
+                            @Html.Action("LogoAdmin", "ManagerAccountAdmin", new { mauv = Model.MAUV })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<script src="~/Content/Employer/Manager/jqueryapp.js"></script>*@
+<!--[if lte IE 9]>
+    <script src="/bundles/naviworksweb/js/appIE8.js?r135s1d20170331t2"></script>
+<![endif]-->
+<!--[if gt IE 9]><!-->
+<!-- Google Tag Manager -->
+<!-- End Google Tag Manager -->
+<script src="~/Content/Employer/Manager/my-profile.js"></script>
+<script src="~/Content/Employer/Manager/ProProfile.js"></script>
+<script>
+    function excuteeditemployer(mact,action,val) {
+        $.ajax({
+            url: "/Admin/ManagerMemberAdmin/ChangeStatusEmployer",
+            type: "POST",
+            dataType: "JSON",
+            data: { "mact": mact, "val": val, "action": action },
+            success: function (data) {
+                location.reload();
+            },
+            error: function (data) {
+                location.reload();
+            }
+        })
+    }
+    $("#inactiveemployer").click(function () {
+        var mact = $(this).val();
+        var action = 1;
+        var val = 0;
+        excuteeditemployer(mact, action, val);
+
+    })
+    $("#activeemployer").click(function () {
+        var mact = $(this).val();
+        var action = 1;
+        var val = 1;
+        excuteeditemployer(mact, action, val);
+
+    })
+    $("#restore").click(function () {
+        var mact = $(this).val();
+        var action = 2;
+        var val = 0;
+        excuteeditemployer(mact, action, val);
+
+    })
+    $("#removeemployer").click(function () {
+        var mact = $(this).val();
+        var action = 2;
+        var val = 1;
+        excuteeditemployer(mact, action, val);
+
+    })
+    $("#removetop").click(function () {
+        var mact = $(this).val();
+        var action = 3;
+        var val = 0;
+        excuteeditemployer(mact, action, val);
+
+    })
+    $("#activetop").click(function () {
+        var mact = $(this).val();
+        var action = 3;
+        var val = 1;
+        excuteeditemployer(mact, action, val);
+
+    })
+</script>

@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Thông Tin Nhà Tuyển Dụng";
+    Layout = "~/Views/Shared/_LayoutEmployer.cshtml";
+}
+
+<div class="wrapper wrapper-content">
+    <div class="my-account m-b-lg">
+        <div class="alert alert-danger" hidden="hidden">
+            Some errors in the page. Please check again.
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Account Information-->
+
+                <!-- My Company Profile-->
+                @Html.Action("InforCompany","Employer")
+                @Html.Action("LogoCompany","Employer")
+                @Html.Action("InforAccount", "Employer")
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script src="~/Content/Employer/Manager/jqueryapp.js"></script>*@
+<!--[if lte IE 9]>
+    <script src="/bundles/naviworksweb/js/appIE8.js?r135s1d20170331t2"></script>
+<![endif]-->
+<!--[if gt IE 9]><!-->
+
+
+
+<!-- Google Tag Manager -->
+<!-- End Google Tag Manager -->
+<script src="~/Content/Employer/Manager/my-profile.js"></script>
+<script src="~/Content/Employer/Manager/ProProfile.js"></script>

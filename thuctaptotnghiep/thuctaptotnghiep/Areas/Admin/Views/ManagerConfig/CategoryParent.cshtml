@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Model.Framework.NghanhNghe>
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Danh sách Nhóm nghề nghiệp</h3>
+        <a href="@Request.Url" class="btn btn-default">Làm Mới</a>
+        <button class="btn btn-success" id="addcategoryparent">Them Nhóm Nghề Nghiệp</button>
+        <div style="display:none;margin:10px;" class="toggleadd">
+            <div class="col-md-4"><input id="categoryname" placeholder="Nhập tên Nhóm nghề" type="text" class="form-control" /></div>
+            <div class="col-md-4">
+                <button class="btn btn-success" id="confirmadd">Lưu Lại</button>
+            </div>
+        </div>
+    </div>
+    <div class="box-body">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="sorting_desc" style="width:1%">ID</th>
+                    <th>Tên Nhóm danh mục</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td class="nameinput" id="nameparent_@item.Id"><span class="show_hidden">@item.Tennghanh</span>
+                        <input class="success_edit form-control" style="display:none;" id="nameinput_@item.Id" type="text" value="@item.Tennghanh"/>
+                        </td>
+                        <td><a href="@Url.Action("RemoveCategoryParent","ManagerConfig",new{id=item.Id})" onclick="return confirm('Bạn có muốn xóa không ?')">Xóa</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).on("click", "#addcategoryparent", function () {
+        $(".toggleadd").toggle();
+    })
+    $(document).on("click", "#confirmadd", function () {
+        var value = $("#categoryname").val();
+        if (value == "") {
+            alter("vui long nhap nhom nghe nghiep")
+        }
+        else {
+            $.ajax({
+                url: "/Admin/ManagerConfig/AddCategoryParent",
+                type: "POST",
+                dataType: "json",
+                data: { "name": value },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (data) { location.reload(); }
+            })
+        }
+    })
+    $(document).on("dblclick", ".nameinput", function () {
+        var id = $(this).attr("id");
+        id = id.split("_")[1];
+        $(this).children(".show_hidden").hide();
+        $("#nameinput_" + id).show();
+        $("#nameinput_" + id).focus();
+    })
+    $(document).on("focusout", ".success_edit", function () {
+        var form = $(this);
+        var val = $(this).val();
+        var id = $(this).attr("id");
+        id = id.split("_")[1];
+        if (val == "") {
+            alert("Vui lòng nhập tên nhóm nghành");
+        }
+        else {
+            $.ajax({
+                url: "/Admin/ManagerConfig/EditCategoryParent",
+                type: "POST",
+                dataType: "json",
+                data: { "val": val, "id": id },
+                success: function (data) {
+                    if (data.status == 1) {
+                        form.hide();
+                        form.siblings(".show_hidden").show();
+                        form.siblings(".show_hidden").html(val);
+                    }
+                    else {
+                        location.reload();
+                    }
+                },
+                error: function (data) {
+                   
+                }
+            })
+        }
+    })
+</script>

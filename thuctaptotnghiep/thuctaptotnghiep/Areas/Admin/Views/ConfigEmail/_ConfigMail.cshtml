@@ -1,0 +1,75 @@
+﻿@model Model.Framework.ConfigMail
+@using Model.Framework
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Edit Mode</h3>
+                    <p>Type 1: Khôi phục tài khoản</p>
+                    <p>Type 2: Kích hoạt tài khoản Doanh nghiệp</p>
+                    <p>Type 3: Thông Báo Việc Làm</p>
+                    <p>Type 4: Nhận Email và Email Liên hệ</p>
+                </div>
+                <div class="box-body">
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("EditMail", "ConfigEmail"))
+                        {
+                            <div class="form-group">
+                                <label for="video">Tên Chức Năng</label>
+                                <input type="text" name="Name" value="@Model.Name" required maxlength="100" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="video">Email</label>
+                                <input type="text" name="smtUserName" value="@Model.smtUserName" required maxlength="100" class="form-control" id="video">
+                            </div>
+                            <div class="form-group">
+                                <label for="displayorder">Password</label>
+                                <input value="@Model.smtpPassword" name="smtpPassword" type="password" class="form-control" required maxlength="200">
+                            </div>
+                             <div class="form-group">
+                                <label for="displayorder">Host</label>
+                                 <input value="@Model.smtpHost" name="smtpHost" type="text" class="form-control" required maxlength="100">
+                            </div>
+                             <div class="form-group">
+                                <label for="displayorder">Port</label>
+                                 <input value="@Model.smtpPort" name="smtpPort" type="number" min="0" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="displayorder">Tiêu đề</label>
+                                <input value="@Model.smtpSubject" name="smtpSubject" type="text" maxlength="200" class="form-control" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="displayorder">Enable SSL</label>
+                                 <select class="form-control" name="EnableSSL">
+                                     @if (Model.EnableSSL == true)
+                                     {
+                                         <option selected value="true">Enable</option>
+                                         <option value="false">Disable</option>
+                                     }
+                                     else
+                                     {
+                                         <option selected value="false">Disable</option>
+                                         <option value="true">Enable</option>
+                                     }
+                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="displayorder">Loại Mail</label>
+                                <input value="@Model.smtpType" name="smtpType" type="number" min="0" class="form-control">
+                            </div>
+                            <input hidden value="@Model.id" name="id" />
+                            <div class="form-group">
+                                <button type="submit"  class="btn-lg btn-success">Lưu Mail</button>
+                            </div>
+                        }
+                       
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</section>

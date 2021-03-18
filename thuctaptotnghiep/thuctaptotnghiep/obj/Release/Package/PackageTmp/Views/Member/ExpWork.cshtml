@@ -1,0 +1,555 @@
+﻿@model IEnumerable<Model.Framework.ThongTinNgheNghiep>
+@{
+    int count = 10;
+    Random rnd = new Random();
+}
+<div class="section-detail section-employment">
+    <div id="form-employment">
+        <div class="box border-info">
+            <fieldset>
+                <legend class="box-md">
+                    <i class="fa fa-fw fa-bank"></i> Kinh Nghiệm Làm Việc
+                </legend>
+                <div class="placeholder-section box-md" hidden="" style="display: block;">
+                    <p class="placeholder">
+                        Mô tả kinh nghiệm làm việc của bạn càng chi tiết càng tốt, điều đó giúp bạn có cơ hội hiển thị nhiều hơn trong kết quả tìm kiếm
+                    </p>
+                </div>
+                <div class="sortable content-section">
+                    <!-- Sample-->
+                    <form hidden="hidden" class="sample form-view form-wrapper box-md relative" data-order="0" method="post" action="/Member/Profile">
+                        <input type="hidden" name="resume_id" value="4387814"> <input type="hidden" name="entry_id" value="">
+                        <div class="error-message-update-employment row" hidden="hidden">
+                            <div>
+                                <div class="error-message"><strong>Oops! </strong> Có lỗi đã xảy ra, vui lòng thử lại.</div>
+                                <br>
+                            </div>
+                        </div>
+                        <span class="form-btn-edit">
+                            <button type="button" class="btn btn-sm btn-default">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </button>
+                        </span>
+                        <div>
+                            <div class="view-field">
+                                <h4 class="view-control placeholder">Ví dụ: UI/UX Designer</h4>
+                            </div>
+                            <div class="edit-field">
+                                <div class="form-group">
+                                    <label><strong class="text-red">*</strong> Chức danh</label> <input type="text" class="form-control edit-control" name="position" placeholder="Ví dụ: UI/UX Designer" value="" maxlength="150" autofocus="">
+                                    <span class="msg-position-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                    <span class="msg-position-valid error-message" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="view-field">
+                                <strong class="view-control placeholder">Ví dụ: Trường Cao Đẳng Công Thương</strong>
+                            </div>
+                            <div class="edit-field">
+                                <div class="form-group">
+                                    <label><strong class="text-red">*</strong> Công ty</label> <input type="text" class="form-control edit-control company-name" name="companyName" placeholder="Ví dụ: Trường Cao Đẳng Công Thương" value="" maxlength="150">
+                                    <span class="msg-company-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                    <span class="msg-company-valid error-message" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="view-field">
+                                <p>
+                                    <span class="view-control placeholder" data-control="from-date">Ví dụ: 09/2008</span>
+                                    -
+                                    <span class="view-control placeholder" data-control="to-date" data-type="manual">Ví dụ: 12/2014</span>
+                                    <span class="total-time placeholder">
+                                        (
+                                        <span class="years">
+                                            <span class="number-of-years">6</span>
+                                            <span class="lbl">years</span>
+                                        </span>
+                                        <span class="months">
+                                            <span class="number-of-months">4</span>
+                                            <span class="lbl">months</span>
+                                        </span>
+                                        )
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="edit-field">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Từ tháng</label> <input class="form-control edit-control sample-datepicker" name="fromDate" placeholder="Ví dụ: 09/2008" data-control="from-date">
+                                            <span class="msg-from-date-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                            <span class="msg-from-date-valid error-message" hidden="hidden">Tháng kết thúc phải lớn hơn tháng bắt đầu</span>
+                                            <span class="msg-from-date-no-future-date error-message" hidden="hidden">Vui lòng không chọn ngày tương lai cho mục này</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Đến tháng</label> <input class="form-control edit-control sample-datepicker" name="toDate" placeholder="Ví dụ: 12/2014" data-control="to-date">
+                                            <span class="msg-to-date-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                            <span class="msg-to-date-no-future-date error-message" hidden="hidden">Vui lòng không chọn ngày tương lai cho mục này</span>
+                                            <span class="msg-to-date-valid error-message" hidden="hidden">Tháng kết thúc phải lớn hơn tháng bắt đầu</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="m-t-lg hidden-xs"></div>
+                                            <label class="control-label"> <input type="checkbox" name="currentExp" value="1" class="to-present-checkbox edit-control" data-text-value="Hiện tại"> <em>Công việc hiện tại</em></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="view-field">
+                                <div class="view-control placeholder">Mô tả ngắn về vai trò, nhiệm vụ và những thành tựu đạt được</div>
+                            </div>
+                            <div class="edit-field">
+                                <div class="form-group">
+                                    <label>Mô tả</label> <textarea rows="3" name="description" class="form-control edit-control emp-description countdown-target" placeholder="Mô tả ngắn về vai trò, nhiệm vụ và những thành tựu đạt được"></textarea>
+                                    <em class="countdown gray-light" data-text="ký tự có thể nhập thêm"></em>
+                                    <p class="msg-description-limit-min error-message" hidden="hidden">Vui lòng nhập thêm thông tin</p>
+                                    <p class="msg-description-limit-max error-message" hidden="hidden">Bạn đã nhập quá ký tự cho phép</p>
+                                    <p class="msg-description-valid error-message" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</p>
+                                    <p class="msg-description-suggestion text-info" hidden="hidden">Thêm thông tin để nâng mức độ hoàn thành hồ sơ của bạn</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group push-top-md edit-field">
+                            <div class="row">
+                                <div class="col-sm-6">( <strong class="text-red">*</strong>) Thông tin bắt buộc</div>
+                                <div class="col-sm-6 text-right">
+                                    <button type="button" class="btn-remove-this-section btn btn-link" onclick="deleteEmploymentHistory($(this).parents('form'))">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </button>
+                                    <button type="button" class="btn-cancel btn btn-default">Hủy</button>
+                                    <button type="button" class="btn-save btn btn-primary" onclick="saveEmploymentHistory($(this).parents('form'))">Lưu</button>
+                                    <button type="button" name="sending" style="display: none;" class="btn-sending btn btn-default" disabled="">
+                                        <img src="~/Content/Profile/loading.gif" alt="">Đang lưu
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    @foreach (var item in Model)
+                    {
+                      <form class="form-view form-wrapper box-md relative" data-order="@count" method="post" action="/Member/Profile">
+                          <input type="hidden" name="resume_id" value="@item.resumid"> <input type="hidden" name="entry_id" value="@item.Id">
+                        <div class="error-message-update-employment row" hidden="hidden">
+                            <div>
+                                <div class="error-message"><strong>Oops! </strong> Có lỗi đã xảy ra, vui lòng thử lại.</div>
+                                <br>
+                            </div>
+                        </div>
+                        <span class="form-btn-edit">
+                            <button type="button" class="btn btn-sm btn-default">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </button>
+                        </span>
+                        <div>
+                            <div class="view-field">
+                                <h4 class="view-control placeholder">Ví dụ: UI/UX Designer</h4>
+                            </div>
+                            <div class="edit-field">
+                                <div class="form-group">
+                                    <label><strong class="text-red">*</strong> Chức danh</label>
+                                     <input type="text" class="form-control edit-control" name="position" placeholder="Ví dụ: UI/UX Designer" value="@item.Capbachientai" maxlength="150" autofocus="">
+                                    <span class="msg-position-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                    <span class="msg-position-valid error-message" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="view-field">
+                                <strong class="view-control placeholder">Ví dụ: Trường Cao đăng công thương</strong>
+                            </div>
+                            <div class="edit-field">
+                                <div class="form-group">
+                                    <label><strong class="text-red">*</strong> Công ty</label>
+                                     <input type="text" class="form-control edit-control company-name" name="companyName" placeholder="Ví dụ: VietnamWorks" value="@item.Congtylamviecganday" maxlength="150">
+                                    <span class="msg-company-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                    <span class="msg-company-valid error-message" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="view-field">
+                                <p>
+                                    <span class="view-control placeholder" data-control="from-date">Ví dụ: 09/2008</span>
+                                    -
+                                    <span class="view-control placeholder" data-control="to-date" data-type="manual">Ví dụ: 12/2014</span>
+                                    <span class="total-time placeholder">
+                                        (
+                                         <span class="years">
+                                            <span class="number-of-years"></span>
+                                            <span class="lbl">years</span>
+                                        </span>
+                                        <span class="months">
+                                            <span class="number-of-months"></span>
+                                            <span class="lbl">months</span>
+                                        </span>
+                                        )
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="edit-field">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            @if (item.Fromday != null)
+                                            {
+                                                <label>Từ tháng</label> <input class="form-control edit-control datepicker" value="@item.Fromday.Value.Date.ToString("MM/yyyy")" name="fromDate" placeholder="Ví dụ: 09/2008" data-control="from-date">
+                                            }
+                                            else{
+                                            <label>Từ tháng</label> <input class="form-control edit-control datepicker"  name="fromDate" placeholder="Ví dụ: 09/2008" data-control="from-date">
+                                            }
+                                            <span class="msg-from-date-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                            <span class="msg-from-date-valid error-message" hidden="hidden">Tháng kết thúc phải lớn hơn tháng bắt đầu</span>
+                                            <span class="msg-from-date-no-future-date error-message" hidden="hidden">Vui lòng không chọn ngày tương lai cho mục này</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Đến tháng</label>
+                                            @if (item.Hiennay == 0 && item.Today!=null)
+                                            {
+                                                <input class="form-control edit-control datepicker" value="@item.Today.Value.Date.ToString("MM/yyyy")" name="toDate" placeholder="Ví dụ: 12/2014"  data-control="to-date">
+                                            }
+                                            else if (item.Hiennay == 0 && item.Today == null)
+                                            {
+                                                <input class="form-control edit-control datepicker" name="toDate" placeholder="Ví dụ: 12/2014"  data-control="to-date">
+                                            }
+                                            else
+                                            {
+                                                <input class="form-control edit-control datepicker" value="@DateTime.Now.Date.ToString("MM/yyyy")" disabled="disabled" name="toDate" placeholder="Hiện tại" data-control="to-date">
+                                            }
+                                            <span class="msg-to-date-required error-message" hidden="hidden">Vui lòng nhập thông tin</span>
+                                            <span class="msg-to-date-no-future-date error-message" hidden="hidden">Vui lòng không chọn ngày tương lai cho mục này</span>
+                                            <span class="msg-to-date-valid error-message" hidden="hidden">Tháng kết thúc phải lớn hơn tháng bắt đầu</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="m-t-lg hidden-xs"></div>
+                                            <label class="control-label">
+                                            @if (item.Hiennay > 0)
+                                            {
+                                                <input type="checkbox" name="currentExp" checked value="1" class="to-present-checkbox edit-control" data-text-value="Hiện tại">
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" name="currentExp" value="1" class="to-present-checkbox edit-control" data-text-value="Hiện tại">
+                                            }
+                                             <em>Công việc hiện tại</em></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="view-field">
+                                <div class="view-control placeholder">Mô tả ngắn về vai trò, nhiệm vụ và những thành tựu đạt được</div>
+                            </div>
+                            <div class="edit-field">
+                                <div class="form-group">
+                                    <label>Mô tả</label> <textarea rows="3" name="description" class="form-control edit-control emp-description countdown-target" placeholder="Mô tả ngắn về vai trò, nhiệm vụ và những thành tựu đạt được">@item.Mucdoquantam</textarea>
+                                    <em class="countdown gray-light" data-text="ký tự có thể nhập thêm"></em>
+                                    <p class="msg-description-limit-min error-message" hidden="hidden">Vui lòng nhập thêm thông tin</p>
+                                    <p class="msg-description-limit-max error-message" hidden="hidden">Bạn đã nhập quá ký tự cho phép</p>
+                                    <p class="msg-description-valid error-message" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</p>
+                                    <p class="msg-description-suggestion text-info" hidden="hidden">Thêm thông tin để nâng mức độ hoàn thành hồ sơ của bạn</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group push-top-md edit-field">
+                            <div class="row">
+                                <div class="col-sm-6">( <strong class="text-red">*</strong>) Thông tin bắt buộc</div>
+                                <div class="col-sm-6 text-right">
+                                    <button type="button" class="btn-remove-this-section btn btn-link" onclick="deleteEmploymentHistory($(this).parents('form'))">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </button>
+                                    <button type="button" class="btn-cancel btn btn-default">Hủy</button>
+                                    <button type="button" class="btn-save btn btn-primary" onclick="saveEmploymentHistory($(this).parents('form'))">Lưu</button>
+                                    <button type="button" name="sending" style="display: none;" class="btn-sending btn btn-default" disabled="">
+                                        <img src="~/Content/Profile/loading.gif" alt="">Đang lưu
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                        count = count + 10;
+                    }
+                    <div class="switch-view-controller" hidden="">
+                        <span class="expand">Show more</span>
+                        <span class="collapse">Collapse</span>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-block no-border add-one-more-section" id="btn-add-employment">
+                    <strong>THÊM MỚI</strong>
+                </button>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function clearErrorMessageEmploymentHistory(form) {
+        $(form).find('span.error-message').attr('hidden', 'hidden');
+        $(form).find('p.error-message').attr('hidden', 'hidden');
+        $(form).find('.has-error').removeClass('has-error');
+    }
+    function validateEmploymentHistory(data, form, options) {
+        var has_error = false;
+        clearErrorMessageEmploymentHistory(form);
+        $.each(data, function (index, item) {
+            switch (item.name) {
+                case 'position':
+                    if ($.trim(item.value) == '') {
+                        has_error = true;
+                        $(form).find('span.msg-position-required').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                    } else if (emailExistsInString(item.value) || phoneExistsInString(item.value)) {
+                        has_error = true;
+                        $(form).find('span.msg-position-valid').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                    }
+                    break;
+                case 'companyName':
+                    if ($.trim(item.value) == '') {
+                        has_error = true;
+                        $(form).find('span.msg-company-required').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                    } else if (emailExistsInString(item.value) || phoneExistsInString(item.value)) {
+                        has_error = true;
+                        $(form).find('span.msg-company-valid').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                    }
+                    break;
+                case 'description':
+                    if (item.value != '') {
+                        elementTiny = tinyMCE.get(form.find('textarea')[0].id);
+                        var description = $(elementTiny.getContent()).text().replace(/(<([^>]+)>)/ig, '');
+                        description = description.replace('&nbsp;', '');
+                        if (description.length < 100) {
+                            has_error = true;
+                            $(form).find('p.msg-description-limit-min').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                        } else if (description.length > 5000) {
+                            has_error = true;
+                            $(form).find('p.msg-description-limit-max').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                        } else if (emailExistsInString(description) || phoneExistsInStringSpecialChar(description)) {
+                            has_error = true;
+                            $(form).find('p.msg-description-valid').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                        }
+                    }
+                    break;
+            }
+        });
+
+        if ($(form).find("input[name='fromDate']").datepicker("getDate").getMonth() >= 0) {
+            if ($(form).find("input[name='currentExp']").is(':checked')) {
+                if ($(form).find("input[name='fromDate']").datepicker("getDate").getTime() > (new Date()).getTime()) {
+                    // "from date" is in the future
+                    $(form).find('span.msg-from-date-no-future-date').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                    has_error = true;
+                } else {
+                    $(form).find('span.msg-to-date-required').attr('hidden', 'hidden');
+                    $(form).find('span.msg-to-date-no-future-date').attr('hidden', 'hidden');
+                }
+            } else {
+                fromDate = ($(form).find("input[name='fromDate']").datepicker("getDate").getMonth()) + ($(form).find("input[name='fromDate']").datepicker("getDate").getYear() * 12);
+                toDate = ($(form).find("input[name='toDate']").datepicker("getDate").getMonth()) + ($(form).find("input[name='toDate']").datepicker("getDate").getYear() * 12);
+                if (isNaN(toDate)) {
+                    // If "to date" is empty
+                    $(form).find('span.msg-to-date-required').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                    has_error = true;
+                } else if ($(form).find("input[name='fromDate']").datepicker("getDate").getTime() > (new Date()).getTime()) {
+                    // if "from date" is in the future
+                    $(form).find('span.msg-from-date-no-future-date').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                    has_error = true;
+                } else if ($(form).find("input[name='toDate']").datepicker("getDate").getTime() > (new Date()).getTime()) {
+                    // If "to date" is in the future
+                    $(form).find('span.msg-to-date-no-future-date').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                    has_error = true;
+                } else if (fromDate > toDate) {
+                    $(form).find('span.msg-to-date-valid').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                    has_error = true;
+                }
+            }
+        } else {
+            toDate = ($(form).find("input[name='toDate']").datepicker("getDate").getMonth()) + ($(form).find("input[name='toDate']").datepicker("getDate").getYear() * 12);
+            if ($(form).find("input[name='currentExp']").is(':checked') || toDate >= 0) {
+                $(form).find('span.msg-from-date-valid').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                has_error = true;
+            } else if ($(form).find("input[name='fromDate']").datepicker("getDate").getTime() > (new Date()).getTime()) {
+                // "from Date" is in the future
+                $(form).find('span.msg-from-date-no-future-date').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                has_error = true;
+            } else if ($(form).find("input[name='toDate']").datepicker("getDate").getTime() > (new Date()).getTime()) {
+                // "to Date" is in the future
+                $(form).find('span.msg-to-date-no-future-date').css('display', '').removeAttr('hidden').parent().addClass('has-error');
+                has_error = true;
+            }
+        }
+
+        if (!has_error) {
+            $(form).find("button.btn-remove-this-section").css('display', 'none');
+            $(form).find("button.btn-cancel").css('display', 'none');
+            $(form).find("button.btn-save").css('display', 'none');
+            $(form).find("button.btn-sending").css('display', '');
+        }
+        return !has_error;
+    }
+    function sortExperiences() {
+
+        // Destroy TinyMCE before sorting, since sorting will cause tinyMCE to malfunction
+        var $sectionEmploymentFormView = $('div .section-employment form.form-view');
+        $sectionEmploymentFormView.not('.sample').find('textarea').each(function () {
+            tinymce.EditorManager.get($(this).attr('id')).destroy();
+        });
+
+        // Sort
+        $sectionEmploymentFormView.sortElements(function (a, b) {
+            return $(a).attr('data-order') > $(b).attr('data-order') ? 1 : -1;
+        });
+
+        // Init tinyMCE again
+        $sectionEmploymentFormView.not('.sample').find('textarea').each(function () {
+            $(this).tinymce({
+                theme: 'modern',
+                toolbar: false,
+                menubar: false,
+                statusbar: false,
+                setup: function (editor) {
+                    var numberOfCharacterAllowed = 5000;
+                    editor.on('keyup focus init', function () {
+                        updateCountdown(editor, $(editor.getContainer()).siblings('.countdown'), numberOfCharacterAllowed, true);
+                    }).on('keydown', function (event) {
+                        // Stop enter text when reaching its limit
+                        var key = event.which;
+                        if ($(editor.getContent()).text().length >= numberOfCharacterAllowed && !(key == 46 || key == 8 || key == 37 || key == 39 )) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            // return false;
+                        }
+                    });
+                },
+                valid_elements: 'a[class|href|rel|rev|tabindex|title],'
+                + 'abbr[class|title],'
+                + 'blockquote[cite|class],'
+                + 'br[style],'
+                + 'cite[class],'
+                + 'dd[class],'
+                + 'del[cite|class|datetime],'
+                + 'dfn[class],'
+                + 'div[class],'
+                + 'dl[class],'
+                + 'dt[class],'
+                + 'em/i[class],'
+                + 'h1[class],'
+                + 'h2[class],'
+                + 'h3[class],'
+                + 'h4[class],'
+                + 'h5[class]'
+                + 'hr[class|noshade<noshade|size],'
+                + 'img[align<bottom?left?middle?right?top|alt|class|height|longdesc|src|title|width],'
+                + 'ins[cite|class|datetime],'
+                + 'li[class|type],'
+                + 'ol[class|start|type],'
+                + 'p[class],'
+                + 'pre/listing/plaintext/xmp[class],'
+                + 'q[cite|class],'
+                + 'small[class],'
+                + 'span[class],'
+                + 'strong/b[class],'
+                + 'sub[class],'
+                + 'sup[class],'
+                + 'table[class|id|summary|title],'
+                + 'td[colspan|rowspan],'
+                + 'th[colspan|rowspan],'
+                + 'tr[rowspan],'
+                + 'ul[class|id|title|type]'
+                + 'u[class|id|title]'
+                + "font[class|color|dir<ltr?rtl|face|id|lang|size|style|title]"
+            });
+        });
+
+    }
+    function postSaveEmploymentHistoryAjaxSubmit(data, status, xhr, form) {
+        $(form).find("button.btn-remove-this-section").css('display', '');
+        $(form).find("button.btn-cancel").css('display', '');
+        $(form).find("button.btn-save").css('display', '');
+        $(form).find("button.btn-sending").css('display', 'none');
+        if (data.status == 'REDIRECT') {
+            window.location.href = data.redirectUrl;
+        } else if (data.status == 'VALIDATION_ERROR' || data.status == 'ERROR') {
+            $(form).find('.error-message-update-employment').slideDown();
+            setTimeout(function () {
+                $(form).find('.error-message-update-employment').slideUp();
+            }, 5000);
+        } else {
+            mdlLiveEdit.saveContent(form);
+            console.log('After save')
+
+            if (data.hasOwnProperty('data') && data.data.hasOwnProperty('entry_id')) {
+                $(form).find("input[name='entry_id']").val(data.data.entry_id);
+            }
+            $("div .section-employment form.form-view").each(function (index) {
+                var entryId = $(this).find("input[name='entry_id']").val();
+                var formOrder = $(this);
+                $.each(data.orders, function (i, item) {
+                    if (entryId == item.entryid) {
+                        formOrder.attr('data-order', item.experienceorder);
+                    }
+                });
+            });
+            //form.attr('data-order',data.data.experienceorder);
+            sortExperiences();
+            //reloadProfileLevel();
+            mdlLiveEdit.setLatestFields(data.mostrecentemployer, data.mostrecentposition);
+            mdlLiveEdit.checkContentSection(form.closest('fieldset'));
+        }
+    }
+    function saveEmploymentHistory(form) {
+        var options = {
+            beforeSubmit: validateEmploymentHistory, // pre-submit callback
+            success: postSaveEmploymentHistoryAjaxSubmit,  // post-submit callback
+            type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+            dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+            data: {action: 'save-employment-history'} // extra data
+        };
+        $(form).ajaxSubmit(options);
+    }
+    function postDeleteEmploymentHistoryAjaxSubmit(data, status, xhr, form) {
+        $(form).find("button.btn-remove-this-section").css('display', '');
+        $(form).find("button.btn-cancel").css('display', '');
+        $(form).find("button.btn-save").css('display', '');
+        $(form).find("button.btn-sending").css('display', 'none');
+        if (data.status == 'REDIRECT') {
+            window.location.href = data.redirectUrl;
+        } else if (data.status == 'VALIDATION_ERROR' || data.status == 'ERROR') {
+            $(form).find('.error-message-update-employment').slideDown();
+            setTimeout(function () {
+                $(form).find('.error-message-update-employment').slideUp();
+            }, 5000);
+        } else {
+            mdlLiveEdit.removeAddedForm(form);
+            mdlLiveEdit.setLatestFields(data.mostrecentemployer, data.mostrecentposition);
+            //reloadProfileLevel();
+        }
+    }
+    function deleteEmploymentHistoryConfirmed() {
+        var confirm_dialog = $('#dialog-delete-section');
+        var form = confirm_dialog.data('target-form');
+        confirm_dialog.off('click', 'button.btn-primary', deleteEmploymentHistoryConfirmed);
+        confirm_dialog.modal('hide');
+        var options = {
+            success: postDeleteEmploymentHistoryAjaxSubmit,  // post-submit callback
+            type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+            dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+            data: {action: 'delete-employment-history'} // extra data
+        };
+        $(form).ajaxSubmit(options);
+    }
+    function deleteEmploymentHistory(form) {
+        var confirm_dialog = $('#dialog-delete-section')
+        confirm_dialog.data('target-form', form);
+        confirm_dialog.on('click', 'button.btn-primary', deleteEmploymentHistoryConfirmed);
+        confirm_dialog.modal('show');
+    }
+</script>

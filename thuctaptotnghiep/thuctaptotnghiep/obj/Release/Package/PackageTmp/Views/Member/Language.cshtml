@@ -1,0 +1,417 @@
+﻿@model IEnumerable<Model.Framework.NgonNguUV>
+@{
+    int count = 1;
+}
+<div class="section-detail section-languages">
+    <input type="hidden" id="languageBlockResumeId" name="resumeId">
+    <div class="box border-primary">
+        <fieldset class="form-view" data-max-number-of-field="3">
+            <legend class="box-md" data-toggle="tooltip" data-placement="top" data-original-title="" title="">
+                <i class="fa fa-fw fa-list"></i> Ngoại ngữ
+            </legend>
+            <div class="box-md content-section-wrapper m-b-n" style="display: none;">
+                <div class="row">
+                    <div class="col-sm-4"><strong>Ngoại ngữ</strong></div>
+                    <div class="col-sm-8"><strong>Trình độ</strong></div>
+                </div>
+            </div>
+            <div class="placeholder-section box-md" hidden="" style="display: block;">
+                <span class="placeholder">Cập nhật thông tin ngoại ngữ, điều này sẽ giúp tăng triển vọng tìm kiếm công việc.</span>
+            </div>
+
+            <div class="sortable content-section">
+                <!--Sample-->
+                <form hidden="" class="sample form-view box-md form-wrapper relative" id="form-language-0" name="frm_language" action="/Member/Profile">
+                    <input type="hidden" name="resumeLanguageId" value="0">
+                    <input type="hidden" name="idnnuv" value="">
+                    <span class="form-btn-edit">
+                        <button type="button" class="btn btn-sm btn-default">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                    </span>
+                    <div class="row" id="error-message-update-language" hidden="hidden">
+                        <div>
+                            <div class="error-message"><strong>Oops! </strong> Có lỗi đã xảy ra, vui lòng thử lại.</div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row choose-language language-0">
+                        <div class="col-sm-4">
+                            <div class="edit-field">
+                                <div class="m-r-lg">
+                                    <select name="language_0" id="language_0" class="language-select edit-control" tabindex="2" data-placeholder="Ví dụ: Vietnamese">
+                                        <option value="0" selected="">Vui lòng chọn...</option>
+                                        @foreach (var item in ViewBag.Listl)
+                                        {
+                                            <option value="@item.Id">@item.Ten</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="view-field">
+                                <p class="form-control-static view-control" data-type="select">Vui lòng chọn...</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="edit-field m-t-sm">
+                                <div class="language-select0">
+                                    <label class="radio-inline">
+                                        <input class="edit-control" type="radio" name="languagelevel_0" data-text-value="Sơ cấp" value="1">
+                                        Sơ cấp
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input class="edit-control" type="radio" name="languagelevel_0" data-text-value="Trung cấp" value="2">
+                                        Trung cấp
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input class="edit-control" type="radio" name="languagelevel_0" data-text-value="Cao cấp" value="3">
+                                        Cao cấp
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input class="edit-control" type="radio" name="languagelevel_0" data-text-value="Bản ngữ" value="4">
+                                        Bản ngữ
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="view-field">
+                                <p class="form-control-static view-control" data-type="radio"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="error-message lang-required-valid" hidden="hidden">Thông tin này bắt buộc</span>
+                    <span class="error-message lang-chosen-already" hidden="">Ngôn ngữ đã được chọn. Vui lòng chọn ngôn ngữ khác.</span>
+                    <!-- Buttons-->
+                    <div class="form-group push-top-sm edit-field">
+                        <div class="col-sm-6 text-right pull-right">
+                            <button type="button" class="btn-remove-this-section btn btn-link text-danger btn-remove-language">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </button>
+                            <button type="button" class="btn btn-default btn-cancel btn-cancel-language">
+                                Hủy
+                            </button>
+                            <button type="button" class="btn btn-primary btn-save btn-save-language">
+                                Lưu
+                            </button>
+                            <button type="button" style="display: none;" class="btn-sending btn btn-default btn-process-language">
+                                <img src="~/Content/Profile/loading.gif" alt=""> Đang lưu
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                @foreach (var item in Model)
+                {
+                    <form hidden="" class="form-view box-md form-wrapper relative" id="form-language-@count" name="frm_language" action="/Member/Profile" style="display: block;">
+                        <input type="hidden" name="resumeLanguageId" value="@count">
+                        <input type="hidden" name="idnnuv" value="@item.id">
+                        <span class="form-btn-edit">
+                            <button type="button" class="btn btn-sm btn-default">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </button>
+                        </span>
+                        <div class="row" id="error-message-update-language" hidden="hidden">
+                            <div>
+                                <div class="error-message" style="display: none;"><strong>Oops! </strong> Có lỗi đã xảy ra, vui lòng thử lại.</div>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row choose-language language-0">
+                            <div class="col-sm-4">
+                                <div class="edit-field" style="display: none;">
+                                    <div class="m-r-lg">
+                                        
+                                        <select name="language_@count" id="language_@count" class="language-select edit-control current-language-select" tabindex="2" data-placeholder="Ví dụ: Vietnamese">
+                                            <option value="0">Vui lòng chọn...</option>
+                                            @foreach (var i in ViewBag.Listl)
+                                            {
+                                                if (i.Id == item.MaNN)
+                                                {
+                                                    <option value="@i.Id" selected="">@i.Ten</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@i.Id">@i.Ten</option>
+                                                }
+                                            }
+                                        </select>
+
+                                      
+                                    </div>
+                                </div>
+                                <div class="view-field" style="display: block;">
+                                    <p class="form-control-static view-control" data-type="select">VietNam</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="edit-field m-t-sm" style="display: none;">
+                                    <div class="language-select0">
+                                        @if (item.trinhdo == 1)
+                                        {
+                                         <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Sơ cấp" checked value="1">
+                                            Sơ cấp
+                                        </label>
+                                         <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Trung cấp" value="2">
+                                            Trung cấp
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Cao cấp" value="3">
+                                            Cao cấp
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Bản ngữ" value="4">
+                                            Bản ngữ
+                                        </label>
+                                        }
+                                        @if (item.trinhdo == 2)
+                                        {
+                                        <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Sơ cấp" value="1">
+                                            Sơ cấp
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Trung cấp" checked value="2">
+                                            Trung cấp
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Cao cấp" value="3">
+                                            Cao cấp
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Bản ngữ" value="4">
+                                            Bản ngữ
+                                        </label>
+                                        }
+                                        @if (item.trinhdo == 3)
+                                        {
+                                          <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Sơ cấp" value="1">
+                                            Sơ cấp
+                                        </label>
+                                         <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Trung cấp" value="2">
+                                            Trung cấp
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Cao cấp" checked value="3">
+                                            Cao cấp
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Bản ngữ" value="4">
+                                            Bản ngữ
+                                        </label>
+                                        }
+                                        @if (item.trinhdo == 4)
+                                        {
+                                        <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Sơ cấp" value="1">
+                                            Sơ cấp
+                                        </label>
+                                         <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Trung cấp" value="2">
+                                            Trung cấp
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Cao cấp" value="3">
+                                            Cao cấp
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input class="edit-control" type="radio" name="languagelevel_@count" data-text-value="Bản ngữ" checked value="4">
+                                            Bản ngữ
+                                        </label>
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="view-field" style="display: block;">
+                                    <p class="form-control-static view-control" data-type="radio">Sơ cấp</p>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="error-message lang-required-valid" hidden="hidden">Thông tin này bắt buộc</span>
+                        <span class="error-message lang-chosen-already" hidden="hidden">Ngôn ngữ đã được chọn. Vui lòng chọn ngôn ngữ khác.</span>
+                        <!-- Buttons-->
+                        <div class="form-group push-top-sm edit-field" style="display: none;">
+                            <div class="col-sm-6 text-right pull-right">
+                                <button type="button" class="btn-remove-this-section btn btn-link text-danger btn-remove-language">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                                <button type="button" class="btn btn-default btn-cancel btn-cancel-language">
+                                    Hủy
+                                </button>
+                                <button type="button" class="btn btn-primary btn-save btn-save-language">
+                                    Lưu
+                                </button>
+                                <button type="button" class="btn-sending btn btn-default btn-process-language" style="display: none;">
+                                    <img src="/Content/Profile/loading.gif" alt=""> Đang lưu
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                   
+                    count = count + 1;
+                    
+                }
+            </div>
+            <button type="button" class="btn btn-primary btn-block no-border add-one-more-section" id="add-language-button">
+                <strong>THÊM MỚI</strong>
+            </button>
+        </fieldset>
+    </div>
+</div>
+<script type="text/javascript">
+    //$('select[name=language_1]').change(function () {
+    //    var val = $(this).val();
+    //    $('#language_1 option').removeAttr('selected');
+    //    $('#language_1 option[value='+val+']').attr('selected', 'selected');
+    //});
+    //$('select[name=language_2]').change(function () {
+    //    var val = $(this).val();
+    //    $('#language_2 option').removeAttr('selected');
+    //    $('#language_2 option[value=' + val + ']').prop("selected", true);
+    //});
+    //$('select[name=language_3]').change(function () {
+    //    var val = $(this).val();
+    //    $('#language_3 option').removeAttr('selected');
+    //    $('#language_3 option[value=' + val + ']').attr('selected', 'selected');
+    //});
+                                $('.section-languages').on('click','.btn-remove-language',function(){
+                                    varFormLanguage = $(this).parents('form');
+                                    var optionsLanguageForm = {
+                                        beforeSubmit: checkValidFormLanguageRemove,  // pre-submit callback
+                                        success: responseRemoveLanguageForm,  // post-submit callback
+                                        type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+                                        dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+                                        data: { action: 'remove-language-info', resumeId: $('#languageBlockResumeId').val()}
+                                    };
+                                    varFormLanguage.one('submit', function (e) {
+                                        e.preventDefault(); // <-- important
+                                        $(this).ajaxSubmit(optionsLanguageForm);
+                                        return false;
+                                    });
+                                    varFormLanguage.submit();
+                                    function responseRemoveLanguageForm(data){
+                                        showResponseRemoveLanguageForm(data,varFormLanguage);
+                                    }
+                                });
+                                function checkValidFormLanguageRemove(data, form, options){
+                                    form.find('.btn-remove-language').css('display', 'none');
+                                    form.find('.btn-save-language').css('display', 'none');
+                                    form.find('.btn-cancel-language').css('display', 'none');
+                                    form.find('.btn-process-language').css('display', '');
+                                    return true;
+                                }
+                                $('.section-languages').on('click','.btn-save-language',function(){
+                                    varFormLanguage = $(this).parents('form');
+                                    var optionsLanguageForm = {
+                                        beforeSubmit: checkValidFormLanguage,  // pre-submit callback
+                                        success: responseLanguageForm,  // post-submit callback
+                                        type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+                                        dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+                                        data: { action: 'save-language-info', resumeId: $('#languageBlockResumeId').val()}
+                                    };
+                                    varFormLanguage.one('submit', function (e) {
+                                        e.preventDefault(); // <-- important
+                                        $(this).ajaxSubmit(optionsLanguageForm);
+                                        return false;
+                                    });
+                                    varFormLanguage.submit();
+                                    function responseLanguageForm(data){
+                                        showResponseLanguageForm(data,varFormLanguage);
+                                    }
+                                });
+                                function showResponseRemoveLanguageForm(data,form) {
+                                    if (data.status == 'REDIRECT') {
+                                        window.location.href = data.redirectUrl;
+                                    } else if (data.status == 'VALIDATION_ERROR' || data.status == 'ERROR') {
+                                        $('#error-message-update-language').slideDown();
+                                        setTimeout(function () {
+                                            $('#error-message-update-language').slideUp();
+                                        }, 5000);
+                                    }else if(data.status == 'SUCCESS'){
+                                        mdlLiveEdit.removeAddedForm(form.closest('.form-wrapper'));
+                                        //reloadProfileLevel();
+                                    }
+                                    form.find('.btn-remove-language').css('display', '');
+                                    form.find('.btn-save-language').css('display', '');
+                                    form.find('.btn-cancel-language').css('display', '');
+                                    form.find('.btn-process-language').css('display', 'none');
+                                }
+                                function showResponseLanguageForm(data,form) {
+                                    if (data.status == 'REDIRECT') {
+                                        window.location.href = data.redirectUrl;
+                                    } else if (data.status == 'VALIDATION_ERROR' || data.status == 'ERROR') {
+                                        $('#error-message-update-language').slideDown();
+                                        form.find('span.lang-chosen-already').removeAttr('hidden').parent().addClass('has-error');
+                                        setTimeout(function () {
+                                            $('#error-message-update-language').slideUp();
+                                        }, 5000);
+                                    }else if(data.status == 'SUCCESS'){
+                                        form.attr('id','form-language-'+data.resumeLanguageId);
+                                        form.find("input[name='resumeLanguageId']").val(data.resumeLanguageId);
+                                        form.find("input[name='idnnuv']").val(data.idnnuv);
+                                        form.find("select[name^='language_']").attr('id','language_'+data.resumeLanguageId).attr('name','language_'+data.resumeLanguageId);
+                                        form.find("input[name^='languagelevel_']").attr('name','languagelevel_'+data.resumeLanguageId);
+
+                                        form.find('#lang')
+                                        mdlLiveEdit.saveContent(form);
+                                        //reloadProfileLevel();
+                                        mdlLiveEdit.checkContentSection(form.closest('fieldset'));
+                                    }
+                                    form.find('.btn-remove-language').css('display', '');
+                                    form.find('.btn-save-language').css('display', '');
+                                    form.find('.btn-cancel-language').css('display', '');
+                                    form.find('.btn-process-language').css('display', 'none');
+                                }
+                                function checkValidFormLanguage(data, form, options)
+                                {
+                                    var has_error = false;
+                                    var hasLanguage = false;
+                                    form.find("span.error-message").attr('hidden','hidden');
+                                    form.find('.has-error').removeClass('has-error');
+                                    $.each(data, function( index, item ) {
+                                        switch (item.name) {
+                                            case 'language_0':
+                                                if(isNaN(item.value) || item.value <= 0 ){
+                                                    has_error = true;
+                                                } else if ($("input[name=languagelevel_0]:checked").val() > 0) {
+                                                    hasLanguage  = true;
+                                                }
+                                                break;
+                                            case 'language_1':
+                                                if(isNaN(item.value) || item.value <= 0 ){
+                                                    has_error = true;
+                                                } else if ($("input[name=languagelevel_1]:checked").val() > 0) {
+                                                    hasLanguage  = true;
+                                                }
+                                                break;
+                                            case 'language_2':
+                                                if(isNaN(item.value) || item.value <= 0 ){
+                                                    has_error = true;
+                                                }else if($("input[name=languagelevel_2]:checked").val()>0){
+                                                    hasLanguage  = true;
+                                                }
+                                                break;
+                                            case 'language_3':
+                                                if(isNaN(item.value) || item.value <= 0 ){
+                                                    has_error = true;
+                                                }else if($("input[name=languagelevel_3]:checked").val()>0){
+                                                    hasLanguage  = true;
+                                                }
+                                                break;
+                                        }
+                                    });
+                                    if(!hasLanguage){
+                                        has_error = true;
+                                        form.find('span.lang-required-valid').removeAttr('hidden').parent().addClass('has-error');
+                                    }
+
+                                    if (!has_error) {
+                                        form.find('.btn-remove-language').css('display', 'none');
+                                        form.find('.btn-save-language').css('display', 'none');
+                                        form.find('.btn-cancel-language').css('display', 'none');
+                                        form.find('.btn-process-language').css('display', '');
+                                    }
+                                    return !has_error;
+                                }
+</script>

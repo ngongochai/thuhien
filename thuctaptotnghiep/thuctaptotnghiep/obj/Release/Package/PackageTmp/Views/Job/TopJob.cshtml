@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Model.Framework.DangTinViecLam>
+@using Model.Framework
+@using thuctaptotnghiep.Models
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+}
+@foreach (var item in Model)
+{
+    string namejob = new RemoveUnicode().UnicodeName(item.TenCV);
+    if (item.hot == 1)
+    {
+        
+        <li class="hot-job">
+            <a target="_blank" href="@Url.Action("DetailJob", "Job", new { TenCV=namejob,id = item.MACV })" title="Job - @item.TenCV - @db.CongTies.Where(x=>x.MACT==item.MACT).Select(x=>x.Tencongty).FirstOrDefault()">
+                <span class="score"><span class=""><img width="33px" src="~/Content/image/hot.gif"/></span></span>
+                <span class="job-title">
+                    <strong class="text-clip">@item.TenCV</strong>
+                    <em class="text-clip">@db.CongTies.Where(x => x.MACT == item.MACT).Select(x => x.Tencongty).FirstOrDefault()</em>
+                </span>
+            </a>
+        </li>
+    }
+    else
+    {
+        <li class="">
+            <a target="_blank" href="@Url.Action("DetailJob", "Job", new { TenCV=namejob,id = item.MACV })" title="Job - @item.TenCV - @db.CongTies.Where(x=>x.MACT==item.MACT).Select(x=>x.Tencongty).FirstOrDefault()">
+                <span class="score">&nbsp;</span>
+                <span class="job-title">
+                    <strong class="text-clip">@item.TenCV</strong>
+                    <em class="text-clip">@db.CongTies.Where(x => x.MACT == item.MACT).Select(x => x.Tencongty).FirstOrDefault()</em>
+                </span>
+            </a>
+        </li>
+    }
+
+}

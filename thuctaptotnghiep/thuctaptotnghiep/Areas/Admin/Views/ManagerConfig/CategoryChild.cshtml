@@ -1,0 +1,218 @@
+﻿@model IEnumerable<Model.Framework.NghanhNghe>
+@using Model.Framework
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+
+}
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Danh sách Nghề Nghiệp</h3>
+        <a href="@Request.Url" class="btn btn-default">Làm Mới</a>
+        <button class="btn btn-success" id="addcategorychild">Thêm Nghề Nghiệp</button>
+        <div style="display:none;margin:10px;" class="toggleadd">
+            <div class="col-md-4">
+                <input id="categorynamechild" placeholder="Nhập tên Nhóm nghề" type="text" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <select id="selectcategoryparent" class="form-control">
+                    @foreach (var item in db.NghanhNghes.Where(x => x.Tinhtrang == 1 && x.Idnghanhcha == 0))
+                    {
+                        <option value="@item.Id">@item.Tennghanh</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-success" id="confirmaddchild">Lưu Lại</button>
+            </div>
+        </div>
+    </div>
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="sorting_desc" style="width:1%">ID</th>
+                    <th>Tên Nghành</th>
+                    <th>Thuộc Nhóm Nghành</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td class="nameinput" id="nameparent_@item.Id">
+                            <span class="show_hidden">@item.Tennghanh</span>
+                            <input class="category_edit form-control" style="display:none;" id="nameinput_@item.Id" type="text" value="@item.Tennghanh" />
+                        </td>
+                        <td>
+                            <select id="select_@item.Id" class="selectcategoryparent form-control">
+                                @foreach (var i in db.NghanhNghes.Where(x => x.Tinhtrang == 1 && x.Idnghanhcha == 0))
+                                {
+                                    if (item.Idnghanhcha == i.Id)
+                                    {
+                                        <option selected value="@i.Id">@i.Tennghanh</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@i.Id">@i.Tennghanh</option>
+                                    }
+
+                                }
+                            </select>
+                        </td>
+                        <td><a href="@Url.Action("RemoveCategoryParent","ManagerConfig",new{id=item.Id})" onclick="return confirm('Bạn có muốn xóa không ?')">Xóa</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Danh sách Kỹ Năng</h3>
+        <a href="@Request.Url" class="btn btn-default">Làm Mới</a>
+    </div>
+    <button id="checkall" class="btn btn-default">Chọn tất cả</button>
+    <button id="cancelcheck" class="btn btn-default">Bỏ Chọn</button>
+    <button id="removejob" class="btn btn-warning">Xóa</button>
+    <div class="box-body">
+        <table id="example3" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Tên Nghành</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in db.KyNangs.ToList())
+                {
+                    <tr>
+                        <td>@item.TenKN</td>
+                        <td><input type="checkbox" class="checkchild" value="@item.MAKN" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<script>
+    $(document).on("click", "#addcategorychild", function () {
+        $(".toggleadd").toggle();
+    })
+    $(document).on("click", "#confirmaddchild", function () {
+        var value = $("#categorynamechild").val();
+        var parentid = $("#selectcategoryparent").val();
+        if (value == "") {
+            alter("vui long nhap nhom nghe nghiep")
+        }
+        else {
+            $.ajax({
+                url: "/Admin/ManagerConfig/addcategorychild",
+                type: "POST",
+                dataType: "json",
+                data: { "name": value, "parentid": parentid },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (data) { location.reload(); }
+            })
+        }
+    })
+    $(document).on("dblclick", ".nameinput", function () {
+        var id = $(this).attr("id");
+        id = id.split("_")[1];
+        $(this).children(".show_hidden").hide();
+        $("#nameinput_" + id).show();
+        $("#nameinput_" + id).focus();
+    })
+    $(document).on("focusout", ".category_edit", function () {
+        var form = $(this);
+        var val = $(this).val();
+        var id = $(this).attr("id");
+        var parentid=$("#selectcategoryparent").val();
+        id = id.split("_")[1];
+        if (val == "") {
+            alert("Vui lòng nhập tên nghành");
+        }
+        else {
+            $.ajax({
+                url: "/Admin/ManagerConfig/EditCategoryChild",
+                type: "POST",
+                dataType: "json",
+                data: { "val": val, "id": id, "parentid": parentid },
+                success: function (data) {
+                    if (data == 0)
+                        location.reload();
+                    form.hide();
+                    form.siblings(".show_hidden").show();
+                    form.siblings(".show_hidden").html(val);
+                },
+                error: function (data) {
+                    location.reload();
+                }
+            })
+        }
+    })
+    $(document).on("change", ".selectcategoryparent", function () {
+        var id = $(this).attr("id");
+        id = id.split("_")[1];
+        var parentid = $(this).val();
+        var val = $("#nameinput_" + id).val();
+        if (val == "") {
+            alert("vui lòng nhập tên nghành nghề");
+        }
+        else {
+            $.ajax({
+                url: "/Admin/ManagerConfig/EditCategoryChild",
+                type: "POST",
+                dataType: "json",
+                data: { "val": val, "id": id, "parentid": parentid },
+                success: function (data) {
+                    if (data.status == 0)
+                        location.reload();
+                    $(this).hide();
+                    $(this).siblings(".show_hidden").show();
+                    $(this).siblings(".show_hidden").html(val);
+                },
+                error: function (data) {
+                    location.reload();
+                }
+            })
+        }
+    })
+    $(document).on("click", "#checkall", function () {
+        var a = $(".checkchild").val();
+        if ($(".checkchild").checked)
+            $(".checkchild").prop("checked", false)
+        else
+            $(".checkchild").prop("checked", true)
+    })
+    $(document).on("click", "#cancelcheck", function () {
+        $(".checkchild").prop("checked", false);
+    })
+    $(document).on("click", "#removejob", function () {
+        var val = [];
+        $('.checkchild:checked').each(function (i) {
+            val[i] = parseInt($(this).val());
+        });
+        if (val.length == 0)
+            return false;
+        else
+            $.ajax({
+                url: "/Admin/ManagerConfig/DeleteSkill",
+                type: "POST",
+                dataType: "json",
+                data: { "val": val },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (data) {
+                    location.reload();
+                }
+            })
+    })
+</script>
+

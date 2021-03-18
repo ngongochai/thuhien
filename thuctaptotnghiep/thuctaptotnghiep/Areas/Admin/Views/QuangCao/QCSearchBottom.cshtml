@@ -1,0 +1,27 @@
+﻿@model Model.Framework.Advert
+@{
+    ViewBag.Title = "QCLayoutRight";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    if (Model != null)
+    {
+        ViewBag.Add = Model.advertsearchjobbottom;
+    }
+    else
+    {
+        ViewBag.Add = "";
+    }
+}
+<section class="content-header">
+    <h1>
+        Quảng Cáo Tìm việc làm dưới khung việc làm(Kích thước chiều ngang là 640px)
+        <small>Kích thước 640px</small>
+    </h1>
+</section>
+@Html.Partial("_QC")
+
+<script>
+    $("#save_tinimce").click(function () {
+        var html = window.parent.tinymce.get('textarea').getContent();
+        savaadvert(html, "QCSearchBottom");
+    })
+</script>

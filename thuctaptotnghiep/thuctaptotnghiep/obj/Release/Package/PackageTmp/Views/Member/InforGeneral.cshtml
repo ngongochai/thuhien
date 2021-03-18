@@ -1,0 +1,69 @@
+﻿@model Model.Framework.UngVien
+       @{
+           var infor = Html.Raw(Model.Muctieu);
+       }
+<div class="section-detail section-profile m-t">
+    <div class="box border-success">
+        <fieldset class="form-view">
+            <legend class="box-md" data-toggle="tooltip" data-placement="top" data-original-title="" title="">
+                <i class="fa fa-info-circle"></i> Giới Thiệu Về Bản Thân
+            </legend>
+            <div id="section-profile-edit" class="relative">
+                <form class="form-horizontal box-md form-wrapper" id="profileForm" action="/Member/Profile">
+                    <input type="hidden" name="resume_id" value="4387814">
+                    <div class="row" id="error-message-update-profile" hidden="hidden">
+                        <div>
+                            <div class="error-message"><strong>Oops! </strong> Có lỗi đã xảy ra, vui lòng thử lại.</div>
+                            <br>
+                        </div>
+                    </div>
+                    <span class="form-btn-edit">
+                        <button type="button" class="btn btn-sm btn-default">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                    </span>
+                    <div class="form-group m-b-none">
+                        <div class="view-field">
+                            <div class="view-field">
+                                   <div class="view-control placeholder"></div>
+                            </div>
+                        </div>
+                        <div class="edit-field">
+                            <p>
+                                <label>
+                                    Giới thiệu bản thân và miêu tả mục tiêu nghề nghiệp của bạn
+                                </label>
+                            </p>
+                            @*<div id="mceu_0" class="mce-tinymce mce-container mce-panel" hidefocus="1" tabindex="-1" role="application" style="visibility: hidden; border-width: 1px;">
+                            <div id="mceu_0-body" class="mce-container-body mce-stack-layout">
+                                <div id="mceu_1" class="mce-edit-area mce-container mce-panel mce-first mce-last mce-stack-layout-item" hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;">
+                                <iframe id="profile-objective_ifr" frameborder="0" allowtransparency="true" title="Rich Text Area. Press ALT-F9 for menu. Press ALT-F10 for toolbar. Press ALT-0 for help" src="javascript:&quot;&quot;" style="width: 100%; height: 100px; display: block;" src="~/Content/Profile/saved_resource.html"></iframe>
+                                </div>
+                                </div>
+                            </div>*@
+                            <textarea rows="5" autofocus="" name="Muctieu" class="form-control edit-control countdown-target" id="profile-objective"  placeholder="Nhập thông tin giới thiệu về bản thẩn để thu hút các doanh nghiệp nhiều hơn" maxlength="5000" aria-hidden="true" style="display: block;">@infor</textarea>
+                            <em class="countdown gray-light" data-text="ký tự có thể nhập thêm">5000 ký tự có thể nhập thêm</em><br>
+                            <span class="msg-profile-required error-message" hidden="hidden">Thông tin này bắt buộc</span>
+                            <span class="msg-profile-limit-max error-message" hidden="hidden">Bạn đã nhập quá ký tự cho phép</span>
+                            <span class="msg-profile-valid error-message" hidden="hidden">Vui lòng không nhập email hoặc điện thoại</span>
+                        </div>
+                    </div>
+                    <!-- Buttons-->
+                    <div class="form-group push-top-md edit-field">
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6 text-right">
+                                <button type="button" class="btn btn-cancel btn-default">Hủy</button>
+                                <button type="button" class="btn btn-save btn-primary" id="saveprofile">Lưu</button>
+                                <button type="button" style="display: none;" class="btn-sending btn btn-default" disabled=""><img src="~/Content/Profile/loading.gif" alt="">Đang lưu</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button data-type="edit-only" type="button" class="btn hidden btn-default btn-block no-border add-one-more-section" style="display: inline-block;">
+                <strong>Add Summary</strong>
+            </button>
+        </fieldset>
+    </div>
+</div>

@@ -1,0 +1,282 @@
+﻿@model IList<Model.Framework.DangTinViecLam>
+@using Model.Framework
+@using thuctaptotnghiep.Models
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    int count = 1;
+    int check = 0;
+    string html = "";
+    List<string> listhtml = new List<string>();
+    List<JobCity> listchecked = Session["Listcity"] as List<JobCity>;
+}
+<div data-reactroot="" class="ais-root ais-refinement-list ais-root__collapsible">
+    <div class="ais-refinement-list--header facet-title ais-header"><h5>ĐỊA ĐIỂM <i class="fa fa-angle-down pull-right fa-lg"></i></h5></div><div class="ais-body ais-refinement-list--body">
+        <div class="ais-refinement-list--list">
+            @foreach (var item in ViewBag.CityId)
+            {
+                int id = item.Id;
+                var string12 = db.cities.Where(x => x.Id == id).FirstOrDefault();
+                if (count <= 10)
+                {
+                   if (listchecked != null)
+                    {
+                        foreach (var i in listchecked)
+                        {
+                            if (item.Id == i.Id)
+                            {
+                                check = 1;
+                            <div class="ais-refinement-list--item facet-value checkbox clearfix">
+                                <div>
+                                    <input checked id="locationcheck" name="locationcheck" type="checkbox" class="locationcheck ais-refinement-list--checkbox" value="@string12.Id">
+                                    <label class="">
+                                        <span class="text-clip" title="@string12.City1">@string12.City1</span>
+                                    </label>
+                                    <span class="ais-refinement-list--count facet-count pull-right">@Model.Where(x => x.MaTP1 == item.Id || x.MaTP2 == item.Id || x.MaTP3 == item.Id).Count()</span>
+                                </div>
+                            </div>
+                                break;
+                            }
+                        }
+                        if (check != 1)
+                        {
+                            <div class="ais-refinement-list--item facet-value checkbox clearfix">
+                                <div>
+                                    <input id="locationcheck" name="locationcheck" type="checkbox" class="locationcheck ais-refinement-list--checkbox" value="@string12.Id">
+                                    <label class="">
+                                        <span class="text-clip" title="@string12.City1">@string12.City1</span>
+                                    </label>
+                                    <span class="ais-refinement-list--count facet-count pull-right">@Model.Where(x => x.MaTP1 == item.Id || x.MaTP2 == item.Id || x.MaTP3 == item.Id).Count()</span>
+                                </div>
+                            </div>
+                            check = 0;
+                        }
+
+                    }
+                   else
+                   {
+                       <div class="ais-refinement-list--item facet-value checkbox clearfix">
+                                <div>
+                                    <input id="locationcheck" name="locationcheck" type="checkbox" class="locationcheck ais-refinement-list--checkbox" value="@string12.Id">
+                                    <label class="">
+                                        <span class="text-clip" title="@string12.City1">@string12.City1</span>
+                                    </label>
+                                    <span class="ais-refinement-list--count facet-count pull-right">@Model.Where(x => x.MaTP1 == item.Id || x.MaTP2 == item.Id || x.MaTP3 == item.Id).Count()</span>
+                                </div>
+                            </div>
+                   }
+                }
+                if (count > 10 &&count<=25)
+                {
+                    if (listchecked != null)
+                    {
+                        foreach (var i in listchecked)
+                        {
+                            if (item.Id == i.Id)
+                            {
+                                check = 1;
+                                html = "<div class='ais-refinement-list--item facet-value checkbox clearfix'>";
+                                html += "<div>";
+                                html += "<input checked class='locationcheck' id='locationcheck' name='locationcheck' type='checkbox' class='ais-refinement-list--checkbox' value='" + string12.Id + "'>";
+                                html += "<label class=''>";
+                                html += "<span class='text-clip' title='" + string12.City1 + "'>" + string12.City1 + "</span>";
+                                html += "</label>";
+                                html += "<span class='ais-refinement-list--count facet-count pull-right'>" + Model.Where(x => x.MaTP1 == item.Id || x.MaTP2 == item.Id || x.MaTP3 == item.Id).Count() + "</span>";
+                                html += "</div>";
+                                html += "</div>";
+                                listhtml.Add(html);
+                                break;
+                            }
+                        }
+                        if (check != 1)
+                        {
+                            html = "<div class='ais-refinement-list--item facet-value checkbox clearfix'>";
+                            html += "<div>";
+                            html += "<input class='locationcheck' id='locationcheck' name='locationcheck' type='checkbox' class='ais-refinement-list--checkbox' value='" + string12.Id + "'>";
+                            html += "<label class=''>";
+                            html += "<span class='text-clip' title='" + string12.City1 + "'>" + string12.City1 + "</span>";
+                            html += "</label>";
+                            html += "<span class='ais-refinement-list--count facet-count pull-right'>" + Model.Where(x => x.MaTP1 == item.Id || x.MaTP2 == item.Id || x.MaTP3 == item.Id).Count() + "</span>";
+                            html += "</div>";
+                            html += "</div>";
+                            listhtml.Add(html);
+                            check = 0;
+                        }
+                    }
+                    else
+                    {
+                        html = "<div class='ais-refinement-list--item facet-value checkbox clearfix'>";
+                        html += "<div>";
+                        html += "<input class='locationcheck' id='locationcheck' name='locationcheck' type='checkbox' class='ais-refinement-list--checkbox' value='" + string12.Id + "'>";
+                        html += "<label class=''>";
+                        html += "<span class='text-clip' title='" + string12.City1 + "'>" + string12.City1 + "</span>";
+                        html += "</label>";
+                        html += "<span class='ais-refinement-list--count facet-count pull-right'>" + Model.Where(x => x.MaTP1 == item.Id || x.MaTP2 == item.Id || x.MaTP3 == item.Id).Count() + "</span>";
+                        html += "</div>";
+                        html += "</div>";
+                        listhtml.Add(html);
+                    }
+                }
+
+                count = count + 1;
+                check = 0;
+            }
+            <div class="option_2" style="display:none">
+                @foreach (string item in listhtml)
+                {
+                    IHtmlString html1 = new HtmlString(item);
+                    @html1
+                }
+            </div>
+            <div><a id="2" style="color:#00b9f2" class="btn btn-link facet-link show-more-location">Xem thêm</a></div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".show-more-location").click(function () {
+       var id= $(this).attr("id");
+        var condition = $(this).html();
+        if (condition != "Xem thêm")
+        {
+            $(".option_"+id).toggle("hide");
+            $(this).html("Xem thêm");
+        }
+        else
+        {
+            $(this).html("Thu gọn");
+            $(".option_"+id).toggle("hide");
+        }
+    })
+    function getParameterByName(name) {
+        var regexS = "[\\?&]" + name + "=([^&#]*)",
+      regex = new RegExp(regexS),
+      results = regex.exec(window.location.search);
+        if (results == null) {
+            return "";
+        } else {
+            return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    }
+    $(".locationcheck").click(function () {
+        $(".listjob_waiting").show();
+        $(".job-search-body").hide();
+        var key = getParameterByName('key');
+        var workid = getParameterByName('workid');
+        var cityid = getParameterByName('cityid');
+        var jobsalary = $("input[name='jobSalary']:checked").val();
+        var min = null;
+        var max = null;
+        if (jobsalary != null) {
+            var maxmin = jobsalary.split(new RegExp("-"));
+            for (var i = 0; i < maxmin.length; i++) {
+                if (min == null) {
+                    min = maxmin[i];
+                }
+                else {
+                    max = maxmin[i];
+                }
+            }
+        }
+        var joblevel = $("input[name='leveljob']:checked").val();
+        var valcategory = [];
+        var vallocation = [];
+        var skillcheck = [];
+        $("input[name='skillcheck']:checked").each(function (i) {
+            skillcheck[i] = $(this).val();
+        })
+        $("input[name='listcategory']:checked").each(function (i) {
+            valcategory[i] = $(this).val();
+        })
+        $("input[name='locationcheck']:checked").each(function (i) {
+            vallocation[i] = $(this).val();
+        })
+        $.ajax({
+            url: "/SearchJob/BodySearch",
+            type: "POST",
+            dataType: "json",
+            data: { "key": key, "workid": workid, "cityid": cityid, "selectlocation": vallocation, "selectcategory": valcategory, "selectkill": skillcheck, "level": joblevel, "minsalary": min, "maxsalary": max },
+            success: function (data) {
+                $('html, body').animate({ scrollTop: $('#job-search').offset().top }, 'slow');
+                $(".listjob_waiting").hide();
+                $(".job-search-body").show();
+                $(".text-primary").html(data.total);
+                $("#job-list").html(data.html);
+                if (data.htmlleft != "")
+                    $("#categories").html(data.htmlleft);
+                if (data.htmlcity)
+                    $("#locations").html(data.htmlcity);
+                if (data.htmlskill != "")
+                    $("#skills").html(data.htmlskill);
+            }
+        })
+    })
+    //$(".locationcheck").click(function () {
+    //    var val = $(this).val();
+    //    var url = window.location.href;
+    //    if (this.checked) {
+
+    //        if (url.indexOf("?") > -1) {
+    //            if (url.indexOf("selectlocation=") > -1) {
+    //                var valstr = $(this).val() + ",";
+    //                var lenghcityid = url.indexOf("selectlocation=");
+    //                var lenghsplit = url.indexOf("location");
+    //                var stringsplit = url.substring(lenghcityid, lenghsplit + 10);
+    //                url = url.substr(0, lenghcityid + 15) + valstr + url.substr(lenghcityid + 15);
+    //                window.history.pushState(null, null, url);
+    //                var key = getParameterByName('key');
+    //                var workid = getParameterByName('workid');
+    //                var cityid = getParameterByName('cityid');
+    //                var selectlocation = getParameterByName('selectlocation');
+    //                var selectlocation12 = [];
+    //                selectlocation12 = selectlocation.split(new RegExp(","));
+    //            }
+    //            else {
+    //                window.history.pushState(null, null, url + "&selectlocation=" + val + ",location");
+    //                var key = getParameterByName('key');
+    //                var workid = getParameterByName('workid');
+    //                var cityid = getParameterByName('cityid');
+    //                var selectlocation = getParameterByName('selectlocation');
+    //                var selectlocation12 = [];
+    //                selectlocation12 = selectlocation.split(new RegExp(","));
+    //            }
+                
+    //        }
+    //        else {
+    //            window.history.pushState(null, null, url + "?selectlocation=" + val + ",location");
+    //            var key = getParameterByName('key');
+    //            var workid = getParameterByName('workid');
+    //            var cityid = getParameterByName('cityid');
+    //            var selectlocation = getParameterByName('selectlocation');
+    //            var selectlocation12 = [];
+    //            selectlocation12 = selectlocation.split(new RegExp(","));
+    //            }
+            
+            
+    //    }
+    //    else {
+    //        if (url.indexOf("selectlocation=") > -1) {
+    //            var valstr = $(this).val() + ",";
+    //            var lenghcityid = url.indexOf("selectlocation=");
+    //            var lenghsplit = url.indexOf(",location");
+                
+    //            var firststring = url.substring(0, lenghcityid);
+    //            var stringsplit = url.substring(lenghcityid, lenghsplit + 9);
+    //            var laststring = url.substring(lenghsplit + 9);
+               
+    //            if (stringsplit.indexOf(val) > -1) {
+    //                var newstring = stringsplit.replace(valstr, "");
+    //                url = firststring + newstring + laststring;
+    //                //alerth();
+    //                window.history.pushState(null, null, url);
+    //                // example caller:
+    //                var key = getParameterByName('key');
+    //                var workid = getParameterByName('workid');
+    //                var cityid = getParameterByName('cityid');
+    //                var selectlocation = getParameterByName('selectlocation');
+    //                var selectlocation12=[];
+    //                selectlocation12 = selectlocation.split(new RegExp(","));
+    //                alerth();
+    //            }
+    //        }
+    //    }
+    //})
+</script>

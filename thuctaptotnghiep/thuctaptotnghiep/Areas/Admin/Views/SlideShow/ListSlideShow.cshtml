@@ -1,0 +1,105 @@
+﻿@model IList<Model.Framework.Slideshow>
+@{
+    ViewBag.Title = "Danh sách banner";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int count = 1;
+}
+<section class="content-header">
+    <h1>
+        List Banner
+        <small>Banner (1440 x 450)</small>
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List Banner</h3>
+                </div>
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Ảnh</th>
+                                <th>Link URl</th>
+                                <th>Link Video</th>
+                                <th>Thứ tự hiển thị</th>
+                                <th>Tình trạng</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td style="width:10%;">
+
+                                        <img style="width:100%" class="" src="@item.imgurl" />
+                                    </td>
+                                    <td>@item.url</td>
+                                    <td>@item.videoembed</td>
+                                    <td>@item.displayorder</td>
+                                    <td>@if (item.status == 1)
+                                    {<i style="color:green;font-size:17px" class="fa fa-check-circle-o" aria-hidden="true"></i> }
+                                        else
+                                        { <i style="color:red;font-size:17px" class="fa fa-ban" aria-hidden="true"></i>}</td>
+                                    <td><a class="btn btn-default" href="@Url.Action("EditSlide", "SlideShow", new {id=item.id })">Sửa</a>
+                                        <button  class="btn btn-danger deleteslide" value="@item.id">Xóa</button>
+                                    </td>
+                                </tr>
+                                count = count + 1;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</section>
+<script>
+    $(".deleteslide").click(function () {
+        var id = $(this).val();
+        swal({
+            title: "Bạn có chắc không",
+            text: "Vui Lòng chọn yes hoặc no",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: "/Admin/SlideShow/DeleteSlide",
+                    type: "POST",
+                    dataType: "json",
+                    data: { "id":id },
+                    success: function (data) {
+                        if (data == 0) {
+                            swal("Lỗi", "Đã xãy ra lỗi :)", "error");
+                            location.reload();
+                        }
+                        else {
+                            swal("Đã xóa!", "Bạn đã xóa 1 banenr", "success");
+                            location.reload();
+                        }
+                    }
+                })
+              
+            }
+            else
+            {
+                swal("Đã hủy", "Bạn đã hủy xóa :)", "error");
+            }
+        });
+    })
+</script>

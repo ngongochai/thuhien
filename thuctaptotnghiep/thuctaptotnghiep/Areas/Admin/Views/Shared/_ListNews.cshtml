@@ -1,0 +1,144 @@
+﻿@model IList<Model.Framework.News>
+<div class="box-body">
+    <table id="example2" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th class="sorting_desc" style="width:1%">
+                    ID<br />
+                </th>
+                <th>Tiêu Đề Tin</th>
+                <th>Ảnh Bìa</th>
+                <th>Người đăng</th>
+                <th>Ngày Đăng</th>
+                <th>Loại Tin</th>
+                <th>Xuất bản</th>
+                <th>ShowHomePage</th>
+                <th>Bài viết nổi bật</th>
+                <th>Vị trí</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.newsid<br />
+                        <input type="checkbox" class="checkchild" value="@item.newsid" />
+                    </td>
+                    <td><a href="@Url.Action("EditNews", "ManagerNews", new { newsid = item.newsid })">@item.titlenews</a></td>
+                    <td style="width:1%;">
+                        <img style="width:100%" class="" src="@item.titleimages" />
+                    </td>
+                    <td>
+                        @item.namepost
+                    </td>
+                    <td>
+                        @if (item.datepost != null)
+                        {<span>@item.datepost.Value.ToString("dd/MM/yyyy HH:mm")</span> }
+                    </td>
+                    <td>
+                        @if (item.categoryId != null)
+                        {
+                            <span><a href="@Url.Action("ListNewsForCategory", "ManagerNews", new {categoryid=item.categoryId })">@item.categorynew.categoryName</a></span>
+                        }
+                       
+                    </td>
+                    <td>
+                        @if (item.active == true)
+                        {
+                            <i style="color:green;" class="fa fa-check" aria-hidden="true"></i>
+                        }
+                        else
+                        {
+                            <i style="color:red" class="fa fa-times-circle" aria-hidden="true"></i>
+                        }
+                    </td>
+                    <td>
+                        @if (item.showonhomepage == true)
+                        {
+                            <i style="color:green;" class="fa fa-check" aria-hidden="true"></i>
+                        }
+                        else
+                        {
+                            <i style="color:red" class="fa fa-times-circle" aria-hidden="true"></i>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Featured == true)
+                        {
+                            <i style="color:green;" class="fa fa-check" aria-hidden="true"></i>
+                        }
+                        else
+                        {
+                            <i style="color:red" class="fa fa-times-circle" aria-hidden="true"></i>
+                        }
+                    </td>
+                    <td>
+                        @item.displayorder
+                </td>
+                <td><a class="btn btn-default" href="@Url.Action("EditNews", "ManagerNews", new { newsid=item.newsid})">Chỉnh Sửa</a></td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).on("click", "#checkall", function () {
+        var a = $(".checkchild").val();
+        if ($(".checkchild").checked)
+            $(".checkchild").prop("checked", false)
+        else
+            $(".checkchild").prop("checked", true)
+    })
+    $(document).on("click", "#cancelcheck", function () {
+        $(".checkchild").prop("checked", false);
+    })
+    $(document).on("click", "#removejob", function () {
+        var val = [];
+        $('.checkchild:checked').each(function (i) {
+            val[i] = parseInt($(this).val());
+        });
+        if (val.length == 0)
+            return false;
+        var r = confirm("Bạn có đồng ý không");
+        if (r == true) {
+            $.ajax({
+                url: "/Admin/ManagerNews/RemoveNewsAdmin",
+                type: "POST",
+                dataType: "json",
+                data: { "val": val },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (data) {
+                    location.reload();
+                }
+            })
+        }
+    })
+    $(document).on("click", "#backjob", function () {
+        var val = [];
+        $('.checkchild:checked').each(function (i) {
+            val[i] = $(this).val();
+        });
+        if (val.length == 0)
+            return false;
+        var r = confirm("Bạn có chắc không");
+        if (r == true) {
+            $.ajax({
+                url: "/Admin/ManagerJobAdmin/RestoreJobAdmin",
+                type: "POST",
+                dataType: "json",
+                data: { "val": val },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (data) {
+                    location.reload();
+                }
+            })
+        }
+    })
+</script>

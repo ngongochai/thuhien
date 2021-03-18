@@ -1,0 +1,66 @@
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\Admin.dll.config
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\Admin.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\Admin.pdb
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\EntityFramework.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\EntityFramework.SqlServer.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\Microsoft.QualityTools.Testing.Fakes.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\Model.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\PagedList.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\PagedList.Mvc.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\System.Web.Helpers.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\System.Web.Razor.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\System.Web.Webpages.Deployment.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\System.Web.Webpages.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\System.Web.Webpages.Razor.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\Model.pdb
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\EntityFramework.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\EntityFramework.SqlServer.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\PagedList.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\PagedList.Mvc.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\System.Web.Razor.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\System.Web.Webpages.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\System.Web.Webpages.Deployment.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\System.Web.Webpages.Razor.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\bin\System.Web.Helpers.xml
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csprojResolveAssemblyReference.cache
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.pdb
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll.config
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll
+G:\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csprojResolveAssemblyReference.cache
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.pdb
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll.config
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll
+C:\Users\NGOC-HAI-IT\Google Drive\HOC TAP\ASP.NET\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll.config
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csprojResolveAssemblyReference.cache
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.dll
+G:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.pdb
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll.config
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csprojAssemblyReference.cache
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csproj.CoreCompileInputs.cache
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csproj.CopyComplete
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.dll
+E:\Google Drive\HOC TAP\ASP.NET\HTSV\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.pdb
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll.config
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csprojAssemblyReference.cache
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csproj.CoreCompileInputs.cache
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csproj.CopyComplete
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.dll
+E:\Google Drive\HOC TAP\ASP.NET\VAYLIENTAY\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.pdb
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll.config
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\bin\Admin.pdb
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csprojAssemblyReference.cache
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csproj.CoreCompileInputs.cache
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.csproj.CopyComplete
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.dll
+F:\Google Drive\HOC TAP\ASP.NET\banhangthuhien\thuctaptotnghiep\thuctaptotnghiep\Areas\Admin\obj\Release\Admin.pdb

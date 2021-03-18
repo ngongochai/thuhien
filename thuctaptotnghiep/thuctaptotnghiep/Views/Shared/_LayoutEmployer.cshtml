@@ -1,0 +1,155 @@
+﻿@using Model.Framework
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var footer = db.FooterLogoes.FirstOrDefault();
+    if (footer == null)
+    {
+        footer = new FooterLogo();
+    }
+    IHtmlString html = new HtmlString(footer.footeremployer);
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Trung Tâm hỗ trợ sinh viên và quan hệ doanh nghiệp</title>
+    <link rel="shortcut icon" href="~/Content/image/congthuong.png">
+    <meta name="Description" content="đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất
+          đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất
+          đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất
+          đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất
+          đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất">
+    <meta name="Keywords" content="tìm việc làm, tim viec lam, đăng tin việc làm, dang tin viec lam , tim ung vien, tuyen dung, viec lam nhieu nhat, viec lam hot , việc làm nhiều người quan tâm, tim viec luong cao , tìm việc làm lương cao">
+    <meta property="og:description" content="đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất">
+    <meta property="og:url" content="@Request.Url.Host">
+    <meta property="og:title_name" content="@Request.Url.Host">
+    @*<script type="text/javascript" src="~/Content/tuyendung/jquery-1.10.2.min.js"></script>*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Content/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/ionicons.min.css">
+    <link href="~/Content/Employer/Manager/app.css" rel="stylesheet" />
+    <link href="~/Content/Employer/Manager/dashboard.css" rel="stylesheet" />
+    <link href="~/Content/Employer/Manager/site.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <link href="~/Content/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Content/sweetalert2/sweetalert-dev.js"></script>
+    @*<script src="~/Scripts/select2.js"></script>*@
+    <script src="~/Content/Employer/Signup/anonymous_master_app.js"></script>
+    @RenderSection("Styles", false)
+</head>
+<body class="mini-navbar no-side-navbar ">
+    <div id="wrapper">
+        @Html.Action("NavBar", "Employer")
+        <div id="page-wrapper" class="" style="min-height: 287px;">
+            @RenderBody()
+
+        </div>
+
+        <div class="footer">
+            @html
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(function () {
+        $('.menu-toggler').click(function () {
+            $('#modal-menu').modal('show')
+        });
+
+        $('.toolbox-toggler').click(function () {
+            $('#modal-toolbox').modal('show');
+        });
+
+        $('.secondary-level-menu-toggler').click(function () {
+            $(this).siblings('.secondary-level-menu').slideToggle(100);
+        });
+        var firebaseApiKey = "AIzaSyAJLgT_Xo5Jg_YyPaWYOrk5sFnAtEcOIfU";
+        var firebaseAuthDomain = "vietnamworks-message.firebaseapp.com";
+        var firebaseDatabaseURL = "https://vietnamworks-message.firebaseio.com";
+        var FIREBASE_REFRESH_TOKEN_URL = "/v2/mailbox/renew-jwt";
+        var FRIEND_LINK_FETCH_URL = "/v2/mailbox/fetch-jobseeker-link?jobseekerIds=";
+    });
+
+    </script>
+
+    @*<div class="modal fade modal-menu" id="modal-menu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close absolute" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <ul>
+                        <li class="menu-header">&nbsp;</li>
+                        <li>
+                            <a class="language-switcher vi">
+                                <i class="fa fa-fw fa-lg fa-globe"></i>
+                                <span class="chosen-language vi" onclick="changeLocate(&#39;/v2/misc/language/en&#39;)">English</span>
+                                <span class="chosen-language en" onclick="changeLocate(&#39;/v2/misc/language/vi&#39;)">Tiếng Việt</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://employer.vietnamworks.com/v2/user/my-account">
+                                <i class="fa fa-lg fa-fw fa-user"></i>
+                                <span>Tài Khoản</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://employer.vietnamworks.com/v2/membership/index">
+                                <i class="fa fa-lg fa-fw fa-trophy"></i>
+                                <span>Thành Viên</span>
+                                <strong class="badge badge-danger m-l-md m-r-n-lg">MỚI CẬP NHẬT</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://employer.vietnamworks.com/v2/">
+                                <i class="fa fa-lg fa-fw fa-life-ring"></i>
+                                <span>Hỗ Trợ Khách Hàng</span>
+                                <br>
+                                <span class="gray-light">Hotline: 1800 7100</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://employer.vietnamworks.com/v2/">
+                                <i class="fa fa-lg fa-fw fa-phone"></i>
+                                <span>Liên Hệ Mua</span>
+                                <br>
+                                <span class="gray-light">HCM: 08 3925 8456</span>
+                                <br>
+                                <span class="gray-light">HN: 04 3944 0568</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://employer.vietnamworks.com/employers/onlinePaymentJobPack.php">
+                                <i class="fa fa-lg fa-fw fa-shopping-basket"></i>
+                                <span>Mua Gói Dịch Vụ</span>
+                            </a>
+                        </li>
+                        <li class="gray-bg">
+                            <a href="https://employer.vietnamworks.com/v2/logout">
+                                <i class="fa fa-lg fa-fw fa-sign-out"></i>
+                                <span>Thoát</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/574f9b74e3c667032602004e/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+</html>

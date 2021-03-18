@@ -1,0 +1,29 @@
+﻿@model Model.Framework.Advert
+@{
+    ViewBag.Title = "QCLayoutLeft";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    if (Model != null)
+    {
+        ViewBag.Add = Model.advertlayoutleft;
+    }
+    else
+    {
+        ViewBag.Add = "";
+    }
+}
+<section class="content-header">
+    <h1>
+        Quảng Cáo Layout Trái(Kích thước chiều ngang là 110px)
+        <small>Kích thước tối đa 110px</small>
+    </h1>
+</section>
+@Html.Partial("_QC")
+
+<script>
+    $("#save_tinimce").click(function () {
+        var html = window.parent.tinymce.get('textarea').getContent();
+        savaadvert(html, "QCLayoutLeft");
+    })
+</script>
+
+

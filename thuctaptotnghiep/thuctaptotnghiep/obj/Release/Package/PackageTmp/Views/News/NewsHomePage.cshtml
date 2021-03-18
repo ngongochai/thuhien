@@ -1,0 +1,97 @@
+﻿@model IList<Model.Framework.categorynew>
+@using System.Text
+@using thuctaptotnghiep.Models
+@{
+    int newsid = 0;
+}
+<div class="col-md-12 col-sm-12">
+    <div class="featured-employer">
+        <div class="panel" style="padding-bottom:15px">
+            <div class="panel-header">
+                <h2 class="no-margin no-padding">THÔNG TIN - TIN TỨC</h2>
+            </div>
+            <div class="">
+                <div class="row">
+                    @foreach (var item in Model.Take(6))
+                    {
+                        string categoryname = new RemoveUnicode().UnicodeName(item.categoryName);
+                        <div class="col-md-4">
+                            <div>
+                                <h5 style="color:#006CB6;" class="text-center">@item.categoryName</h5>
+                                <div class="row" style="height:120px;">
+                                    @foreach (var i in item.News.Where(x => x.Featured == true && x.categoryId == item.categoryId && x.trash != true && x.active == true).OrderBy(x => x.displayorder))
+                                    {
+                                        string newsname = new RemoveUnicode().UnicodeName(i.titlenews);
+                                        newsid = i.newsid;
+                                        string dsc = i.description;
+                                        if (i.description != null)
+                                        {
+                                            if (i.description.Count(char.IsWhiteSpace) > 28)
+                                            {
+                                                dsc = i.description.Split(' ').Take(28).Aggregate((a, b) => a + " " + b) + " ...";
+                                            }
+                                        }
+                                        string tt = i.titlenews;
+                                        if (i.titlenews != null)
+                                        {
+                                            if (i.titlenews.Count(char.IsWhiteSpace) >= 16)
+                                            {
+                                                dsc = i.titlenews.Split(' ').Take(16).Aggregate((a, b) => a + " " + b) + " ...";
+                                            }
+                                        }
+
+                                        <div class="col-md-4 col-xs-4 co-sm-4">
+                                            <a href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = i.newsid })"><img src="@i.titleimages" style="width:100px;height:100px;box-shadow:2px 2px 2px 2px #ddd" /></a>
+                                        </div>
+                                        <div class="col-md-8 col-xs-8 co-sm-8">
+                                            <strong class="article">
+                                                <a href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = i.newsid })">
+                                                    @tt
+                                                </a>
+                                                <p class="col-md-12" style="border-bottom:1px dotted #cecece">
+                                                </p>
+                                            </strong>
+                                            <br /><span class="">@dsc</span>
+                                        </div>
+                                        break;
+                                    }
+                                </div>
+                                <div class="row">
+
+                                    @foreach (var i in item.News.Where(x => x.trash != true && x.showonhomepage == true && x.active == true).Take(7).OrderBy(x => x.displayorder).ToList())
+                                    {
+                                        string newsname = new RemoveUnicode().UnicodeName(i.titlenews);
+
+                                        string dsc = i.titlenews;
+                                        if (i.titlenews != null)
+                                        {
+                                            if (i.titlenews.Count(char.IsWhiteSpace) >= 20)
+                                            {
+                                                dsc = i.titlenews.Split(' ').Take(20).Aggregate((a, b) => a + " " + b) + " ...";
+                                            }
+                                        }
+
+                                        if (i.newsid != newsid && i.categoryId == item.categoryId)
+                                        {
+                                            <a href="@Url.Action("DetailsNews", "News", new { categoryName = categoryname, titlenews = newsname, newsid = i.newsid })"><p class="col-md-offset-1 col-xs-offset-1"><i style="padding-right:10px;color:blue" class="fa fa-newspaper-o" aria-hidden="true"></i>@dsc</p></a>
+
+                                        }
+                                    }
+
+                                </div>
+                                <a style="float:right;color:blue" href="@Url.Action("ListNewsOfCategory", "News", new { categoryName=categoryname, categoryid = item.categoryId }) ">
+                                    <strong>
+                                        <i class="fa fa-hand-o-right" aria-hidden="true"></i>Xem Thêm...
+                                    </strong>
+                                </a>
+                                <div style="clear:both;"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

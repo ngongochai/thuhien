@@ -1,0 +1,113 @@
+﻿@model IList<Model.Framework.ConfigMail>
+@{
+    ViewBag.Title = "Danh sách Email";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section script_table{
+    <script src="~/Areas/Admin/Content/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Content/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $("#example3").DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                //"orderSequence": ["desc", "asc"],
+                //"ordering": ["asc", "desc"],
+                "aaSorting": [[0, 'desc']],
+                "info": true,
+                "autoWidth": true
+            });
+        $("#example1").DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            //"orderSequence": ["desc", "asc"],
+            //"ordering": ["asc", "desc"],
+            "aaSorting": [[0, 'desc']],
+            "info": true,
+            "autoWidth": true
+        });
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            //"orderSequence": ["desc", "asc"],
+            //"ordering": ["asc", "desc"],
+            "aaSorting": [[0, 'desc']],
+            "info": true,
+            "autoWidth": true
+        });
+    });
+    </script>
+}
+<section class="content-header">
+    <h1>
+        Cấu Hình Email
+        <small>Senmail</small>
+    </h1>
+
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
+        <li class="active">Cấu hình email</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Danh sách Mail</h3>
+                    <a href="@Request.Url" class="btn btn-default">Làm Mới</a>
+                    <a class="btn btn-success" href="@Url.Action("AddNew", "ConfigEmail")">Thêm Mới</a>
+                </div>
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tên Chức Năng</th>
+                                <th>Email</th>
+                                <th>Host</th>
+                                <th>Port</th>
+                                <th>Tiêu Đề</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>
+                                       @item.smtUserName
+                                    </td>
+                                    <td>@item.smtpHost</td>
+                                    <td>@item.smtpPort</td>
+                                    <td>@item.smtpSubject</td>
+                                    <td>
+                                        <a class="btn btn-default" href="@Url.Action("EditMail", "ConfigEmail", new { id = item.id })"> Edit</a>
+                                        <a class="btn btn-danger" href="@Url.Action("DeleteMail", "ConfigEmail", new { id = item.id })"> Xóa</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</section>
+<script>
+    $(".btn-danger").click(function () {
+        var r = confirm("Bạn Có Chắc xóa Không");
+        if (r == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    })
+</script>

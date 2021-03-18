@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="vi" data-sbro-popup-lock="true" data-sbro-deals-lock="true" data-sbro-ads-lock="true" class="js canvas geolocation video audio localstorage sessionstorage texttrackapi track">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Trung Tâm Hỗ trợ sinh viên và quan hệ doanh nghiệp</title>
+    <meta name="Description" content="đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất
+          đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất
+          đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất
+          đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất
+          đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất">
+    <meta name="Keywords" content="tìm việc làm, tim viec lam, đăng tin việc làm, dang tin viec lam , tim ung vien, tuyen dung, viec lam nhieu nhat, viec lam hot , việc làm nhiều người quan tâm, tim viec luong cao , tìm việc làm lương cao">
+    <meta property="og:description" content="đăng tin tuyển dụng việc làm lớn nhất việt nam với hệ thống chặt chẻ bảo mật hệ thống tuyệt đối, đăng tin hoàn toàn miễn phí chỉ có tại website , tìm việc làm và quan hệ doanh nghiệp lớn nhất">
+    <meta property="og:url" content="@Request.Url.Host">
+    <meta property="og:title_name" content="@Request.Url.Host">
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <link rel="shortcut icon" href="~/Content/image/congthuong.png">
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="~/Content/Profile/bootstrap.3.2.0.min.js"></script>
+    @*<script src="~/Scripts/modernizr-2.6.2.js"></script>*@
+    @*<script src="~/Scripts/facebookapp.js"></script>*@
+    @RenderSection("Styles", false)
+</head>
+<body class="instant-search">
+
+    @Html.Action("Header", "Header")
+
+
+    <div class="main-wrapper home">
+        @RenderBody()
+        <hr />
+        <footer>
+            @Html.Action("Footer", "Footer")
+        </footer>
+    </div>
+
+
+
+    <script>
+        $('.menu-toggler').click(function () {
+            $('#modal-menu').modal('show')
+        });
+    </script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/574f9b74e3c667032602004e/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+</html>

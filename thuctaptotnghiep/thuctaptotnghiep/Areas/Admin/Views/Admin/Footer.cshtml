@@ -1,0 +1,11 @@
+﻿@{
+    Uri myUri = new Uri(Request.Url.ToString());
+    string host = myUri.Host; 
+}
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        <b>Version</b> 1.0
+    </div>
+    <strong>Copyright &copy; 2017 <a href="@host">Trung tâm hỗ trợ sinh viên và quan hệ doanh nghiệp Trường Cao đẳng Công thương TP.HCM</a>.</strong> All rights
+    reserved.
+</footer>

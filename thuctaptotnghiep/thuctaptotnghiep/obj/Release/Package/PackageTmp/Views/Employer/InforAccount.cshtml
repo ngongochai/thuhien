@@ -1,0 +1,123 @@
+﻿@model Model.Framework.CongTy
+<div class="ibox-content m-t">
+    <div id="email-address">
+        <div class="panel-body row">
+            <div class="col-sm-10">
+                <div class="float-e-margins animated fadeInRight">
+                    <div class="content">
+                        <h2>
+                            <span class="circle-wrapper"><i class="fa fa-fw fa-user"></i></span>
+                            Thông tin tài khoản
+                        </h2>
+                        <div class="alert hide"></div>
+                        <fieldset>
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Địa Chỉ Email</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static">@Model.Emaildangnhap</p>
+                                        <div class="buttons">
+                                            @*<button class="btn btn-primary btn-outline btn-change-email" tabindex="0" id="btnChangeEmail" type="button">
+                                                Thay đổi địa chỉ email
+                                            </button>*@
+                                            <button class="btn btn-primary" id="btnChangePassword" tabindex="0" type="button">
+                                                Thay đổi mật khẩu
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </fieldset>
+                        @*<fieldset class="animated fadeInUp" id="formEmail" hidden="hidden">
+                            <div class="form-group m-b-n-lg">
+                                <label class="col-sm-3 control-label"></label>
+                                <div class="col-sm-9">
+                                    <h3 class="form-control-static">THAY ĐỔI EMAIL ĐĂNG NHẬP</h3>
+                                </div>
+                            </div>
+                            <form name="change_email" method="post" action="https://employer.vietnamworks.com/v2/user/change-email" novalidate="novalidate" id="formAccountChangeEmail" class="form-horizontal" role="form">
+                                <div class="alert alert-danger hide">
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label control-label required" placeholder="Nhập mật khẩu truy cập hiện tại" for="change_email_password" aria-required="true">Mật Khẩu</label>
+                                    <div class="col-md-9">
+                                        <input type="password" id="change_email_password" name="change_email[password]" required="required" class="form-control form-control" placeholder="Nhập mật khẩu truy cập hiện tại" tabindex="1" aria-required="true">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label control-label required" for="change_email_new_email_first" aria-required="true">Email</label>
+                                    <div class="col-md-9">
+                                        <input type="email" id="change_email_new_email_first" name="change_email[new_email][first]" required="required" placeholder="Nhập email mới" class="form-control form-control" tabindex="2" aria-required="true">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label control-label required" for="change_email_new_email_second" aria-required="true">Xác Nhận Email</label>
+                                    <div class="col-md-9">
+                                        <input type="email" id="change_email_new_email_second" name="change_email[new_email][second]" required="required" placeholder="Nhập xác nhận email mới" class="form-control form-control" tabindex="3" aria-required="true">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="text-right col-sm-12">
+                                        <button class="btn btn-default btn-cancel">Hủy</button>
+                                        <button type="submit" id="change_email_save" name="change_email[save]" class="btn btn-primary btn-save-email btn" tabindex="4">Lưu</button>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="change_email__token" name="change_email[_token]" value="vxJaVMxv2Df1zEaD1YxlLrYUbv_LXdCeY2cbCv_Q3sU">
+                                <input type="hidden" id="change_email_user_id" name="change_email[user_id]" value="4595056">
+                            </form>
+                        </fieldset>*@
+                        <fieldset class="animated fadeInUp" id="formPassword" hidden="hidden">
+                            <div class="form-group m-b-n-lg">
+                                <label class="col-sm-3 control-label"></label>
+                                <div class="col-sm-9">
+                                    <h3 class="form-control-static">THAY ĐỔI MẬT KHẨU</h3>
+                                </div>
+                            </div>
+                            <form name="change_password" method="post" action="/Employer/ChangePassword" novalidate="novalidate" id="formAccountChangePassword" class="form-horizontal" role="form">
+                                <div class="alert alert-danger hide">
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label control-label required" for="change_password_current_password" aria-required="true">Mật khẩu hiện tại</label>
+                                    <div class="col-md-9">
+                                        <input type="password" id="change_password_current_password" name="current_password" required="required" class="form-control form-control" placeholder="Nhập vào mật khẩu truy cập hiện tại" tabindex="5" aria-required="true">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label control-label required" for="change_password_password_first" aria-required="true">Mật khẩu mới (<i class="fa fa-info tip-password" title="" data-original-title="Một mật khẩu hợp lệ phải chứa từ 4 đến 20 ký tự."></i>)</label>
+                                    <div class="col-md-9">
+                                        <input type="password" id="change_password_password_first" name="password_first" required="required" placeholder="Nhập mật khẩu truy cập mới" class="form-control form-control" tabindex="6" aria-required="true">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label control-label required" for="change_password_password_second" aria-required="true">Xác nhận mật khẩu mới</label>
+                                    <div class="col-md-9">
+                                        <input type="password" id="change_password_password_second" name="password_second" required="required" placeholder="Nhập lại mật khẩu truy cập mới" class="form-control form-control" tabindex="7" aria-required="true">
+
+                                        <p class="gray-light m-t-xs">
+                                            <i class="fa fa-shield" aria-hidden="true"></i> Mật mã luôn được mã hoá và bảo mật tuyệt đối.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="text-right col-sm-12">
+                                        <button class="btn btn-default btn-cancel" tabindex="8">Hủy</button>
+                                        <button type="submit" id="change_password_save" name="change_password[save]" class="btn btn-primary btn-save-password btn" tabindex="8">Lưu</button>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="change_password__token" name="change_password[_token]" value="QYWxTjXNDYYzV-gOmGzU0JJhmEXBWtwrum5yGSpH8d0">
+                                <input type="hidden" id="change_password_user_id" name="change_password[user_id]" value="4595056">
+                            </form>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

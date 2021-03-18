@@ -1,0 +1,123 @@
+﻿@model IList<Model.Framework.NghanhNghe>
+@using Model.Framework
+@{
+    thuctaptotnghiepDbContext db = new thuctaptotnghiepDbContext();
+    var parent = db.NghanhNghes.Where(x => x.Idnghanhcha == 0 && x.Tinhtrang == 1).ToList();
+    var count = db.NghanhNghes.Where(x => x.Idnghanhcha == 0 && x.Tinhtrang == 1).Count();
+    int col = count / 3;
+    if (count % 3 != 0)
+    {
+        col = col + 1;
+    }
+    
+}
+@*<div class="col-md-3 col-sm-12">
+    <div class="featured-employer">
+        <div class="panel">
+            <div class="panel-header">
+                <h3 class="no-margin no-padding">Nhà Tuyển Dụng Hàng Đầu</h3>
+            </div>
+            <div class="panel-content">
+                <div id="ads_TOP_COMPANIES" style="clear:both;">
+                    <a class="cusLogo" target="_blank" href="http://gachongtham.org"><img class="salesLogoImage img-responsive" src="/Employer_upload/logongongochai112@gmail.comScreenshot (4).png" width="88" height="43"></a>
+                    <a class="cusLogo" target="_blank" href="https://www.facebook.com/ngongochai112"><img class="salesLogoImage img-responsive" src="/Employer_upload/logovouyen25091998@gmail.comScreenshot (21).png" width="88" height="43"></a>
+                    <div style="display:none;" class="text-center m-t-md m-b-md"><i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i></div>
+                </div>
+                <script type="text/javascript" src="/Content/tuyendung/topcompany.js"></script>
+                <a href="https://www.vietnamworks.com/nha-tuyen-dung-hang-dau" title="Xem tất cả" class="view-all">Xem tất cả</a>
+
+            </div>
+        </div>
+    </div>
+</div>*@
+<div class="col-md-12 main-content" id="searchresult">
+    <div class="featured-employer">
+        <div class="panel">
+            <div class="panel-header">
+                <h3 class="no-margin no-padding">TẤT CẢ NGHÀNH NGHỀ</h3>
+            </div>
+            <!--Begin Content-->
+            <div style="padding:15px;" class="page-content">
+                <!-- Job Information -->
+
+                <div style="clear:both; display:none" class="messageBox" id="messagebox">
+                    <div class="error"><strong class="sprite_icon errorIcon">Error message is here</strong></div>
+                </div>
+                <!-- Browser by Industry-->
+                <div class="list-simple col-md-4">
+                    @foreach (var item in parent.Skip(0).Take(col))
+                    {
+                        if (db.NghanhNghes.Where(x => x.Idnghanhcha == item.Id).Count() != 0)
+                        {
+                            <h3>@item.Tennghanh</h3>
+                            <ul class="joball">
+                                @foreach (var i in Model)
+                                {
+                                    if (i.Idnghanhcha == item.Id)
+                                    {
+
+                                        <li>
+                                            <a href="@Url.Action("ShowSearch", "SearchJob", new {workid=i.Id })" title="Tìm việc làm ngành Xây dựng">@i.Tennghanh</a>
+                                            <em>@db.DangTinViecLams.Where(x => x.Tinhtrang == 1 && x.Trangthai == 1 && (x.Manghanh1 == i.Id || x.Manghanh2 == i.Id || x.Manghanh3 == i.Id)).Count()</em>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        }
+
+                    }
+                </div><!-- Second column-->
+                <div class="jobitem list-simple col-md-4">
+                    @foreach (var item in parent.Skip(col).Take(col))
+                    {
+                        if (db.NghanhNghes.Where(x => x.Idnghanhcha == item.Id).Count() != 0)
+                        {
+                            <h3>@item.Tennghanh</h3>
+                            <ul class="joball">
+                                @foreach (var i in Model)
+                                {
+                                    if (i.Idnghanhcha == item.Id)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("ShowSearch", "SearchJob", new {workid=i.Id })" title="Tìm việc làm ngành Điện/Điện tử">@i.Tennghanh</a>
+                                            <em>@db.DangTinViecLams.Where(x => x.Tinhtrang == 1 && x.Trangthai == 1 && (x.Manghanh1 == i.Id || x.Manghanh2 == i.Id || x.Manghanh3 == i.Id)).Count()</em>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        }
+                    }
+                </div>
+                <!--Browse by Function-->
+                <div class="list-simple col-md-3">
+                    <div class="col-md-12">
+                        @foreach (var item in parent.Skip(col + col).Take(col))
+                        {
+                            if (db.NghanhNghes.Where(x => x.Idnghanhcha == item.Id).Count() != 0)
+                            {
+                                <h3>@item.Tennghanh</h3>
+                                <ul class="joball">
+                                    @foreach (var i in Model)
+                                    {
+                                        if (i.Idnghanhcha == item.Id)
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("ShowSearch", "SearchJob", new {workid=i.Id })" title="Tìm việc làm ngành Điện/Điện tử">@i.Tennghanh</a>
+                                                <em>@db.DangTinViecLams.Where(x => x.Tinhtrang == 1 && x.Trangthai == 1 && (x.Manghanh1 == i.Id || x.Manghanh2 == i.Id || x.Manghanh3 == i.Id)).Count()</em>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .joball{
+        margin-left:-33px !important;
+    }
+</style>
